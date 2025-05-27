@@ -40,7 +40,7 @@ const Faqs = () => {
       <TitleSection title="FAQS" />
       <h2 className="text-4xl text-center md:text-5xl lg:text-6xl font-medium mt-6 max-w-xl mx-auto">
         Preguntas comunes
-        <span className="text-primary1"> respuestas claras</span>{" "}
+        <span className="text-primary1"> Respuestas Claras</span>{" "}
       </h2>
       <div className="mt-12 flex flex-col gap-6 max-w-xl mx-auto">
         {faqs.map((faq, Faqindex) => (

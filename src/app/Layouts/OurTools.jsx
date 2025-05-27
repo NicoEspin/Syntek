@@ -1,9 +1,13 @@
 import figmaIcon from "@/app/assets/logos/figma-logo.svg";
-import notionIcon from "@/app/assets/logos/notion-logo.svg";
-import slackIcon from "@/app/assets/logos/slack-logo.svg";
-import relumeIcon from "@/app/assets/logos/relume-logo.svg";
-import framerIcon from "@/app/assets/logos/framer-logo.svg";
 import githubIcon from "@/app/assets/logos/github-logo.svg";
+import reactIcon from "@/app/assets/logos/react.svg";
+import nodejsIcon from "@/app/assets/logos/nodejs.svg";
+import nextjsIcon from "@/app/assets/logos/nextjs.svg";
+import photoshopIcon from "@/app/assets/logos/photoshop.svg";
+import premiereIcon from "@/app/assets/logos/premiere.svg";
+import tailwindIcon from "@/app/assets/logos/tailwind.svg";
+import ilustratorIcon from "@/app/assets/logos/ilustrator.svg";
+import wordpressIcon from "@/app/assets/logos/wordpress.svg";
 
 import TitleSection from "../components/(common)/TitleSection";
 import TechColumn from "../components/TechColumn";
@@ -15,24 +19,46 @@ const Technologies = [
     description: "Figma is a collaborative interface design tool.",
   },
   {
-    name: "Notion",
-    icon: notionIcon,
-    description: "Notion is an all-in-one workspace for notes and docs.",
+    name: "Premiere",
+    icon: premiereIcon,
+    description: "Adobe Premiere is a video editing software.",
   },
   {
-    name: "Slack",
-    icon: slackIcon,
-    description: "Slack is a powerful team communication platform.",
+    name: "Node.js",
+    icon: nodejsIcon,
+    description: "Node.js is a JavaScript runtime environment.",
   },
   {
-    name: "Relume",
-    icon: relumeIcon,
-    description: "Relume is a no-code website builder and design system.",
+    name: "Next.js",
+    icon: nextjsIcon,
+    description:
+      "Next.js is a React framework for building server-side rendered applications.",
   },
   {
-    name: "Framer",
-    icon: framerIcon,
-    description: "Framer is a professional website prototyping tool.",
+    name: "TailwindCSS",
+    icon: tailwindIcon,
+    description: "TailwindCSS is a utility-first CSS framework.",
+  },
+  {
+    name: "Photoshop",
+    icon: photoshopIcon,
+    description: "Photoshop is a popular digital image editing software.",
+  },
+  {
+    name: "Ilustrator",
+    icon: ilustratorIcon,
+    description: "Adobe Illustrator is a vector graphics software.",
+  },
+  {
+    name: "Wordpress",
+    icon: wordpressIcon,
+    description:
+      "Wordpress is a free and open-source content management system.",
+  },
+  {
+    name: "React",
+    icon: reactIcon,
+    description: "React is a JavaScript library for building user interfaces.",
   },
   {
     name: "GitHub",

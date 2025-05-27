@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import DesignImage1 from "@/app/assets/design-example-1.png";
-import DesignImage2 from "@/app/assets/design-example-2.png";
+import DesignImage1 from "@/app/assets/card1.webp";
+import DesignImage2 from "@/app/assets/card3.webp";
 import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
 import { motion, useAnimate } from "framer-motion";
@@ -61,7 +61,12 @@ const Hero = () => {
           dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
           className="hidden lg:block absolute -left-32 -top-16"
         >
-          <Image src={DesignImage1} alt="Design Image" draggable={false} />
+          <Image
+            src={DesignImage1}
+            alt="Design Image"
+            draggable={false}
+            className="w-[310px] h-[439px] rounded-4xl border-2 border-[#A1E233] shadow shadow-[#A1E233]"
+          />
         </motion.div>
         <motion.div
           ref={leftPointerScope}
@@ -78,9 +83,15 @@ const Hero = () => {
           dragConstraints={heroRef}
           dragElastic={0.5}
           dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
-          className="hidden lg:block absolute -right-64 -top-30 "
+          className="hidden lg:block absolute -right-64 -top-30  "
         >
-          <Image src={DesignImage2} alt="Design Image" draggable={false} />
+          <Image
+            src={DesignImage2}
+            alt="Design Image"
+            draggable={false}
+            className=" w-[480px] h-[639px] rounded-4xl border-2 border-primary1 shadow 
+             shadow-[#A1E233] object-cover"
+          />
         </motion.div>
         <motion.div
           ref={rightPointerScope}

@@ -5,6 +5,7 @@ import OurTools from "@/app/Layouts/OurTools";
 import Introduction from "@/app/Layouts/Introduction";
 import Faqs from "@/app/Layouts/Faqs";
 import Services from "@/app/Layouts/Services";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <OurTools />
       <Faqs />
       <CallToAction />
+      <Footer />
     </>
   );
 }
