@@ -13,21 +13,6 @@ const Hero = () => {
   const [rightDesignScope, rightDesignAnimate] = useAnimate();
   const [rightPointerScope, rightPointerAnimate] = useAnimate();
 
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-
-    const section = heroRef.current;
-    section?.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      section?.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -65,22 +50,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
-      className="py-24 px-4 h-screen overflow-x-clip "
-      style={{ crusor: `url(${Pointer.src}), auto` }}
-      ref={heroRef}
-    >
-      <div
-        className="pointer-events-none fixed z-50 hidden lg:block"
-        style={{
-          top: cursorPos.y,
-          left: cursorPos.x,
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <Pointer name="tú" color="bg-green-400" />
-      </div>
-      <div className="  flex flex-col justify-center relative cursor-none">
+    <section className="py-24 px-4  overflow-x-clip " ref={heroRef}>
+      <div className="  flex flex-col justify-center relative ">
         <motion.div
           ref={leftDesignScope}
           initial={{ opacity: 0, y: 100, x: -100 }}
@@ -132,13 +103,13 @@ const Hero = () => {
         </h1>
         <p className="text-center text-xl text-white/50 mt-8 mb-8">
           Diseña tu sitio Web y desperta el poder de tu marca con{" "}
-          <span className="font-semibold text-[#A1E233]">Syntek</span>
+          <span className="font-semibold text-primary1">Syntek</span>
         </p>
         <button
-          className="bg-[#A1E233] text-neutral-950 font-semibold py-2 px-4 rounded-full
+          className="bg-primary1 text-neutral-950 font-semibold py-3 px-6 rounded-full
          transition-colors self-center cursor-pointer "
         >
-          Contactanos
+          Comencemos
         </button>
       </div>
     </section>
