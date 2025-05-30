@@ -50,7 +50,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="py-24 px-4  overflow-x-clip " ref={heroRef}>
+    <section className="py-24 px-4  overflow-x-clip mb-10" ref={heroRef}>
       <div className="  flex flex-col justify-center relative ">
         <motion.div
           ref={leftDesignScope}
@@ -101,13 +101,7 @@ const Hero = () => {
           <Pointer name={"Nico"} color={"bg-blue-500"} />
         </motion.div>
         <div className="flex justify-center ">
-          <div
-            className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400
-            rounded-full text-neutral-950 font-semibold"
-          >
-            {" "}
-            🚀 +100 Clientes Satisfechos
-          </div>
+       
         </div>
         <h1 className="text-6xl font-medium text-center mt-6">
           Desarrollo de Aplicaciones Web

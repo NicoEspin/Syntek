@@ -1,11 +1,12 @@
-import Hero from "@/app/Layouts/Hero";
+import Hero from "@/app/sections/Hero";
 import Navbar from "@/app/components/Navbar";
-import CallToAction from "@/app/Layouts/CallToAction";
-import OurTools from "@/app/Layouts/OurTools";
-import Introduction from "@/app/Layouts/Introduction";
-import Faqs from "@/app/Layouts/Faqs";
-import Services from "@/app/Layouts/Services";
+import CallToAction from "@/app/sections/CallToAction";
+import OurTools from "@/app/sections/OurTools";
+import Introduction from "@/app/sections/Introduction";
+import Faqs from "@/app/sections/Faqs";
+import Services from "@/app/sections/Services";
 import Footer from "./components/Footer";
+import Contact from "./sections/Contact";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Services />
       <OurTools />
       <Faqs />
+      <Contact />
       <CallToAction />
       <Footer />
     </>

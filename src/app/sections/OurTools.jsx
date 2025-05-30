@@ -78,7 +78,7 @@ const OurTools = () => {
               Trabajamos con las mejores tecnologías del{" "}
               <span className="text-primary1">Mercado</span>
             </h2>
-            <p className="text-white/50 mt-4 text-lg">
+            <p className="text-white/50 mt-4 lg:text-lg">
               En Syntek, usamos herramientas líderes para garantizar calidad,
               innovación y rendimiento óptimo. En un mundo digital en constante
               evolución, tener tu propio sitio web no es un lujo, es una
@@ -88,7 +88,7 @@ const OurTools = () => {
           <div>
             <div
               className="h-[400px] lg:h-[800px] overflow-clip mt-8 grid md:grid-cols-2 gap-4
-         [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
+              [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
             >
               <TechColumn Technologies={Technologies} />
               <TechColumn
