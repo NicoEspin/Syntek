@@ -5,8 +5,8 @@ import OurTools from "@/app/sections/OurTools";
 import Introduction from "@/app/sections/Introduction";
 import Faqs from "@/app/sections/Faqs";
 import Services from "@/app/sections/Services";
-import Footer from "./components/Footer";
-import Contact from "./sections/Contact";
+import Footer from "@/app/components/Footer";
+import Contact from "@/app/sections/Contact";
 
 export default function Home() {
   return (

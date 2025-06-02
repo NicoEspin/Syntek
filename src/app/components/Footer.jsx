@@ -1,9 +1,10 @@
 import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
-
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const Footer = () => {
+    const t = useTranslations("Footer");
   return (
     <footer className="bg-neutral-900 py-10 bottom-0">
       <div className="flex flex-col items-center gap-6">
@@ -22,7 +23,7 @@ const Footer = () => {
           </svg>
         </div>
         <p className="font-medium tracking-wide md:text-xl text-center">
-          &copy; 2025 Synttek. Todos los derechos reservados
+         {t("copyright")}
         </p>
         <div className="flex itesms-center gap-6">
           <Linkedin className="size-[30px] hover:text-primary1 transition-colors" />

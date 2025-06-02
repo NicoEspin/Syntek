@@ -1,0 +1,73 @@
+{
+  "Homepage": {
+    "title": "Desarrollo de Aplicaciones Web",
+    "subtitle": "Diseña tu sitio Web y desperta el poder de tu marca con",
+    "cta": "Comencemos"
+  },
+  "Navbar": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "tools": "Herramientas",
+    "contact": "Contacto",
+    "faqs": "FAQs",
+    "copyright": "©2025 Synttek. Todos los derechos reservados"
+  },
+  "Introduction": {
+    "title": "¿Por qué es importante tu propia web?",
+    "text": "visibilidad, genera confianza y atrae clientes. Además, te ayuda a posicionarte en buscadores, asegurando que tu negocio destaque frente a la competencia. Invertir en una web profesional es clave para el éxito digital.",
+    "white-text": "Tener una página web aumenta tu",
+    "cta": "Por eso confía en Synttek"
+  },
+  "Services": {
+    "title-section": "Servicios",
+    "title": "Tu éxito,",
+    "green-title": "Nuestro Servicio",
+    "subtitle": "Estrategia, diseño y tecnología para tu marca",
+    "web-development": "Desarrollo Web",
+    "web-development-description": "Creamos sitios rápidos, escalables y personalizados para impulsar tu presencia digital con una base sólida.",
+    "ecommerce": "Ecommerce",
+    "ecommerce-description": "Diseñamos tiendas online intuitivas, optimizadas para convertir visitas en ventas de forma efectiva.",
+    "branding": "Branding",
+    "branding-description": "Creamos identidades visuales impactantes que representan tu marca y destacan en el mercado.",
+    "uxui": "Diseño UX/UI",
+    "uxui-description": "Diseños centrados en el usuario que combinan estética y funcionalidad para una experiencia fluida y atractiva.",
+    "graphic-design": "Diseño Gráfico",
+    "graphic-design-description": "Transmitimos ideas visuales con impacto. Piezas creativas que comunican, destacan y fortalecen tu marca."
+  },
+  "Tools": {
+    "title-section": "Nuestras Herramientas",
+    "title": "Trabajamos con las mejores tecnologías del",
+    "green-title": "Mercado",
+    "description": "En Syntek, usamos herramientas líderes para garantizar calidad, innovación y rendimiento óptimo. En un mundo digital en constante evolución, tener tu propio sitio web no es un lujo, es una necesidad.",
+    "Figma": "Figma es una herramienta colaborativa de diseño de interfaces.",
+    "Premiere": "Adobe Premiere es un software de edición de video.",
+    "Nodejs": "Node.js es un entorno de ejecución para JavaScript.",
+    "Nextjs": "Next.js es un framework de React para construir aplicaciones renderizadas del lado del servidor.",
+    "TailwindCSS": "TailwindCSS es un framework CSS basado en utilidades.",
+    "Photoshop": "Photoshop es un software popular de edición de imágenes digitales.",
+    "Ilustrator": "Adobe Illustrator es un software de gráficos vectoriales.",
+    "Wordpress": "WordPress es un sistema de gestión de contenidos libre y de código abierto.",
+    "React": "React es una biblioteca de JavaScript para construir interfaces de usuario.",
+    "GitHub": "GitHub es la plataforma líder para la colaboración en código."
+  },
+  "Contact": {
+    "title-section": "Contacto",
+    "title": "Conectate con",
+    "green-title": "Nosotros",
+    "description": "Potencia tu presencia online con diseño innovador y desarrollo web estratégico. Tu próxima gran idea comienza aquí.",
+    "form-title": "Comencemos tu próximo proyecto",
+    "your-name": "Tu nombre",
+    "name-placeholder": "¿Cuál es tu nombre?",
+    "your-email": "Tu correo",
+    "email-placeholder": "¿Cuál es tu correo?",
+    "your-message": "Tu mensaje",
+    "message-placeholder": "Contanos tu proyecto",
+    "send-message": "Enviar Mensaje"
+  },
+  "Footer": {
+    "copyright": "©2025 Synttek. Todos los derechos reservados",
+    "cta":"Potencia tu marca con"
+  }
+}

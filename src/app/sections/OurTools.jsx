@@ -9,81 +9,76 @@ import tailwindIcon from "@/app/assets/logos/tailwind.svg";
 import ilustratorIcon from "@/app/assets/logos/ilustrator.svg";
 import wordpressIcon from "@/app/assets/logos/wordpress.svg";
 
-import TitleSection from "../components/(common)/TitleSection";
-import TechColumn from "../components/TechColumn";
-
-const Technologies = [
-  {
-    name: "Figma",
-    icon: figmaIcon,
-    description: "Figma is a collaborative interface design tool.",
-  },
-  {
-    name: "Premiere",
-    icon: premiereIcon,
-    description: "Adobe Premiere is a video editing software.",
-  },
-  {
-    name: "Node.js",
-    icon: nodejsIcon,
-    description: "Node.js is a JavaScript runtime environment.",
-  },
-  {
-    name: "Next.js",
-    icon: nextjsIcon,
-    description:
-      "Next.js is a React framework for building server-side rendered applications.",
-  },
-  {
-    name: "TailwindCSS",
-    icon: tailwindIcon,
-    description: "TailwindCSS is a utility-first CSS framework.",
-  },
-  {
-    name: "Photoshop",
-    icon: photoshopIcon,
-    description: "Photoshop is a popular digital image editing software.",
-  },
-  {
-    name: "Ilustrator",
-    icon: ilustratorIcon,
-    description: "Adobe Illustrator is a vector graphics software.",
-  },
-  {
-    name: "Wordpress",
-    icon: wordpressIcon,
-    description:
-      "Wordpress is a free and open-source content management system.",
-  },
-  {
-    name: "React",
-    icon: reactIcon,
-    description: "React is a JavaScript library for building user interfaces.",
-  },
-  {
-    name: "GitHub",
-    icon: githubIcon,
-    description: "GitHub is the leading platform for code collaboration.",
-  },
-];
+import TitleSection from "@/app/components/(common)/TitleSection";
+import TechColumn from "@/app/components/TechColumn";
+import { useTranslations } from "next-intl";
 
 const OurTools = () => {
+  const t = useTranslations("Tools");
+
+  const Technologies = [
+    {
+      name: "Figma",
+      icon: figmaIcon,
+      description: t("Figma"),
+    },
+    {
+      name: "Premiere",
+      icon: premiereIcon,
+      description: t("Premiere"),
+    },
+    {
+      name: "Node.js",
+      icon: nodejsIcon,
+      description: t("Nodejs"),
+    },
+    {
+      name: "Next.js",
+      icon: nextjsIcon,
+      description: t("Nextjs"),
+    },
+    {
+      name: "TailwindCSS",
+      icon: tailwindIcon,
+      description: t("TailwindCSS"),
+    },
+    {
+      name: "Photoshop",
+      icon: photoshopIcon,
+      description: t("Photoshop"),
+    },
+    {
+      name: "Ilustrator",
+      icon: ilustratorIcon,
+      description: t("Ilustrator"),
+    },
+    {
+      name: "Wordpress",
+      icon: wordpressIcon,
+      description: t("Wordpress"),
+    },
+    {
+      name: "React",
+      icon: reactIcon,
+      description: t("React"),
+    },
+    {
+      name: "GitHub",
+      icon: githubIcon,
+      description: t("GitHub"),
+    },
+  ];
+
   return (
     <section className="py-24 overflow-hidden px-4 md:px-5 lg:px-24">
       <div className="">
         <div className="grid lg:grid-cols-2 items-center lg:gap-16">
           <div>
-            <TitleSection title="Nuestras Herramientas" />
+            <TitleSection title={t("title-section")} />
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mt-6">
-              Trabajamos con las mejores tecnologías del{" "}
-              <span className="text-primary1">Mercado</span>
+              {t("title")} <span className="text-primary1">{t("green-title")}</span>
             </h2>
-            <p className="text-white/50 mt-4 lg:text-lg">
-              En Syntek, usamos herramientas líderes para garantizar calidad,
-              innovación y rendimiento óptimo. En un mundo digital en constante
-              evolución, tener tu propio sitio web no es un lujo, es una
-              necesidad.
-            </p>
+            <p className="text-white/50 mt-4 lg:text-lg">{t("description")}</p>
           </div>
           <div>
             <div
