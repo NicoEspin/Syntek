@@ -23,34 +23,34 @@ const Contact = () => {
           </p>
           <div className="flex flex-col gap-6 mt-6 w-fit">
             <div className="flex gap-4 items-center group">
-              <div className="bg-lime-600/20 p-3 rounded-md group-hover:bg-primary1 transition-colors">
-                <Phone className="size-[30px] text-primary1 group-hover:text-black transition-colors" />
+              <div className="bg-primary1 p-3 rounded-md group-hover:bg-lime-600/20 transition-colors">
+                <Phone className="size-[30px] text-black group-hover:text-primary1 transition-colors" />
               </div>
-              <h3 className="text-white/50 font-semibold text-lg group-hover:text-white transition-colors">
+              <h3 className="text-white font-semibold text-lg group-hover:text-white/50 transition-colors">
                 +54 9 11 2345-6789
               </h3>
             </div>
             <div className="flex gap-4 items-center group">
-              <div className="bg-lime-600/20 p-3 rounded-md group-hover:bg-primary1 transition-colors group-hover:shadow-primary1">
-                <Mail className="size-[30px] text-primary1 group-hover:text-black transition-colors" />
+              <div className="bg-primary1 p-3 rounded-md group-hover:bg-lime-600/20 transition-colors group-hover:shadow-lime-600/20">
+                <Mail className="size-[30px] text-black group-hover:text-primary1 transition-colors" />
               </div>
-              <h3 className="text-white/50 font-semibold text-lg group-hover:text-white transition-colors">
+              <h3 className="text-white font-semibold text-lg group-hover:text-white/50 transition-colors">
                 Lorem@gmail.com
               </h3>
             </div>
             <div className="flex gap-4 items-center group">
-              <div className="bg-lime-600/20 p-3 rounded-md group-hover:bg-primary1 transition-colors">
-                <Instagram className="size-[30px] text-primary1 group-hover:text-black transition-colors" />
+              <div className="bg-primary1 p-3 rounded-md group-hover:bg-lime-600/20 transition-colors">
+                <Instagram className="size-[30px] text-black group-hover:text-primary1 transition-colors" />
               </div>
-              <h3 className="text-white/50 font-semibold text-lg group-hover:text-white transition-colors">
+              <h3 className="text-white font-semibold text-lg group-hover:text-white/50 transition-colors">
                 Lorem@Ipsum
               </h3>
             </div>
             <div className="flex gap-4 items-center group">
-              <div className="bg-lime-600/20 p-3 rounded-md group-hover:bg-primary1 transition-colors">
-                <Linkedin className="size-[30px] text-primary1 group-hover:text-black transition-colors" />
+              <div className="bg-primary1 p-3 rounded-md group-hover:bg-lime-600/20 transition-colors">
+                <Linkedin className="size-[30px] text-black group-hover:text-primary1 transition-colors" />
               </div>
-              <h3 className="text-white/50 font-semibold text-lg group-hover:text-white transition-colors">
+              <h3 className="text-white font-semibold text-lg group-hover:text-white/50 transition-colors">
                 LoremIpsum
               </h3>
             </div>

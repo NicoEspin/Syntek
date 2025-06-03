@@ -38,7 +38,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="px-3 md:px-6 py-6 lg:py-20 lg:px-80 sticky top-0 z-50">
+    <header className="px-3 md:px-6 py-6 lg:py-20 2xl:px-80 sticky top-0 z-50">
       <div className="border border-white/15 rounded-[27px] backdrop-blur-md bg-white/20">
         <div className="flex p-2 px-4 items-center justify-between ">
           <div>
