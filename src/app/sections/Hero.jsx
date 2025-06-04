@@ -107,7 +107,7 @@ const Hero = () => {
           {t('title')}
         </h1>
         <p className="text-center text-xl text-white/50 mt-8 mb-8">
-          {t('subtitle', { brand: 'Syntek' })}
+          {t('subtitle')} <span className="text-primary1 font-semibold">Synttek</span>
         </p>
         <button
           className="bg-primary1 text-neutral-950 font-semibold py-3 px-6 rounded-full transition-colors self-center cursor-pointer"
