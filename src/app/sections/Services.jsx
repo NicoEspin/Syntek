@@ -8,7 +8,7 @@ const Services = () => {
   const t = useTranslations("Services");
 
   return (
-    <section className="py-24 px-4 md:px-5 lg:px-24 mx-auto">
+    <section className="py-24 px-4 md:px-5 lg:px-10 xl:px-24 mx-auto">
       <TitleSection title={t("title-section")} />
       <h2 className="text-4xl text-center md:text-5xl lg:text-6xl font-medium mt-6 max-w-xl mx-auto">
         {t("title")}

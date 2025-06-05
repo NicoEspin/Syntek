@@ -30,7 +30,7 @@ const text = t("text");
   }, [wordIndex]);
 
   return (
-    <section className="py-28 px-4 md:pt-64 lg:px-24  " ref={containerRef}>
+    <section className="py-28 px-4 md:pt-64 lg:px-10 xl:px-24  " ref={containerRef}>
       <div className="sticky top-20 md:top-40">
         <TitleSection title={t("title")} />
         <div className="mt-10 text-4xl text-center md:text-5xl">

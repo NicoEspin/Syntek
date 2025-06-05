@@ -10,7 +10,7 @@ const Contact = () => {
   const t = useTranslations("Contact");
 
   return (
-    <section className="py-24 px-4 md:px-5 lg:px-26">
+    <section className="py-24 px-4 md:px-5 lg:px-10 xl:px-26">
       <div className="block md:flex justify-center lg:justify-between items-center md:gap-40">
         <div>
           <TitleSection title={t("title-section")} />

@@ -68,6 +68,27 @@
   },
   "Footer": {
     "copyright": "©2025 Synttek. Todos los derechos reservados",
-    "cta":"Potencia tu marca con"
+    "cta": "Potencia tu marca con"
+  },
+  "About": {
+    "title-section": "Sobre Nosotros",
+    "title": " Conocé más sobre",
+    "green-title": "Nosotros",
+    "antto-rol": "Diseñadora Gráfica / UX-UI",
+    "antto-p1": "Especialista en branding y diseño UX/UI, con dominio en Figma, Illustrator, Photoshop y edición de videos.",
+    "antto-p2": "Integra estrategia y creatividad para desarrollar identidades visuales que conecten con el público y refuercen el mensaje de cada marca.",
+    "antto-p3": "Ha trabajado en proyectos innovadores, diseñando marcas que reflejan modernidad, funcionalidad y diferenciación en el mercado.",
+    "antto-p4": "Cada marca cuenta una historia, y mi trabajo es hacerla visualmente poderosa.",
+    "nico-rol": "Desarrollador Full Stack",
+    "nico-p1": "Desarrollador full stack con 2 años de experiencia, especializado en tecnologías MERN , PERN y WordPress, con dominio en React, Node.js, Express, PostgreSQL, MongoDB y TypeScript.",
+    "nico-p2": "Combina lógica y diseño para crear aplicaciones web robustas, escalables y centradas en la experiencia del usuario.",
+    "nico-p3": "Ha participado en proyectos innovadores, desarrollando soluciones digitales que destacan por su rendimiento, funcionalidad y estética moderna.",
+    "nico-p4": "Cada línea de código es parte de una solución, y mi trabajo es construir productos que realmente marquen la diferencia.",
+    "card1": "¿QUIÉN?",
+    "card1-description": "En SYNTTEK somos dos mentes creativas y técnicas que trabajan en equipo: una diseñadora gráfica especializada en UI/UX y un programador con foco en desarrollo web eficiente. Nos une la idea de crear sitios que funcionen, conecten y representen.",
+    "card2":"¿QUÉ?",
+    "card2-description":"Diseñamos y desarrollamos sitios web a medida, centrados en la experiencia del usuario, la identidad de marca y el rendimiento. Desde páginas institucionales hasta plataformas más complejas, creamos productos digitales que potencian el crecimiento y la presencia online de nuestros clientes.",
+    "card3":"¿CÓMO?",
+    "card3-description":"Fusionamos diseño y desarrollo desde el inicio, trabajando de forma ágil y personalizada. Nos apoyamos en principios de usabilidad, buenas prácticas de programación y una estética alineada con tu identidad. Así, tu web no es solo un canal más, sino una herramienta activa para crecer."
   }
 }

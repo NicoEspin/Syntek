@@ -71,5 +71,26 @@
   "Footer": {
     "copyright": "©2025 Synttek. All rights reserved",
     "cta": "Enhance your brand with"
+  },
+  "About": {
+    "title-section": "About Us",
+    "title": " Learn more about",
+    "green-title": "Us",
+    "antto-rol": "Graphic Designer / UX-UI",
+    "antto-p1": "Specialist in branding and UX/UI design, proficient in Figma, Illustrator, Photoshop, and video editing.",
+    "antto-p2": "Combines strategy and creativity to develop visual identities that connect with the audience and reinforce each brand's message.",
+    "antto-p3": "Has worked on innovative projects, designing brands that reflect modernity, functionality, and market differentiation.",
+    "antto-p4": "Every brand tells a story, and my job is to make it visually powerful.",
+    "nico-rol": "Full Stack Developer",
+    "nico-p1": "Full stack developer with 2 years of experience, specialized in MERN, PERN, and WordPress technologies, skilled in React, Node.js, Express, PostgreSQL, MongoDB, and TypeScript.",
+    "nico-p2": "Blends logic and design to create robust, scalable web applications focused on user experience.",
+    "nico-p3": "Has taken part in innovative projects, developing digital solutions known for their performance, functionality, and modern aesthetics.",
+    "nico-p4": "Every line of code is part of a solution, and my job is to build products that truly make a difference.",
+    "card1": "WHO?",
+    "card1-description": "At SYNTTEK, we are two creative and technical minds working as a team: a graphic designer specialized in UI/UX and a programmer focused on efficient web development. We are united by the idea of creating websites that work, connect, and represent.",
+    "card2": "WHAT?",
+    "card2-description": "We design and develop custom websites focused on user experience, brand identity, and performance. From institutional pages to more complex platforms, we create digital products that enhance our clients' growth and online presence.",
+    "card3": "HOW?",
+    "card3-description": "We merge design and development from the start, working in an agile and personalized way. We rely on usability principles, programming best practices, and aesthetics aligned with your identity. This way, your website is not just another channel but an active tool for growth."
   }
 }
