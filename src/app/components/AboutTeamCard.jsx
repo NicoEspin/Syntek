@@ -9,7 +9,7 @@ export default function AboutTeamCard({
   inverted = false,
 }) {
   return (
-    <div className="flex flex-col gap-6 items-center max-w-[319px]">
+    <div className="flex flex-col gap-6 items-center lg:max-w-[319px]">
       <div>
         <Image
           src={imageSrc}

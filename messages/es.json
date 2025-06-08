@@ -86,9 +86,28 @@
     "nico-p4": "Cada línea de código es parte de una solución, y mi trabajo es construir productos que realmente marquen la diferencia.",
     "card1": "¿QUIÉN?",
     "card1-description": "En SYNTTEK somos dos mentes creativas y técnicas que trabajan en equipo: una diseñadora gráfica especializada en UI/UX y un programador con foco en desarrollo web eficiente. Nos une la idea de crear sitios que funcionen, conecten y representen.",
-    "card2":"¿QUÉ?",
-    "card2-description":"Diseñamos y desarrollamos sitios web a medida, centrados en la experiencia del usuario, la identidad de marca y el rendimiento. Desde páginas institucionales hasta plataformas más complejas, creamos productos digitales que potencian el crecimiento y la presencia online de nuestros clientes.",
-    "card3":"¿CÓMO?",
-    "card3-description":"Fusionamos diseño y desarrollo desde el inicio, trabajando de forma ágil y personalizada. Nos apoyamos en principios de usabilidad, buenas prácticas de programación y una estética alineada con tu identidad. Así, tu web no es solo un canal más, sino una herramienta activa para crecer."
+    "card2": "¿QUÉ?",
+    "card2-description": "Diseñamos y desarrollamos sitios web a medida, centrados en la experiencia del usuario, la identidad de marca y el rendimiento. Desde páginas institucionales hasta plataformas más complejas, creamos productos digitales que potencian el crecimiento y la presencia online de nuestros clientes.",
+    "card3": "¿CÓMO?",
+    "card3-description": "Fusionamos diseño y desarrollo desde el inicio, trabajando de forma ágil y personalizada. Nos apoyamos en principios de usabilidad, buenas prácticas de programación y una estética alineada con tu identidad. Así, tu web no es solo un canal más, sino una herramienta activa para crecer."
+  },
+  "Faqs": {
+    "title-section": "FAQs",
+    "title": "Preguntas comunes",
+    "green-title": "Respuestas claras",
+    "question1": "¿Por qué necesito una página web si ya tengo redes sociales?",
+    "answer1": "La web te da autoridad, mejor posicionamiento en Google, control total sobre tu contenido y mayor conversión. Es clave para crecimiento sostenido.",
+    "question2": "¿Cuánto tiempo tarda en desarrollarse una web profesional?",
+    "answer2": "Depende de la complejidad del proyecto, pero en Synttek, podemos ofrecer soluciones rápidas y eficientes. Para sitios estándar, el tiempo promedio suele ser 2 a 4 semanas, mientras que desarrollos personalizados pueden tardar más.",
+    "question3": "¿Pueden crear una tienda online con WooCommerce para mi negocio?",
+    "answer3": "¡Absolutamente! WooCommerce es una de nuestras especialidades. Creamos tiendas online intuitivas, seguras y optimizadas para maximizar conversiones y mejorar la experiencia del usuario.",
+    "question4": "¿Cómo garantizan que mi página web se vea bien en móviles?",
+    "answer4": "Aplicamos diseño responsive y pruebas en distintos dispositivos para garantizar una experiencia óptima en smartphones y tablets.",
+    "question5": "¿Cómo se asegura la seguridad de mi sitio web?",
+    "answer5": "Implementamos SSL, protección contra ataques, actualizaciones regulares y copias de seguridad para que tu sitio esté siempre protegido.",
+    "question6": "¿Pueden ayudarme con el branding y la identidad visual de mi empresa?",
+    "answer6": "Sí, y es uno de nuestros puntos fuertes. Diseñamos identidades visuales sólidas y modernas, alineadas con los valores de tu negocio. Desde logotipos hasta estrategia de marca, construimos una imagen profesional y memorable. ",
+    "question7": "¿Cómo funcionan los pagos y revisiones en un proyecto con Synttek?",
+    "answer7": "Una vez que se aprueba el presupuesto, firmamos un contrato donde se establecen los detalles del proyecto, incluyendo tiempos y formas de pago. Por defecto, se abona un 50% al inicio y el 50% restante al finalizar. El acuerdo también contempla dos instancias de revisión sobre el diseño definido, para que podamos ajustar los detalles antes de la entrega final."
   }
 }

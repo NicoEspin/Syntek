@@ -92,5 +92,24 @@
     "card2-description": "We design and develop custom websites focused on user experience, brand identity, and performance. From institutional pages to more complex platforms, we create digital products that enhance our clients' growth and online presence.",
     "card3": "HOW?",
     "card3-description": "We merge design and development from the start, working in an agile and personalized way. We rely on usability principles, programming best practices, and aesthetics aligned with your identity. This way, your website is not just another channel but an active tool for growth."
+  },
+  "Faqs": {
+    "title-section": "FAQs",
+    "title": "Common Questions",
+    "green-title": "Clear Answers",
+    "question1": "Why do I need a website if I already have social media?",
+    "answer1": "A website gives you authority, better Google ranking, full control over your content, and higher conversion rates. It's key for sustainable growth.",
+    "question2": "How long does it take to develop a professional website?",
+    "answer2": "It depends on the project's complexity, but at Synttek, we offer fast and efficient solutions. Standard websites typically take 2 to 4 weeks, while custom developments may take longer.",
+    "question3": "Can you create an online store with WooCommerce for my business?",
+    "answer3": "Absolutely! WooCommerce is one of our specialties. We build intuitive, secure, and optimized online stores to maximize conversions and improve user experience.",
+    "question4": "How do you ensure my website looks good on mobile devices?",
+    "answer4": "We apply responsive design and conduct testing on various devices to ensure an optimal experience on smartphones and tablets.",
+    "question5": "How is the security of my website ensured?",
+    "answer5": "We implement SSL, protection against attacks, regular updates, and backups to keep your site always protected.",
+    "question6": "Can you help me with my company's branding and visual identity?",
+    "answer6": "Yes, and it's one of our strengths. We design strong, modern visual identities aligned with your business values. From logos to brand strategy, we build a professional and memorable image.",
+    "question7": "How do payments and revisions work in a project with Synttek?",
+    "answer7": "Once the quote is approved, we sign a contract detailing the project, including timelines and payment terms. By default, 50% is paid upfront and the remaining 50% upon completion. The agreement includes two rounds of revisions on the defined design to fine-tune details before final delivery."
   }
 }
