@@ -10,12 +10,12 @@ const Contact = () => {
   const t = useTranslations("Contact");
 
   return (
-    <section className="py-24 px-4 md:px-5 lg:px-10 xl:px-26">
+    <section className="py-24 px-4 md:px-5 lg:px-10 xl:px-26" id="contact">
       <div className="block md:flex justify-center lg:justify-between items-center md:gap-40">
         <div>
           <TitleSection title={t("title-section")} />
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mt-6">
-            {t("title")}
+            {t("title")}{" "}
             <span className="text-primary1 lg:block">{t("green-title")}</span>
           </h2>
           <p className="text-white/50 mt-4 lg:text-lg md:max-w-[400px] lg:max-w-md">

@@ -50,10 +50,10 @@ const About = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-5 xl:px-24 lg:px-10 mx-auto overflow-hidden">
+    <section className="py-24 px-4 md:px-5 xl:px-24 lg:px-10 mx-auto overflow-hidden" id="about">
       <TitleSection title={t("title-section")} />
       <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mt-6 text-center ">
-        {t("title")}
+        {t("title")}{" "}
         <span className="text-primary1 lg:block">{t("green-title")}</span>
       </h2>
 

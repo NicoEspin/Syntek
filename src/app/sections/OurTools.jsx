@@ -70,7 +70,7 @@ const OurTools = () => {
   ];
 
   return (
-    <section className="py-24 overflow-hidden px-4 md:px-5 lg:px-10 xl:px-24">
+    <section className="py-24 overflow-hidden px-4 md:px-5 lg:px-10 xl:px-24" id="tools">
       <div className="">
         <div className="grid lg:grid-cols-2 items-center lg:gap-16">
           <div>

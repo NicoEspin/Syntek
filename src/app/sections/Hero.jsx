@@ -3,10 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import DesignImage1 from "@/app/assets/card1.webp";
 import DesignImage2 from "@/app/assets/card3.webp";
+import DesignImageEng1 from "@/app/assets/card1eng.webp";
+import DesignImageEng2 from "@/app/assets/card2eng.webp";
 import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
 import { motion, useAnimate } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Hero = () => {
   const [leftDesignScope, leftDesignAnimate] = useAnimate();
@@ -44,6 +46,10 @@ const Hero = () => {
       ],
     ]);
   }, []);
+  const locale = useLocale();
+
+const design1 = locale === "en" ? DesignImageEng1 : DesignImage1;
+const design2 = locale === "en" ? DesignImageEng2 : DesignImage2;
 
   return (
     <section className="py-24 px-4 overflow-x-clip mb-10" ref={heroRef}>
@@ -59,7 +65,7 @@ const Hero = () => {
           className="hidden lg:block absolute -left-32 -top-16"
         >
           <Image
-            src={DesignImage1}
+            src={design1}
             alt="Design Image"
             draggable={false}
             className="w-[310px] h-[439px] rounded-4xl border-2 border-[#A1E233] shadow shadow-[#A1E233]"
@@ -86,7 +92,7 @@ const Hero = () => {
           className="hidden lg:block absolute -right-64 -top-30"
         >
           <Image
-            src={DesignImage2}
+            src={design2}
             alt="Design Image"
             draggable={false}
             className="w-[480px] h-[639px] rounded-4xl border-2 border-primary1 shadow shadow-[#A1E233] object-cover"

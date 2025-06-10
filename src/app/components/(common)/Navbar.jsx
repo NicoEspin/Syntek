@@ -21,12 +21,12 @@ const Navbar = () => {
 
   const navLinks = [
     { label: t('home'), href: "#" },
-    { label: t('services'), href: "#features" },
-    { label: t('portfolio'), href: "#faqs" },
-    { label: t('tools'), href: "#integrations" },
-    { label: t('about'), href: "#faqs" },
+    { label: t('services'), href: "#services" },
+    // { label: t('portfolio'), href: "#portfolio" },
+    { label: t('tools'), href: "#tools" },
+    { label: t('about'), href: "#about" },
     { label: t('faqs'), href: "#faqs" },
-    { label: t('contact'), href: "#faqs" },
+    { label: t('contact'), href: "#contact" },
   ];
 
   const switchLanguage = () => {
@@ -36,6 +36,7 @@ const Navbar = () => {
       router.push(newPath);
     });
   };
+  
 
   return (
     <header className="px-3 md:px-6 py-6 lg:py-20 2xl:px-80 sticky top-0 z-50">

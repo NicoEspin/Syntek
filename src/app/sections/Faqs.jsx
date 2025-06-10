@@ -43,7 +43,7 @@ const Faqs = () => {
   ];
 
   return (
-    <section className="py-24 px-4 md:px-5 lg:px-24">
+    <section className="py-24 px-4 md:px-5 lg:px-24" id="faqs">
       <TitleSection title={t("title-section")} />
       <h2 className="text-4xl text-center md:text-5xl lg:text-6xl font-medium mt-6 max-w-xl mx-auto">
         {t("title")}
