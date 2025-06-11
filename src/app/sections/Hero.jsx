@@ -16,7 +16,7 @@ const Hero = () => {
   const [rightDesignScope, rightDesignAnimate] = useAnimate();
   const [rightPointerScope, rightPointerAnimate] = useAnimate();
   const heroRef = useRef(null);
-  const t = useTranslations('Homepage');
+  const t = useTranslations("Homepage");
 
   useEffect(() => {
     leftDesignAnimate([
@@ -37,7 +37,11 @@ const Hero = () => {
       [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
     ]);
     rightPointerAnimate([
-      [rightPointerScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.5 }],
+      [
+        rightPointerScope.current,
+        { opacity: 1 },
+        { duration: 0.5, delay: 1.5 },
+      ],
       [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
       [
         rightPointerScope.current,
@@ -48,8 +52,8 @@ const Hero = () => {
   }, []);
   const locale = useLocale();
 
-const design1 = locale === "en" ? DesignImageEng1 : DesignImage1;
-const design2 = locale === "en" ? DesignImageEng2 : DesignImage2;
+  const design1 = locale === "en" ? DesignImageEng1 : DesignImage1;
+  const design2 = locale === "en" ? DesignImageEng2 : DesignImage2;
 
   return (
     <section className="py-24 px-4 overflow-x-clip mb-10" ref={heroRef}>
@@ -109,16 +113,13 @@ const design2 = locale === "en" ? DesignImageEng2 : DesignImage2;
         </motion.div>
 
         {/* Text content */}
-        <h1 className="text-6xl font-medium text-center mt-6">
-          {t('title')}
-        </h1>
+        <h1 className="text-6xl font-medium text-center mt-6">{t("title")}</h1>
         <p className="text-center text-xl text-white/50 mt-8 mb-8">
-          {t('subtitle')} <span className="text-primary1 font-semibold">Synttek</span>
+          {t("subtitle")}{" "}
+          <span className="text-primary1 font-semibold">Synttek</span>
         </p>
-        <button
-          className="bg-primary1 text-neutral-950 font-semibold py-3 px-6 rounded-full transition-colors self-center cursor-pointer"
-        >
-          {t('cta')}
+        <button className="bg-primary1 text-neutral-950 font-semibold py-3 px-6 rounded-full transition-colors self-center cursor-pointer">
+          {t("cta")}
         </button>
       </div>
     </section>

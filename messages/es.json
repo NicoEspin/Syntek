@@ -64,7 +64,10 @@
     "email-placeholder": "¿Cuál es tu correo?",
     "your-message": "Tu mensaje",
     "message-placeholder": "Contanos tu proyecto",
-    "send-message": "Enviar Mensaje"
+    "send_message": "Enviar Mensaje",
+    "sending_message": "Enviando mensaje...",
+    "success_message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.",
+    "error_message": "Hubo un error al enviar tu mensaje, por favor intenta nuevamente."
   },
   "Footer": {
     "copyright": "©2025 Synttek. Todos los derechos reservados",

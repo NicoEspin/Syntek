@@ -65,7 +65,10 @@
     "email-placeholder": "What's your email?",
     "your-message": "Your message",
     "message-placeholder": "Tell us about your project",
-    "send-message": "Send Message"
+    "send_message": "Send Message",
+    "sending_message": "Sending message...",
+    "success_message": "Thank you for your message! We'll get back to you soon.",
+    "error_message": "There was an error sending your message. Please try again."
   },
 
   "Footer": {
