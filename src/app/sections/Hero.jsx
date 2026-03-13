@@ -56,7 +56,7 @@ const Hero = () => {
   const design2 = locale === "en" ? DesignImageEng2 : DesignImage2;
 
   return (
-    <section className="py-24 px-4 overflow-x-clip mb-10" ref={heroRef}>
+    <section className="py-24 px-4 overflow-x-clip mb-20" ref={heroRef}>
       <div className="flex flex-col justify-center relative">
         {/* Left Design Image */}
         <motion.div

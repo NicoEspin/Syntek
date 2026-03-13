@@ -2,6 +2,7 @@ import Hero from "@/app/sections/Hero";
 import Navbar from "@/app/components/(common)/Navbar";
 import CallToAction from "@/app/sections/CallToAction";
 import OurTools from "@/app/sections/OurTools";
+import Projects from "@/app/sections/Projects";
 import Introduction from "@/app/sections/Introduction";
 import Faqs from "@/app/sections/Faqs";
 import Services from "@/app/sections/Services";
@@ -17,10 +18,11 @@ export default function Home() {
       <Introduction />
       <Services />
       <OurTools />
+      <Projects />
       <About />
       <Faqs />
-      <Contact />
       <CallToAction />
+      <Contact />
       <Footer />
     </>
   );

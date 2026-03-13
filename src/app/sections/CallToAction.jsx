@@ -9,7 +9,7 @@ const CallToAction = () => {
   const animation = useRef(null);
   const [scope, animate] = useAnimate();
 
-  const t = useTranslations("Footer");
+  const t = useTranslations("CallToAction");
   useEffect(() => {
     animation.current = animate(
       scope.current,

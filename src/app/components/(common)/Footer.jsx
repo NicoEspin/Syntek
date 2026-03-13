@@ -1,35 +1,105 @@
-import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
-import syntekIcon from "@/app/assets/logos/syntek.svg";
-import { useTranslations } from "next-intl";
+"use client";
+
 import Image from "next/image";
+import { Instagram, Linkedin, Mail } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import syntekIcon from "@/app/assets/logos/syntek.svg";
+
+const CONTACT_EMAIL = "synttek@gmail.com";
+const INSTAGRAM_URL = "https://www.instagram.com/";
+const LINKEDIN_URL = "https://www.linkedin.com/";
 
 const Footer = () => {
   const t = useTranslations("Footer");
+  const locale = useLocale();
+
+  const links = [
+    { key: "home", href: `/${locale}` },
+    { key: "services", href: `/${locale}/#services` },
+    { key: "projects", href: `/${locale}/#projects` },
+    { key: "about", href: `/${locale}/#about` },
+    { key: "contact", href: `/${locale}/#contact` },
+  ];
+
+  const socialLinks = [
+    {
+      key: "email",
+      icon: Mail,
+      href: `mailto:${CONTACT_EMAIL}`,
+      label: CONTACT_EMAIL,
+    },
+    {
+      key: "instagram",
+      icon: Instagram,
+      href: INSTAGRAM_URL,
+      label: t("channels.instagram.value"),
+    },
+    {
+      key: "linkedin",
+      icon: Linkedin,
+      href: LINKEDIN_URL,
+      label: t("channels.linkedin.value"),
+    },
+  ];
+
   return (
-    <footer className="bg-neutral-900 py-10 bottom-0">
-      <div className="flex flex-col items-center gap-6">
-        <div className="w-[200px] text-white hover:text-primary1 transition-colors ">
-          <svg
-            className="w-full h-[auto] fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 841.89 595.28"
+    <footer className="border-t border-white/8 bg-[#050505] px-4 py-8 text-white md:px-6 lg:px-10 xl:px-24">
+      <div className="mx-auto flex max-w-screen-2xl flex-col gap-8">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <a
+            href={`/${locale}`}
+            className="flex items-center gap-3 transition-opacity duration-300 hover:opacity-80"
           >
-            <path d="M533.76,209.37l.21.46" />
-            <path d="M305.77,379.34c9.15-10.93,20-20.25,29.4-30.94,7.54-8.57,14.36-17.57,17.33-28.87,2.5-9.49,1.2-18.61-2-27.8-13.36-38.52-7.49-74.11,17.84-106,28.34-35.65,79.33-48.3,121.46-30.93,8.49,3.51,16.64,7.57,24.2,13.69l-31.09,13.53c-1.32.58-2.41-.09-3.6-.52-28.64-10.47-55.47-6.69-78.85,12.65-23.09,19.1-32.27,44.49-27.65,74.29,2.1,13.51,8.32,25.32,17.66,35.31,2.27,2.44,1.82,3.41-.45,5.34q-41.77,35.47-83.39,71.13C305.88,380.39,305.57,380.11,305.77,379.34Z" />
-            <path d="M482,266.77c13.08,38.61,7,74.16-18.6,105.84-28.6,35.44-79.67,47.72-121.68,30.05-8.47-3.56-16.59-7.68-24.1-13.86l31.18-13.31c1.33-.57,2.42.11,3.6.55,28.56,10.68,55.42,7.09,78.94-12.09,23.23-18.93,32.59-44.25,28.18-74.08-2-13.53-8.14-25.38-17.4-35.44-2.26-2.46-1.8-3.43.48-5.34l21.83-18.29" />
-            <path d="M485.62,295.55a163.29,163.29,0,0,0-1.29-21.18l-10.22-37.44a43.58,43.58,0,0,1-1.16-4.46c-.75-5.6-2.67-15.24-8-16.58-3.76-1-7.63,2.72-9,3.88L431.4,241.05Z" />
-            <path d="M481.36,266.41l-7.8-25c-.37-1.64-3-15.31-3.46-16.71-.27-5.65-.67-6.63-5.82-8.42-3.67-1.27-8.95,3.42-10.39,4.47-13.73,9.95-26,22.08-39.75,32Z" />
-            <path d="M387.76,311.16l83-67.48L450.94,223,370.2,288.28S388.14,310.81,387.76,311.16Z" />
-          </svg>
+            <div className="flex size-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03]">
+              <Image
+                src={syntekIcon}
+                alt={t("brandLabel")}
+                className="h-6 w-auto"
+                priority={false}
+              />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-white">Synttek</p>
+              <p className="text-xs text-white/40">{t("brandLabel")}</p>
+            </div>
+          </a>
+
+          <nav className="flex flex-wrap gap-x-5 gap-y-2">
+            {links.map((link) => (
+              <a
+                key={link.key}
+                href={link.href}
+                className="text-sm text-white/55 transition-colors duration-300 hover:text-white"
+              >
+                {t(`links.${link.key}`)}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3 justify-center ">
+            {socialLinks.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={item.label}
+                  className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/65 transition-all duration-300 hover:border-primary1/30 hover:bg-primary1/10 hover:text-primary1"
+                >
+                  <Icon className="size-4" />
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <p className="font-medium tracking-wide md:text-xl text-center">
-          {t("copyright")}
-        </p>
-        <div className="flex itesms-center gap-6">
-          <Linkedin className="size-[30px] hover:text-primary1 transition-colors" />
-          <Instagram className="size-[30px] hover:text-primary1 transition-colors" />
-          <Phone className="size-[30px] hover:text-primary1 transition-colors" />
-          <Mail className="size-[30px] hover:text-primary1 transition-colors" />
+
+        <div className="flex flex-col gap-2 border-t border-white/8 pt-4 text-xs text-white/38 md:flex-row md:items-center md:justify-between">
+          <p>{t("copyright")}</p>
+          <p>{t("legalNote")}</p>
         </div>
       </div>
     </footer>

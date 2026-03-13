@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#160B11"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF3366" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FF3366" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#bg)"/>
+  <circle cx="1092" cy="231" r="189" fill="url(#accent)" opacity="0.9"/>
+  <rect x="112" y="147" width="476" height="567" rx="32" fill="#FFFFFF" fill-opacity="0.03" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <rect x="658" y="504" width="336" height="189" rx="24" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <path d="M0 861C224 777 476 966 728 882C979 798 1176 945 1400 861V1050H0Z" fill="#FF3366" fill-opacity="0.12"/>
+  <text x="112" y="168" fill="#FFFFFF" fill-opacity="0.18" font-size="44" font-family="Helvetica, Arial, sans-serif" letter-spacing="8">COVER</text>
+  <text x="112" y="651" fill="#FFFFFF" font-size="98" font-weight="700" font-family="Helvetica, Arial, sans-serif" letter-spacing="-2">NOX</text>
+  <text x="112" y="735" fill="#FF3366" font-size="25" font-family="Helvetica, Arial, sans-serif" letter-spacing="6">SYNTTEK PROJECT PLACEHOLDER</text>
+</svg>

@@ -9,11 +9,16 @@
     "home": "Home",
     "about": "About Us",
     "services": "Services",
+    "projects": "Projects",
     "portfolio": "Portfolio",
     "tools": "Tools",
     "contact": "Contact",
     "faqs": "FAQs",
-    "copyright": "©2025 Synttek. All rights reserved"
+    "copyright": "©2025 Synttek. All rights reserved",
+    "studioLabel": "Boutique digital studio",
+    "openMenu": "Menu",
+    "closeMenu": "Close",
+    "mobileLabel": "Navigation"
   },
   "Introduction": {
     "title": "Why is your own website important?",
@@ -41,7 +46,7 @@
     "title-section": "Our Tools",
     "title": "We work with the best technologies on the",
     "green-title": "Market",
-    "description": "At Syntek, we use leading tools to ensure quality, innovation, and optimal performance. In a constantly evolving digital world, having your own website is not a luxury it's a necessity.",
+    "description": "At Synttek, we use leading tools to ensure quality, innovation, and optimal performance. In a constantly evolving digital world, having your own website is not a luxury it's a necessity.",
     "Figma": "Figma is a collaborative interface design tool.",
     "Premiere": "Adobe Premiere is a video editing software.",
     "Nodejs": "Node.js is a JavaScript runtime environment.",
@@ -55,46 +60,180 @@
   },
   "Contact": {
     "title-section": "Contact",
-    "title": "Connect with",
-    "green-title": "Us",
-    "description": "Boost your online presence with innovative design and strategic web development. Your next big idea starts here.",
-    "form-title": "Let's start your next project",
-    "your-name": "Your name",
-    "name-placeholder": "What's your name?",
-    "your-email": "Your email",
-    "email-placeholder": "What's your email?",
-    "your-message": "Your message",
-    "message-placeholder": "Tell us about your project",
-    "send_message": "Send Message",
+    "eyebrow": "Let's talk about what comes next",
+    "title": "Design with intent,",
+    "green-title": "development with direction.",
+    "description": "If you already have an idea, an evolving brand or a product that needs to level up, this is where the conversation should begin.",
+    "availability": {
+      "label": "Replies in 24 to 48 hours",
+      "detail": "For branding, landing pages, websites and digital product work"
+    },
+    "channels": {
+      "label": "Direct channels",
+      "title": "Choose the route that fits your pace best.",
+      "description": "Email works best for briefs, the direct line keeps the channel structure in place and social profiles stay ready while the public presence is still being polished."
+    },
+    "methods": {
+      "email": {
+        "label": "Email",
+        "note": "Best for sharing context, goals, references and timing from the first message.",
+        "ariaLabel": "Send an email to Synttek"
+      },
+      "phone": {
+        "label": "Direct line",
+        "note": "Placeholder number until the final line is published. It keeps the anchor and channel format ready.",
+        "ariaLabel": "Call Synttek's direct line"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "value": "Profile in progress",
+        "note": "The visual channel is on the way. Until then, the link keeps the platform presence in place.",
+        "ariaLabel": "Open Instagram"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "value": "Page in progress",
+        "note": "The public-facing version is still being built, but the destination is ready for when it goes live.",
+        "ariaLabel": "Open LinkedIn"
+      }
+    },
+    "form": {
+      "eyebrow": "Initial brief",
+      "title": "Tell us what you want to build and where your project stands right now.",
+      "description": "You do not need to arrive with a polished deck. Goals, context and a rough timeline are enough to define the right next step.",
+      "helper": "The clearer the problem is, the sharper our response can be.",
+      "footer": "Short brief, long-term thinking",
+      "button_idle": "Send inquiry",
+      "button_loading": "Sending message..."
+    },
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "What's your name?"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Which email should we reply to?"
+      },
+      "message": {
+        "label": "Project",
+        "placeholder": "Tell us what you need, what outcome you are after and whether you have a timeline in mind."
+      }
+    },
     "sending_message": "Sending message...",
-    "success_message": "Thank you for your message! We'll get back to you soon.",
-    "error_message": "There was an error sending your message. Please try again."
+    "success_message": "Message received. We'll reply as soon as we've reviewed it.",
+    "error_message": "We couldn't send the message. Please try again in a few minutes.",
+    "config_error": "EmailJS must be configured before the form can be sent."
   },
 
-  "Footer": {
-    "copyright": "©2025 Synttek. All rights reserved",
+  "CallToAction": {
     "cta": "Enhance your brand with"
+  },
+  "Footer": {
+    "eyebrow": "Editorial close",
+    "brandLabel": "Boutique digital studio",
+    "title": "Design, intent and development for a presence",
+    "titleAccent": "that feels properly elevated.",
+    "description": "Synttek brings visual direction and web execution together to build websites, landing pages and digital experiences with precise aesthetics and a solid technical backbone.",
+    "availabilityLabel": "Availability",
+    "availabilityValue": "Taking on selected projects for 2025.",
+    "backToTop": "Return home",
+    "quickLinksLabel": "Quick links",
+    "channelsLabel": "Channels",
+    "links": {
+      "home": "Home",
+      "services": "Services",
+      "projects": "Projects",
+      "archive": "Archive",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "channels": {
+      "email": {
+        "label": "Email",
+        "ariaLabel": "Send an email to Synttek"
+      },
+      "phone": {
+        "label": "Direct line",
+        "ariaLabel": "Call Synttek's direct line"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "value": "Profile in progress",
+        "ariaLabel": "Open Instagram"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "value": "Page in progress",
+        "ariaLabel": "Open LinkedIn"
+      }
+    },
+    "copyright": "©2025 Synttek. All rights reserved",
+    "legalNote": "Designed with intent from Argentina."
   },
   "About": {
     "title-section": "About Us",
-    "title": " Learn more about",
-    "green-title": "Us",
+    "eyebrow": "Design and development, aligned from day one",
+    "title": "Two disciplines,",
+    "green-title": "one digital point of view.",
+    "intro": "Synttek brings visual strategy and web development into the same room from the start, so every project feels cohesive, performs better and scales with intention.",
+    "supporting": "We work closely, make decisions quickly and execute with care across the whole experience.",
+    "card-label": "Working foundation",
+    "highlights-label": "In focus",
+    "quote-label": "Point of view",
     "antto-rol": "Graphic Designer / UX-UI",
-    "antto-p1": "Specialist in branding and UX/UI design, proficient in Figma, Illustrator, Photoshop, and video editing.",
-    "antto-p2": "Combines strategy and creativity to develop visual identities that connect with the audience and reinforce each brand's message.",
-    "antto-p3": "Has worked on innovative projects, designing brands that reflect modernity, functionality, and market differentiation.",
-    "antto-p4": "Every brand tells a story, and my job is to make it visually powerful.",
+    "antto-summary": "She shapes ideas into clear visual systems: branding, interfaces and assets with intention, consistency and an editorial eye.",
+    "antto-highlight-1": "Branding and UX/UI focused on identity, clarity and a strong visual direction.",
+    "antto-highlight-2": "Strong command of Figma, Illustrator, Photoshop and editing workflows to build cohesive visual worlds.",
+    "antto-quote": "Every brand already has a voice; my role is to give it a visual form that feels inevitable.",
     "nico-rol": "Full Stack Developer",
-    "nico-p1": "Full stack developer with 2 years of experience, specialized in MERN, PERN, and WordPress technologies, skilled in React, Node.js, Express, PostgreSQL, MongoDB, and TypeScript.",
-    "nico-p2": "Blends logic and design to create robust, scalable web applications focused on user experience.",
-    "nico-p3": "Has taken part in innovative projects, developing digital solutions known for their performance, functionality, and modern aesthetics.",
-    "nico-p4": "Every line of code is part of a solution, and my job is to build products that truly make a difference.",
-    "card1": "WHO?",
-    "card1-description": "At SYNTTEK, we are two creative and technical minds working as a team: a graphic designer specialized in UI/UX and a programmer focused on efficient web development. We are united by the idea of creating websites that work, connect, and represent.",
-    "card2": "WHAT?",
-    "card2-description": "We design and develop custom websites focused on user experience, brand identity, and performance. From institutional pages to more complex platforms, we create digital products that enhance our clients' growth and online presence.",
-    "card3": "HOW?",
-    "card3-description": "We merge design and development from the start, working in an agile and personalized way. We rely on usability principles, programming best practices, and aesthetics aligned with your identity. This way, your website is not just another channel but an active tool for growth."
+    "nico-summary": "He turns the creative direction into fast, scalable products that stay clean under the hood and deliberate in the final experience.",
+    "nico-highlight-1": "Hands-on with React, Node.js, Express, PostgreSQL, MongoDB, TypeScript and MERN/PERN stacks.",
+    "nico-highlight-2": "Implementation centered on structure, speed, maintainability and a polished end-user experience.",
+    "nico-quote": "Code does not need to impress by volume; it needs to hold the product together when it starts to scale.",
+    "card1": "Who we are",
+    "card1-description": "We are a compact, complementary studio: design sets the direction and development turns it into a consistent digital experience.",
+    "card2": "What we build",
+    "card2-description": "Websites, landing pages and custom digital experiences where brand, usability and performance operate as one system.",
+    "card3": "How we work",
+    "card3-description": "With less noise and more intent: clear decisions, agile iteration and execution that respects both the visual and technical sides."
+  },
+  "Projects": {
+    "sectionLabel": "Projects",
+    "sectionTitle": "Selected\nwork.",
+    "sectionSubtitle": "A selection of projects where strategy, design and technology converge.",
+    "viewAll": "View all projects",
+    "viewProject": "View project",
+    "backHome": "Back to home",
+    "backToProjects": "<- Projects",
+    "allProjects": "All",
+    "filterLabel": "Filter projects",
+    "pageEyebrow": "Project archive",
+    "pageHeading": "All projects.",
+    "pageIntro": "Explore case studies where branding, ecommerce, UI/UX and development meet in one cohesive digital experience.",
+    "resultsLabel": "projects",
+    "emptyTitle": "No projects in this category",
+    "emptyDescription": "Try another filter to browse the rest of the archive.",
+    "categories": {
+      "Branding": "Branding",
+      "Ecommerce": "Ecommerce",
+      "Diseno UX/UI": "UI/UX Design",
+      "Desarrollo Web": "Web Development",
+      "Diseno Grafico": "Graphic Design"
+    },
+    "detail": {
+      "client": "Client",
+      "year": "Year",
+      "services": "Services",
+      "technologies": "Technologies",
+      "visitSite": "Visit site",
+      "nextProject": "Next project",
+      "overview": "Overview",
+      "galleryImageAlt": "{title} - image {index}"
+    },
+    "pageTitle": "Projects - Synttek",
+    "pageDescription": "Synttek's project portfolio: web design, branding, ecommerce and UI/UX.",
+    "detailPageTitle": "{title} - Synttek"
   },
   "Faqs": {
     "title-section": "FAQs",
