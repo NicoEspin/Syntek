@@ -1,7 +1,10 @@
 {
   "Homepage": {
     "title": "Desarrollo de Aplicaciones Web",
-    "subtitle": "Diseña tu sitio Web y desperta el poder de tu marca con",
+    "subtitle": "Desperta el poder de tu marca con",
+    "eyebrow": "Agencia de desarrollo · Córdoba, AR",
+    "headline-line1": "Construimos",
+    "cta-secondary": "Ver proyectos",
     "cta": "Comencemos"
   },
   "Navbar": {
@@ -17,6 +20,7 @@
     "studioLabel": "Estudio digital boutique",
     "openMenu": "Menú",
     "closeMenu": "Cerrar",
+    "available": "Disponible",
     "mobileLabel": "Navegación"
   },
   "Introduction": {
@@ -39,7 +43,9 @@
     "uxui": "Diseño UX/UI",
     "uxui-description": "Diseños centrados en el usuario que combinan estética y funcionalidad para una experiencia fluida y atractiva.",
     "graphic-design": "Diseño Gráfico",
-    "graphic-design-description": "Transmitimos ideas visuales con impacto. Piezas creativas que comunican, destacan y fortalecen tu marca."
+    "graphic-design-description": "Transmitimos ideas visuales con impacto. Piezas creativas que comunican, destacan y fortalecen tu marca.",
+    "automations": "Automatizaciones",
+    "automations-description": "Workflows inteligentes que eliminan tareas repetitivas y conectan tus herramientas. Integraciones con IA, CRMs, ERPs y APIs a medida para multiplicar la productividad de tu equipo."
   },
   "Tools": {
     "title-section": "Nuestras Herramientas",
@@ -59,6 +65,9 @@
   },
   "Contact": {
     "title-section": "Contacto",
+    "headline-line1": "¿Listo para impulsar",
+    "headline-line2": "tu marca?",
+    "headline-hola": "Hola",
     "eyebrow": "Hablemos de lo que sigue",
     "title": "Diseño con criterio,",
     "green-title": "desarrollo con dirección.",
@@ -170,35 +179,41 @@
     "legalNote": "Diseñado con intención desde Argentina."
   },
   "About": {
-    "title-section": "Sobre Nosotros",
-    "eyebrow": "Diseño y desarrollo, sin fricción",
-    "title": "Dos perfiles,",
-    "green-title": "un mismo criterio digital.",
-    "intro": "Synttek une estrategia visual y desarrollo web desde el inicio, para que cada proyecto se vea sólido, funcione mejor y crezca con una dirección clara.",
-    "supporting": "Trabajamos de forma cercana, con decisiones concretas y una ejecución cuidada de punta a punta.",
-    "card-label": "Base de trabajo",
-    "highlights-label": "En foco",
-    "quote-label": "Mirada",
-    "antto-rol": "Diseñadora Gráfica / UX-UI",
-    "antto-summary": "Convierte ideas en sistemas visuales claros: branding, interfaces y piezas con intención, consistencia y sensibilidad editorial.",
-    "antto-highlight-1": "Branding y UX/UI con foco en identidad, claridad y dirección estética.",
-    "antto-highlight-2": "Dominio de Figma, Illustrator, Photoshop y edición para construir universos visuales coherentes.",
-    "antto-quote": "Cada marca ya tiene una voz; mi trabajo es darle forma visual para que se sienta inevitable.",
-    "nico-rol": "Desarrollador Full Stack",
-    "nico-summary": "Traduce la dirección creativa en productos rápidos, escalables y bien resueltos, cuidando la experiencia sin sacrificar performance.",
-    "nico-highlight-1": "Experiencia en React, Node.js, Express, PostgreSQL, MongoDB, TypeScript y ecosistemas MERN/PERN.",
-    "nico-highlight-2": "Implementación enfocada en estructura, velocidad, mantenibilidad y una experiencia final pulida.",
-    "nico-quote": "El código no tiene que impresionar por cantidad; tiene que sostener el producto cuando empieza a crecer.",
-    "card1": "Quiénes somos",
-    "card1-description": "Somos un estudio chico y complementario: diseño para dar dirección, desarrollo para convertirla en una experiencia digital consistente.",
-    "card2": "Qué construimos",
-    "card2-description": "Sitios, landing pages y experiencias web a medida donde marca, usabilidad y rendimiento trabajan como un mismo sistema.",
-    "card3": "Cómo trabajamos",
-    "card3-description": "Con menos vueltas y más criterio: decisiones claras, iteración ágil y una ejecución que cuida tanto lo visual como lo técnico."
+    "eyebrow": "Quiénes somos",
+
+    "headline-line1": "No resolvemos problemas,",
+    "headline-line2": "creamos soluciones.",
+
+    "manifesto": "Synttek es una agencia de desarrollo de software que existe para impulsar marcas. Combinamos estrategia, diseño y código para construir productos digitales que no solo funcionan — generan tracción real, aceleran ventas y multiplican la productividad de quienes los usan.",
+
+    "differentiator": "Cada proyecto que tomamos parte de una visión: que la tecnología no sea un costo, sino el activo más rentable de tu empresa.",
+
+    "stat1-label": "proyectos entregados",
+    "stat2-label": "promedio de aumento en conversión",
+    "stat3-label": "de los proyectos terminados a tiempo",
+    "stat4-label": "años construyendo en Latam",
+
+    "pillars-label": "Nuestra filosofía",
+    "pillars-heading": "Tres formas de pensar que nos definen.",
+    "pillars-caption": "No son valores de pared. Son los principios que guían cada decisión que tomamos.",
+
+    "pillar1-title": "Estrategia antes que código",
+    "pillar1-accent": "Estrategia",
+    "pillar1-body": "Antes de escribir una sola línea de código, entendemos tu negocio, tu mercado y tu usuario. El software más elegante falla si está construido sobre supuestos equivocados.",
+
+    "pillar2-title": "Diseño que convierte",
+    "pillar2-accent": "convierte",
+    "pillar2-body": "La estética no es decoración — es persuasión. Cada pantalla, interacción y detalle visual está pensado para mover al usuario hacia el siguiente paso.",
+
+    "pillar3-title": "Tecnología que escala",
+    "pillar3-accent": "escala",
+    "pillar3-body": "Construimos para el futuro de tu empresa, no solo para el MVP. Arquitecturas limpias, código mantenible y decisiones técnicas que no te van a costar cara en 18 meses."
   },
   "Projects": {
     "sectionLabel": "Proyectos",
     "sectionTitle": "Trabajo\nselecto.",
+    "headline-line1": "Trabajo",
+     "headline-line2": "selecto.",
     "sectionSubtitle": "Una selección de proyectos donde estrategia, diseño y tecnología convergen.",
     "viewAll": "Ver todos los proyectos",
     "viewProject": "Ver proyecto",
@@ -217,7 +232,12 @@
       "Ecommerce": "Ecommerce",
       "Diseno UX/UI": "Diseño UX/UI",
       "Desarrollo Web": "Desarrollo Web",
-      "Diseno Grafico": "Diseño Gráfico"
+      "Diseno Grafico": "Diseño Gráfico",
+      "webdesign": "Web Design",
+      "Animaciones Web": "Animaciones Web",
+      "SaaS": "SaaS",
+      "Integracion Backend": "Integración Backend",
+      "Arquitectura Frontend": "Arquitectura Frontend"
     },
     "detail": {
       "client": "Cliente",
@@ -250,6 +270,18 @@
     "question6": "¿Pueden ayudarme con el branding y la identidad visual de mi empresa?",
     "answer6": "Sí, y es uno de nuestros puntos fuertes. Diseñamos identidades visuales sólidas y modernas, alineadas con los valores de tu negocio. Desde logotipos hasta estrategia de marca, construimos una imagen profesional y memorable. ",
     "question7": "¿Cómo funcionan los pagos y revisiones en un proyecto con Synttek?",
-    "answer7": "Una vez que se aprueba el presupuesto, firmamos un contrato donde se establecen los detalles del proyecto, incluyendo tiempos y formas de pago. Por defecto, se abona un 50% al inicio y el 50% restante al finalizar. El acuerdo también contempla dos instancias de revisión sobre el diseño definido, para que podamos ajustar los detalles antes de la entrega final."
+    "answer7": "Una vez que se aprueba el presupuesto, firmamos un contrato donde se establecen los detalles del proyecto, incluyendo tiempos y formas de pago. Por defecto, se abona un 50% al inicio y el 50% restante al finalizar. El acuerdo también contempla dos instancias de revisión sobre el diseño definido, para que podamos ajustar los detalles antes de la entrega final.",
+    "question8": "¿Qué tipo de procesos pueden automatizarse?",
+    "answer8": "Cualquier tarea repetitiva que hoy consume tiempo de tu equipo: seguimiento de leads, onboarding de clientes, reportes automáticos, sincronización entre CRMs y ERPs, notificaciones, facturación y mucho más. Si el proceso tiene un patrón, puede automatizarse.",
+
+    "question9": "¿Necesito conocimientos técnicos para usar las automatizaciones?",
+    "answer9": "No. Diseñamos los flujos para que sean operables por cualquier persona del equipo. Entregamos documentación clara, un período de acompañamiento post-lanzamiento y los workflows conectados directamente a las herramientas que ya usás (Notion, Slack, WhatsApp Business, Google Workspace, etc.).",
+
+    "question10": "¿Qué herramientas usan para las automatizaciones y qué pasa con la IA?",
+    "answer10": "Trabajamos con n8n como plataforma principal de workflows, junto con APIs propias y servicios de AI (OpenAI, Anthropic, Gemini). Podemos integrar agentes de IA que respondan consultas, generen contenido o tomen decisiones dentro de tus flujos operativos, sin necesidad de que el equipo intervenga manualmente.",
+
+    "cta-question": "¿Tenés una pregunta que no está acá?",
+    "cta-detail": "Respondemos en menos de 24 horas.",
+    "cta-btn": "Consultanos"
   }
 }

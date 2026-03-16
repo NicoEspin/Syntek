@@ -1,7 +1,10 @@
 {
   "Homepage": {
+    "headline-line1": "We build",
+    "eyebrow": "Development agency · Córdoba, AR",
+    "subtitle": "Unlock the power of your brand with",
     "title": "Web Application Development",
-    "subtitle": "Design your website and unlock the power of your brand with",
+    "cta-secondary": "View projects",
     "cta": "Let's start"
   },
 
@@ -18,7 +21,8 @@
     "studioLabel": "Boutique digital studio",
     "openMenu": "Menu",
     "closeMenu": "Close",
-    "mobileLabel": "Navigation"
+    "mobileLabel": "Navigation",
+    "available": "Available"
   },
   "Introduction": {
     "title": "Why is your own website important?",
@@ -40,7 +44,9 @@
     "uxui": "UX/UI Design",
     "uxui-description": "User-centered designs that combine aesthetics and functionality for a smooth and engaging experience.",
     "graphic-design": "Graphic Design",
-    "graphic-design-description": "We convey ideas visually with impact—creative pieces that communicate, stand out, and strengthen your brand."
+    "graphic-design-description": "We convey ideas visually with impact—creative pieces that communicate, stand out, and strengthen your brand.",
+    "automations": "Automations",
+    "automations-description": "Intelligent workflows that eliminate repetitive tasks and connect your tools. AI integrations, CRMs, ERPs and custom APIs to multiply your team's productivity."
   },
   "Tools": {
     "title-section": "Our Tools",
@@ -60,6 +66,9 @@
   },
   "Contact": {
     "title-section": "Contact",
+    "headline-line1": "Ready to power up",
+    "headline-line2": "your brand?",
+    "headline-hola": "Hello",
     "eyebrow": "Let's talk about what comes next",
     "title": "Design with intent,",
     "green-title": "development with direction.",
@@ -172,36 +181,42 @@
     "legalNote": "Designed with intent from Argentina."
   },
   "About": {
-    "title-section": "About Us",
-    "eyebrow": "Design and development, aligned from day one",
-    "title": "Two disciplines,",
-    "green-title": "one digital point of view.",
-    "intro": "Synttek brings visual strategy and web development into the same room from the start, so every project feels cohesive, performs better and scales with intention.",
-    "supporting": "We work closely, make decisions quickly and execute with care across the whole experience.",
-    "card-label": "Working foundation",
-    "highlights-label": "In focus",
-    "quote-label": "Point of view",
-    "antto-rol": "Graphic Designer / UX-UI",
-    "antto-summary": "She shapes ideas into clear visual systems: branding, interfaces and assets with intention, consistency and an editorial eye.",
-    "antto-highlight-1": "Branding and UX/UI focused on identity, clarity and a strong visual direction.",
-    "antto-highlight-2": "Strong command of Figma, Illustrator, Photoshop and editing workflows to build cohesive visual worlds.",
-    "antto-quote": "Every brand already has a voice; my role is to give it a visual form that feels inevitable.",
-    "nico-rol": "Full Stack Developer",
-    "nico-summary": "He turns the creative direction into fast, scalable products that stay clean under the hood and deliberate in the final experience.",
-    "nico-highlight-1": "Hands-on with React, Node.js, Express, PostgreSQL, MongoDB, TypeScript and MERN/PERN stacks.",
-    "nico-highlight-2": "Implementation centered on structure, speed, maintainability and a polished end-user experience.",
-    "nico-quote": "Code does not need to impress by volume; it needs to hold the product together when it starts to scale.",
-    "card1": "Who we are",
-    "card1-description": "We are a compact, complementary studio: design sets the direction and development turns it into a consistent digital experience.",
-    "card2": "What we build",
-    "card2-description": "Websites, landing pages and custom digital experiences where brand, usability and performance operate as one system.",
-    "card3": "How we work",
-    "card3-description": "With less noise and more intent: clear decisions, agile iteration and execution that respects both the visual and technical sides."
+    "eyebrow": "Who we are",
+
+    "headline-line1": "We don't solve problems,",
+    "headline-line2": "we build solutions.",
+
+    "manifesto": "Synttek is a software development agency built to power brands. We combine strategy, design and code to create digital products that don't just work — they generate real traction, accelerate sales and multiply the productivity of everyone who uses them.",
+
+    "differentiator": "Every project we take on shares one vision: technology shouldn't be a cost — it should be the most profitable asset your company owns.",
+
+    "stat1-label": "projects delivered",
+    "stat2-label": "average conversion uplift",
+    "stat3-label": "of projects on time",
+    "stat4-label": "years building in Latam",
+
+    "pillars-label": "Our philosophy",
+    "pillars-heading": "Three ways of thinking that define us.",
+    "pillars-caption": "Not wall values. These are the principles behind every decision we make.",
+
+    "pillar1-title": "Strategy before code",
+    "pillar1-accent": "Strategy",
+    "pillar1-body": "Before writing a single line of code, we understand your business, your market and your user. The most elegant software fails if it's built on the wrong assumptions.",
+
+    "pillar2-title": "Design that converts",
+    "pillar2-accent": "converts",
+    "pillar2-body": "Aesthetics aren't decoration — they're persuasion. Every screen, interaction and visual detail is designed to move the user to the next step.",
+
+    "pillar3-title": "Technology that scales",
+    "pillar3-accent": "scales",
+    "pillar3-body": "We build for the future of your business, not just the MVP. Clean architecture, maintainable code and technical decisions that won't cost you dearly in 18 months."
   },
   "Projects": {
     "sectionLabel": "Projects",
     "sectionTitle": "Selected\nwork.",
     "sectionSubtitle": "A selection of projects where strategy, design and technology converge.",
+    "headline-line1": "Selected",
+    "headline-line2": "work.",
     "viewAll": "View all projects",
     "viewProject": "View project",
     "backHome": "Back to home",
@@ -219,7 +234,12 @@
       "Ecommerce": "Ecommerce",
       "Diseno UX/UI": "UI/UX Design",
       "Desarrollo Web": "Web Development",
-      "Diseno Grafico": "Graphic Design"
+      "Diseno Grafico": "Graphic Design",
+      "webdesign": "Web Design",
+      "Animaciones Web": "Web Animations",
+      "SaaS": "SaaS",
+      "Integracion Backend": "Backend Integration",
+      "Arquitectura Frontend": "Frontend Architecture"
     },
     "detail": {
       "client": "Client",
@@ -252,6 +272,18 @@
     "question6": "Can you help me with my company's branding and visual identity?",
     "answer6": "Yes, and it's one of our strengths. We design strong, modern visual identities aligned with your business values. From logos to brand strategy, we build a professional and memorable image.",
     "question7": "How do payments and revisions work in a project with Synttek?",
-    "answer7": "Once the quote is approved, we sign a contract detailing the project, including timelines and payment terms. By default, 50% is paid upfront and the remaining 50% upon completion. The agreement includes two rounds of revisions on the defined design to fine-tune details before final delivery."
+    "answer7": "Once the quote is approved, we sign a contract detailing the project, including timelines and payment terms. By default, 50% is paid upfront and the remaining 50% upon completion. The agreement includes two rounds of revisions on the defined design to fine-tune details before final delivery.",
+    "question8": "What types of processes can be automated?",
+    "answer8": "Any repetitive task that currently consumes your team's time: lead follow-up, client onboarding, automated reports, CRM and ERP sync, notifications, invoicing and much more. If the process has a pattern, it can be automated.",
+
+    "question9": "Do I need technical knowledge to use the automations?",
+    "answer9": "No. We design workflows that anyone on the team can operate. We deliver clear documentation, a post-launch support period and workflows connected directly to the tools you already use (Notion, Slack, WhatsApp Business, Google Workspace, etc.).",
+
+    "question10": "What tools do you use for automations, and what about AI?",
+    "answer10": "We use n8n as our main workflow platform, alongside custom APIs and AI services (OpenAI, Anthropic, Gemini). We can integrate AI agents that answer queries, generate content or make decisions inside your operational flows — no manual intervention required.",
+
+    "cta-question": "Have a question that's not here?",
+    "cta-detail": "We reply within 24 hours.",
+    "cta-btn": "Ask us"
   }
 }

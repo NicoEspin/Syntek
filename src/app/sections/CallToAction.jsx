@@ -32,7 +32,7 @@ const CallToAction = () => {
           ref={scope}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex flex-none gap-12 pr-12 text-6xl md:text-6xl font-medium group"
+          className="flex flex-none gap-12 pr-12 text-6xl md:text-7xl font-medium group"
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <div key={i} className="flex items-center gap-12">

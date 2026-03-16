@@ -10,18 +10,51 @@ import {
   useReducedMotion,
   useScroll,
 } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import logo from "@/app/assets/logo.svg";
-import {
-  getFadeUp,
-  getNavMenuVariants,
-  premiumEase,
-  subtleEase,
-} from "@/lib/animations";
+import { premiumEase, subtleEase } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
+// ─── Constantes ───────────────────────────────────────────────────────────────
+const ease = [0.16, 1, 0.3, 1];
+
+// ─── Componente: Link de navegación desktop ───────────────────────────────────
+function NavLink({ link, isActive, shouldReduceMotion }) {
+  return (
+    <motion.a
+      href={link.href}
+      aria-current={isActive ? "location" : undefined}
+      className="group relative flex flex-col items-center gap-[3px] py-1"
+    >
+      {/* Texto */}
+      <span
+        className={cn(
+          "text-[11px] font-medium uppercase tracking-[0.18em] transition-colors duration-300",
+          isActive ? "text-white" : "text-white/45 group-hover:text-white/80"
+        )}
+      >
+        {link.label}
+      </span>
+
+      {/* Subrayado deslizante — solo el activo lo tiene visible */}
+      <span className="relative h-px w-full overflow-hidden">
+        <motion.span
+          layoutId="nav-underline"
+          className="absolute inset-0 bg-[#A1E233]"
+          style={{ originX: isActive ? 0 : 0.5 }}
+          animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+          transition={{ duration: shouldReduceMotion ? 0.15 : 0.38, ease }}
+        />
+        {/* Hover underline (sin layoutId, instantáneo) */}
+        <span className="absolute inset-0 scale-x-0 bg-white/20 transition-transform duration-300 group-hover:scale-x-100" />
+      </span>
+    </motion.a>
+  );
+}
+
+// ─── Componente principal ─────────────────────────────────────────────────────
 const Navbar = () => {
   const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
@@ -33,30 +66,6 @@ const Navbar = () => {
   const router = useRouter();
   const { scrollY } = useScroll();
   const shouldReduceMotion = useReducedMotion();
-
-  const mobileContentVariants = useMemo(
-    () => ({
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          delayChildren: shouldReduceMotion ? 0 : 0.04,
-          staggerChildren: shouldReduceMotion ? 0.03 : 0.05,
-        },
-      },
-    }),
-    [shouldReduceMotion]
-  );
-
-  const mobileItemVariants = useMemo(
-    () => getFadeUp(shouldReduceMotion, { distance: 14, duration: 0.4 }),
-    [shouldReduceMotion]
-  );
-
-  const menuVariants = useMemo(
-    () => getNavMenuVariants(shouldReduceMotion),
-    [shouldReduceMotion]
-  );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 18);
@@ -70,33 +79,21 @@ const Navbar = () => {
       { label: t("tools"), href: "#tools" },
       { label: t("about"), href: "#about" },
       { label: t("faqs"), href: "#faqs" },
-      { label: t("contact"), href: "#contact" },
     ],
     [t]
   );
 
+  // Intersection Observer para sección activa
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
 
-    const sectionIds = navLinks
-      .map((link) => link.href.replace("#", ""))
-      .filter(Boolean);
-
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    const sectionIds = navLinks.map((l) => l.href.replace("#", "")).filter(Boolean);
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     const updateFromHash = () => {
-      const { hash, scrollY: currentScroll } = window;
-
-      if (currentScroll < 80 || !hash) {
-        setActiveSection("#");
-        return;
-      }
-
-      if (sectionIds.includes(hash.slice(1))) {
-        setActiveSection(hash);
-      }
+      const { hash, scrollY: sy } = window;
+      if (sy < 80 || !hash) { setActiveSection("#"); return; }
+      if (sectionIds.includes(hash.slice(1))) setActiveSection(hash);
     };
 
     updateFromHash();
@@ -108,62 +105,35 @@ const Navbar = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
+        const visible = entries
+          .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (window.scrollY < 80) {
-          setActiveSection("#");
-          return;
-        }
-
-        if (visibleEntries.length) {
-          setActiveSection(`#${visibleEntries[0].target.id}`);
-        }
+        if (window.scrollY < 80) { setActiveSection("#"); return; }
+        if (visible.length) setActiveSection(`#${visible[0].target.id}`);
       },
-      {
-        rootMargin: "-22% 0px -58% 0px",
-        threshold: [0.2, 0.35, 0.55],
-      }
+      { rootMargin: "-22% 0px -58% 0px", threshold: [0.2, 0.35, 0.55] }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((s) => observer.observe(s));
     window.addEventListener("hashchange", updateFromHash);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("hashchange", updateFromHash);
-    };
+    return () => { observer.disconnect(); window.removeEventListener("hashchange", updateFromHash); };
   }, [navLinks]);
 
+  // Lock scroll cuando el menu mobile está abierto
   useEffect(() => {
     if (!isOpen) return undefined;
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    };
-
-    const previousOverflow = document.body.style.overflow;
+    const onKey = (e) => { if (e.key === "Escape") setIsOpen(false); };
+    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
   }, [isOpen]);
 
+  // Cierra menu en resize > lg
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => { if (window.innerWidth >= 1024) setIsOpen(false); };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const buildLocalePath = (nextLocale) => {
@@ -174,47 +144,32 @@ const Navbar = () => {
 
   const switchLanguage = (nextLocale) => {
     if (nextLocale === locale) return;
-
-    startTransition(() => {
-      setIsOpen(false);
-      router.push(buildLocalePath(nextLocale));
-    });
+    startTransition(() => { setIsOpen(false); router.push(buildLocalePath(nextLocale)); });
   };
 
-  const renderLanguageSelector = (className = "") => (
+  // ── Selector de idioma ────────────────────────────────────────────────────
+  const LanguageToggle = ({ compact = false }) => (
     <LayoutGroup>
-      <div
-        className={cn(
-          "inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-1",
-          className
-        )}
-      >
-        {[
-          { code: "es", label: "ES" },
-          { code: "en", label: "EN" },
-        ].map((language) => {
-          const isActive = locale === language.code;
-
+      <div className="inline-flex items-center gap-0.5">
+        {[{ code: "es", label: "ES" }, { code: "en", label: "EN" }].map((lang, i) => {
+          const isActive = locale === lang.code;
           return (
             <motion.button
-              key={language.code}
+              key={lang.code}
               type="button"
-              onClick={() => switchLanguage(language.code)}
+              onClick={() => switchLanguage(lang.code)}
               disabled={isPending}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
               className={cn(
-                "relative rounded-full px-3 py-2 text-[11px] font-medium tracking-[0.18em] transition-colors duration-300",
-                isActive ? "text-black" : "text-white/55 hover:text-white"
+                "relative px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase transition-colors duration-300",
+                isActive ? "text-[#A1E233]" : "text-white/28 hover:text-white/55"
               )}
             >
-              {isActive && (
-                <motion.span
-                  layoutId="locale-pill"
-                  className="absolute inset-0 rounded-full bg-primary1"
-                  transition={{ duration: 0.3, ease: premiumEase }}
-                />
+              {lang.label}
+              {/* Separador vertical entre los dos */}
+              {i === 0 && (
+                <span className="pointer-events-none absolute right-0 top-1/2 h-3 w-px -translate-y-1/2 bg-white/15" />
               )}
-              <span className="relative z-10">{language.label}</span>
             </motion.button>
           );
         })}
@@ -223,155 +178,235 @@ const Navbar = () => {
   );
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: shouldReduceMotion ? 0.2 : 0.7, ease: premiumEase }}
-      className="sticky top-4 z-50 px-4 md:px-5 lg:px-10 xl:px-24"
-    >
-      <div className="mx-auto max-w-screen-2xl">
-        <motion.div
-          animate={{
-            y: shouldReduceMotion ? 0 : isScrolled ? -1 : 0,
-            borderColor: isScrolled
-              ? "rgba(255,255,255,0.12)"
-              : "rgba(255,255,255,0.08)",
-            backgroundColor: isScrolled
-              ? "rgba(8,8,8,0.94)"
-              : "rgba(8,8,8,0.88)",
-            boxShadow: isScrolled
-              ? "0 18px 50px rgba(0,0,0,0.38)"
-              : "0 10px 30px rgba(0,0,0,0.22)",
-          }}
-          transition={{ duration: shouldReduceMotion ? 0.2 : 0.35, ease: subtleEase }}
-          className="rounded-[24px] border backdrop-blur-xl"
-        >
-          <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
-            <motion.a
-              href={`/${locale}`}
-              className="min-w-0"
-              whileHover={shouldReduceMotion ? undefined : { opacity: 0.85 }}
-              transition={{ duration: 0.25, ease: premiumEase }}
-            >
+    <>
+      {/* ── NAVBAR ─────────────────────────────────────────────────────────── */}
+      <motion.header
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: shouldReduceMotion ? 0.2 : 0.8, ease }}
+        className="sticky top-4 z-50 px-4 md:px-5 lg:px-10 xl:px-24"
+      >
+        <div className="mx-auto max-w-screen-2xl">
+          <motion.div
+            animate={{
+              borderColor: isScrolled ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.06)",
+              backgroundColor: isScrolled ? "rgba(6,6,6,0.96)" : "rgba(6,6,6,0.85)",
+              boxShadow: isScrolled
+                ? "0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04)"
+                : "0 8px 32px rgba(0,0,0,0.25)",
+            }}
+            transition={{ duration: shouldReduceMotion ? 0.15 : 0.3, ease: subtleEase }}
+            className="rounded-[20px] border backdrop-blur-xl"
+          >
+            <div className="flex items-center justify-between gap-6 px-4 py-3 md:px-6">
+
+              {/* ── ZONA IZQUIERDA: Logo + disponibilidad ─────────────────── */}
+              <div className="flex items-center gap-4 min-w-0">
+                <motion.a
+                  href={`/${locale}`}
+                  whileHover={shouldReduceMotion ? undefined : { opacity: 0.8 }}
+                  transition={{ duration: 0.2, ease: premiumEase }}
+                  className="shrink-0"
+                >
+                  <Image
+                    src={logo}
+                    alt="Synttek"
+                    className="h-20 w-[88px] object-contain  -mt-2 -mb-3"
+                    priority
+                  />
+                </motion.a>
+
+
+              </div>
+
+              {/* ── ZONA CENTRAL: Links desktop ───────────────────────────── */}
+              <LayoutGroup id="nav-desktop">
+                <nav
+                  aria-label="Navegación principal"
+                  className="hidden items-center gap-6 lg:flex"
+                >
+                  {navLinks.map((link) => (
+                    <NavLink
+                      key={link.label}
+                      link={link}
+                      isActive={activeSection === link.href}
+                      shouldReduceMotion={shouldReduceMotion}
+                    />
+                  ))}
+                </nav>
+              </LayoutGroup>
+
+              {/* ── ZONA DERECHA: Idioma + CTA + Hamburger ────────────────── */}
+              <div className="flex items-center gap-1">
+                {/* Selector de idioma desktop */}
+                <div className="hidden lg:flex">
+                  <LanguageToggle />
+                </div>
+
+                {/* Separador vertical */}
+                <span className="mx-2 hidden h-4 w-px bg-white/10 lg:block" />
+
+                {/* CTA "Contacto" — desktop */}
+                <motion.a
+                  href="#contact"
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.03, y: -1 }}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                  transition={{ duration: 0.2, ease }}
+                  className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
+                >
+                  {t("contact")}
+                  {/* Flecha diagonal */}
+                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                    <path d="M1 7L7 1M7 1H2M7 1V6" stroke="black" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.a>
+
+                {/* Hamburger mobile */}
+                <motion.button
+                  type="button"
+                  onClick={() => setIsOpen((c) => !c)}
+                  aria-label={isOpen ? t("closeMenu") : t("openMenu")}
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-nav"
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+                  className="relative inline-flex size-10 items-center justify-center rounded-full border border-white/8 bg-white/[0.03] lg:hidden"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {isOpen ? (
+                      <motion.span
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2, ease }}
+                      >
+                        <X className="size-4 text-white" />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="open"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2, ease }}
+                        className="flex flex-col gap-[5px] items-center justify-center"
+                      >
+                        {/* Icono de hamburger custom con dos líneas de diferente largo */}
+                        <span className="block h-px w-5 bg-white/70" />
+                        <span className="block h-px w-3.5 bg-white/70 self-end" />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.header>
+
+      {/* ── OVERLAY MOBILE: fullscreen editorial ─────────────────────────────── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            id="mobile-nav"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: shouldReduceMotion ? 0.2 : 0.65, ease }}
+            className="fixed inset-0 z-40 flex flex-col bg-[#060606] px-6 py-8 lg:hidden"
+          >
+            {/* Línea de acento superior */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A1E233]/40 to-transparent" />
+
+            {/* Header del overlay: logo + cerrar */}
+            <div className="flex items-center justify-between mb-12">
               <Image
                 src={logo}
-                alt="Synttek Logo"
-                className="h-10 w-24 object-contain md:h-11 md:w-28"
-                priority
+                alt="Synttek"
+                className="h-9 w-[88px] object-contain opacity-60"
               />
-            </motion.a>
+              <div className="flex items-center gap-4">
+                <LanguageToggle compact />
+                <motion.button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/10"
+                >
+                  <X className="size-4 text-white/60" />
+                </motion.button>
+              </div>
+            </div>
 
-            <LayoutGroup id="navbar-links">
-              <nav aria-label={t("mobileLabel")} className="hidden items-center gap-1 lg:flex">
-                {navLinks.map((link) => {
+            {/* Links en escala editorial ─ stagger */}
+            <nav className="flex flex-1 flex-col justify-center gap-1">
+              {[...navLinks, { label: t("contact"), href: "#contact" }].map(
+                (link, i) => {
                   const isActive = activeSection === link.href;
-
+                  const isContactCta = link.href === "#contact";
                   return (
                     <motion.a
-                      key={link.label}
+                      key={link.href}
                       href={link.href}
+                      onClick={() => setIsOpen(false)}
                       aria-current={isActive ? "location" : undefined}
-                      whileHover={shouldReduceMotion ? undefined : { y: -1 }}
+                      initial={{ opacity: 0, x: -24 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: shouldReduceMotion ? 0.2 : 0.55,
+                        delay: shouldReduceMotion ? 0 : 0.06 + i * 0.06,
+                        ease,
+                      }}
                       className={cn(
-                        "relative rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors duration-300",
-                        isActive ? "text-white" : "text-white/58 hover:text-white"
+                        "group flex items-center justify-between border-b py-4 transition-colors duration-300",
+                        isContactCta
+                          ? "border-[#A1E233]/20"
+                          : "border-white/[0.06]",
+                        isActive ? "border-[#A1E233]/15" : ""
                       )}
                     >
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-active-pill"
-                          className="absolute inset-0 rounded-full bg-white/[0.06]"
-                          transition={{
-                            duration: shouldReduceMotion ? 0.2 : 0.28,
-                            ease: premiumEase,
-                          }}
-                        />
-                      )}
-
-                      <span className="relative z-10">{link.label}</span>
-                    </motion.a>
-                  );
-                })}
-              </nav>
-            </LayoutGroup>
-
-            <div className="flex items-center gap-2 md:gap-3">
-              <div className="hidden sm:flex">{renderLanguageSelector()}</div>
-
-              <motion.button
-                type="button"
-                onClick={() => setIsOpen((current) => !current)}
-                aria-label={isOpen ? t("closeMenu") : t("openMenu")}
-                aria-expanded={isOpen}
-                aria-controls="mobile-navigation"
-                whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-                transition={{ duration: 0.25, ease: premiumEase }}
-                className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06] lg:hidden"
-              >
-                {isOpen ? <X className="size-4.5" /> : <Menu className="size-4.5" />}
-              </motion.button>
-            </div>
-          </div>
-
-          <AnimatePresence initial={false}>
-            {isOpen && (
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={menuVariants}
-                id="mobile-navigation"
-                className="border-t border-white/8 lg:hidden"
-              >
-                <motion.div
-                  variants={mobileContentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  className="grid gap-5 px-4 py-5 md:px-6 md:py-6"
-                >
-                  <motion.div
-                    variants={mobileItemVariants}
-                    className="flex items-center justify-between gap-4"
-                  >
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-white/35">
-                      {t("mobileLabel")}
-                    </p>
-                    {renderLanguageSelector("sm:hidden")}
-                  </motion.div>
-
-                  <div className="grid gap-2">
-                    {navLinks.map((link, index) => (
-                      <motion.a
-                        key={link.label}
-                        variants={mobileItemVariants}
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        aria-current={activeSection === link.href ? "location" : undefined}
-                        whileHover={shouldReduceMotion ? undefined : { x: 4 }}
-                        transition={{
-                          duration: 0.28,
-                          ease: premiumEase,
-                          delay: shouldReduceMotion ? 0 : index * 0.01,
-                        }}
+                      <span
                         className={cn(
-                          "rounded-2xl border px-4 py-3.5 text-sm font-medium transition-colors duration-300",
-                          activeSection === link.href
-                            ? "border-primary1/20 bg-primary1/[0.08] text-primary1"
-                            : "border-white/8 bg-white/[0.02] text-white/78 hover:text-white"
+                          "text-[clamp(1.6rem,8vw,3rem)] font-black tracking-tight leading-none transition-colors duration-300",
+                          isContactCta
+                            ? "text-[#A1E233] group-hover:text-[#ccf569]"
+                            : isActive
+                            ? "text-white"
+                            : "text-white/40 group-hover:text-white/80"
                         )}
                       >
                         {link.label}
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-    </motion.header>
+                      </span>
+
+                      {/* Número de índice */}
+                      <span className="text-[10px] font-mono tracking-widest text-white/15">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </motion.a>
+                  );
+                }
+              )}
+            </nav>
+
+            {/* Footer del overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="mt-8 flex items-center gap-3"
+            >
+              <span className="relative flex size-1.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A1E233] opacity-40" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-[#A1E233]" />
+              </span>
+              <span className="text-[10px] tracking-[0.2em] uppercase text-white/22">
+                {t("available")} · Synttek
+              </span>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

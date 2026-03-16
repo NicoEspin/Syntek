@@ -20,8 +20,8 @@ export default function Home() {
       <OurTools />
       <Projects />
       <About />
-      <Faqs />
       <CallToAction />
+      <Faqs />
       <Contact />
       <Footer />
     </>
