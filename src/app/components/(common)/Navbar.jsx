@@ -33,7 +33,7 @@ function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
       <span
         className={cn(
           "text-[11px] font-medium uppercase tracking-[0.18em] transition-colors duration-300",
-          isActive ? "text-white" : "text-white/45 group-hover:text-white/80"
+          isActive ? "text-white" : "text-white/45 group-hover:text-white/80",
         )}
       >
         {link.label}
@@ -74,7 +74,8 @@ const Navbar = ({ floating = false }) => {
   });
 
   const baseHomePath = `/${locale}`;
-  const isHomePage = pathname === baseHomePath || pathname === `${baseHomePath}/`;
+  const isHomePage =
+    pathname === baseHomePath || pathname === `${baseHomePath}/`;
   const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
 
   const navLinks = useMemo(
@@ -106,7 +107,7 @@ const Navbar = ({ floating = false }) => {
         href: isHomePage ? "#faqs" : `${baseHomePath}#faqs`,
       },
     ],
-    [baseHomePath, isHomePage, t]
+    [baseHomePath, isHomePage, t],
   );
 
   const contactHref = isHomePage ? "#contact" : `${baseHomePath}#contact`;
@@ -124,7 +125,10 @@ const Navbar = ({ floating = false }) => {
 
     if (!sectionId) {
       window.history.replaceState(null, "", baseHomePath);
-      window.scrollTo({ top: 0, behavior: shouldReduceMotion ? "auto" : "smooth" });
+      window.scrollTo({
+        top: 0,
+        behavior: shouldReduceMotion ? "auto" : "smooth",
+      });
       setActiveSection("#");
       setIsOpen(false);
       return;
@@ -170,7 +174,14 @@ const Navbar = ({ floating = false }) => {
       return undefined;
     }
 
-    const sectionIds = ["services", "projects", "tools", "about", "faqs", "contact"];
+    const sectionIds = [
+      "services",
+      "projects",
+      "tools",
+      "about",
+      "faqs",
+      "contact",
+    ];
 
     const updateActiveSection = () => {
       const currentScroll = window.scrollY;
@@ -211,39 +222,61 @@ const Navbar = ({ floating = false }) => {
     };
   }, [isHomePage, isProjectsPage]);
 
-  // Lock scroll cuando el menu mobile está abierto
+  // Lock scroll + señal global cuando el menu mobile está abierto
   useEffect(() => {
+    if (isOpen) {
+      document.body.dataset.mobileMenuOpen = "true";
+    } else {
+      delete document.body.dataset.mobileMenuOpen;
+    }
     if (!isOpen) return undefined;
-    const onKey = (e) => { if (e.key === "Escape") setIsOpen(false); };
+    const onKey = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+    return () => {
+      document.body.style.overflow = prev;
+      delete document.body.dataset.mobileMenuOpen;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [isOpen]);
 
   // Cierra menu en resize > lg
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth >= 1024) setIsOpen(false); };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setIsOpen(false);
+    };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
   const buildLocalePath = (nextLocale) => {
-    const localizedPath = pathname.replace(/^\/(es|en)(?=\/|$)/, `/${nextLocale}`);
+    const localizedPath = pathname.replace(
+      /^\/(es|en)(?=\/|$)/,
+      `/${nextLocale}`,
+    );
     const hash = typeof window !== "undefined" ? window.location.hash : "";
     return `${localizedPath}${hash}`;
   };
 
   const switchLanguage = (nextLocale) => {
     if (nextLocale === locale) return;
-    startTransition(() => { setIsOpen(false); router.push(buildLocalePath(nextLocale)); });
+    startTransition(() => {
+      setIsOpen(false);
+      router.push(buildLocalePath(nextLocale));
+    });
   };
 
   // ── Selector de idioma ────────────────────────────────────────────────────
   const LanguageToggle = ({ compact = false }) => (
     <LayoutGroup>
       <div className="inline-flex items-center gap-0.5">
-        {[{ code: "es", label: "ES" }, { code: "en", label: "EN" }].map((lang, i) => {
+        {[
+          { code: "es", label: "ES" },
+          { code: "en", label: "EN" },
+        ].map((lang, i) => {
           const isActive = locale === lang.code;
           return (
             <motion.button
@@ -254,7 +287,9 @@ const Navbar = ({ floating = false }) => {
               whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
               className={cn(
                 "relative px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase transition-colors duration-300",
-                isActive ? "text-[#A1E233]" : "text-white/28 hover:text-white/55"
+                isActive
+                  ? "text-[#A1E233]"
+                  : "text-white/28 hover:text-white/55",
               )}
             >
               {lang.label}
@@ -269,6 +304,35 @@ const Navbar = ({ floating = false }) => {
     </LayoutGroup>
   );
 
+  // ── Selector de idioma mobile — versión grande y visible ─────────────────
+  const MobileLanguageToggle = () => (
+    <div className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1">
+      {[
+        { code: "es", label: "ES" },
+        { code: "en", label: "EN" },
+      ].map((lang) => {
+        const isActive = locale === lang.code;
+        return (
+          <motion.button
+            key={lang.code}
+            type="button"
+            onClick={() => switchLanguage(lang.code)}
+            disabled={isPending}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
+            className={cn(
+              "relative rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300",
+              isActive
+                ? "bg-[#A1E233] text-black"
+                : "text-white/40 hover:text-white/70",
+            )}
+          >
+            {lang.label}
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+
   return (
     <>
       {/* ── NAVBAR ─────────────────────────────────────────────────────────── */}
@@ -279,23 +343,29 @@ const Navbar = ({ floating = false }) => {
         transition={{ duration: shouldReduceMotion ? 0.2 : 0.8, ease }}
         className={cn(
           "z-50 px-4 md:px-5 lg:px-10 xl:px-24",
-          floating ? "fixed inset-x-0 top-4" : "sticky top-4"
+          floating ? "fixed inset-x-0 top-4" : "sticky top-4",
         )}
       >
         <div className="mx-auto max-w-screen-2xl">
           <motion.div
             animate={{
-              borderColor: isScrolled ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.06)",
-              backgroundColor: isScrolled ? "rgba(6,6,6,0.96)" : "rgba(6,6,6,0.85)",
+              borderColor: isScrolled
+                ? "rgba(255,255,255,0.10)"
+                : "rgba(255,255,255,0.06)",
+              backgroundColor: isScrolled
+                ? "rgba(6,6,6,0.96)"
+                : "rgba(6,6,6,0.85)",
               boxShadow: isScrolled
                 ? "0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04)"
                 : "0 8px 32px rgba(0,0,0,0.25)",
             }}
-            transition={{ duration: shouldReduceMotion ? 0.15 : 0.3, ease: subtleEase }}
+            transition={{
+              duration: shouldReduceMotion ? 0.15 : 0.3,
+              ease: subtleEase,
+            }}
             className="rounded-[20px] border backdrop-blur-xl"
           >
             <div className="flex items-center justify-between gap-6 px-4 py-3 md:px-6">
-
               {/* ── ZONA IZQUIERDA: Logo + disponibilidad ─────────────────── */}
               <div className="flex items-center gap-4 min-w-0">
                 <motion.a
@@ -311,8 +381,6 @@ const Navbar = ({ floating = false }) => {
                     priority
                   />
                 </motion.a>
-
-
               </div>
 
               {/* ── ZONA CENTRAL: Links desktop ───────────────────────────── */}
@@ -347,7 +415,9 @@ const Navbar = ({ floating = false }) => {
                 <motion.a
                   href={contactHref}
                   onClick={(event) => handleNavClick(event, contactHref)}
-                  whileHover={shouldReduceMotion ? undefined : { scale: 1.03, y: -1 }}
+                  whileHover={
+                    shouldReduceMotion ? undefined : { scale: 1.03, y: -1 }
+                  }
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                   transition={{ duration: 0.2, ease }}
                   className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
@@ -355,7 +425,13 @@ const Navbar = ({ floating = false }) => {
                   {t("contact")}
                   {/* Flecha diagonal */}
                   <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <path d="M1 7L7 1M7 1H2M7 1V6" stroke="black" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path
+                      d="M1 7L7 1M7 1H2M7 1V6"
+                      stroke="black"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </motion.a>
 
@@ -423,86 +499,89 @@ const Navbar = ({ floating = false }) => {
                 alt="Synttek"
                 className="h-9 w-[88px] object-contain opacity-60"
               />
-              <div className="flex items-center gap-4">
-                <LanguageToggle compact />
-                <motion.button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/10"
-                >
-                  <X className="size-4 text-white/60" />
-                </motion.button>
-              </div>
+              <motion.button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex size-10 items-center justify-center rounded-full border border-white/10"
+              >
+                <X className="size-4 text-white/60" />
+              </motion.button>
             </div>
 
             {/* Links en escala editorial ─ stagger */}
             <nav className="flex flex-1 flex-col justify-center gap-1">
-              {[...navLinks, { key: "contact", label: t("contact"), href: contactHref }].map(
-                (link, i) => {
-                  const isActive =
-                    link.key === "contact"
-                      ? isHomePage && activeSection === "#contact"
-                      : isLinkActive(link);
-                  const isContactCta = link.key === "contact";
-                  return (
-                    <motion.a
-                      key={link.key}
-                      href={link.href}
-                      onClick={(event) => handleNavClick(event, link.href)}
-                      aria-current={isActive ? "location" : undefined}
-                      initial={{ opacity: 0, x: -24 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        duration: shouldReduceMotion ? 0.2 : 0.55,
-                        delay: shouldReduceMotion ? 0 : 0.06 + i * 0.06,
-                        ease,
-                      }}
+              {[
+                ...navLinks,
+                { key: "contact", label: t("contact"), href: contactHref },
+              ].map((link, i) => {
+                const isActive =
+                  link.key === "contact"
+                    ? isHomePage && activeSection === "#contact"
+                    : isLinkActive(link);
+                const isContactCta = link.key === "contact";
+                return (
+                  <motion.a
+                    key={link.key}
+                    href={link.href}
+                    onClick={(event) => handleNavClick(event, link.href)}
+                    aria-current={isActive ? "location" : undefined}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0.2 : 0.55,
+                      delay: shouldReduceMotion ? 0 : 0.06 + i * 0.06,
+                      ease,
+                    }}
+                    className={cn(
+                      "group flex items-center justify-between border-b py-4 transition-colors duration-300",
+                      isContactCta
+                        ? "border-[#A1E233]/20"
+                        : "border-white/[0.06]",
+                      isActive ? "border-[#A1E233]/15" : "",
+                    )}
+                  >
+                    <span
                       className={cn(
-                        "group flex items-center justify-between border-b py-4 transition-colors duration-300",
+                        "text-[clamp(1.6rem,8vw,3rem)] font-black tracking-tight leading-none transition-colors duration-300",
                         isContactCta
-                          ? "border-[#A1E233]/20"
-                          : "border-white/[0.06]",
-                        isActive ? "border-[#A1E233]/15" : ""
+                          ? "text-[#A1E233] group-hover:text-[#ccf569]"
+                          : isActive
+                            ? "text-white"
+                            : "text-white/40 group-hover:text-white/80",
                       )}
                     >
-                      <span
-                        className={cn(
-                          "text-[clamp(1.6rem,8vw,3rem)] font-black tracking-tight leading-none transition-colors duration-300",
-                          isContactCta
-                            ? "text-[#A1E233] group-hover:text-[#ccf569]"
-                            : isActive
-                            ? "text-white"
-                            : "text-white/40 group-hover:text-white/80"
-                        )}
-                      >
-                        {link.label}
-                      </span>
+                      {link.label}
+                    </span>
 
-                      {/* Número de índice */}
-                      <span className="text-[10px] font-mono tracking-widest text-white/15">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </motion.a>
-                  );
-                }
-              )}
+                    {/* Número de índice */}
+                    <span className="text-[10px] font-mono tracking-widest text-white/15">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </motion.a>
+                );
+              })}
             </nav>
 
-            {/* Footer del overlay */}
+            {/* Footer del overlay: disponibilidad + selector de idioma */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.4 }}
-              className="mt-8 flex items-center gap-3"
+              className="mt-8 flex items-center justify-between"
             >
-              <span className="relative flex size-1.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A1E233] opacity-40" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-[#A1E233]" />
-              </span>
-              <span className="text-[10px] tracking-[0.2em] uppercase text-white/22">
-                {t("available")} · Synttek
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="relative flex size-1.5 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A1E233] opacity-40" />
+                  <span className="relative inline-flex size-1.5 rounded-full bg-[#A1E233]" />
+                </span>
+                <span className="text-[10px] tracking-[0.2em] uppercase text-white/22">
+                  {t("available")} · Synttek
+                </span>
+              </div>
+
+              {/* Selector de idioma — visible y con estilo pill */}
+              <MobileLanguageToggle />
             </motion.div>
           </motion.div>
         )}

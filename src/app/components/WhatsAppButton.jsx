@@ -32,12 +32,11 @@ function WhatsAppIcon({ size = 22 }) {
 export default function WhatsAppButton() {
   const locale = useLocale();
   const [visible, setVisible] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const heroRef = useRef(null);
 
   // Detecta cuándo la sección Hero (#root → primer section) sale del viewport
   useEffect(() => {
-    // Busca el primer <section> de la página (el Hero)
     const heroSection = document.querySelector("main > section:first-child");
     if (!heroSection) {
       setVisible(true);
@@ -46,24 +45,42 @@ export default function WhatsAppButton() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Visible cuando el hero ya NO está en pantalla
         setVisible(!entry.isIntersecting);
       },
-      {
-        threshold: 0.05, // sale cuando queda menos del 5% visible
-      },
+      { threshold: 0.05 },
     );
 
     observer.observe(heroSection);
     return () => observer.disconnect();
   }, []);
 
+  // Observa el data-attribute que Navbar escribe en <body> al abrir el menú mobile
+  useEffect(() => {
+    const sync = () => {
+      setMenuOpen(document.body.dataset.mobileMenuOpen === "true");
+    };
+
+    // Estado inicial (por si ya estaba abierto al montar)
+    sync();
+
+    const mo = new MutationObserver(sync);
+    mo.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["data-mobile-menu-open"],
+    });
+
+    return () => mo.disconnect();
+  }, []);
+
   const message = encodeURIComponent(MESSAGES[locale] ?? MESSAGES.es);
   const href = `https://wa.me/${PHONE}?text=${message}`;
 
+  // El botón es visible solo cuando el hero salió Y el menú mobile está cerrado
+  const shouldShow = visible && !menuOpen;
+
   return (
     <AnimatePresence>
-      {visible && (
+      {shouldShow && (
         <motion.div
           key="wa-button"
           initial={{ opacity: 0, scale: 0.6, y: 20 }}
