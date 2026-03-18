@@ -9,6 +9,7 @@ import Services from "@/app/sections/Services";
 import Footer from "@/app/components/(common)/Footer";
 import Contact from "@/app/sections/Contact";
 import About from "@/app/sections/About";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -76,6 +77,15 @@ export default async function Home({ params }) {
         <Contact />
       </main>
       <Footer />
+
+      {/*
+        WhatsAppButton va FUERA del <main> para evitar
+        conflictos de z-index con secciones como Projects
+        que tienen cursor custom z-[9999].
+        Se renderiza como "use client" por lo que funciona
+        correctamente desde un Server Component.
+      */}
+      <WhatsAppButton />
     </>
   );
 }

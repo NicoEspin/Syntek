@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { getProjectById, projects } from "@/data/projects";
 
 import ProjectDetail from "./ProjectDetail";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -113,6 +114,7 @@ export default async function ProjectPage({ params }) {
           project={project}
         />
       </main>
+      <WhatsAppButton />
       <Footer />
     </>
   );

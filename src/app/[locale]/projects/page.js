@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { projects } from "@/data/projects";
 
 import ProjectsClient from "./ProjectsClient";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -59,6 +60,7 @@ export default async function ProjectsPage({ params }) {
       <main>
         <ProjectsClient locale={locale} projects={projects} />
       </main>
+      <WhatsAppButton />
       <Footer />
     </>
   );
