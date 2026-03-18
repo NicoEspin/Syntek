@@ -1,4 +1,5 @@
 import Footer from "@/app/components/(common)/Footer";
+import Navbar from "@/app/components/(common)/Navbar";
 import { routing } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -107,13 +108,12 @@ export default async function ProjectPage({ params }) {
           __html: JSON.stringify(projectSchema),
         }}
       />
-      <main>
-        <ProjectDetail
-          locale={locale}
-          nextProject={nextProject}
-          project={project}
-        />
-      </main>
+      <Navbar floating />
+      <ProjectDetail
+        locale={locale}
+        nextProject={nextProject}
+        project={project}
+      />
       <WhatsAppButton />
       <Footer />
     </>

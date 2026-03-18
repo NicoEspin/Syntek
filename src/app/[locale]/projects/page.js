@@ -1,4 +1,5 @@
 import Footer from "@/app/components/(common)/Footer";
+import Navbar from "@/app/components/(common)/Navbar";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { projects } from "@/data/projects";
@@ -57,9 +58,8 @@ export default async function ProjectsPage({ params }) {
 
   return (
     <>
-      <main>
-        <ProjectsClient locale={locale} projects={projects} />
-      </main>
+      <Navbar />
+      <ProjectsClient locale={locale} projects={projects} />
       <WhatsAppButton />
       <Footer />
     </>

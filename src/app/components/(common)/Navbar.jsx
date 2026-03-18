@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import {
   AnimatePresence,
   LayoutGroup,
@@ -21,10 +21,11 @@ import { cn } from "@/lib/utils";
 const ease = [0.16, 1, 0.3, 1];
 
 // ─── Componente: Link de navegación desktop ───────────────────────────────────
-function NavLink({ link, isActive, shouldReduceMotion }) {
+function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
   return (
     <motion.a
       href={link.href}
+      onClick={onClick}
       aria-current={isActive ? "location" : undefined}
       className="group relative flex flex-col items-center gap-[3px] py-1"
     >
@@ -55,12 +56,13 @@ function NavLink({ link, isActive, shouldReduceMotion }) {
 }
 
 // ─── Componente principal ─────────────────────────────────────────────────────
-const Navbar = () => {
+const Navbar = ({ floating = false }) => {
   const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("#");
   const [isPending, startTransition] = useTransition();
+  const headerRef = useRef(null);
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -71,53 +73,143 @@ const Navbar = () => {
     setIsScrolled(latest > 18);
   });
 
+  const baseHomePath = `/${locale}`;
+  const isHomePage = pathname === baseHomePath || pathname === `${baseHomePath}/`;
+  const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
+
   const navLinks = useMemo(
     () => [
-      { label: t("home"), href: "#" },
-      { label: t("services"), href: "#services" },
-      { label: t("projects"), href: "#projects" },
-      { label: t("tools"), href: "#tools" },
-      { label: t("about"), href: "#about" },
-      { label: t("faqs"), href: "#faqs" },
+      { key: "home", label: t("home"), href: isHomePage ? "#" : baseHomePath },
+      {
+        key: "services",
+        label: t("services"),
+        href: isHomePage ? "#services" : `${baseHomePath}#services`,
+      },
+      {
+        key: "tools",
+        label: t("tools"),
+        href: isHomePage ? "#tools" : `${baseHomePath}#tools`,
+      },
+      {
+        key: "projects",
+        label: t("projects"),
+        href: `${baseHomePath}/projects`,
+      },
+      {
+        key: "about",
+        label: t("about"),
+        href: isHomePage ? "#about" : `${baseHomePath}#about`,
+      },
+      {
+        key: "faqs",
+        label: t("faqs"),
+        href: isHomePage ? "#faqs" : `${baseHomePath}#faqs`,
+      },
     ],
-    [t]
+    [baseHomePath, isHomePage, t]
   );
 
-  // Intersection Observer para sección activa
+  const contactHref = isHomePage ? "#contact" : `${baseHomePath}#contact`;
+
+  const handleNavClick = (event, href) => {
+    if (!isHomePage || !href.startsWith("#")) {
+      setIsOpen(false);
+      return;
+    }
+
+    event.preventDefault();
+
+    const sectionId = href.replace("#", "");
+    const navOffset = (headerRef.current?.offsetHeight || 92) + 20;
+
+    if (!sectionId) {
+      window.history.replaceState(null, "", baseHomePath);
+      window.scrollTo({ top: 0, behavior: shouldReduceMotion ? "auto" : "smooth" });
+      setActiveSection("#");
+      setIsOpen(false);
+      return;
+    }
+
+    const target = document.getElementById(sectionId);
+    if (!target) {
+      setIsOpen(false);
+      return;
+    }
+
+    const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+    window.history.replaceState(null, "", `${baseHomePath}${href}`);
+    window.scrollTo({
+      top: Math.max(top, 0),
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    });
+    setActiveSection(href);
+    setIsOpen(false);
+  };
+
+  const isLinkActive = (link) => {
+    if (isHomePage) {
+      if (link.key === "home") return activeSection === "#";
+      if (link.key === "projects") return activeSection === "#projects";
+      return activeSection === `#${link.key}`;
+    }
+
+    if (isProjectsPage) {
+      return link.key === "projects";
+    }
+
+    return link.key === "home";
+  };
+
+  // Detección robusta de sección activa en home
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
 
-    const sectionIds = navLinks.map((l) => l.href.replace("#", "")).filter(Boolean);
-    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
-
-    const updateFromHash = () => {
-      const { hash, scrollY: sy } = window;
-      if (sy < 80 || !hash) { setActiveSection("#"); return; }
-      if (sectionIds.includes(hash.slice(1))) setActiveSection(hash);
-    };
-
-    updateFromHash();
-
-    if (!sections.length) {
-      window.addEventListener("hashchange", updateFromHash);
-      return () => window.removeEventListener("hashchange", updateFromHash);
+    if (!isHomePage) {
+      setActiveSection(isProjectsPage ? "#projects" : "#");
+      return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (window.scrollY < 80) { setActiveSection("#"); return; }
-        if (visible.length) setActiveSection(`#${visible[0].target.id}`);
-      },
-      { rootMargin: "-22% 0px -58% 0px", threshold: [0.2, 0.35, 0.55] }
-    );
+    const sectionIds = ["services", "projects", "tools", "about", "faqs", "contact"];
 
-    sections.forEach((s) => observer.observe(s));
-    window.addEventListener("hashchange", updateFromHash);
-    return () => { observer.disconnect(); window.removeEventListener("hashchange", updateFromHash); };
-  }, [navLinks]);
+    const updateActiveSection = () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll < 80) {
+        setActiveSection("#");
+        return;
+      }
+
+      const navOffset = (headerRef.current?.offsetHeight || 92) + 28;
+      const anchorLine = currentScroll + navOffset;
+      let current = "#";
+
+      const sectionsByPosition = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean)
+        .map((section) => ({
+          id: section.id,
+          top: section.getBoundingClientRect().top + window.scrollY,
+        }))
+        .sort((a, b) => a.top - b.top);
+
+      sectionsByPosition.forEach((section) => {
+        if (anchorLine >= section.top) {
+          current = `#${section.id}`;
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [isHomePage, isProjectsPage]);
 
   // Lock scroll cuando el menu mobile está abierto
   useEffect(() => {
@@ -181,10 +273,14 @@ const Navbar = () => {
     <>
       {/* ── NAVBAR ─────────────────────────────────────────────────────────── */}
       <motion.header
+        ref={headerRef}
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: shouldReduceMotion ? 0.2 : 0.8, ease }}
-        className="sticky top-4 z-50 px-4 md:px-5 lg:px-10 xl:px-24"
+        className={cn(
+          "z-50 px-4 md:px-5 lg:px-10 xl:px-24",
+          floating ? "fixed inset-x-0 top-4" : "sticky top-4"
+        )}
       >
         <div className="mx-auto max-w-screen-2xl">
           <motion.div
@@ -227,9 +323,10 @@ const Navbar = () => {
                 >
                   {navLinks.map((link) => (
                     <NavLink
-                      key={link.label}
+                      key={link.key}
                       link={link}
-                      isActive={activeSection === link.href}
+                      isActive={isLinkActive(link)}
+                      onClick={(event) => handleNavClick(event, link.href)}
                       shouldReduceMotion={shouldReduceMotion}
                     />
                   ))}
@@ -248,7 +345,8 @@ const Navbar = () => {
 
                 {/* CTA "Contacto" — desktop */}
                 <motion.a
-                  href="#contact"
+                  href={contactHref}
+                  onClick={(event) => handleNavClick(event, contactHref)}
                   whileHover={shouldReduceMotion ? undefined : { scale: 1.03, y: -1 }}
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
                   transition={{ duration: 0.2, ease }}
@@ -340,15 +438,18 @@ const Navbar = () => {
 
             {/* Links en escala editorial ─ stagger */}
             <nav className="flex flex-1 flex-col justify-center gap-1">
-              {[...navLinks, { label: t("contact"), href: "#contact" }].map(
+              {[...navLinks, { key: "contact", label: t("contact"), href: contactHref }].map(
                 (link, i) => {
-                  const isActive = activeSection === link.href;
-                  const isContactCta = link.href === "#contact";
+                  const isActive =
+                    link.key === "contact"
+                      ? isHomePage && activeSection === "#contact"
+                      : isLinkActive(link);
+                  const isContactCta = link.key === "contact";
                   return (
                     <motion.a
-                      key={link.href}
+                      key={link.key}
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(event) => handleNavClick(event, link.href)}
                       aria-current={isActive ? "location" : undefined}
                       initial={{ opacity: 0, x: -24 }}
                       animate={{ opacity: 1, x: 0 }}
