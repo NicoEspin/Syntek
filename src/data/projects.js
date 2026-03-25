@@ -23,7 +23,7 @@ export const projects = [
     ],
     accentColor: "#C9A96E",
     featured: true,
-    link: "https://hotelcalifornia.com.ar",
+    link: "https://demo-hotel-eight.vercel.app/",
   },
   {
     id: "viajes-cordoba",
