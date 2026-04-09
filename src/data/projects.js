@@ -90,8 +90,39 @@ export const projects = [
     link: "https://thumblify.com",
   },
   {
-    id: "nox-branding",
+    id: "cari-turismo",
     index: "04",
+    title: "Cari Turismo",
+    subtitle: "Landing Page + WhatsApp Conversion",
+    category: "Desarrollo Web",
+    year: "2025",
+    client: "Cari Turismo",
+    services: [
+      "Diseno UX/UI",
+      "Desarrollo Web",
+      "Animaciones Web",
+      "SEO",
+    ],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "WhatsApp", "SEO"],
+    description: {
+      short:
+        "Landing premium para agencia de turismo en Villa Carlos Paz, disenada para convertir consultas por WhatsApp con una identidad joven, local y editorial.",
+      long: "Cari Turismo nace como una landing page de alto impacto para una marca turistica local de Villa Carlos Paz, enfocada en excursiones, city tours y traslados especiales. El proyecto fue pensado con una arquitectura de conversion centrada en WhatsApp, combinando una direccion visual editorial, tipografia con personalidad, narrativa territorial y una seleccion curada de experiencias para evitar el tipico catalogo plano de agencia. A nivel tecnico, la implementacion se desarrollo con Next.js, TypeScript, Tailwind CSS y GSAP, priorizando performance, semantica SEO y una experiencia mobile-first. El resultado es una pieza digital joven, confiable y escalable, preparada para posicionar la marca en busquedas como 'excursiones en Carlos Paz' y transformar trafico en conversaciones reales con potencial de venta.",
+    },
+    coverImage: "/projects/cari-turismo/cover.webp",
+    heroImage: "/projects/cari-turismo/hero.webp",
+    gallery: [
+      "/projects/cari-turismo/gallery-1.webp",
+      "/projects/cari-turismo/gallery-2.webp",
+      "/projects/cari-turismo/gallery-3.webp",
+    ],
+    accentColor: "#048b72",
+    featured: true,
+    link: "https://www.cariturismo.com.ar/",
+  },
+  {
+    id: "nox-branding",
+    index: "05",
     title: "NOX",
     subtitle: "Brand Identity",
     category: "Branding",
@@ -115,32 +146,7 @@ export const projects = [
     featured: false,
     link: null,
   },
-  {
-    id: "atlas-web",
-    index: "05",
-    title: "Atlas",
-    subtitle: "Web Development",
-    category: "Desarrollo Web",
-    year: "2023",
-    client: "Atlas Consultora",
-    services: ["Desarrollo Web", "Diseno UX/UI"],
-    tags: ["Next.js", "Tailwind", "Sanity CMS"],
-    description: {
-      short:
-        "Plataforma de contenidos y captacion de leads para consultora de RRHH con CMS headless.",
-      long: "Atlas Consultora publicaba articulos de manera manual cada semana, sin poder medir impacto ni captar leads de forma estructurada. Construimos una plataforma sobre Next.js y Sanity CMS que permite al equipo editorial publicar contenido desde un panel visual sin tocar codigo, con SEO tecnico optimizado y formularios conectados a su CRM.",
-    },
-    coverImage: "/projects/atlas-web/cover.svg",
-    heroImage: "/projects/atlas-web/hero.svg",
-    gallery: [
-      "/projects/atlas-web/gallery-1.svg",
-      "/projects/atlas-web/gallery-2.svg",
-      "/projects/atlas-web/gallery-3.svg",
-    ],
-    accentColor: "#FFB347",
-    featured: false,
-    link: "https://atlasconsultora.com.ar",
-  },
+
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
