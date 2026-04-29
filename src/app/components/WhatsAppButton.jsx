@@ -33,6 +33,7 @@ export default function WhatsAppButton() {
   const locale = useLocale();
   const [visible, setVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   // Detecta cuándo la sección Hero (#root → primer section) sale del viewport
@@ -58,6 +59,7 @@ export default function WhatsAppButton() {
   useEffect(() => {
     const sync = () => {
       setMenuOpen(document.body.dataset.mobileMenuOpen === "true");
+      setChatOpen(document.body.dataset.chatOpen === "true");
     };
 
     // Estado inicial (por si ya estaba abierto al montar)
@@ -66,7 +68,7 @@ export default function WhatsAppButton() {
     const mo = new MutationObserver(sync);
     mo.observe(document.body, {
       attributes: true,
-      attributeFilter: ["data-mobile-menu-open"],
+      attributeFilter: ["data-mobile-menu-open", "data-chat-open"],
     });
 
     return () => mo.disconnect();
@@ -75,8 +77,7 @@ export default function WhatsAppButton() {
   const message = encodeURIComponent(MESSAGES[locale] ?? MESSAGES.es);
   const href = `https://wa.me/${PHONE}?text=${message}`;
 
-  // El botón es visible solo cuando el hero salió Y el menú mobile está cerrado
-  const shouldShow = visible && !menuOpen;
+  const shouldShow = visible && !menuOpen && !chatOpen;
 
   return (
     <AnimatePresence>

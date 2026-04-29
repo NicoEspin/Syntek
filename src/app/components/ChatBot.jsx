@@ -706,6 +706,10 @@ export default function ChatBot() {
 
   useEffect(() => {
     document.body.dataset.chatOpen = isOpen ? "true" : "false";
+
+    return () => {
+      delete document.body.dataset.chatOpen;
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -944,7 +948,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 12 }}
             transition={{ duration: 0.5, ease }}
-            className="fixed bottom-[calc(1.5rem+64px)] right-6 z-[9997] md:bottom-[calc(2rem+88px)] md:right-8"
+            className="fixed bottom-[calc(1.5rem+64px)] right-6 z-[10001] md:bottom-[calc(2rem+88px)] md:right-8"
           >
             {/* ── Panel de chat ─────────────────────────────────────────────── */}
             <AnimatePresence>
