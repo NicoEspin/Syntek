@@ -405,18 +405,22 @@ const ChatInput = forwardRef(function ChatInput(
         onChange={onChange}
         onKeyDown={onKeyDown}
         placeholder={strings.inputPlaceholder}
-        disabled={disabled}
-        className="flex-1 bg-transparent text-[12.5px] outline-none disabled:opacity-40"
+        readOnly={disabled}
+        aria-disabled={disabled}
+        className="flex-1 bg-transparent text-[12.5px] outline-none"
         style={{
           color: "rgba(255,255,255,0.72)",
           caretColor: "#A1E233",
           fontFamily: "'Courier New', monospace",
           letterSpacing: "0.01em",
+          opacity: disabled ? 0.4 : 1,
         }}
       />
 
       <motion.button
+        type="button"
         onClick={onSubmit}
+        onPointerDown={(e) => e.preventDefault()}
         disabled={!value.trim() || disabled}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
@@ -689,6 +693,7 @@ export default function ChatBot() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [whatsappUrl, setWhatsappUrl] = useState(null);
+  const [isWhatsAppCtaEnabled, setIsWhatsAppCtaEnabled] = useState(false);
 
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -703,6 +708,16 @@ export default function ChatBot() {
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 300);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || isLoading) return;
+
+    const id = window.requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
+
+    return () => window.cancelAnimationFrame(id);
+  }, [isLoading, isOpen]);
 
   useEffect(() => {
     document.body.dataset.chatOpen = isOpen ? "true" : "false";
@@ -721,6 +736,19 @@ export default function ChatBot() {
       handoffMessageShownRef.current = false;
     }
   }, [readyForWhatsApp]);
+
+  useEffect(() => {
+    if (!readyForWhatsApp || !whatsappUrl || isLoading) {
+      setIsWhatsAppCtaEnabled(false);
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setIsWhatsAppCtaEnabled(true);
+    }, 900);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isLoading, readyForWhatsApp, whatsappUrl]);
 
   const fetchWhatsAppSummary = useCallback(async (currentLeadState) => {
     try {
@@ -782,6 +810,7 @@ export default function ChatBot() {
       setError(null);
       setReadyForWhatsApp(false);
       setWhatsappUrl(null);
+      setIsWhatsAppCtaEnabled(false);
       handoffMessageShownRef.current = false;
 
       if (abortRef.current) abortRef.current.abort();
@@ -1096,7 +1125,7 @@ export default function ChatBot() {
                   </div>
 
                   {/* WhatsApp CTA */}
-                  {readyForWhatsApp && whatsappUrl && (
+                  {readyForWhatsApp && whatsappUrl && isWhatsAppCtaEnabled && (
                     <WhatsAppCTA url={whatsappUrl} strings={strings} />
                   )}
 
