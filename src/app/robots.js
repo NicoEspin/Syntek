@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export default function robots() {
   return {
     rules: [
@@ -6,6 +8,7 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://synttek.com/sitemap.xml",
+    host: SITE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

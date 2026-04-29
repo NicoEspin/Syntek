@@ -186,6 +186,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-heading"
       className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       <ToastContainer
@@ -231,22 +232,14 @@ const Contact = () => {
           <div className="-mt-[clamp(3.5rem,12vw,13rem)]">
             <div className="overflow-hidden">
               <motion.h2
+                id="contact-heading"
                 initial={{ y: "110%" }}
                 animate={isHeaderInView ? { y: 0 } : {}}
                 transition={{ duration: 1, delay: 0.12, ease }}
                 className="text-[clamp(2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
               >
-                {t("headline-line1")}
-              </motion.h2>
-            </div>
-            <div className="overflow-hidden">
-              <motion.h2
-                initial={{ y: "110%" }}
-                animate={isHeaderInView ? { y: 0 } : {}}
-                transition={{ duration: 1, delay: 0.2, ease }}
-                className="text-[clamp(2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-[#A1E233]"
-              >
-                {t("headline-line2")}
+                <span className="block">{t("headline-line1")}</span>
+                <span className="block text-[#A1E233]">{t("headline-line2")}</span>
               </motion.h2>
             </div>
           </div>

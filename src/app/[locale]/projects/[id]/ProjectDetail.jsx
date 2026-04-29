@@ -49,7 +49,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
         <motion.div className="absolute inset-0" style={{ y: heroY, opacity: heroOpacity }}>
           <Image
             src={project.heroImage}
-            alt={project.title}
+            alt={`${project.title} - ${project.subtitle}`}
             fill
             priority
             sizes="100vw"
@@ -238,7 +238,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
         <div className="absolute inset-0">
           <Image
             src={nextProject.coverImage}
-            alt={nextProject.title}
+            alt={`${nextProject.title} - ${nextProject.subtitle}`}
             fill
             sizes="100vw"
             className="object-cover opacity-20 transition-all duration-700 group-hover:scale-105 group-hover:opacity-35"

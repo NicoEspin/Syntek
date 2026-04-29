@@ -10,18 +10,24 @@ import Footer from "@/app/components/(common)/Footer";
 import Contact from "@/app/sections/Contact";
 import About from "@/app/sections/About";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
+import ChatBot from "../components/ChatBot";
+import { getTranslations } from "next-intl/server";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
+  const baseUrl = SITE_URL;
+  const title = isEs
+    ? "Agencia de desarrollo web, software y automatizaciones en Cordoba"
+    : "Web development, software and automation agency in Cordoba";
+  const description = isEs
+    ? "En Synttek creamos sitios web, software a medida, ecommerce y automatizaciones para marcas y empresas que quieren crecer con tecnologia."
+    : "At Synttek we build websites, custom software, ecommerce and automations for brands and companies that want to grow with technology.";
 
   return {
-    title: isEs
-      ? "Agencia de desarrollo web, software y automatizaciones en Córdoba"
-      : "Web development, software and automation agency in Córdoba",
-    description: isEs
-      ? "En Synttek creamos sitios web, software a medida, ecommerce y automatizaciones para marcas y empresas que quieren crecer con tecnología."
-      : "At Synttek we build websites, custom software, ecommerce and automations for brands and companies that want to grow with technology.",
+    title,
+    description,
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -30,29 +36,79 @@ export async function generateMetadata({ params }) {
         "x-default": "/es",
       },
     },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}`,
+      siteName: SITE_NAME,
+      locale: isEs ? "es_AR" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: `${baseUrl}/android-chrome-512x512.png`,
+          width: 512,
+          height: 512,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${baseUrl}/android-chrome-512x512.png`],
+    },
   };
 }
 
 export default async function Home({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
+  const faqTranslations = await getTranslations({ locale, namespace: "Faqs" });
 
-  const organizationSchema = {
+  const faqSchema = {
+    "@type": "FAQPage",
+    mainEntity: Array.from({ length: 10 }, (_, index) => ({
+      "@type": "Question",
+      name: faqTranslations(`question${index + 1}`),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faqTranslations(`answer${index + 1}`),
+      },
+    })),
+  };
+
+  const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Synttek",
-    url: `https://synttek.com/${locale}`,
-    logo: "https://synttek.com/logo.png",
-    email: "synttek@gmail.com",
-    telephone: "+54 3541560518",
-    description: isEs
-      ? "Agencia de desarrollo web, software y automatizaciones en Córdoba, Argentina."
-      : "Web development, software and automation agency in Córdoba, Argentina.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Córdoba",
-      addressCountry: "AR",
-    },
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: `${SITE_URL}/${locale}`,
+        logo: `${SITE_URL}/android-chrome-512x512.png`,
+        email: "synttek@gmail.com",
+        telephone: "+54 3541560518",
+        description: isEs
+          ? "Agencia de desarrollo web, software y automatizaciones en Cordoba, Argentina."
+          : "Web development, software and automation agency in Cordoba, Argentina.",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Cordoba",
+          addressCountry: "AR",
+        },
+      },
+      {
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: `${SITE_URL}/${locale}`,
+        inLanguage: locale,
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+        },
+      },
+      faqSchema,
+    ],
   };
 
   return (
@@ -60,12 +116,12 @@ export default async function Home({ params }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
+          __html: JSON.stringify(structuredData),
         }}
       />
 
       <Navbar />
-      <main>
+      <main className="bg-[#0a0a0a] text-[#ededed]">
         <Hero />
         <Introduction />
         <Services />
@@ -77,7 +133,7 @@ export default async function Home({ params }) {
         <Contact />
       </main>
       <Footer />
-
+        <ChatBot />
       {/*
         WhatsAppButton va FUERA del <main> para evitar
         conflictos de z-index con secciones como Projects

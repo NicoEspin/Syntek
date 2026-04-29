@@ -8,18 +8,19 @@ import { useRef } from "react";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import ProjectCard from "@/app/components/ProjectCard";
 import ProjectCursor from "@/app/components/ProjectCursor";
-import { featuredProjects } from "@/data/projects";
+import { getFeaturedProjects } from "@/data/projects";
 
 const ease = [0.16, 1, 0.3, 1];
 
 export default function Projects() {
   const t = useTranslations("Projects");
   const locale = useLocale();
+  const featuredProjects = getFeaturedProjects(locale);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-5%" });
 
   return (
-    <section id="projects" className="relative overflow-hidden py-24 px-4 md:px-5 lg:px-10 xl:px-24">
+    <section id="projects" aria-labelledby="projects-heading" className="relative overflow-hidden py-24 px-4 md:px-5 lg:px-10 xl:px-24">
       <ProjectCursor />
 
       {/* Fondos */}
@@ -45,22 +46,14 @@ export default function Projects() {
             <div>
               <div className="overflow-hidden">
                 <motion.h2
+                  id="projects-heading"
                   initial={{ y: "105%" }}
                   animate={isInView ? { y: 0 } : {}}
                   transition={{ duration: 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  {t("headline-line1")}
-                </motion.h2>
-              </div>
-              <div className="overflow-hidden">
-                <motion.h2
-                  initial={{ y: "105%" }}
-                  animate={isInView ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.13, ease }}
-                  className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-[#A1E233]"
-                >
-                  {t("headline-line2")}
+                  <span className="block">{t("headline-line1")}</span>
+                  <span className="block text-[#A1E233]">{t("headline-line2")}</span>
                 </motion.h2>
               </div>
             </div>

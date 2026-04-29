@@ -5,7 +5,40 @@
     "subtitle": "Unlock the power of your brand with",
     "title": "Web Application Development",
     "cta-secondary": "View projects",
-    "cta": "Let's start"
+    "cta": "Let's start",
+    "stackLabel": "Stack",
+    "rotatingWords": {
+      "web": "Web.",
+      "software": "Software.",
+      "automations": "Automations."
+    },
+    "heroCards": {
+      "code": {
+        "goal": "scale",
+        "readyInWeeks": "ready in weeks",
+        "compiledIn": "▸ compiled in 1.2s"
+      },
+      "dashboard": {
+        "eyebrow": "Dashboard",
+        "title": "Performance",
+        "live": "Live",
+        "lastTwelveMonths": "last 12 months",
+        "metrics": {
+          "conversion": {
+            "label": "Conversion",
+            "delta": "+12% this month"
+          },
+          "loadTime": {
+            "label": "Load time",
+            "delta": "−62% vs previous"
+          },
+          "leads": {
+            "label": "Leads captured",
+            "delta": "+890 this month"
+          }
+        }
+      }
+    }
   },
 
   "Navbar": {
@@ -46,7 +79,20 @@
     "graphic-design": "Graphic Design",
     "graphic-design-description": "We convey ideas visually with impact—creative pieces that communicate, stand out, and strengthen your brand.",
     "automations": "Automations",
-    "automations-description": "Intelligent workflows that eliminate repetitive tasks and connect your tools. AI integrations, CRMs, ERPs and custom APIs to multiply your team's productivity."
+    "automations-description": "Intelligent workflows that eliminate repetitive tasks and connect your tools. AI integrations, CRMs, ERPs and custom APIs to multiply your team's productivity.",
+    "active-service": "Active service",
+    "services-available": "services available",
+    "start-service": "Start this service",
+    "image-alt": "Synttek services",
+    "tags": {
+      "prototyping": "Prototyping",
+      "research": "Research",
+      "conversion": "Conversion",
+      "identity": "Identity",
+      "logo": "Logo",
+      "guidelines": "Guidelines",
+      "photography": "Photography"
+    }
   },
   "Tools": {
     "title-section": "Our Tools",
@@ -252,9 +298,9 @@
       "overview": "Overview",
       "galleryImageAlt": "{title} - image {index}"
     },
-    "pageTitle": "Projects - Synttek",
+    "pageTitle": "Projects",
     "pageDescription": "Synttek's project portfolio: web design, branding, ecommerce and UI/UX.",
-    "detailPageTitle": "{title} - Synttek"
+    "detailPageTitle": "{title}"
   },
   "Faqs": {
     "title-section": "FAQs",
@@ -283,8 +329,35 @@
     "question10": "What tools do you use for automations, and what about AI?",
     "answer10": "We use n8n as our main workflow platform, alongside custom APIs and AI services (OpenAI, Anthropic, Gemini). We can integrate AI agents that answer queries, generate content or make decisions inside your operational flows — no manual intervention required.",
 
+    "questions-count": "questions",
+    "categories": {
+      "web": "Web and development",
+      "auto": "Automations",
+      "proceso": "Process and pricing"
+    },
+    "filters": {
+      "all": "All"
+    },
     "cta-question": "Have a question that's not here?",
     "cta-detail": "We reply within 24 hours.",
     "cta-btn": "Ask us"
+  },
+  "ChatBot": {
+    "initialMessage": "Hi! I'm Synttek's assistant. What kind of project are you thinking about? I can help with websites, software or automations.",
+    "handoffReply": "Perfect. I already have enough info. Let's continue on WhatsApp using the button below.",
+    "headerTitle": "Synttek AI",
+    "online": "Online",
+    "close": "Close chat",
+    "open": "Open chat",
+    "inputPlaceholder": "Type your message...",
+    "send": "Send",
+    "nextStep": "Next step",
+    "enoughInfo": "We have enough info",
+    "talkToTeam": "Talk to the team",
+    "errorRetry": "Something went wrong. Please try again.",
+    "errorConnection": "We couldn't connect to the server. Check your connection.",
+    "processing": "processing...",
+    "poweredBy": "Powered by",
+    "timeLocale": "en-US"
   }
 }

@@ -60,7 +60,7 @@ export default function ProjectCard({
             >
               <Image
                 src={project.coverImage}
-                alt={project.title}
+                alt={`${project.title} - ${project.subtitle}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 56vw"
                 className="object-cover"
@@ -138,7 +138,7 @@ export default function ProjectCard({
           >
             <Image
               src={project.coverImage}
-              alt={project.title}
+              alt={`${project.title} - ${project.subtitle}`}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover"

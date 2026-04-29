@@ -5,7 +5,40 @@
     "eyebrow": "Agencia de desarrollo · Córdoba, AR",
     "headline-line1": "Construimos",
     "cta-secondary": "Ver proyectos",
-    "cta": "Comencemos"
+    "cta": "Comencemos",
+    "stackLabel": "Stack",
+    "rotatingWords": {
+      "web": "Web.",
+      "software": "Software.",
+      "automations": "Automatizaciones."
+    },
+    "heroCards": {
+      "code": {
+        "goal": "escalar",
+        "readyInWeeks": "listo en semanas",
+        "compiledIn": "▸ compilado en 1.2s"
+      },
+      "dashboard": {
+        "eyebrow": "Dashboard",
+        "title": "Rendimiento",
+        "live": "En vivo",
+        "lastTwelveMonths": "ultimos 12 meses",
+        "metrics": {
+          "conversion": {
+            "label": "Conversion",
+            "delta": "+12% este mes"
+          },
+          "loadTime": {
+            "label": "Tiempo de carga",
+            "delta": "−62% vs anterior"
+          },
+          "leads": {
+            "label": "Leads capturados",
+            "delta": "+890 este mes"
+          }
+        }
+      }
+    }
   },
   "Navbar": {
     "home": "Inicio",
@@ -45,7 +78,20 @@
     "graphic-design": "Diseño Gráfico",
     "graphic-design-description": "Transmitimos ideas visuales con impacto. Piezas creativas que comunican, destacan y fortalecen tu marca.",
     "automations": "Automatizaciones",
-    "automations-description": "Workflows inteligentes que eliminan tareas repetitivas y conectan tus herramientas. Integraciones con IA, CRMs, ERPs y APIs a medida para multiplicar la productividad de tu equipo."
+    "automations-description": "Workflows inteligentes que eliminan tareas repetitivas y conectan tus herramientas. Integraciones con IA, CRMs, ERPs y APIs a medida para multiplicar la productividad de tu equipo.",
+    "active-service": "Servicio activo",
+    "services-available": "servicios disponibles",
+    "start-service": "Empezar este servicio",
+    "image-alt": "Servicios de Synttek",
+    "tags": {
+      "prototyping": "Prototipado",
+      "research": "Research",
+      "conversion": "Conversión",
+      "identity": "Identidad",
+      "logo": "Logotipo",
+      "guidelines": "Guidelines",
+      "photography": "Fotografía"
+    }
   },
   "Tools": {
     "title-section": "Nuestras Herramientas",
@@ -250,9 +296,9 @@
       "overview": "Overview",
       "galleryImageAlt": "{title} - imagen {index}"
     },
-    "pageTitle": "Proyectos - Synttek",
+    "pageTitle": "Proyectos",
     "pageDescription": "Portfolio de proyectos de Synttek: diseño web, branding, ecommerce y UX/UI.",
-    "detailPageTitle": "{title} - Synttek"
+    "detailPageTitle": "{title}"
   },
   "Faqs": {
     "title-section": "FAQs",
@@ -281,8 +327,35 @@
     "question10": "¿Qué herramientas usan para las automatizaciones y qué pasa con la IA?",
     "answer10": "Trabajamos con n8n como plataforma principal de workflows, junto con APIs propias y servicios de AI (OpenAI, Anthropic, Gemini). Podemos integrar agentes de IA que respondan consultas, generen contenido o tomen decisiones dentro de tus flujos operativos, sin necesidad de que el equipo intervenga manualmente.",
 
+    "questions-count": "preguntas",
+    "categories": {
+      "web": "Web y desarrollo",
+      "auto": "Automatizaciones",
+      "proceso": "Proceso y costos"
+    },
+    "filters": {
+      "all": "Todas"
+    },
     "cta-question": "¿Tenés una pregunta que no está acá?",
     "cta-detail": "Respondemos en menos de 24 horas.",
     "cta-btn": "Consultanos"
+  },
+  "ChatBot": {
+    "initialMessage": "¡Hola! Soy el asistente de Synttek. ¿En qué tipo de proyecto estás pensando? Puedo ayudarte con webs, software o automatizaciones.",
+    "handoffReply": "Perfecto. Ya tengo suficiente info. Seguimos por WhatsApp desde el botón de abajo.",
+    "headerTitle": "Synttek AI",
+    "online": "En línea",
+    "close": "Cerrar chat",
+    "open": "Abrir chat",
+    "inputPlaceholder": "Escribí tu mensaje...",
+    "send": "Enviar",
+    "nextStep": "Siguiente paso",
+    "enoughInfo": "Tenemos suficiente info",
+    "talkToTeam": "Hablar con el equipo",
+    "errorRetry": "Ocurrió un error. Intentá de nuevo.",
+    "errorConnection": "No se pudo conectar con el servidor. Revisá tu conexión.",
+    "processing": "procesando...",
+    "poweredBy": "Powered by",
+    "timeLocale": "es-AR"
   }
 }

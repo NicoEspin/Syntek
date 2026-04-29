@@ -1,13 +1,12 @@
-import { Sparkles } from 'lucide-react'
+import { Sparkles } from "lucide-react";
 
-
-const TitleSection = ({title}) => {
+const TitleSection = ({ title }) => {
   return (
-    <div className='flex rounded-full gap-2 border border-primary1 items-center justify-center py-1 mx-auto w-fit mt-10 px-2'>
-        <Sparkles className='text-primary1 size-3 '/>
-        <h2 className='text-primary1 text-xs uppercase text-center'>{title}</h2>
+    <div className="mx-auto mt-10 flex w-fit items-center justify-center gap-2 rounded-full border border-primary1 px-2 py-1">
+      <Sparkles aria-hidden="true" className="size-3 text-primary1" />
+      <p className="text-center text-xs uppercase text-primary1">{title}</p>
     </div>
-  )
-}
+  );
+};
 
-export default TitleSection
+export default TitleSection;

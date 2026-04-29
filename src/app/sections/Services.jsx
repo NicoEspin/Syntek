@@ -22,7 +22,6 @@ const SERVICE_ACCENTS = [
 
 // ─── Ítem expandible de servicio ─────────────────────────────────────────────
 function ServiceRow({
-  number,
   title,
   description,
   tags,
@@ -31,6 +30,7 @@ function ServiceRow({
   isActive,
   onEnter,
   onLeave,
+  ctaLabel,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-8%" });
@@ -143,7 +143,7 @@ function ServiceRow({
                 className="mt-5 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] uppercase transition-colors duration-300"
                 style={{ color: accent }}
               >
-                Empezar este servicio
+                {ctaLabel}
                 <span>→</span>
               </motion.a>
             </div>
@@ -171,22 +171,22 @@ const Services = () => {
     {
       titleKey: "uxui",
       descKey: "uxui-description",
-      tags: ["Figma", "Prototipado", "Research"],
+      tags: ["Figma", t("tags.prototyping"), t("tags.research")],
     },
     {
       titleKey: "ecommerce",
       descKey: "ecommerce-description",
-      tags: ["Shopify", "WooCommerce", "Conversión"],
+      tags: ["Shopify", "WooCommerce", t("tags.conversion")],
     },
     {
       titleKey: "branding",
       descKey: "branding-description",
-      tags: ["Identidad", "Logotipo", "Guidelines"],
+      tags: [t("tags.identity"), t("tags.logo"), t("tags.guidelines")],
     },
     {
       titleKey: "graphic-design",
       descKey: "graphic-design-description",
-      tags: ["Illustrator", "Motion", "Fotografía"],
+      tags: ["Illustrator", "Motion", t("tags.photography")],
     },
     {
       titleKey: "automations",
@@ -198,6 +198,7 @@ const Services = () => {
   return (
     <section
       id="services"
+      aria-labelledby="services-heading"
       className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       {/* Gradiente radial de fondo */}
@@ -221,22 +222,14 @@ const Services = () => {
             <div ref={headerRef} className="mb-10">
               <div className="overflow-hidden">
                 <motion.h2
+                  id="services-heading"
                   initial={{ y: "105%" }}
                   animate={isHeaderInView ? { y: 0 } : {}}
                   transition={{ duration: 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,4.5vw,4rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  {t("title")}
-                </motion.h2>
-              </div>
-              <div className="overflow-hidden">
-                <motion.h2
-                  initial={{ y: "105%" }}
-                  animate={isHeaderInView ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.13, ease }}
-                  className="text-[clamp(2.2rem,4.5vw,4rem)] font-black leading-[0.95] tracking-tight text-[#A1E233]"
-                >
-                  {t("green-title")}
+                  <span className="block">{t("title")}</span>
+                  <span className="block text-[#A1E233]">{t("green-title")}</span>
                 </motion.h2>
               </div>
 
@@ -269,7 +262,7 @@ const Services = () => {
               <div className="relative overflow-hidden rounded-3xl border border-white/6 bg-neutral-950/60 aspect-square max-w-[280px]">
                 <Image
                   src={img}
-                  alt="Synttek services"
+                  alt={t("image-alt")}
                   fill
                   className="object-cover opacity-80"
                   sizes="280px"
@@ -291,8 +284,7 @@ const Services = () => {
                         className="text-[9px] tracking-[0.22em] uppercase font-semibold mb-1 block"
                         style={{ color: SERVICE_ACCENTS[activeIndex] }}
                       >
-                        {String(activeIndex + 1).padStart(2, "0")} · Servicio
-                        activo
+                        {String(activeIndex + 1).padStart(2, "0")} · {t("active-service")}
                       </span>
                       <p className="text-sm font-semibold text-white">
                         {t(services[activeIndex].titleKey)}
@@ -310,8 +302,7 @@ const Services = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-6 text-[10px] tracking-[0.2em] uppercase text-white/18"
             >
-              {services.length.toString().padStart(2, "0")} servicios
-              disponibles
+              {services.length.toString().padStart(2, "0")} {t("services-available")}
             </motion.p>
           </div>
 
@@ -330,7 +321,6 @@ const Services = () => {
             {services.map((service, i) => (
               <ServiceRow
                 key={service.titleKey}
-                number={String(i + 1).padStart(2, "0")}
                 index={i}
                 title={t(service.titleKey)}
                 description={t(service.descKey)}
@@ -338,6 +328,7 @@ const Services = () => {
                 accent={SERVICE_ACCENTS[i]}
                 isActive={activeIndex === i}
                 onEnter={() => setActiveIndex(i)}
+                ctaLabel={t("start-service")}
                 onLeave={() => {}} // mantiene el último activo al salir
               />
             ))}

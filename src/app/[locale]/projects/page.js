@@ -1,8 +1,10 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ChatBot from "@/app/components/ChatBot";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
 
 import ProjectsClient from "./ProjectsClient";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
@@ -13,7 +15,8 @@ export async function generateMetadata({ params }) {
 
   const title = t("pageTitle");
   const description = t("pageDescription");
-  const baseUrl = "https://synttek.com";
+  const baseUrl = SITE_URL;
+  const socialImage = `${baseUrl}/android-chrome-512x512.png`;
 
   return {
     title,
@@ -30,14 +33,14 @@ export async function generateMetadata({ params }) {
       title,
       description,
       url: `${baseUrl}/${locale}/projects`,
-      siteName: "Synttek",
+      siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "website",
       images: [
         {
-          url: `${baseUrl}/og/projects-og.jpg`,
-          width: 1200,
-          height: 630,
+          url: socialImage,
+          width: 512,
+          height: 512,
           alt: title,
         },
       ],
@@ -46,13 +49,14 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/og/projects-og.jpg`],
+      images: [socialImage],
     },
   };
 }
 
 export default async function ProjectsPage({ params }) {
   const { locale } = await params;
+  const projects = getProjects(locale);
 
   setRequestLocale(locale);
 
@@ -60,6 +64,7 @@ export default async function ProjectsPage({ params }) {
     <>
       <Navbar />
       <ProjectsClient locale={locale} projects={projects} />
+      <ChatBot />
       <WhatsAppButton />
       <Footer />
     </>

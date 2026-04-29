@@ -8,18 +8,19 @@ import TitleSection from "@/app/components/(common)/TitleSection";
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
 
-// Categorías con su acento cromático
-const CATEGORIES = {
-  web: { label: "Web & Desarrollo", accent: "#A1E233" },
-  auto: { label: "Automatizaciones", accent: "#9B6DFF" },
-  proceso: { label: "Proceso & Costos", accent: "#5B8DEF" },
+const CATEGORY_ACCENTS = {
+  web: "#A1E233",
+  auto: "#9B6DFF",
+  proceso: "#5B8DEF",
 };
 
 // ─── Item de FAQ ──────────────────────────────────────────────────────────────
-function FaqItem({ question, answer, index, category, isOpen, onToggle }) {
+function FaqItem({ question, answer, index, category, isOpen, onToggle, categoryLabel }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-6%" });
-  const accent = CATEGORIES[category]?.accent ?? "#A1E233";
+  const accent = CATEGORY_ACCENTS[category] ?? "#A1E233";
+  const panelId = `faq-panel-${category}-${index}`;
+  const triggerId = `faq-trigger-${category}-${index}`;
 
   return (
     <motion.div
@@ -42,6 +43,8 @@ function FaqItem({ question, answer, index, category, isOpen, onToggle }) {
         onClick={onToggle}
         className="w-full flex items-start gap-5 py-6 text-left group/btn"
         aria-expanded={isOpen}
+        aria-controls={panelId}
+        id={triggerId}
       >
         {/* Número índice */}
         <span className="shrink-0 text-[10px] font-mono tracking-widest text-white/15 mt-1 w-6 text-right tabular-nums select-none">
@@ -93,6 +96,9 @@ function FaqItem({ question, answer, index, category, isOpen, onToggle }) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={triggerId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -112,7 +118,7 @@ function FaqItem({ question, answer, index, category, isOpen, onToggle }) {
                   backgroundColor: `${accent}08`,
                 }}
               >
-                {CATEGORIES[category]?.label}
+                {categoryLabel}
               </motion.span>
 
               <p className="text-sm md:text-[15px] font-light leading-relaxed text-white/42">
@@ -132,6 +138,12 @@ const Faqs = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const [activeFilter, setActiveFilter] = useState("all");
 
+  const categories = {
+    web: { label: t("categories.web"), accent: CATEGORY_ACCENTS.web },
+    auto: { label: t("categories.auto"), accent: CATEGORY_ACCENTS.auto },
+    proceso: { label: t("categories.proceso"), accent: CATEGORY_ACCENTS.proceso },
+  };
+
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-5%" });
 
@@ -149,10 +161,10 @@ const Faqs = () => {
   ];
 
   const filters = [
-    { key: "all", label: "Todas" },
-    { key: "web", label: CATEGORIES.web.label },
-    { key: "auto", label: CATEGORIES.auto.label },
-    { key: "proceso", label: CATEGORIES.proceso.label },
+    { key: "all", label: t("filters.all") },
+    { key: "web", label: categories.web.label },
+    { key: "auto", label: categories.auto.label },
+    { key: "proceso", label: categories.proceso.label },
   ];
 
   const filtered =
@@ -165,6 +177,7 @@ const Faqs = () => {
   return (
     <section
       id="faqs"
+      aria-labelledby="faqs-heading"
       className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       {/* Fondo atmosférico */}
@@ -187,22 +200,14 @@ const Faqs = () => {
             <div>
               <div className="overflow-hidden">
                 <motion.h2
+                  id="faqs-heading"
                   initial={{ y: "105%" }}
                   animate={isHeaderInView ? { y: 0 } : {}}
                   transition={{ duration: 1, delay: 0.05, ease }}
                   className="text-[clamp(2rem,5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  {t("title")}
-                </motion.h2>
-              </div>
-              <div className="overflow-hidden">
-                <motion.h2
-                  initial={{ y: "105%" }}
-                  animate={isHeaderInView ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.13, ease }}
-                  className="text-[clamp(2rem,5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-[#A1E233]"
-                >
-                  {t("green-title")}
+                  <span className="block">{t("title")}</span>
+                  <span className="block text-[#A1E233]">{t("green-title")}</span>
                 </motion.h2>
               </div>
             </div>
@@ -212,9 +217,9 @@ const Faqs = () => {
               initial={{ opacity: 0 }}
               animate={isHeaderInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-[10px] tracking-[0.2em] uppercase text-white/18 shrink-0"
-            >
-              {filtered.length.toString().padStart(2, "0")} preguntas
+            className="text-[10px] tracking-[0.2em] uppercase text-white/18 shrink-0"
+          >
+              {filtered.length.toString().padStart(2, "0")} {t("questions-count")}
             </motion.p>
           </div>
 
@@ -239,7 +244,7 @@ const Faqs = () => {
               const accent =
                 key === "all"
                   ? "#A1E233"
-                  : (CATEGORIES[key]?.accent ?? "#A1E233");
+                  : (categories[key]?.accent ?? "#A1E233");
               return (
                 <button
                   key={key}
@@ -285,10 +290,11 @@ const Faqs = () => {
               {filtered.map((faq, i) => (
                 <FaqItem
                   key={`${faq.question}-${i}`}
-                  question={faq.question}
-                  answer={faq.answer}
-                  category={faq.category}
-                  index={i}
+                    question={faq.question}
+                    answer={faq.answer}
+                    category={faq.category}
+                    categoryLabel={categories[faq.category]?.label}
+                    index={i}
                   isOpen={openIndex === i}
                   onToggle={() => handleToggle(i)}
                 />

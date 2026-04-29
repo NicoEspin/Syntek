@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://synttek.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Synttek",
-    template: "%s | Synttek",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
   description: "Agencia de desarrollo web y software",
   robots: {

@@ -153,6 +153,7 @@ export default function About() {
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       className="relative overflow-hidden px-4 py-28 md:px-5 lg:px-10 xl:px-24"
     >
       {/* Gradiente radial de fondo */}
@@ -186,22 +187,14 @@ export default function About() {
           {/* Headline de dos líneas con clip reveal */}
           <div className="overflow-hidden">
             <motion.h2
+              id="about-heading"
               initial={{ y: "105%", opacity: 0 }}
               animate={isHeroInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1.05, delay: 0.1, ease }}
               className="mb-1 text-[clamp(2.4rem,6.5vw,6.5rem)] font-black leading-[0.95] tracking-[-0.02em] text-white"
             >
-              {t("headline-line1")}
-            </motion.h2>
-          </div>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: "105%", opacity: 0 }}
-              animate={isHeroInView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 1.05, delay: 0.18, ease }}
-              className="text-[clamp(2.4rem,6.5vw,6.5rem)] font-black leading-[0.95] tracking-[-0.02em] text-[#A1E233]"
-            >
-              {t("headline-line2")}
+              <span className="block">{t("headline-line1")}</span>
+              <span className="block text-[#A1E233]">{t("headline-line2")}</span>
             </motion.h2>
           </div>
 

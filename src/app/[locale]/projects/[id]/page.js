@@ -1,10 +1,12 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ChatBot from "@/app/components/ChatBot";
 import { routing } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-import { getProjectById, projects } from "@/data/projects";
+import { getProjectById, getProjects, projects } from "@/data/projects";
 
 import ProjectDetail from "./ProjectDetail";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
@@ -17,14 +19,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { locale, id } = await params;
-  const project = getProjectById(id);
+  const project = getProjectById(id, locale);
 
   if (!project) {
     return {};
   }
 
   const t = await getTranslations({ locale, namespace: "Projects" });
-  const baseUrl = "https://synttek.com";
+  const baseUrl = SITE_URL;
 
   const title = t("detailPageTitle", { title: project.title });
   const description =
@@ -48,14 +50,14 @@ export async function generateMetadata({ params }) {
       title,
       description,
       url: `${baseUrl}/${locale}/projects/${id}`,
-      siteName: "Synttek",
+      siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "article",
       images: [
         {
-          url: `${baseUrl}/og/projects/${id}.jpg`,
-          width: 1200,
-          height: 630,
+          url: `${baseUrl}${project.coverImage}`,
+          width: 1600,
+          height: 1000,
           alt: title,
         },
       ],
@@ -64,40 +66,42 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/og/projects/${id}.jpg`],
+      images: [`${baseUrl}${project.coverImage}`],
     },
   };
 }
 
 export default async function ProjectPage({ params }) {
   const { locale, id } = await params;
+  const localizedProjects = getProjects(locale);
 
   setRequestLocale(locale);
 
-  const project = getProjectById(id);
+  const project = getProjectById(id, locale);
 
   if (!project) {
     notFound();
   }
 
-  const currentIndex = projects.findIndex((entry) => entry.id === project.id);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+  const currentIndex = localizedProjects.findIndex((entry) => entry.id === project.id);
+  const nextProject = localizedProjects[(currentIndex + 1) % localizedProjects.length];
 
   const projectSchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
-    url: `https://synttek.com/${locale}/projects/${project.id}`,
+    url: `${SITE_URL}/${locale}/projects/${project.id}`,
     author: {
       "@type": "Organization",
-      name: "Synttek",
-      url: "https://synttek.com",
+      name: SITE_NAME,
+      url: SITE_URL,
     },
     description:
       project?.description?.short ||
       (locale === "es"
         ? "Proyecto desarrollado por Synttek."
         : "Project built by Synttek."),
+    inLanguage: locale,
   };
 
   return (
@@ -114,6 +118,7 @@ export default async function ProjectPage({ params }) {
         nextProject={nextProject}
         project={project}
       />
+      <ChatBot />
       <WhatsAppButton />
       <Footer />
     </>

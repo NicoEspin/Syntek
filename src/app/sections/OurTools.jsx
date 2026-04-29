@@ -32,6 +32,7 @@ const OurTools = () => {
   return (
     <section
       id="tools"
+      aria-labelledby="tools-heading"
       className="relative overflow-hidden py-24 px-4 md:px-5 lg:px-10 xl:px-24"
     >
       <div className="mx-auto max-w-screen-2xl">
@@ -43,11 +44,9 @@ const OurTools = () => {
 
             {/* Headline en dos líneas — mismo patrón editorial */}
             <div className="mt-8">
-              <h2 className="text-[clamp(2.2rem,4.5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-white">
-                {t("title")}
-              </h2>
-              <h2 className="text-[clamp(2.2rem,4.5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-[#A1E233]">
-                {t("green-title")}
+              <h2 id="tools-heading" className="text-[clamp(2.2rem,4.5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-white">
+                <span className="block">{t("title")}</span>
+                <span className="block text-[#A1E233]">{t("green-title")}</span>
               </h2>
             </div>
 

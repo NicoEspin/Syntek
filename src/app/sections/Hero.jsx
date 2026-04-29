@@ -1,27 +1,25 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
 
 // Las palabras que rotan en el typewriter
-const ROTATING_WORDS = ["Web.", "Software.", "Automatizaciones."];
-
 // ─── Componente: Typewriter de palabras rotantes ──────────────────────────────
-function RotatingWord() {
+function RotatingWord({ words }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROTATING_WORDS.length);
+      setIndex((i) => (i + 1) % words.length);
     }, 2200);
     return () => clearInterval(id);
-  }, []);
+  }, [words]);
 
   return (
     <span className="relative inline-block overflow-hidden align-bottom">
@@ -34,7 +32,7 @@ function RotatingWord() {
           transition={{ duration: 0.55, ease }}
           className="inline-block text-[#A1E233]"
         >
-          {ROTATING_WORDS[index]}
+          {words[index]}
         </motion.span>
       </AnimatePresence>
     </span>
@@ -42,7 +40,7 @@ function RotatingWord() {
 }
 
 // ─── Card izquierda: fragmento de código ─────────────────────────────────────
-function CodeCard() {
+function CodeCard({ strings }) {
   const lines = [
     { indent: 0, tokens: [{ c: "#637777", t: "// Synttek · stack" }] },
     {
@@ -83,7 +81,7 @@ function CodeCard() {
       tokens: [
         { c: "#A1E233", t: "goal" },
         { c: "#fff", t: ": " },
-        { c: "#ecc48d", t: "'scale'" },
+        { c: "#ecc48d", t: `'${strings.goal}'` },
         { c: "#fff", t: "," },
       ],
     },
@@ -96,7 +94,7 @@ function CodeCard() {
       ],
     },
     { indent: 1, tokens: [{ c: "#fff", t: "})" }] },
-    { indent: 0, tokens: [{ c: "#637777", t: "// → listo en semanas" }] },
+    { indent: 0, tokens: [{ c: "#637777", t: `// -> ${strings.readyInWeeks}` }] },
   ];
 
   return (
@@ -138,9 +136,9 @@ function CodeCard() {
         </div>
         {/* Línea de cursor parpadeante */}
         <div className="px-4 pb-4 flex items-center gap-1.5">
-          <span className="text-[11px] font-mono text-[#A1E233]/50">
-            ▸ compiled in 1.2s
-          </span>
+            <span className="text-[11px] font-mono text-[#A1E233]/50">
+              {strings.compiledIn}
+            </span>
           <motion.span
             animate={{ opacity: [1, 0] }}
             transition={{
@@ -157,24 +155,24 @@ function CodeCard() {
 }
 
 // ─── Card derecha: dashboard de métricas ─────────────────────────────────────
-function DashboardCard() {
+function DashboardCard({ strings }) {
   const metrics = [
     {
-      label: "Conversión",
+      label: strings.conversionLabel,
       value: "+147%",
-      delta: "+12% este mes",
+      delta: strings.conversionDelta,
       positive: true,
     },
     {
-      label: "Tiempo carga",
+      label: strings.loadTimeLabel,
       value: "0.8s",
-      delta: "−62% vs anterior",
+      delta: strings.loadTimeDelta,
       positive: true,
     },
     {
-      label: "Leads capturados",
+      label: strings.leadsLabel,
       value: "2.4k",
-      delta: "+890 este mes",
+      delta: strings.leadsDelta,
       positive: true,
     },
   ];
@@ -195,10 +193,10 @@ function DashboardCard() {
         <div className="px-5 pt-5 pb-3 border-b border-white/6 flex items-center justify-between">
           <div>
             <p className="text-[10px] tracking-[0.18em] uppercase text-white/28">
-              Dashboard
+              {strings.dashboardEyebrow}
             </p>
             <p className="text-sm font-semibold text-white mt-0.5">
-              Performance
+              {strings.dashboardTitle}
             </p>
           </div>
           <div className="flex items-center gap-1.5">
@@ -207,7 +205,7 @@ function DashboardCard() {
               <span className="relative inline-flex size-2 rounded-full bg-[#A1E233]" />
             </span>
             <span className="text-[9px] tracking-widest uppercase text-[#A1E233]/70">
-              Live
+              {strings.liveLabel}
             </span>
           </div>
         </div>
@@ -231,7 +229,7 @@ function DashboardCard() {
             ))}
           </div>
           <p className="text-[9px] text-white/15 mt-1.5 tracking-widest">
-            últimos 12 meses
+            {strings.lastTwelveMonths}
           </p>
         </div>
 
@@ -270,6 +268,28 @@ const Hero = () => {
   const [rightPointerScope, rightPointerAnimate] = useAnimate();
   const heroRef = useRef(null);
   const t = useTranslations("Homepage");
+  const rotatingWords = [
+    t("rotatingWords.web"),
+    t("rotatingWords.software"),
+    t("rotatingWords.automations"),
+  ];
+  const codeCardStrings = {
+    goal: t("heroCards.code.goal"),
+    readyInWeeks: t("heroCards.code.readyInWeeks"),
+    compiledIn: t("heroCards.code.compiledIn"),
+  };
+  const dashboardStrings = {
+    dashboardEyebrow: t("heroCards.dashboard.eyebrow"),
+    dashboardTitle: t("heroCards.dashboard.title"),
+    liveLabel: t("heroCards.dashboard.live"),
+    lastTwelveMonths: t("heroCards.dashboard.lastTwelveMonths"),
+    conversionLabel: t("heroCards.dashboard.metrics.conversion.label"),
+    conversionDelta: t("heroCards.dashboard.metrics.conversion.delta"),
+    loadTimeLabel: t("heroCards.dashboard.metrics.loadTime.label"),
+    loadTimeDelta: t("heroCards.dashboard.metrics.loadTime.delta"),
+    leadsLabel: t("heroCards.dashboard.metrics.leads.label"),
+    leadsDelta: t("heroCards.dashboard.metrics.leads.delta"),
+  };
 
   useEffect(() => {
     // Card izquierda entra desde abajo-izquierda
@@ -317,6 +337,7 @@ const Hero = () => {
 
   return (
     <section
+      aria-labelledby="hero-heading"
       className="relative min-h-[88vh] flex items-center justify-center py-24 px-4 overflow-x-clip"
       ref={heroRef}
     >
@@ -345,7 +366,7 @@ const Hero = () => {
         dragConstraints={heroRef}
         className="hidden lg:block absolute left-8 xl:left-16 top-1/2 -translate-y-[55%]"
       >
-        <CodeCard />
+        <CodeCard strings={codeCardStrings} />
       </motion.div>
 
       {/* Pointer Antto */}
@@ -364,7 +385,7 @@ const Hero = () => {
         dragConstraints={heroRef}
         className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-[45%]"
       >
-        <DashboardCard />
+        <DashboardCard strings={dashboardStrings} />
       </motion.div>
 
       {/* Pointer Nico */}
@@ -395,26 +416,28 @@ const Hero = () => {
         </motion.div>
 
         {/* Headline principal */}
-        <div className="overflow-hidden mb-2">
-          <motion.h1
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease }}
-            className="text-[clamp(2.4rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
-          >
-            {t("headline-line1")}
-          </motion.h1>
-        </div>
-        <div className="overflow-hidden mb-8">
-          <motion.h1
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease }}
-            className="text-[clamp(2.4rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tight"
-          >
-            <RotatingWord />
-          </motion.h1>
-        </div>
+        <h1 id="hero-heading" className="mb-8 text-[clamp(2.4rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white">
+          <span className="block overflow-hidden">
+            <motion.span
+              initial={{ y: "105%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease }}
+              className="block"
+            >
+              {t("headline-line1")}
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden text-[#A1E233]">
+            <motion.span
+              initial={{ y: "105%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease }}
+              className="block"
+            >
+              <RotatingWord words={rotatingWords} />
+            </motion.span>
+          </span>
+        </h1>
 
         {/* Subtítulo */}
         <motion.p
@@ -476,7 +499,7 @@ const Hero = () => {
           className="mt-12 flex items-center gap-3 flex-wrap justify-center"
         >
           <span className="text-[9px] tracking-[0.22em] uppercase text-white/18">
-            Stack
+            {t("stackLabel")}
           </span>
           {["Next.js", "React", "Node", "AI/ML", "Shopify", "Figma"].map(
             (tech, i) => (
