@@ -3,6 +3,7 @@ import Navbar from "@/app/components/(common)/Navbar";
 import ChatBot from "@/app/components/ChatBot";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 import { getProjects } from "@/data/projects";
 
@@ -22,12 +23,8 @@ export async function generateMetadata({ params }) {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/projects`,
-      languages: {
-        es: "/es/projects",
-        en: "/en/projects",
-        "x-default": "/es/projects",
-      },
+      canonical: getCanonicalUrl(locale, "/projects"),
+      languages: getLanguageAlternates("/projects"),
     },
     openGraph: {
       title,

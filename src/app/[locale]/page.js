@@ -13,6 +13,7 @@ import WhatsAppButton from "@/app/components/WhatsAppButton";
 import ChatBot from "../components/ChatBot";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -29,12 +30,8 @@ export async function generateMetadata({ params }) {
     title,
     description,
     alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        es: "/es",
-        en: "/en",
-        "x-default": "/es",
-      },
+      canonical: getCanonicalUrl(locale),
+      languages: getLanguageAlternates(),
     },
     openGraph: {
       title,

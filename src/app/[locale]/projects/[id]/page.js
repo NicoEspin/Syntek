@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 import { getProjectById, getProjects, projects } from "@/data/projects";
 
@@ -39,12 +40,8 @@ export async function generateMetadata({ params }) {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/projects/${id}`,
-      languages: {
-        es: `/es/projects/${id}`,
-        en: `/en/projects/${id}`,
-        "x-default": `/es/projects/${id}`,
-      },
+      canonical: getCanonicalUrl(locale, `/projects/${id}`),
+      languages: getLanguageAlternates(`/projects/${id}`),
     },
     openGraph: {
       title,

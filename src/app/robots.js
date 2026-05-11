@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site";
+import { getAbsoluteUrl } from "@/lib/seo";
 
 export default function robots() {
   return {
@@ -8,7 +8,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    host: SITE_URL,
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: getAbsoluteUrl("/sitemap.xml"),
   };
 }
