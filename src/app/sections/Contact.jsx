@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const CONTACT_EMAIL = "synttek@gmail.com";
 const CONTACT_PHONE = "+54 3541560518";
-const INSTAGRAM_URL = "https://www.instagram.com/";
+const INSTAGRAM_URL = "https://www.instagram.com/synttek/";
 const LINKEDIN_URL = "https://www.linkedin.com/";
 
 const ease = [0.16, 1, 0.3, 1];

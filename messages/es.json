@@ -140,8 +140,8 @@
       },
       "instagram": {
         "label": "Instagram",
-        "value": "Perfil en preparación",
-        "note": "El canal visual está en camino. Mientras tanto, el link mantiene la presencia de la plataforma.",
+        "value": "@synttek",
+        "note": "Seguinos para ver procesos, lanzamientos y piezas visuales del estudio.",
         "ariaLabel": "Abrir Instagram"
       },
       "linkedin": {
@@ -212,7 +212,7 @@
       },
       "instagram": {
         "label": "Instagram",
-        "value": "Perfil en preparación",
+        "value": "@synttek",
         "ariaLabel": "Abrir Instagram"
       },
       "linkedin": {

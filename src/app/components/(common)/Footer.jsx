@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
 
 const CONTACT_EMAIL = "synttek@gmail.com";
-const INSTAGRAM_URL = "https://www.instagram.com/";
+const INSTAGRAM_URL = "https://www.instagram.com/synttek/";
 const LINKEDIN_URL = "https://www.linkedin.com/";
 
 const Footer = () => {
