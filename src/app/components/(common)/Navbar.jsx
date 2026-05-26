@@ -77,6 +77,8 @@ const Navbar = ({ floating = false }) => {
   const isHomePage =
     pathname === baseHomePath || pathname === `${baseHomePath}/`;
   const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
+  const isAboutPage = pathname === `${baseHomePath}/sobre-nosotros`;
+  const isContactPage = pathname === `${baseHomePath}/contacto`;
 
   const navLinks = useMemo(
     () => [
@@ -99,7 +101,7 @@ const Navbar = ({ floating = false }) => {
       {
         key: "about",
         label: t("about"),
-        href: isHomePage ? "#about" : `${baseHomePath}#about`,
+        href: `${baseHomePath}/sobre-nosotros`,
       },
       {
         key: "faqs",
@@ -110,7 +112,7 @@ const Navbar = ({ floating = false }) => {
     [baseHomePath, isHomePage, t],
   );
 
-  const contactHref = isHomePage ? "#contact" : `${baseHomePath}#contact`;
+  const contactHref = `${baseHomePath}/contacto`;
 
   const handleNavClick = (event, href) => {
     if (!isHomePage || !href.startsWith("#")) {
@@ -162,6 +164,14 @@ const Navbar = ({ floating = false }) => {
       return link.key === "projects";
     }
 
+    if (isAboutPage) {
+      return link.key === "about";
+    }
+
+    if (isContactPage) {
+      return link.key === "contact";
+    }
+
     return link.key === "home";
   };
 
@@ -170,7 +180,15 @@ const Navbar = ({ floating = false }) => {
     if (typeof window === "undefined") return undefined;
 
     if (!isHomePage) {
-      setActiveSection(isProjectsPage ? "#projects" : "#");
+      if (isProjectsPage) {
+        setActiveSection("#projects");
+      } else if (isAboutPage) {
+        setActiveSection("#about-page");
+      } else if (isContactPage) {
+        setActiveSection("#contact-page");
+      } else {
+        setActiveSection("#");
+      }
       return undefined;
     }
 
@@ -220,7 +238,7 @@ const Navbar = ({ floating = false }) => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, [isHomePage, isProjectsPage]);
+  }, [isAboutPage, isContactPage, isHomePage, isProjectsPage]);
 
   // Lock scroll + señal global cuando el menu mobile está abierto
   useEffect(() => {

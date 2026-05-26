@@ -14,16 +14,23 @@ import ChatBot from "../components/ChatBot";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+import {
+  BUSINESS_EMAIL,
+  BUSINESS_LOCATION,
+  BUSINESS_PHONE_DISPLAY,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+} from "@/lib/business";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
   const baseUrl = SITE_URL;
   const title = isEs
-    ? "Agencia de desarrollo web, software y automatizaciones en Cordoba"
+    ? "Synttek - Desarrollo web, software y automatizaciones en Córdoba"
     : "Web development, software and automation agency in Cordoba";
   const description = isEs
-    ? "En Synttek creamos sitios web, software a medida, ecommerce y automatizaciones para marcas y empresas que quieren crecer con tecnologia."
+    ? "Creamos sitios web, software a medida, ecommerce y automatizaciones para marcas, pymes y negocios que quieren crecer con tecnología."
     : "At Synttek we build websites, custom software, ecommerce and automations for brands and companies that want to grow with technology.";
 
   return {
@@ -83,15 +90,17 @@ export default async function Home({ params }) {
         name: SITE_NAME,
         url: `${SITE_URL}/${locale}`,
         logo: `${SITE_URL}/android-chrome-512x512.png`,
-        email: "synttek@gmail.com",
-        telephone: "+54 3541560518",
+        email: BUSINESS_EMAIL,
+        telephone: BUSINESS_PHONE_DISPLAY,
+        sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
         description: isEs
-          ? "Agencia de desarrollo web, software y automatizaciones en Cordoba, Argentina."
+          ? "Agencia de desarrollo web, software y automatizaciones en Córdoba, Argentina."
           : "Web development, software and automation agency in Cordoba, Argentina.",
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Cordoba",
-          addressCountry: "AR",
+          addressLocality: BUSINESS_LOCATION.city,
+          addressRegion: BUSINESS_LOCATION.region,
+          addressCountry: BUSINESS_LOCATION.countryCode,
         },
       },
       {

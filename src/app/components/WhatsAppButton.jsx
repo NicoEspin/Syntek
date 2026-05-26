@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
+import { getWhatsAppUrl } from "@/lib/business";
 
-// ─── Constantes ───────────────────────────────────────────────────────────────
-const PHONE = "5493541560518"; // formato internacional sin + ni espacios
 const ease = [0.16, 1, 0.3, 1];
 
 const MESSAGES = {
@@ -74,8 +73,7 @@ export default function WhatsAppButton() {
     return () => mo.disconnect();
   }, []);
 
-  const message = encodeURIComponent(MESSAGES[locale] ?? MESSAGES.es);
-  const href = `https://wa.me/${PHONE}?text=${message}`;
+  const href = getWhatsAppUrl(MESSAGES[locale] ?? MESSAGES.es);
 
   const shouldShow = visible && !menuOpen && !chatOpen;
 

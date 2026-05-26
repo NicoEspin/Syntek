@@ -3,10 +3,10 @@
 import { forwardRef, useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { getWhatsAppUrl } from "@/lib/business";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
-const WHATSAPP_PHONE = "5493541560518";
 const ease = [0.16, 1, 0.3, 1];
 
 function createInitialMessage(content) {
@@ -30,10 +30,7 @@ function fmtTime(date, locale) {
 }
 
 function buildWhatsAppUrl(message = "") {
-  const encodedMessage = encodeURIComponent(message.trim());
-  return encodedMessage
-    ? `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`
-    : `https://wa.me/${WHATSAPP_PHONE}`;
+  return getWhatsAppUrl(message);
 }
 
 function parseSSEBlock(block) {

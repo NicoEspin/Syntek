@@ -4,29 +4,32 @@ import Image from "next/image";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
-
-const CONTACT_EMAIL = "synttek@gmail.com";
-const INSTAGRAM_URL = "https://www.instagram.com/synttek/";
-const LINKEDIN_URL = "https://www.linkedin.com/";
+import { getPrimaryServices } from "@/data/services";
+import {
+  BUSINESS_EMAIL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+} from "@/lib/business";
 
 const Footer = () => {
   const t = useTranslations("Footer");
   const locale = useLocale();
+  const serviceLinks = getPrimaryServices(locale);
 
   const links = [
     { key: "home", href: `/${locale}` },
     { key: "services", href: `/${locale}/#services` },
     { key: "projects", href: `/${locale}/#projects` },
-    { key: "about", href: `/${locale}/#about` },
-    { key: "contact", href: `/${locale}/#contact` },
+    { key: "about", href: `/${locale}/sobre-nosotros` },
+    { key: "contact", href: `/${locale}/contacto` },
   ];
 
   const socialLinks = [
     {
       key: "email",
       icon: Mail,
-      href: `mailto:${CONTACT_EMAIL}`,
-      label: CONTACT_EMAIL,
+      href: `mailto:${BUSINESS_EMAIL}`,
+      label: BUSINESS_EMAIL,
     },
     {
       key: "instagram",
@@ -95,6 +98,18 @@ const Footer = () => {
               );
             })}
           </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 border-t border-white/8 pt-5">
+          {serviceLinks.map((service) => (
+            <a
+              key={service.slug}
+              href={`/${locale}/servicios/${service.slug}`}
+              className="rounded-full border border-white/10 px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-white/45 transition-colors duration-300 hover:border-primary1/20 hover:text-primary1"
+            >
+              {service.shortLabel}
+            </a>
+          ))}
         </div>
 
         <div className="flex flex-col gap-2 border-t border-white/8 pt-4 text-xs text-white/38 md:flex-row md:items-center md:justify-between">

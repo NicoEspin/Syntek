@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -9,12 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import emailjs from "@emailjs/browser";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import { cn } from "@/lib/utils";
-
-// ─── Constantes ───────────────────────────────────────────────────────────────
-const CONTACT_EMAIL = "synttek@gmail.com";
-const CONTACT_PHONE = "+54 3541560518";
-const INSTAGRAM_URL = "https://www.instagram.com/synttek/";
-const LINKEDIN_URL = "https://www.linkedin.com/";
+import {
+  BUSINESS_EMAIL,
+  BUSINESS_PHONE_DISPLAY,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+} from "@/lib/business";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -115,15 +115,15 @@ const Contact = () => {
     {
       key: "email",
       icon: Mail,
-      href: `mailto:${CONTACT_EMAIL}`,
-      value: CONTACT_EMAIL,
+      href: `mailto:${BUSINESS_EMAIL}`,
+      value: BUSINESS_EMAIL,
       external: false,
     },
     {
       key: "phone",
       icon: Phone,
-      href: `tel:${CONTACT_PHONE.replace(/\s+/g, "")}`,
-      value: CONTACT_PHONE,
+      href: `tel:${BUSINESS_PHONE_DISPLAY.replace(/\s+/g, "")}`,
+      value: BUSINESS_PHONE_DISPLAY,
       external: false,
     },
     {
@@ -161,13 +161,13 @@ const Contact = () => {
     const send = emailjs.send(
       serviceId,
       templateId,
-      {
-        from_name: form.name,
-        to_name: "Synttek",
-        from_email: form.email,
-        to_email: CONTACT_EMAIL,
-        message: form.message,
-      },
+        {
+          from_name: form.name,
+          to_name: "Synttek",
+          from_email: form.email,
+          to_email: BUSINESS_EMAIL,
+          message: form.message,
+        },
       publicKey,
     );
 

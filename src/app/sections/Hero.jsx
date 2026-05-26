@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
@@ -262,6 +262,7 @@ function DashboardCard({ strings }) {
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 const Hero = () => {
+  const locale = useLocale();
   const [leftDesignScope, leftDesignAnimate] = useAnimate();
   const [leftPointerScope, leftPointerAnimate] = useAnimate();
   const [rightDesignScope, rightDesignAnimate] = useAnimate();
@@ -459,7 +460,7 @@ const Hero = () => {
         >
           {/* CTA principal */}
           <motion.a
-            href="#contact"
+            href={`/${locale}/contacto`}
             whileHover={{ scale: 1.03, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.2, ease }}

@@ -1,10 +1,14 @@
 import { projects } from "@/data/projects";
+import { getPrimaryServiceSlugs } from "@/data/services";
 import { routing } from "@/i18n/routing";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 const staticRoutes = {
   home: "2026-04-09T20:36:11.080Z",
   projects: "2026-04-09T20:36:11.080Z",
+  services: "2026-05-25T00:00:00.000Z",
+  about: "2026-05-25T00:00:00.000Z",
+  contact: "2026-05-25T00:00:00.000Z",
 };
 
 export default function sitemap() {
@@ -30,6 +34,40 @@ export default function sitemap() {
         languages: getLanguageAlternates("/projects"),
       },
     });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/sobre-nosotros"),
+      lastModified: staticRoutes.about,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: getLanguageAlternates("/sobre-nosotros"),
+      },
+    });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/contacto"),
+      lastModified: staticRoutes.contact,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: {
+        languages: getLanguageAlternates("/contacto"),
+      },
+    });
+
+    for (const slug of getPrimaryServiceSlugs()) {
+      const path = `/servicios/${slug}`;
+
+      routes.push({
+        url: getCanonicalUrl(locale, path),
+        lastModified: staticRoutes.services,
+        changeFrequency: "monthly",
+        priority: 0.85,
+        alternates: {
+          languages: getLanguageAlternates(path),
+        },
+      });
+    }
 
     for (const project of projects) {
       routes.push({

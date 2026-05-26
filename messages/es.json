@@ -22,10 +22,10 @@
         "eyebrow": "Dashboard",
         "title": "Rendimiento",
         "live": "En vivo",
-        "lastTwelveMonths": "ultimos 12 meses",
+        "lastTwelveMonths": "últimos 12 meses",
         "metrics": {
           "conversion": {
-            "label": "Conversion",
+            "label": "Conversión",
             "delta": "+12% este mes"
           },
           "loadTime": {
@@ -49,7 +49,7 @@
     "tools": "Herramientas",
     "contact": "Contacto",
     "faqs": "FAQs",
-    "copyright": "©2025 Synttek. Todos los derechos reservados",
+    "copyright": "©2026 Synttek. Todos los derechos reservados",
     "studioLabel": "Estudio digital boutique",
     "openMenu": "Menú",
     "closeMenu": "Cerrar",
@@ -69,6 +69,10 @@
     "subtitle": "Estrategia, diseño y tecnología para tu marca",
     "web-development": "Desarrollo Web",
     "web-development-description": "Creamos sitios rápidos, escalables y personalizados para impulsar tu presencia digital con una base sólida.",
+    "landing-pages": "Landing Pages",
+    "landing-pages-description": "Diseñamos páginas enfocadas en campañas, servicios y negocios que necesitan explicar mejor su propuesta y convertir más.",
+    "custom-software": "Software a Medida",
+    "custom-software-description": "Desarrollamos plataformas, dashboards y herramientas internas para ordenar procesos y crecer sin depender de parches.",
     "ecommerce": "Ecommerce",
     "ecommerce-description": "Diseñamos tiendas online intuitivas, optimizadas para convertir visitas en ventas de forma efectiva.",
     "branding": "Branding",
@@ -82,6 +86,7 @@
     "active-service": "Servicio activo",
     "services-available": "servicios disponibles",
     "start-service": "Empezar este servicio",
+    "view-service": "Ver servicio",
     "image-alt": "Servicios de Synttek",
     "tags": {
       "prototyping": "Prototipado",
@@ -135,7 +140,7 @@
       },
       "phone": {
         "label": "Línea directa",
-        "note": "Número placeholder hasta publicar la línea final. Sirve para mantener el anclaje y el formato del canal.",
+        "note": "Línea directa para consultas iniciales, coordinación comercial y seguimiento del proyecto.",
         "ariaLabel": "Llamar a la línea directa de Synttek"
       },
       "instagram": {
@@ -146,8 +151,8 @@
       },
       "linkedin": {
         "label": "LinkedIn",
-        "value": "Página en preparación",
-        "note": "La versión pública todavía está en construcción, pero dejamos el acceso listo para cuando salga.",
+        "value": "/company/synttek",
+        "note": "Perfil corporativo para novedades, presencia institucional y red profesional de la marca.",
         "ariaLabel": "Abrir LinkedIn"
       }
     },
@@ -189,7 +194,7 @@
     "titleAccent": "que se sienta a la altura.",
     "description": "Synttek combina dirección visual y ejecución web para construir sitios, landing pages y experiencias digitales con una estética precisa y una base técnica sólida.",
     "availabilityLabel": "Disponibilidad",
-    "availabilityValue": "Tomando proyectos seleccionados para 2025.",
+    "availabilityValue": "Tomando proyectos seleccionados para 2026.",
     "backToTop": "Volver al inicio",
     "quickLinksLabel": "Accesos rápidos",
     "channelsLabel": "Canales",
@@ -217,11 +222,11 @@
       },
       "linkedin": {
         "label": "LinkedIn",
-        "value": "Página en preparación",
+        "value": "/company/synttek",
         "ariaLabel": "Abrir LinkedIn"
       }
     },
-    "copyright": "©2025 Synttek. Todos los derechos reservados",
+    "copyright": "©2026 Synttek. Todos los derechos reservados",
     "legalNote": "Diseñado con intención desde Argentina."
   },
   "About": {
@@ -276,9 +281,9 @@
     "categories": {
       "Branding": "Branding",
       "Ecommerce": "Ecommerce",
-      "Diseno UX/UI": "Diseño UX/UI",
+        "Diseño UX/UI": "Diseño UX/UI",
       "Desarrollo Web": "Desarrollo Web",
-      "Diseno Grafico": "Diseño Gráfico",
+        "Diseño Grafico": "Diseño Gráfico",
       "webdesign": "Web Design",
       "Animaciones Web": "Animaciones Web",
       "SaaS": "SaaS",
@@ -291,14 +296,15 @@
       "year": "Año",
       "services": "Servicios",
       "technologies": "Tecnologías",
+      "relatedServices": "Servicios relacionados",
       "visitSite": "Visitar sitio",
       "nextProject": "Siguiente proyecto",
       "overview": "Overview",
       "galleryImageAlt": "{title} - imagen {index}"
     },
-    "pageTitle": "Proyectos",
-    "pageDescription": "Portfolio de proyectos de Synttek: diseño web, branding, ecommerce y UX/UI.",
-    "detailPageTitle": "{title}"
+    "pageTitle": "Portfolio de desarrollo web, software y branding | Synttek",
+    "pageDescription": "Explorá proyectos de desarrollo web, software, branding y ecommerce creados por Synttek para marcas y negocios que buscan crecer con tecnología.",
+    "detailPageTitle": "{title} | Proyecto desarrollado por Synttek"
   },
   "Faqs": {
     "title-section": "FAQs",
@@ -357,5 +363,100 @@
     "processing": "procesando...",
     "poweredBy": "Powered by",
     "timeLocale": "es-AR"
+  },
+  "ServicePages": {
+    "eyebrow": "Servicio",
+    "idealFor": "Ideal para",
+    "primaryCta": "Solicitar una propuesta",
+    "secondaryCta": "Ver proyectos",
+    "problemsTitle": "Qué resuelve",
+    "problemsSubtitle": "Detectamos dónde se rompe la experiencia comercial u operativa antes de diseñar la solución.",
+    "includesTitle": "Qué incluye",
+    "approachTitle": "Enfoque",
+    "processTitle": "Cómo trabajamos",
+    "processSubtitle": "Cada servicio se baja a un recorrido claro, con criterio visual, foco comercial y ejecución técnica seria.",
+    "projectsTitle": "Proyectos relacionados",
+    "projectsHeading": "Casos que muestran cómo pensamos, diseñamos y desarrollamos.",
+    "projectsHeadingLine1": "Trabajo",
+    "projectsHeadingLine2": "relacionado.",
+    "viewProject": "Ver proyecto",
+    "faqsTitle": "FAQs",
+    "faqsHeading": "Preguntas frecuentes antes de arrancar.",
+    "relatedServicesTitle": "Explorar más",
+    "relatedServicesHeading": "Otros servicios que suelen acompañar este tipo de trabajo.",
+    "relatedServicesHeadingLine1": "Servicios",
+    "relatedServicesHeadingLine2": "conectados.",
+    "exploreService": "Explorar servicio",
+    "closingEyebrow": "Siguiente paso",
+    "closingTitle": "Si querés ordenar tu presencia digital o tu operación, empecemos por el problema correcto.",
+    "closingBody": "Contanos qué necesitás construir, qué fricción querés resolver y en qué etapa está tu negocio. A partir de ahí definimos el mejor camino.",
+    "breadcrumbsServices": "Servicios",
+    "breadcrumbHome": "Inicio"
+  },
+  "AboutPage": {
+    "eyebrow": "Sobre nosotros",
+    "title": "Construimos activos digitales con estrategia, diseño y desarrollo alineados.",
+    "description": "Synttek combina criterio visual, arquitectura técnica y foco comercial para diseñar experiencias que se ven premium, funcionan bien y ayudan a crecer con menos improvisación.",
+    "signals": [
+      "Estrategia antes que estética vacía",
+      "Diseño con intención comercial",
+      "Desarrollo sólido y mantenible"
+    ],
+    "sidebarLabel": "Cómo trabajamos",
+    "sidebarBody": "No somos una fábrica de pantallas ni un estudio de humo visual. Entramos cuando hace falta ordenar presencia digital, mejorar conversión o construir una base técnica que no se caiga con el primer cambio.",
+    "primaryCta": "Hablar con Synttek",
+    "secondaryCta": "Ver servicio principal",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbCurrent": "Sobre nosotros",
+    "cardsLabel": "Nuestro criterio",
+    "cardsTitle": "Tres decisiones que sostienen cada proyecto que tomamos.",
+    "cardsHeadingLine1": "Lo que",
+    "cardsHeadingLine2": "nos define.",
+    "cards": [
+      {
+        "title": "Elegimos claridad antes que ruido",
+        "body": "Si una interfaz impresiona pero no explica, está fallando. Nuestra estética tiene que elevar el valor percibido sin complicar la comprensión."
+      },
+      {
+        "title": "Diseñamos para negocio, no para Dribbble",
+        "body": "La dirección visual importa, pero siempre al servicio de una decisión comercial: vender mejor, ordenar un proceso o transmitir confianza."
+      },
+      {
+        "title": "Desarrollamos pensando en el después",
+        "body": "La primera versión importa, pero más importa que el proyecto pueda evolucionar sin romperse cada vez que haya que crecer o integrar algo nuevo."
+      }
+    ]
+  },
+  "ContactPage": {
+    "eyebrow": "Contacto",
+    "title": "Si el proyecto necesita criterio, dirección y ejecución seria, hablemos.",
+    "description": "Este es el mejor punto para contarnos qué querés construir, qué fricción querés resolver y qué necesita hoy tu negocio para pasar al siguiente nivel digital.",
+    "sidebarLabel": "Qué podés esperar",
+    "signals": [
+      "Respuesta clara y sin vueltas",
+      "Enfoque en alcance real y próximos pasos",
+      "Canales directos para avanzar rápido"
+    ],
+    "secondaryCta": "Explorar servicios",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbCurrent": "Contacto",
+    "cardsLabel": "Antes de escribirnos",
+    "cardsTitle": "Cuanto más claro venga el contexto, más preciso va a ser el siguiente paso.",
+    "cardsHeadingLine1": "Antes de",
+    "cardsHeadingLine2": "arrancar.",
+    "cards": [
+      {
+        "title": "Contanos el objetivo",
+        "body": "No hace falta traer una especificación perfecta. Pero sí ayuda saber qué querés mejorar: presencia, ventas, consultas, procesos o producto."
+      },
+      {
+        "title": "Mostranos el punto de fricción",
+        "body": "Si hoy algo se rompe, se traba o se siente flojo, eso vale más que cualquier buzzword. Ahí suele estar la raíz del trabajo correcto."
+      },
+      {
+        "title": "Aclará timing y contexto",
+        "body": "Si hay fechas, campañas, lanzamientos o una necesidad operativa puntual, decirlo desde el inicio nos ayuda a bajar expectativas reales."
+      }
+    ]
   }
 }

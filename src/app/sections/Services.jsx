@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import img from "@/app/assets/3D.webp";
 import TitleSection from "@/app/components/(common)/TitleSection";
 
@@ -31,6 +32,7 @@ function ServiceRow({
   onEnter,
   onLeave,
   ctaLabel,
+  href,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-8%" });
@@ -135,8 +137,8 @@ function ServiceRow({
               </div>
 
               {/* CTA inline */}
-              <motion.a
-                href="#contact"
+              <Link
+                href={href}
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.35, delay: 0.15, ease }}
@@ -145,7 +147,7 @@ function ServiceRow({
               >
                 {ctaLabel}
                 <span>→</span>
-              </motion.a>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -157,6 +159,7 @@ function ServiceRow({
 // ─── Componente principal ─────────────────────────────────────────────────────
 const Services = () => {
   const t = useTranslations("Services");
+  const locale = useLocale();
   const [activeIndex, setActiveIndex] = useState(0); // primer servicio activo por defecto
 
   const headerRef = useRef(null);
@@ -167,31 +170,37 @@ const Services = () => {
       titleKey: "web-development",
       descKey: "web-development-description",
       tags: ["Next.js", "React", "Node.js", "TypeScript"],
+      href: `/${locale}/servicios/desarrollo-web`,
     },
     {
-      titleKey: "uxui",
-      descKey: "uxui-description",
-      tags: ["Figma", t("tags.prototyping"), t("tags.research")],
+      titleKey: "landing-pages",
+      descKey: "landing-pages-description",
+      tags: ["Copy", "Motion", "Leads", "Ads"],
+      href: `/${locale}/servicios/landing-pages`,
     },
     {
-      titleKey: "ecommerce",
-      descKey: "ecommerce-description",
-      tags: ["Shopify", "WooCommerce", t("tags.conversion")],
-    },
-    {
-      titleKey: "branding",
-      descKey: "branding-description",
-      tags: [t("tags.identity"), t("tags.logo"), t("tags.guidelines")],
-    },
-    {
-      titleKey: "graphic-design",
-      descKey: "graphic-design-description",
-      tags: ["Illustrator", "Motion", t("tags.photography")],
+      titleKey: "custom-software",
+      descKey: "custom-software-description",
+      tags: ["Dashboards", "APIs", "React", "Product"],
+      href: `/${locale}/servicios/software-a-medida`,
     },
     {
       titleKey: "automations",
       descKey: "automations-description",
       tags: ["AI/ML", "n8n", "API", "Workflows"],
+      href: `/${locale}/servicios/automatizaciones`,
+    },
+    {
+      titleKey: "ecommerce",
+      descKey: "ecommerce-description",
+      tags: ["Shopify", "WooCommerce", t("tags.conversion")],
+      href: `/${locale}/servicios/ecommerce`,
+    },
+    {
+      titleKey: "branding",
+      descKey: "branding-description",
+      tags: [t("tags.identity"), t("tags.logo"), t("tags.guidelines")],
+      href: `/${locale}/servicios/branding`,
     },
   ];
 
@@ -328,7 +337,12 @@ const Services = () => {
                 accent={SERVICE_ACCENTS[i]}
                 isActive={activeIndex === i}
                 onEnter={() => setActiveIndex(i)}
-                ctaLabel={t("start-service")}
+                ctaLabel={
+                  service.href.includes("/servicios/")
+                    ? t("view-service")
+                    : t("start-service")
+                }
+                href={service.href}
                 onLeave={() => {}} // mantiene el último activo al salir
               />
             ))}

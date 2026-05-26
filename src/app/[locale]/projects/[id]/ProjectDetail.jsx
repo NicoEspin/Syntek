@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { useMemo, useRef } from "react";
 
 import ProjectCursor from "@/app/components/ProjectCursor";
+import { getServiceBySlug } from "@/data/services";
 
 const transition = { duration: 0.9, ease: [0.16, 1, 0.3, 1] };
 
@@ -34,6 +35,14 @@ export default function ProjectDetail({ project, nextProject, locale }) {
         }
       }),
     [project.services, t]
+  );
+
+  const relatedServiceCards = useMemo(
+    () =>
+      (project.relatedServiceSlugs || [])
+        .map((slug) => getServiceBySlug(slug, locale))
+        .filter(Boolean),
+    [locale, project.relatedServiceSlugs],
   );
 
   const sidebarItems = [
@@ -211,6 +220,26 @@ export default function ProjectDetail({ project, nextProject, locale }) {
                       ))}
                     </div>
                   </div>
+
+                  {relatedServiceCards.length > 0 ? (
+                    <div>
+                      <span className="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/25">
+                        {t("detail.relatedServices")}
+                      </span>
+                      <div className="flex flex-col gap-2">
+                        {relatedServiceCards.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/${locale}/servicios/${service.slug}`}
+                            className="inline-flex items-center justify-between rounded-2xl border border-white/10 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-white/60 transition-colors duration-300 hover:border-primary1/20 hover:text-primary1"
+                          >
+                            <span>{service.shortLabel}</span>
+                            <span>{"->"}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
 
                 {project.link ? (
