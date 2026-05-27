@@ -76,6 +76,7 @@ const Navbar = ({ floating = false }) => {
   const baseHomePath = `/${locale}`;
   const isHomePage =
     pathname === baseHomePath || pathname === `${baseHomePath}/`;
+  const isServicesPage = pathname.startsWith(`${baseHomePath}/servicios`);
   const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
   const isAboutPage = pathname === `${baseHomePath}/sobre-nosotros`;
   const isContactPage = pathname === `${baseHomePath}/contacto`;
@@ -86,7 +87,7 @@ const Navbar = ({ floating = false }) => {
       {
         key: "services",
         label: t("services"),
-        href: isHomePage ? "#services" : `${baseHomePath}#services`,
+        href: `${baseHomePath}/servicios`,
       },
       {
         key: "tools",
@@ -164,6 +165,10 @@ const Navbar = ({ floating = false }) => {
       return link.key === "projects";
     }
 
+    if (isServicesPage) {
+      return link.key === "services";
+    }
+
     if (isAboutPage) {
       return link.key === "about";
     }
@@ -180,7 +185,9 @@ const Navbar = ({ floating = false }) => {
     if (typeof window === "undefined") return undefined;
 
     if (!isHomePage) {
-      if (isProjectsPage) {
+      if (isServicesPage) {
+        setActiveSection("#services-page");
+      } else if (isProjectsPage) {
         setActiveSection("#projects");
       } else if (isAboutPage) {
         setActiveSection("#about-page");
@@ -238,7 +245,7 @@ const Navbar = ({ floating = false }) => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, [isAboutPage, isContactPage, isHomePage, isProjectsPage]);
+  }, [isAboutPage, isContactPage, isHomePage, isProjectsPage, isServicesPage]);
 
   // Lock scroll + señal global cuando el menu mobile está abierto
   useEffect(() => {

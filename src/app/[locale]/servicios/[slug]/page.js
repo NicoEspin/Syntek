@@ -1,6 +1,7 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
 import ChatBot from "@/app/components/ChatBot";
+import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { routing } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -8,11 +9,11 @@ import { notFound } from "next/navigation";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
-  BUSINESS_EMAIL,
-  BUSINESS_LOCATION,
-  INSTAGRAM_URL,
-  LINKEDIN_URL,
-} from "@/lib/business";
+  buildBreadcrumbJsonLd,
+  buildFaqPageJsonLd,
+  buildGraphJsonLd,
+  buildServiceJsonLd,
+} from "@/lib/jsonLd";
 import { getProjects } from "@/data/projects";
 import {
   getPrimaryServiceSlugs,
@@ -94,78 +95,27 @@ export default async function ServicePage({ params }) {
   const t = await getTranslations({ locale, namespace: "ServicePages" });
   const path = `/servicios/${slug}`;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
+  const structuredData = buildGraphJsonLd([
+    buildServiceJsonLd({
+      name: service.shortLabel,
+      title: service.title,
+      description: service.description,
+      path: `/${locale}${path}`,
+    }),
+    buildFaqPageJsonLd(service.faqs),
+    buildBreadcrumbJsonLd([
+      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
-        "@type": "Service",
-        name: service.shortLabel,
-        serviceType: service.title,
-        description: service.description,
-        url: `${SITE_URL}/${locale}${path}`,
-        provider: {
-          "@type": "Organization",
-          name: SITE_NAME,
-          url: SITE_URL,
-          email: BUSINESS_EMAIL,
-          sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
-        },
-        areaServed: [
-          {
-            "@type": "Country",
-            name: "Argentina",
-          },
-          {
-            "@type": "AdministrativeArea",
-            name: BUSINESS_LOCATION.region,
-          },
-        ],
+        name: t("breadcrumbsServices"),
+        item: `${SITE_URL}/${locale}/servicios`,
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: service.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
-        })),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: SITE_NAME,
-            item: `${SITE_URL}/${locale}`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: t("breadcrumbsServices"),
-            item: `${SITE_URL}/${locale}/#services`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: service.shortLabel,
-            item: `${SITE_URL}/${locale}${path}`,
-          },
-        ],
-      },
-    ],
-  };
+      { name: service.shortLabel, item: `${SITE_URL}/${locale}${path}` },
+    ]),
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={structuredData} />
       <Navbar floating />
       <ServiceDetail
         locale={locale}

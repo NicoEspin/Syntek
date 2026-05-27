@@ -7,6 +7,7 @@ const staticRoutes = {
   home: "2026-04-09T20:36:11.080Z",
   projects: "2026-04-09T20:36:11.080Z",
   services: "2026-05-25T00:00:00.000Z",
+  servicesIndex: "2026-05-26T00:00:00.000Z",
   about: "2026-05-25T00:00:00.000Z",
   contact: "2026-05-25T00:00:00.000Z",
 };
@@ -32,6 +33,16 @@ export default function sitemap() {
       priority: 0.8,
       alternates: {
         languages: getLanguageAlternates("/projects"),
+      },
+    });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/servicios"),
+      lastModified: staticRoutes.servicesIndex,
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: {
+        languages: getLanguageAlternates("/servicios"),
       },
     });
 

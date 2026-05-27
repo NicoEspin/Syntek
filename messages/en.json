@@ -460,5 +460,36 @@
         "body": "If there are dates, campaigns, launches or a pressing operational need, saying it early helps us set realistic expectations."
       }
     ]
+  },
+  "ServicesIndexPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "Services",
+    "eyebrow": "Services",
+    "heroLabel": "What we do",
+    "titleLine1": "Services designed to",
+    "titleLine2": "grow your digital presence.",
+    "description": "We do not sell empty packages. We design, build and connect services that respond to real commercial and operational problems: digital presence, conversion, processes, product and identity.",
+    "heroPoints": [
+      "Web development and landing pages with commercial intent",
+      "Software, automation and clearer operations",
+      "Branding and coherent digital experiences"
+    ],
+    "sidebarLabel": "How we think",
+    "sidebarPoints": [
+      "Every service is tied to a real business outcome, not an inflated feature list.",
+      "Visual direction and technical implementation are designed as part of the same system.",
+      "We connect services so your website, brand and operations do not move in separate directions."
+    ],
+    "primaryCta": "Tell us about your project",
+    "secondaryCta": "View projects",
+    "servicesLabel": "Primary services",
+    "servicesHeadingLine1": "Capabilities",
+    "servicesHeadingLine2": "with judgment.",
+    "servicesHeading": "A selection of services where strategy, design and technology operate as one system.",
+    "exploreService": "Explore service",
+    "projectsLabel": "Projects",
+    "projectsHeadingLine1": "Connected",
+    "projectsHeadingLine2": "work.",
+    "projectsHeading": "Case studies where those services already became concrete, measurable and visually strong experiences."
   }
 }

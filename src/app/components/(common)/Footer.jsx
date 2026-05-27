@@ -18,7 +18,7 @@ const Footer = () => {
 
   const links = [
     { key: "home", href: `/${locale}` },
-    { key: "services", href: `/${locale}/#services` },
+    { key: "services", href: `/${locale}/servicios` },
     { key: "projects", href: `/${locale}/#projects` },
     { key: "about", href: `/${locale}/sobre-nosotros` },
     { key: "contact", href: `/${locale}/contacto` },

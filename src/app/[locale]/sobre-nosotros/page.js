@@ -1,15 +1,15 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
 import ChatBot from "@/app/components/ChatBot";
+import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
-  BUSINESS_EMAIL,
-  BUSINESS_LOCATION,
-  INSTAGRAM_URL,
-  LINKEDIN_URL,
-} from "@/lib/business";
+  buildBreadcrumbJsonLd,
+  buildGraphJsonLd,
+  buildOrganizationJsonLd,
+} from "@/lib/jsonLd";
 
 import AboutPageContent from "./AboutPageContent";
 
@@ -61,63 +61,30 @@ export async function generateMetadata({ params }) {
 export default async function AboutPage({ params }) {
   const { locale } = await params;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AboutPage",
-        name:
-          locale === "es"
-            ? "Sobre Synttek"
-            : "About Synttek",
-        url: `${SITE_URL}/${locale}${PATH}`,
-        isPartOf: {
-          "@type": "WebSite",
-          name: SITE_NAME,
-          url: SITE_URL,
-        },
-        about: {
-          "@type": "Organization",
-          name: SITE_NAME,
-          url: SITE_URL,
-          email: BUSINESS_EMAIL,
-          sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: BUSINESS_LOCATION.city,
-            addressRegion: BUSINESS_LOCATION.region,
-            addressCountry: BUSINESS_LOCATION.countryCode,
-          },
-        },
+  const structuredData = buildGraphJsonLd([
+    {
+      "@type": "AboutPage",
+      name: locale === "es" ? "Sobre Synttek" : "About Synttek",
+      url: `${SITE_URL}/${locale}${PATH}`,
+      isPartOf: {
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: SITE_URL,
       },
+      about: buildOrganizationJsonLd(),
+    },
+    buildBreadcrumbJsonLd([
+      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: SITE_NAME,
-            item: `${SITE_URL}/${locale}`,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: locale === "es" ? "Sobre nosotros" : "About us",
-            item: `${SITE_URL}/${locale}${PATH}`,
-          },
-        ],
+        name: locale === "es" ? "Sobre nosotros" : "About us",
+        item: `${SITE_URL}/${locale}${PATH}`,
       },
-    ],
-  };
+    ]),
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={structuredData} />
       <Navbar floating />
       <AboutPageContent locale={locale} />
       <ChatBot />

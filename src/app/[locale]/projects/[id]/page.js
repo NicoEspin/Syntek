@@ -1,6 +1,7 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
 import ChatBot from "@/app/components/ChatBot";
+import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -103,12 +104,7 @@ export default async function ProjectPage({ params }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(projectSchema),
-        }}
-      />
+      <JsonLd data={projectSchema} />
       <Navbar floating />
       <ProjectDetail
         locale={locale}

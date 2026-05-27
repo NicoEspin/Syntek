@@ -100,7 +100,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
   const shouldReduceMotion = useReducedMotion();
   const breadcrumbItems = [
     { label: t("breadcrumbHome"), href: `/${locale}` },
-    { label: t("breadcrumbsServices"), href: `/${locale}#services` },
+    { label: t("breadcrumbsServices"), href: `/${locale}/servicios` },
     { label: service.shortLabel },
   ];
   const heroRef = useRef(null);

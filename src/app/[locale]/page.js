@@ -11,16 +11,17 @@ import Contact from "@/app/sections/Contact";
 import About from "@/app/sections/About";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 import ChatBot from "../components/ChatBot";
+import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
-  BUSINESS_EMAIL,
-  BUSINESS_LOCATION,
-  BUSINESS_PHONE_DISPLAY,
-  INSTAGRAM_URL,
-  LINKEDIN_URL,
-} from "@/lib/business";
+  buildFaqPageJsonLd,
+  buildGraphJsonLd,
+  buildOrganizationJsonLd,
+  buildProfessionalServiceJsonLd,
+  buildWebsiteJsonLd,
+} from "@/lib/jsonLd";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -70,61 +71,21 @@ export default async function Home({ params }) {
   const isEs = locale === "es";
   const faqTranslations = await getTranslations({ locale, namespace: "Faqs" });
 
-  const faqSchema = {
-    "@type": "FAQPage",
-    mainEntity: Array.from({ length: 10 }, (_, index) => ({
-      "@type": "Question",
-      name: faqTranslations(`question${index + 1}`),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faqTranslations(`answer${index + 1}`),
-      },
-    })),
-  };
+  const faqs = Array.from({ length: 10 }, (_, index) => ({
+    question: faqTranslations(`question${index + 1}`),
+    answer: faqTranslations(`answer${index + 1}`),
+  }));
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        name: SITE_NAME,
-        url: `${SITE_URL}/${locale}`,
-        logo: `${SITE_URL}/android-chrome-512x512.png`,
-        email: BUSINESS_EMAIL,
-        telephone: BUSINESS_PHONE_DISPLAY,
-        sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
-        description: isEs
-          ? "Agencia de desarrollo web, software y automatizaciones en Córdoba, Argentina."
-          : "Web development, software and automation agency in Cordoba, Argentina.",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: BUSINESS_LOCATION.city,
-          addressRegion: BUSINESS_LOCATION.region,
-          addressCountry: BUSINESS_LOCATION.countryCode,
-        },
-      },
-      {
-        "@type": "WebSite",
-        name: SITE_NAME,
-        url: `${SITE_URL}/${locale}`,
-        inLanguage: locale,
-        publisher: {
-          "@type": "Organization",
-          name: SITE_NAME,
-        },
-      },
-      faqSchema,
-    ],
-  };
+  const structuredData = buildGraphJsonLd([
+    buildOrganizationJsonLd(),
+    buildProfessionalServiceJsonLd(),
+    buildWebsiteJsonLd(locale),
+    buildFaqPageJsonLd(faqs),
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd data={structuredData} />
 
       <Navbar />
       <main className="bg-[#0a0a0a] text-[#ededed]">

@@ -1,3 +1,4 @@
+// TODO: reemplazar synttek@gmail.com por contacto@synttek.com cuando esté configurado el correo corporativo.
 export const BUSINESS_EMAIL = "synttek@gmail.com";
 export const BUSINESS_PHONE_DISPLAY = "+54 3541560518";
 export const WHATSAPP_PHONE = "5493541560518";
