@@ -18,9 +18,26 @@ export const getLocalizedPath = (locale, path = "") =>
 export const getCanonicalUrl = (locale, path = "") =>
   getAbsoluteUrl(getLocalizedPath(locale, path));
 
-export const getLanguageAlternates = (path = "") => ({
-  ...Object.fromEntries(
-    routing.locales.map((locale) => [locale, getCanonicalUrl(locale, path)]),
-  ),
-  "x-default": getCanonicalUrl(routing.defaultLocale, path),
-});
+export const getLanguageAlternates = (path = "") =>
+  Object.fromEntries([
+    ...routing.locales.map((locale) => [locale, getCanonicalUrl(locale, path)]),
+    ["x-default", getCanonicalUrl(routing.defaultLocale, path)],
+  ]);
+
+export const getPathWithoutLocale = (pathname = "/") => {
+  const [, maybeLocale, ...segments] = pathname.split("/");
+
+  if (!routing.locales.includes(maybeLocale)) {
+    return normalizePath(pathname);
+  }
+
+  return normalizePath(segments.join("/"));
+};
+
+export const getHreflangLinkHeader = (path = "") =>
+  Object.entries(getLanguageAlternates(path))
+    .map(
+      ([locale, href]) =>
+        `<${href}>; rel="alternate"; hreflang="${locale}"`,
+    )
+    .join(", ");
