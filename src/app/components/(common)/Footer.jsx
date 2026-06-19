@@ -65,30 +65,6 @@ const Footer = () => {
       {/* ── EDITORIAL STATEMENT ── */}
       <div className="border-t border-white/8 px-4 pt-14 pb-12 md:px-6 lg:px-10 xl:px-24">
         <div className="mx-auto max-w-screen-2xl">
-
-          {/* Eyebrow + Back to top */}
-          <div className="flex items-center justify-between mb-10 md:mb-14">
-            <div className="flex items-center gap-2.5">
-              <span className="size-1.5 rounded-full bg-primary1 inline-block" />
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/35 font-medium">
-                {t("eyebrow")}
-              </span>
-            </div>
-
-            <button
-              onClick={scrollToTop}
-              aria-label={t("backToTop")}
-              className="group flex items-center gap-2.5 text-white/35 hover:text-white transition-colors duration-300"
-            >
-              <span className="hidden sm:block text-[10px] uppercase tracking-[0.2em]">
-                {t("backToTop")}
-              </span>
-              <span className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] group-hover:border-white/25 group-hover:bg-white/[0.06] transition-all duration-300">
-                <ArrowUp className="size-3.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-              </span>
-            </button>
-          </div>
-
           {/* Headline + Availability */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <h2 className="text-[clamp(2.4rem,5.5vw,5.5rem)] font-medium leading-[1.05] tracking-tight max-w-4xl">
