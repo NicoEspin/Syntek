@@ -78,6 +78,7 @@ const Navbar = ({ floating = false }) => {
     pathname === baseHomePath || pathname === `${baseHomePath}/`;
   const isServicesPage = pathname.startsWith(`${baseHomePath}/servicios`);
   const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
+  const isBlogPage = pathname.startsWith(`${baseHomePath}/blogs`);
   const isAboutPage = pathname === `${baseHomePath}/sobre-nosotros`;
   const isContactPage = pathname === `${baseHomePath}/contacto`;
 
@@ -98,6 +99,11 @@ const Navbar = ({ floating = false }) => {
         key: "projects",
         label: t("projects"),
         href: `${baseHomePath}/projects`,
+      },
+      {
+        key: "blog",
+        label: t("blog"),
+        href: `${baseHomePath}/blogs`,
       },
       {
         key: "about",
@@ -165,6 +171,10 @@ const Navbar = ({ floating = false }) => {
       return link.key === "projects";
     }
 
+    if (isBlogPage) {
+      return link.key === "blog";
+    }
+
     if (isServicesPage) {
       return link.key === "services";
     }
@@ -189,6 +199,8 @@ const Navbar = ({ floating = false }) => {
         setActiveSection("#services-page");
       } else if (isProjectsPage) {
         setActiveSection("#projects");
+      } else if (isBlogPage) {
+        setActiveSection("#blog-page");
       } else if (isAboutPage) {
         setActiveSection("#about-page");
       } else if (isContactPage) {
@@ -245,7 +257,7 @@ const Navbar = ({ floating = false }) => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
     };
-  }, [isAboutPage, isContactPage, isHomePage, isProjectsPage, isServicesPage]);
+  }, [isAboutPage, isBlogPage, isContactPage, isHomePage, isProjectsPage, isServicesPage]);
 
   // Lock scroll + señal global cuando el menu mobile está abierto
   useEffect(() => {
@@ -460,7 +472,7 @@ const Navbar = ({ floating = false }) => {
                   </svg>
                 </motion.a>
 
-                {/* Hamburger mobile */}
+                {/* Hamburger mobile — dos barras persistentes que rotan a X, sin swap de íconos */}
                 <motion.button
                   type="button"
                   onClick={() => setIsOpen((c) => !c)}
@@ -468,34 +480,24 @@ const Navbar = ({ floating = false }) => {
                   aria-expanded={isOpen}
                   aria-controls="mobile-nav"
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
-                  className="relative inline-flex size-10 items-center justify-center rounded-full border border-white/8 bg-white/[0.03] lg:hidden"
+                  className="relative inline-flex size-10 items-center justify-center rounded-full border border-white/8 bg-white/[0.03] transition-colors duration-300 hover:border-white/15 lg:hidden"
                 >
-                  <AnimatePresence mode="wait" initial={false}>
-                    {isOpen ? (
-                      <motion.span
-                        key="close"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.2, ease }}
-                      >
-                        <X className="size-4 text-white" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="open"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                        transition={{ duration: 0.2, ease }}
-                        className="flex flex-col gap-[5px] items-center justify-center"
-                      >
-                        {/* Icono de hamburger custom con dos líneas de diferente largo */}
-                        <span className="block h-px w-5 bg-white/70" />
-                        <span className="block h-px w-3.5 bg-white/70 self-end" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
+                  <span className="relative flex size-4 items-center justify-center">
+                    <motion.span
+                      className="absolute h-px w-4 rounded-full bg-white"
+                      animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 0 : -3 }}
+                      transition={{ duration: shouldReduceMotion ? 0.15 : 0.38, ease }}
+                    />
+                    <motion.span
+                      className="absolute h-px w-4 rounded-full bg-white"
+                      animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? 0 : 3 }}
+                      transition={{
+                        duration: shouldReduceMotion ? 0.15 : 0.38,
+                        ease,
+                        delay: shouldReduceMotion ? 0 : 0.05,
+                      }}
+                    />
+                  </span>
                 </motion.button>
               </div>
             </div>

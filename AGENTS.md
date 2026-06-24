@@ -65,6 +65,10 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
 
 ## 3. Sistema visual — reglas no negociables
 
+> Esta sección resume las reglas no negociables. El detalle completo de tokens, voz de marca,
+> componentes (`Button`, `Badge`, `Input`, `SectionLabel`, `SpotlightCard`) y su estado real de
+> implementación vive en [design.md](design.md) — leerlo antes de tocar cualquier cosa visual.
+
 El agente **nunca** debe romper estas reglas al generar o modificar código visual.
 
 ### Paleta
@@ -186,7 +190,8 @@ Cada feature compleja tiene su propio archivo `.md` con especificaciones detalla
 
 | Feature | Archivo | Estado |
 |---|---|---|
-| Sección Projects (landing) + páginas `/projects` y `/projects/[id]` | `projects.md` | ✅ Documentado |
+| Sección Projects (landing) + páginas `/projects` y `/projects/[id]` | `proyects.md` | ✅ Documentado |
+| Synttek Design System (tokens, voz de marca, componentes `Button`/`Badge`/`Input`/`SectionLabel`/`SpotlightCard`) | `design.md` | ✅ Documentado e implementado |
 
 > A medida que se agreguen nuevas features, registrarlas en esta tabla con su archivo y estado.
 

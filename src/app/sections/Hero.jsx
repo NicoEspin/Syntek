@@ -105,7 +105,7 @@ function CodeCard({ strings }) {
       whileDrag={{ scale: 1.02, zIndex: 50 }}
       className="cursor-grab active:cursor-grabbing select-none"
     >
-      <div className="w-[290px] rounded-2xl border border-white/10 bg-[#0d0d0d]/95 backdrop-blur-md shadow-[0_24px_60px_rgba(0,0,0,0.55)] overflow-hidden">
+      <div className="w-[290px] rounded-2xl border border-white/10 bg-[#0d0d0d]/95 backdrop-blur-md shadow-float overflow-hidden">
         {/* Barra de título de editor */}
         <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/6 bg-[#080808]">
           <span className="size-2.5 rounded-full bg-[#ff5f57]" />
@@ -188,7 +188,7 @@ function DashboardCard({ strings }) {
       whileDrag={{ scale: 1.02, zIndex: 50 }}
       className="cursor-grab active:cursor-grabbing select-none"
     >
-      <div className="w-[300px] rounded-2xl border border-white/10 bg-[#0d0d0d]/95 backdrop-blur-md shadow-[0_24px_60px_rgba(0,0,0,0.55)] overflow-hidden">
+      <div className="w-[300px] rounded-2xl border border-white/10 bg-[#0d0d0d]/95 backdrop-blur-md shadow-float overflow-hidden">
         {/* Header */}
         <div className="px-5 pt-5 pb-3 border-b border-white/6 flex items-center justify-between">
           <div>
@@ -417,7 +417,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Headline principal */}
-        <h1 id="hero-heading" className="mb-8 text-[clamp(2.4rem,6vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white">
+        <h1 id="hero-heading" className="mb-8 text-display-xl font-black leading-display tracking-display text-white">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: "105%" }}

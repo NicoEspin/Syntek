@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
       : "Project built by Synttek.");
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: getCanonicalUrl(locale, `/projects/${id}`),

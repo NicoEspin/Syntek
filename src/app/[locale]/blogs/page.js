@@ -5,14 +5,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
-import { getProjects } from "@/data/projects";
+import { getBlogPosts } from "@/data/blogPosts";
 
-import ProjectsClient from "./ProjectsClient";
+import BlogsClient from "./BlogsClient";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Projects" });
+  const t = await getTranslations({ locale, namespace: "BlogPage" });
 
   const title = t("pageTitle");
   const description = t("pageDescription");
@@ -23,13 +23,13 @@ export async function generateMetadata({ params }) {
     title: { absolute: title },
     description,
     alternates: {
-      canonical: getCanonicalUrl(locale, "/projects"),
-      languages: getLanguageAlternates("/projects"),
+      canonical: getCanonicalUrl(locale, "/blogs"),
+      languages: getLanguageAlternates("/blogs"),
     },
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/projects`,
+      url: `${baseUrl}/${locale}/blogs`,
       siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "website",
@@ -51,16 +51,16 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function ProjectsPage({ params }) {
+export default async function BlogsPage({ params }) {
   const { locale } = await params;
-  const projects = getProjects(locale);
+  const posts = getBlogPosts(locale);
 
   setRequestLocale(locale);
 
   return (
     <>
       <Navbar />
-      <ProjectsClient locale={locale} projects={projects} />
+      <BlogsClient locale={locale} posts={posts} />
       <ChatBot />
       <WhatsAppButton />
       <Footer />

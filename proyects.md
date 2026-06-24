@@ -1429,4 +1429,4 @@ Seguir este orden para evitar errores de dependencias:
 - **Accesibilidad**: todos los `ProjectCard` son `<article>` con `alt` descriptivo en las imágenes. El cursor custom no interfiere con navegación por teclado porque es `pointer-events-none`.
 - **Cursor en mobile**: añadir `@media (pointer: coarse)` en el `ProjectCursor` para ocultarlo en dispositivos táctiles, donde el cursor custom no tiene sentido.
 - **`"use client"` boundary**: `Projects.jsx` (sección landing), `ProjectsClient.jsx` y `ProjectDetail.jsx` son todos client components. Los `page.js` son server components que les pasan los datos.
-- **Consistencia de marca**: usar siempre `Syntek` (sin doble t) en todos los textos nuevos que se creen.
+- **Consistencia de marca**: usar siempre `Synttek` (doble t) en todos los textos nuevos que se creen — ver [design.md](design.md) §1. Esta regla reemplaza la anterior, que decía lo contrario.

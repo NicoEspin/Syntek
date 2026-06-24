@@ -236,7 +236,7 @@ const Contact = () => {
                 initial={{ y: "110%" }}
                 animate={isHeaderInView ? { y: 0 } : {}}
                 transition={{ duration: 1, delay: 0.12, ease }}
-                className="text-[clamp(2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
+                className="text-[clamp(2rem,5.5vw,5.5rem)] font-black leading-display tracking-display text-white"
               >
                 <span className="block">{t("headline-line1")}</span>
                 <span className="block text-[#A1E233]">{t("headline-line2")}</span>

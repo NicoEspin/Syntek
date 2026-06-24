@@ -11,6 +11,45 @@
   --color-primary1: #A1E233;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* ── Synttek Design System (design.md) ──────────────────────────────────
+     Neutrals already match Tailwind's stock palette 1:1 (neutral-900 =
+     #171717, neutral-950 = #0a0a0a, neutral-800 = #262626) — not redeclared.
+     ------------------------------------------------------------------------ */
+  --color-accent: #A1E233;        /* = primary1, canonical name going forward */
+  --color-accent-hover: #B6F53D;
+  --color-accent-press: #8FCC2A;
+  --color-on-accent: #0A0A0A;
+
+  --color-violet: #864FFE;        /* secondary accent — decorative/tinting only, never primary CTAs */
+  --color-violet-hover: #9466FF;
+  --color-violet-deep: #614694;
+  --color-violet-press: #6E3FE0;
+  --color-on-violet: #EDEDED;
+
+  --color-fg-1: #EDEDED;          /* text hierarchy by opacity, not new hues */
+  --color-fg-2: rgba(237, 237, 237, 0.72);
+  --color-fg-3: rgba(237, 237, 237, 0.45);
+  --color-fg-4: rgba(237, 237, 237, 0.28);
+  --color-fg-muted: rgba(237, 237, 237, 0.18);
+
+  --text-display-xl: clamp(2.4rem, 6vw, 5.5rem);   /* hero headline */
+  --text-display-lg: clamp(2.4rem, 6.5vw, 6.5rem); /* about / section hero */
+  --text-display-md: clamp(2.2rem, 4.5vw, 4rem);   /* section heading */
+  --text-display-sm: clamp(1.8rem, 3vw, 2.5rem);   /* sub-section */
+  --leading-display: 0.95;
+  --tracking-display: -0.02em;
+  --tracking-label: 0.18em;       /* uppercase nav / section labels */
+  --tracking-eyebrow: 0.22em;
+  --tracking-max: 0.28em;         /* widest tracked eyebrows */
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1); /* house easing — never linear */
+  --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Depth comes from hairline borders, not shadow — these two are the only
+     sanctioned exceptions (draggable hero mockups + navbar on scroll). */
+  --shadow-float: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --shadow-nav: 0 20px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html {
@@ -24,7 +63,7 @@ body {
   min-height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family:Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {

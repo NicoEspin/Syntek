@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
+import SpotlightCard from "@/app/components/SpotlightCard";
 
 // ─── Constantes de animación ──────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
@@ -78,7 +79,7 @@ function Pillar({ number, title, accentWord, body, delay = 0 }) {
         {number}
       </span>
 
-      <div className="relative overflow-hidden rounded-2xl border border-white/6 bg-neutral-950/60 p-7 backdrop-blur-sm transition-colors duration-500 hover:border-[#A1E233]/20 md:p-8">
+      <SpotlightCard spotlightColor="rgba(161, 226, 51, 0.20)">
         {/* Número como pill */}
         <span className="mb-5 inline-block rounded-full border border-[#A1E233]/25 px-3 py-1 text-[10px] font-semibold tracking-[0.22em] uppercase text-[#A1E233]/70">
           {number}
@@ -97,10 +98,7 @@ function Pillar({ number, title, accentWord, body, delay = 0 }) {
         </h3>
 
         <p className="text-sm font-light leading-relaxed text-white/42">{body}</p>
-
-        {/* Línea de acento inferior en hover */}
-        <div className="mt-6 h-px w-0 bg-gradient-to-r from-[#A1E233]/30 to-transparent transition-all duration-700 group-hover:w-full" />
-      </div>
+      </SpotlightCard>
     </motion.div>
   );
 }
@@ -191,7 +189,7 @@ export default function About() {
               initial={{ y: "105%", opacity: 0 }}
               animate={isHeroInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1.05, delay: 0.1, ease }}
-              className="mb-1 text-[clamp(2.4rem,6.5vw,6.5rem)] font-black leading-[0.95] tracking-[-0.02em] text-white"
+              className="mb-1 text-display-lg font-black leading-display tracking-display text-white"
             >
               <span className="block">{t("headline-line1")}</span>
               <span className="block text-[#A1E233]">{t("headline-line2")}</span>

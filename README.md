@@ -1,6 +1,6 @@
-# Syntek
+# Synttek
 
-Landing page bilingue para la agencia Syntek, construida con Next.js App Router. El proyecto muestra la propuesta comercial de la agencia, sus servicios, stack de trabajo, presentacion del equipo, preguntas frecuentes y un formulario de contacto conectado a EmailJS.
+Landing page bilingue para la agencia Synttek, construida con Next.js App Router. El proyecto muestra la propuesta comercial de la agencia, sus servicios, stack de trabajo, presentacion del equipo, preguntas frecuentes y un formulario de contacto conectado a EmailJS.
 
 ## Estado actual del proyecto
 
@@ -196,11 +196,11 @@ messages/
 
 ## Metadata actual
 
-- `title`: `Syntek`
+- `title`: `Synttek`
 - `description`: `Agencia de desarrollo web`
 
 ## Notas importantes del estado actual
 
 - El proyecto sigue teniendo el fondo claro/oscuro definido en `globals.css`, pero gran parte de la interfaz esta claramente pensada sobre superficies oscuras.
-- Hay una inconsistencia de naming de marca en contenidos: aparecen `Syntek`, `Synttek` y `SYNTTEK` segun archivo/traduccion.
+- El naming de marca correcto es `Synttek` (doble t) — ver [design.md](design.md) §1. Ya es consistente en el codigo vivo (`SITE_NAME`, `messages/*.json`).
 - No se detectaron tests automatizados ni secciones extras fuera de las montadas en `page.js`.

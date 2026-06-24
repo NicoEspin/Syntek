@@ -1,0 +1,113 @@
+import { notFound } from "next/navigation";
+import Footer from "@/app/components/(common)/Footer";
+import ChatBot from "@/app/components/ChatBot";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
+import JsonLd from "@/components/JsonLd";
+import { routing } from "@/i18n/routing";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+
+import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
+
+import EditorialPost from "./EditorialPost";
+import ImmersivePost from "./ImmersivePost";
+
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    blogPosts.map((post) => ({ locale, slug: post.slug })),
+  );
+}
+
+export async function generateMetadata({ params }) {
+  const { locale, slug } = await params;
+  const post = getBlogPostBySlug(slug, locale);
+
+  if (!post) {
+    return {};
+  }
+
+  const t = await getTranslations({ locale, namespace: "BlogPage" });
+  const baseUrl = SITE_URL;
+  const title = t("detailPageTitle", { title: post.title });
+  const description = post.excerpt;
+  const imageUrl = `${baseUrl}${post.image.src}`;
+
+  return {
+    title: { absolute: title },
+    description,
+    alternates: {
+      canonical: getCanonicalUrl(locale, `/blogs/${slug}`),
+      languages: getLanguageAlternates(`/blogs/${slug}`),
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/blogs/${slug}`,
+      siteName: SITE_NAME,
+      locale: locale === "es" ? "es_AR" : "en_US",
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: post.image.width,
+          height: post.image.height,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }) {
+  const { locale, slug } = await params;
+  const post = getBlogPostBySlug(slug, locale);
+
+  setRequestLocale(locale);
+
+  if (!post) {
+    notFound();
+  }
+
+  const relatedPosts = getRelatedBlogPosts(slug, locale, 2);
+
+  const postSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.image.src}`,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: `${SITE_URL}/${locale}/blogs/${slug}`,
+    inLanguage: locale,
+  };
+
+  return (
+    <>
+      <JsonLd data={postSchema} />
+      {post.variant === "immersive" ? (
+        <ImmersivePost post={post} locale={locale} />
+      ) : (
+        <EditorialPost post={post} relatedPosts={relatedPosts} locale={locale} />
+      )}
+      <ChatBot />
+      <WhatsAppButton />
+      <Footer />
+    </>
+  );
+}
