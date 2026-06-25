@@ -228,7 +228,7 @@ export default function PostDetail({ post, relatedPosts, locale, shareUrl }) {
                 </div>
               </div>
               <div className="flex-1" />
-              <ShareMenu post={post} url={shareUrl} locale={locale} />
+              <ShareMenu post={post} url={shareUrl} />
             </motion.div>
           </header>
 

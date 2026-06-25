@@ -36,11 +36,11 @@ function InstagramIcon({ size = 16 }) {
 const rowClass =
   "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-left text-[13px] font-medium text-white/70 transition-colors duration-200 hover:bg-white/[0.04] hover:text-white disabled:pointer-events-none disabled:opacity-50";
 
-export default function ShareMenu({ post, url, locale }) {
+export default function ShareMenu({ post, url }) {
   const t = useTranslations("BlogPage");
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [instagramState, setInstagramState] = useState("idle"); // idle | loading | downloaded
+  const [instagramCopied, setInstagramCopied] = useState(false);
   const [supportsNativeShare, setSupportsNativeShare] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -79,31 +79,27 @@ export default function ShareMenu({ post, url, locale }) {
   };
 
   const handleInstagram = async () => {
-    setInstagramState("loading");
     try {
-      const res = await fetch(`/api/share-image/${locale}/${post.slug}`);
-      const blob = await res.blob();
-      const file = new File([blob], "synttek-historia.png", { type: blob.type || "image/png" });
-
-      if (navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ files: [file], title: post.title });
-        setInstagramState("idle");
-        setIsOpen(false);
-        return;
-      }
-
-      const blobUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = "synttek-historia.png";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(blobUrl);
-      setInstagramState("downloaded");
+      await navigator.clipboard.writeText(url);
     } catch {
-      setInstagramState("idle");
+      // clipboard blocked — the user can still type the link manually in Instagram
     }
+
+    setInstagramCopied(true);
+    setTimeout(() => setInstagramCopied(false), 2500);
+
+    // Deep link straight into Instagram's story camera. There's no public,
+    // unauthenticated way to pre-fill a tappable link sticker (that needs a
+    // registered Meta app) — copying the link first is the practical workaround:
+    // the user opens "Sticker" -> "Link" and pastes.
+    const openedAt = Date.now();
+    window.location.href = "instagram://story-camera";
+
+    setTimeout(() => {
+      if (Date.now() - openedAt >= 1100 && document.visibilityState === "visible") {
+        window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
+      }
+    }, 1200);
   };
 
   const handleMore = async () => {
@@ -155,14 +151,9 @@ export default function ShareMenu({ post, url, locale }) {
               {t("shareWhatsApp")}
             </a>
 
-            <button
-              type="button"
-              onClick={handleInstagram}
-              disabled={instagramState === "loading"}
-              className={rowClass}
-            >
+            <button type="button" onClick={handleInstagram} className={rowClass}>
               <InstagramIcon />
-              {instagramState === "downloaded" ? t("instagramDownloadedHint") : t("shareInstagram")}
+              {instagramCopied ? t("instagramLinkCopiedHint") : t("shareInstagram")}
             </button>
 
             <button type="button" onClick={handleCopyLink} className={rowClass}>
