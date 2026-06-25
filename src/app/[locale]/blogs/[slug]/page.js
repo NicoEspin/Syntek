@@ -75,6 +75,7 @@ export default async function BlogPostPage({ params }) {
   }
 
   const relatedPosts = getRelatedBlogPosts(slug, locale, 2);
+  const shareUrl = getCanonicalUrl(locale, `/blogs/${slug}`);
 
   const postSchema = {
     "@context": "https://schema.org",
@@ -99,7 +100,7 @@ export default async function BlogPostPage({ params }) {
   return (
     <>
       <JsonLd data={postSchema} />
-      <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} />
+      <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} shareUrl={shareUrl} />
       <ChatBot />
       <WhatsAppButton />
       <Footer />

@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import Navbar from "@/app/components/(common)/Navbar";
 import BlogPostCard from "@/app/components/BlogPostCard";
 import { CodeBlock, ColorSwatches } from "@/app/components/blog/BlogContentBlocks";
+import ShareMenu from "@/app/components/blog/ShareMenu";
 import { cn, formatBlogDate } from "@/lib/utils";
 import { premiumEase } from "@/lib/animations";
 
@@ -121,7 +122,7 @@ function renderTitle(title, accent) {
   );
 }
 
-export default function PostDetail({ post, relatedPosts, locale }) {
+export default function PostDetail({ post, relatedPosts, locale, shareUrl }) {
   const t = useTranslations("BlogPage");
   const articleRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -162,24 +163,11 @@ export default function PostDetail({ post, relatedPosts, locale }) {
     document.getElementById(`sec-${index}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleShare = async () => {
-    const shareData = { title: post.title, url: window.location.href };
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch {
-        // user dismissed the native share sheet — nothing to do
-      }
-      return;
-    }
-    navigator.clipboard?.writeText(shareData.url);
-  };
-
   return (
     <>
       <Navbar floating />
       <main className="bg-[#0a0a0a] pb-24 pt-28 md:pt-32">
-        <article ref={articleRef} className="mx-auto max-w-screen-2xl px-4 md:px-5 lg:px-10 xl:px-24">
+        <article ref={articleRef} className="relative mx-auto max-w-screen-2xl px-4 md:px-5 lg:px-10 xl:px-24">
           <header className="pb-11">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -240,16 +228,7 @@ export default function PostDetail({ post, relatedPosts, locale }) {
                 </div>
               </div>
               <div className="flex-1" />
-              <button
-                type="button"
-                onClick={handleShare}
-                aria-label={t("shareLabel")}
-                className="inline-flex size-[34px] items-center justify-center rounded-full border border-white/10 text-white/40 transition-colors duration-300 hover:border-primary1/30 hover:text-primary1"
-              >
-                <svg width="14" height="14" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-                  <path d="M1 7L7 1M7 1H2M7 1V6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+              <ShareMenu post={post} url={shareUrl} locale={locale} />
             </motion.div>
           </header>
 
