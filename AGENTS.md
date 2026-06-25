@@ -192,6 +192,7 @@ Cada feature compleja tiene su propio archivo `.md` con especificaciones detalla
 |---|---|---|
 | Sección Projects (landing) + páginas `/projects` y `/projects/[id]` | `proyects.md` | ✅ Documentado |
 | Synttek Design System (tokens, voz de marca, componentes `Button`/`Badge`/`Input`/`SectionLabel`/`SpotlightCard`) | `design.md` | ✅ Documentado e implementado |
+| Blog (`/blogs`, `/blogs/[slug]`) + guía para publicar posts nuevos | `blog.md` | ✅ Documentado e implementado |
 
 > A medida que se agreguen nuevas features, registrarlas en esta tabla con su archivo y estado.
 

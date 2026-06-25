@@ -26,11 +26,11 @@ export default function BlogsClient({ posts, locale }) {
 
   const gridPosts = useMemo(() => {
     if (activeCategory === "all") {
-      return posts.filter((post) => !post.featured);
+      return posts.filter((post) => post.slug !== featuredPost?.slug);
     }
 
     return posts.filter((post) => post.category === activeCategory);
-  }, [activeCategory, posts]);
+  }, [activeCategory, posts, featuredPost]);
 
   const sectionHeading =
     activeCategory === "all" ? t("latestLabel") : t(`categories.${activeCategory}`);

@@ -10,8 +10,7 @@ import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
 
-import EditorialPost from "./EditorialPost";
-import ImmersivePost from "./ImmersivePost";
+import PostDetail from "./PostDetail";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -100,11 +99,7 @@ export default async function BlogPostPage({ params }) {
   return (
     <>
       <JsonLd data={postSchema} />
-      {post.variant === "immersive" ? (
-        <ImmersivePost post={post} locale={locale} />
-      ) : (
-        <EditorialPost post={post} relatedPosts={relatedPosts} locale={locale} />
-      )}
+      <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} />
       <ChatBot />
       <WhatsAppButton />
       <Footer />

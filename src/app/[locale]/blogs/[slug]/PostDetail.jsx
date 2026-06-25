@@ -22,6 +22,12 @@ function ArticleHeading({ text, id }) {
   );
 }
 
+function ArticleSubheading({ text }) {
+  return (
+    <h3 className="mb-3.5 mt-7 text-lg font-semibold tracking-tight text-white">{text}</h3>
+  );
+}
+
 function ArticleQuote({ text }) {
   return (
     <blockquote className="my-9 border-y border-white/6 py-7">
@@ -49,16 +55,16 @@ function ArticleCallout({ eyebrow, title, text }) {
   );
 }
 
-function renderBody(body) {
+function renderBody(body, postTitle) {
   let headingIndex = -1;
 
   return body.map((block, index) => {
     switch (block.type) {
       case "heading":
         headingIndex += 1;
-        return (
-          <ArticleHeading key={index} id={`sec-${headingIndex}`} text={block.text} />
-        );
+        return <ArticleHeading key={index} id={`sec-${headingIndex}`} text={block.text} />;
+      case "subheading":
+        return <ArticleSubheading key={index} text={block.text} />;
       case "paragraph":
         return (
           <p key={index} className="mb-4.5 text-base font-light leading-[1.72] text-white/70">
@@ -77,9 +83,22 @@ function renderBody(body) {
         return <ColorSwatches key={index} items={block.items} className="mb-7" />;
       case "image":
         return (
-          <div key={index} className="relative mb-7 aspect-[16/9] overflow-hidden rounded-2xl">
-            <Image src={block.src} alt={block.caption || ""} fill className="object-cover" />
-          </div>
+          <figure key={index} className="mb-7">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+              <Image
+                src={block.src}
+                alt={block.alt || block.caption || postTitle}
+                fill
+                sizes="(max-width: 1024px) 100vw, 760px"
+                className="object-cover"
+              />
+            </div>
+            {block.caption ? (
+              <figcaption className="mt-2.5 text-[11px] tracking-wide text-white/35">
+                {block.caption}
+              </figcaption>
+            ) : null}
+          </figure>
         );
       default:
         return null;
@@ -87,7 +106,22 @@ function renderBody(body) {
   });
 }
 
-export default function EditorialPost({ post, relatedPosts, locale }) {
+function renderTitle(title, accent) {
+  if (!accent) return title;
+
+  const parts = title.split(accent);
+  if (parts.length < 2) return title;
+
+  return (
+    <>
+      {parts[0]}
+      <span className="text-primary1">{accent}</span>
+      {parts.slice(1).join(accent)}
+    </>
+  );
+}
+
+export default function PostDetail({ post, relatedPosts, locale }) {
   const t = useTranslations("BlogPage");
   const articleRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -172,7 +206,7 @@ export default function EditorialPost({ post, relatedPosts, locale }) {
               transition={{ duration: 0.7, delay: 0.05, ease: premiumEase }}
               className="mb-6 max-w-4xl text-[clamp(2.4rem,5vw,3.6rem)] font-black leading-[0.95] tracking-display text-white"
             >
-              {post.title}
+              {renderTitle(post.title, post.titleAccent)}
             </motion.h1>
 
             {post.dek ? (
@@ -264,7 +298,7 @@ export default function EditorialPost({ post, relatedPosts, locale }) {
             ) : null}
 
             <div className="min-w-0 flex-1">
-              {renderBody(post.body)}
+              {renderBody(post.body, post.title)}
 
               <div className="mt-14 border-t border-white/6 pt-9">
                 {post.tags.length > 0 ? (

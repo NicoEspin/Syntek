@@ -3,6 +3,7 @@ import card3 from "@/app/assets/card3.webp";
 import threeD from "@/app/assets/3D.webp";
 import nico from "@/app/assets/nico.webp";
 import antto from "@/app/assets/antto.webp";
+import preciosWebArgentina2026 from "@/app/assets/blog/precio-web.webp";
 
 const DEFAULT_LOCALE = "es";
 
@@ -19,8 +20,11 @@ export const AUTHORS = {
     image: nico,
   },
   antto: {
-    name: "Antto Ferreyra",
-    role: localizedText("Diseño & Automatización", "Design & Automation"),
+    name: "Antto Cattalano",
+    role: localizedText(
+      "Co-Founder · Diseño Gráfico & UX/UI",
+      "Co-Founder · Diseño Gráfico & UX/UI",
+    ),
     bio: localizedText(
       "Diseña sistemas y automatizaciones que conectan herramientas reales con decisiones reales. Para Antto, la automatización es proceso, no decoración.",
       "Designs systems and automations that connect real tools to real decisions. For Antto, automation is process, not decoration.",
@@ -30,7 +34,14 @@ export const AUTHORS = {
 };
 
 const heading = (es, en) => ({ type: "heading", text: localizedText(es, en) });
-const paragraph = (es, en) => ({ type: "paragraph", text: localizedText(es, en) });
+const subheading = (es, en) => ({
+  type: "subheading",
+  text: localizedText(es, en),
+});
+const paragraph = (es, en) => ({
+  type: "paragraph",
+  text: localizedText(es, en),
+});
 const quote = (es, en) => ({ type: "quote", text: localizedText(es, en) });
 const code = (es, en) => ({ type: "code", code: localizedText(es, en) });
 const callout = (eyebrowEs, eyebrowEn, titleEs, titleEn, textEs, textEn) => ({
@@ -41,18 +52,261 @@ const callout = (eyebrowEs, eyebrowEn, titleEs, titleEn, textEs, textEn) => ({
 });
 const colorSwatches = (items) => ({
   type: "colorSwatches",
-  items: items.map(({ hex, es, en }) => ({ hex, label: localizedText(es, en) })),
+  items: items.map(({ hex, es, en }) => ({
+    hex,
+    label: localizedText(es, en),
+  })),
+});
+// src: imagen importada (import foo from "@/app/assets/blog/foo.webp"). caption/alt son opcionales.
+const image = (src, { captionEs, captionEn, altEs, altEn } = {}) => ({
+  type: "image",
+  src,
+  caption: captionEs ? localizedText(captionEs, captionEn) : undefined,
+  alt: altEs ? localizedText(altEs, altEn) : undefined,
 });
 
 const postEntries = [
   {
+    slug: "cuanto-sale-una-pagina-web-en-argentina-2026",
+    category: "Desarrollo",
+    title: localizedText(
+      "Cuánto sale una página web en Argentina en 2026",
+      "How much does a website cost in Argentina in 2026",
+    ),
+    titleAccent: localizedText("página web", "website"),
+    excerpt: localizedText(
+      "Una guía clara para entender cuánto puede costar una página web profesional en Argentina, qué incluye cada tipo de proyecto y cómo elegir la opción adecuada para tu negocio.",
+      "A clear guide to understand how much a professional website can cost in Argentina, what each type of project includes, and how to choose the right option for your business.",
+    ),
+    dek: localizedText(
+      "Los precios de una web pueden variar mucho según el objetivo, la cantidad de secciones, el nivel de diseño, si necesitás autogestión, ecommerce, animaciones o integraciones. En esta guía te mostramos valores orientativos en ARS para tomar una mejor decisión.",
+      "Website prices can vary a lot depending on the goal, number of sections, design level, self-management needs, ecommerce, animations, or integrations. In this guide, we show estimated ARS prices to help you make a better decision.",
+    ),
+    image: preciosWebArgentina2026,
+    author: "nico",
+    date: "2026-06-24",
+    readingMinutes: 8,
+    featured: true,
+    tags: [
+      localizedText("Desarrollo Web", "Web Development"),
+      localizedText("Precios", "Pricing"),
+      localizedText("Argentina", "Argentina"),
+      localizedText("Pymes", "SMBs"),
+    ],
+    body: [
+      paragraph(
+        "Una de las preguntas más comunes antes de contratar una web es simple: ¿cuánto sale hacer una página web en Argentina?",
+        "One of the most common questions before hiring a website project is simple: how much does it cost to build a website in Argentina?",
+      ),
+      paragraph(
+        "La respuesta depende del tipo de proyecto. No cuesta lo mismo una web simple para presentar un negocio que un catálogo autogestionable, un ecommerce completo o una experiencia digital con animaciones, efectos visuales y desarrollo a medida.",
+        "The answer depends on the type of project. A simple website to present a business is not the same as a self-managed catalog, a complete ecommerce store, or a custom digital experience with animations and visual effects.",
+      ),
+      callout(
+        "Respuesta rápida",
+        "Quick answer",
+        "En 2026, una web profesional puede partir desde $250.000 ARS",
+        "In 2026, a professional website can start from ARS $250,000",
+        "En Synttek, los proyectos web simples parten desde $250.000 ARS. Los catálogos autogestionables comienzan desde $300.000 ARS, los sitios institucionales suelen ubicarse entre $400.000 y $500.000 ARS, los ecommerce desde $500.000 ARS y las experiencias web más avanzadas desde $800.000 ARS.",
+        "At Synttek, simple website projects start from ARS $250,000. Self-managed catalogs start from ARS $300,000, institutional websites usually range between ARS $400,000 and ARS $500,000, ecommerce projects start from ARS $500,000, and more advanced web experiences start from ARS $800,000.",
+      ),
+      paragraph(
+        "Estos valores son orientativos y pueden variar según el alcance, la cantidad de secciones, el nivel de diseño, las funcionalidades, la carga de contenido, las integraciones y el grado de personalización que necesite cada negocio.",
+        "These values are estimates and may vary depending on scope, number of sections, design level, features, content loading, integrations, and the level of customization each business needs.",
+      ),
+
+      heading(
+        "Precios orientativos de páginas web en Argentina",
+        "Estimated website prices in Argentina",
+      ),
+      paragraph(
+        "Para entender mejor cuánto puede costar una página web, conviene separar los proyectos por tipo de solución. Cada formato responde a una necesidad distinta: presencia profesional, catálogo, venta online, posicionamiento institucional o diferenciación visual.",
+        "To better understand how much a website can cost, it helps to separate projects by type of solution. Each format responds to a different need: professional presence, catalog, online sales, institutional positioning, or visual differentiation.",
+      ),
+      callout(
+        "Web simple",
+        "Simple website",
+        "Desde $250.000 ARS",
+        "From ARS $250,000",
+        "Ideal para profesionales, emprendimientos o negocios que necesitan una presencia online clara, moderna y confiable. Sirve para explicar qué hacés, mostrar servicios, sumar información de contacto y recibir consultas.",
+        "Ideal for professionals, startups, or businesses that need a clear, modern, and trustworthy online presence. It helps explain what you do, show services, add contact information, and receive inquiries.",
+      ),
+      callout(
+        "Catálogo virtual",
+        "Virtual catalog",
+        "Desde $300.000 ARS",
+        "From ARS $300,000",
+        "Pensado para negocios que necesitan mostrar productos, servicios o promociones sin vender directamente desde la web. Es una gran opción para comercios que trabajan por WhatsApp y quieren actualizar su catálogo de forma autogestionable.",
+        "Designed for businesses that need to show products, services, or promotions without selling directly through the website. It is a great option for stores that work through WhatsApp and want to update their catalog by themselves.",
+      ),
+      callout(
+        "Sitio institucional",
+        "Institutional website",
+        "Entre $400.000 y $500.000 ARS",
+        "Between ARS $400,000 and ARS $500,000",
+        "Recomendado para empresas que necesitan una presencia digital más sólida. Puede incluir secciones de servicios, sobre la empresa, casos, preguntas frecuentes, contacto, integración con WhatsApp y una estructura pensada para transmitir confianza.",
+        "Recommended for companies that need a stronger digital presence. It can include service sections, about the company, case studies, frequently asked questions, contact, WhatsApp integration, and a structure designed to build trust.",
+      ),
+      callout(
+        "Ecommerce",
+        "Ecommerce",
+        "Desde $500.000 ARS",
+        "From ARS $500,000",
+        "Una tienda online requiere más funcionalidades: productos, categorías, carrito, checkout, medios de pago, gestión de pedidos y una experiencia clara para que el usuario pueda comprar sin fricción.",
+        "An online store requires more features: products, categories, cart, checkout, payment methods, order management, and a clear experience so users can buy without friction.",
+      ),
+      callout(
+        "Web avanzada",
+        "Advanced website",
+        "Desde $800.000 ARS",
+        "From ARS $800,000",
+        "Para marcas que quieren una experiencia digital diferencial, con dirección visual más profunda, animaciones, interacciones avanzadas, elementos 3D o desarrollo más personalizado. Este tipo de proyecto no busca solo informar, sino generar impacto y recordación.",
+        "For brands that want a distinctive digital experience, with deeper visual direction, animations, advanced interactions, 3D elements, or more custom development. This type of project is not just about informing, but about creating impact and memorability.",
+      ),
+
+      heading(
+        "Por qué una web puede costar $250.000 o más de $800.000",
+        "Why a website can cost ARS $250,000 or more than ARS $800,000",
+      ),
+      paragraph(
+        "El precio de una página web no depende solamente de cuántas pantallas tenga. También influyen el nivel de diseño, la estrategia de contenido, la calidad del desarrollo, la posibilidad de autogestionar información, las integraciones y el objetivo comercial del proyecto.",
+        "The price of a website does not depend only on how many screens it has. It is also affected by the design level, content strategy, development quality, self-management capabilities, integrations, and the commercial goal of the project.",
+      ),
+      quote(
+        "Una web no debería evaluarse solo por lo que cuesta hacerla, sino por lo que puede ayudar a ordenar, comunicar y vender.",
+        "A website should not be judged only by what it costs to build, but by what it can help organize, communicate, and sell.",
+      ),
+      subheading(
+        "Cantidad de secciones y contenido",
+        "Number of sections and content",
+      ),
+      paragraph(
+        "Una web de una sola página no requiere el mismo trabajo que un sitio con múltiples secciones, páginas de servicios, casos, blog, catálogo o panel de administración. Cuanto más contenido haya que estructurar, diseñar y cargar, mayor será el alcance del proyecto.",
+        "A one-page website does not require the same work as a site with multiple sections, service pages, case studies, blog, catalog, or admin panel. The more content needs to be structured, designed, and uploaded, the bigger the project scope.",
+      ),
+      subheading("Diseño personalizado", "Custom design"),
+      paragraph(
+        "No es lo mismo adaptar una estructura simple que diseñar una experiencia visual a medida. Cuando una marca necesita diferenciarse, cuidar cada interacción y construir una presencia más premium, el proceso requiere más dirección visual, iteración y desarrollo.",
+        "Adapting a simple structure is not the same as designing a custom visual experience. When a brand needs to stand out, refine every interaction, and build a more premium presence, the process requires more visual direction, iteration, and development.",
+      ),
+      subheading(
+        "Autogestión y funcionalidades",
+        "Self-management and features",
+      ),
+      paragraph(
+        "Si necesitás editar productos, subir promociones, gestionar pedidos o actualizar contenido sin depender de un desarrollador, el proyecto necesita una estructura autogestionable. Eso suma valor, pero también requiere más planificación y desarrollo.",
+        "If you need to edit products, upload promotions, manage orders, or update content without depending on a developer, the project needs a self-managed structure. That adds value, but also requires more planning and development.",
+      ),
+      subheading("Ecommerce e integraciones", "Ecommerce and integrations"),
+      paragraph(
+        "Un ecommerce no es solo una web con productos. Necesita una experiencia de compra clara, lógica de carrito, checkout, medios de pago, gestión de pedidos y, muchas veces, integraciones con herramientas externas. Por eso suele partir desde un valor más alto.",
+        "An ecommerce project is not just a website with products. It needs a clear buying experience, cart logic, checkout, payment methods, order management, and often integrations with external tools. That is why it usually starts from a higher price point.",
+      ),
+      subheading(
+        "Animaciones, 3D y experiencia premium",
+        "Animations, 3D, and premium experience",
+      ),
+      paragraph(
+        "Las animaciones, los elementos 3D y las interacciones avanzadas pueden elevar mucho la percepción de una marca, pero también requieren más tiempo de diseño, pruebas, optimización y desarrollo para que la experiencia se vea bien y funcione rápido.",
+        "Animations, 3D elements, and advanced interactions can significantly elevate brand perception, but they also require more design time, testing, optimization, and development so the experience looks good and performs fast.",
+      ),
+
+      heading(
+        "Qué tipo de web conviene según tu negocio",
+        "Which type of website fits your business",
+      ),
+      paragraph(
+        "Antes de pedir un presupuesto, conviene entender qué necesitás lograr. No todos los negocios necesitan empezar con una web compleja, y no todos deberían quedarse con una presencia básica.",
+        "Before asking for a quote, it is important to understand what you need to achieve. Not every business needs to start with a complex website, and not every business should stay with a basic online presence.",
+      ),
+      callout(
+        "Si necesitás presencia",
+        "If you need presence",
+        "Empezá con una web simple",
+        "Start with a simple website",
+        "Es ideal si querés verte profesional, explicar tus servicios y tener un lugar claro al que enviar potenciales clientes desde Instagram, WhatsApp, Google o una tarjeta de presentación.",
+        "It is ideal if you want to look professional, explain your services, and have a clear place to send potential clients from Instagram, WhatsApp, Google, or a business card.",
+      ),
+      callout(
+        "Si vendés por WhatsApp",
+        "If you sell through WhatsApp",
+        "Elegí un catálogo autogestionable",
+        "Choose a self-managed catalog",
+        "Un catálogo virtual permite mostrar productos o promociones sin obligarte a implementar un ecommerce completo. Es especialmente útil para comercios locales, gastronomía, indumentaria, servicios y negocios con precios o stock variable.",
+        "A virtual catalog allows you to show products or promotions without forcing you to implement a complete ecommerce store. It is especially useful for local stores, food businesses, fashion, services, and businesses with changing prices or stock.",
+      ),
+      callout(
+        "Si sos empresa",
+        "If you are a company",
+        "Invertí en un sitio institucional",
+        "Invest in an institutional website",
+        "Un sitio institucional ayuda a ordenar tu propuesta, mostrar servicios, construir autoridad y transmitir confianza. Es una buena opción para constructoras, estudios, consultoras, empresas de servicios, marcas B2B y negocios en crecimiento.",
+        "An institutional website helps organize your value proposition, show services, build authority, and transmit trust. It is a good option for construction companies, studios, consulting firms, service companies, B2B brands, and growing businesses.",
+      ),
+      callout(
+        "Si querés vender online",
+        "If you want to sell online",
+        "Necesitás un ecommerce",
+        "You need ecommerce",
+        "Cuando el objetivo es vender directamente desde la web, necesitás una tienda online con una experiencia clara, rápida y preparada para convertir visitas en compras.",
+        "When the goal is to sell directly from the website, you need an online store with a clear, fast experience designed to convert visits into purchases.",
+      ),
+      callout(
+        "Si querés diferenciarte",
+        "If you want to stand out",
+        "Pensá en una experiencia web premium",
+        "Think about a premium web experience",
+        "Cuando la web es parte central de la percepción de marca, vale la pena trabajar una experiencia más personalizada, con mejor dirección visual, animaciones, narrativa, performance y detalles que hagan que el sitio se recuerde.",
+        "When the website is a central part of brand perception, it is worth working on a more personalized experience, with better visual direction, animations, storytelling, performance, and details that make the site memorable.",
+      ),
+
+      heading(
+        "Entonces, ¿cuánto debería invertir tu negocio?",
+        "So, how much should your business invest?",
+      ),
+      paragraph(
+        "La mejor inversión no siempre es la más barata ni la más cara. Es la que mejor responde al momento actual de tu negocio. Si todavía estás validando una idea, probablemente una web simple sea suficiente. Si ya tenés productos, clientes y una operación activa, un catálogo, un sitio institucional o un ecommerce pueden tener mucho más sentido.",
+        "The best investment is not always the cheapest or the most expensive. It is the one that best responds to the current stage of your business. If you are still validating an idea, a simple website may be enough. If you already have products, clients, and an active operation, a catalog, an institutional site, or ecommerce may make much more sense.",
+      ),
+      paragraph(
+        "Una página web profesional no debería ser solo una pieza visual. Debería ayudarte a ordenar tu mensaje, explicar mejor lo que vendés, generar confianza y facilitar el próximo paso: una consulta, una reserva, una compra o una reunión.",
+        "A professional website should not be just a visual piece. It should help you organize your message, explain what you sell more clearly, build trust, and make the next step easier: an inquiry, a booking, a purchase, or a meeting.",
+      ),
+      quote(
+        "La pregunta correcta no es cuánto sale una web, sino qué tiene que lograr para que esa inversión tenga sentido.",
+        "The right question is not how much a website costs, but what it needs to achieve for that investment to make sense.",
+      ),
+
+      heading(
+        "En Synttek diseñamos webs según el objetivo del negocio",
+        "At Synttek, we design websites based on the business goal",
+      ),
+      paragraph(
+        "En Synttek desarrollamos sitios web, catálogos virtuales, ecommerce y experiencias digitales a medida para negocios que quieren verse más profesionales, ordenar su presencia online y convertir mejor.",
+        "At Synttek, we build websites, virtual catalogs, ecommerce stores, and custom digital experiences for businesses that want to look more professional, organize their online presence, and convert better.",
+      ),
+      paragraph(
+        "Podemos ayudarte a definir si te conviene empezar con una web simple, un catálogo autogestionable, un sitio institucional, una tienda online o una experiencia más avanzada con animaciones y desarrollo personalizado.",
+        "We can help you define whether it makes sense to start with a simple website, a self-managed catalog, an institutional site, an online store, or a more advanced experience with animations and custom development.",
+      ),
+      callout(
+        "Próximo paso",
+        "Next step",
+        "Pedí una orientación para tu proyecto",
+        "Ask for guidance for your project",
+        "Contanos qué necesitás, en qué etapa está tu negocio y qué objetivo querés lograr con la web. Te ayudamos a pensar la opción más adecuada antes de avanzar con una propuesta.",
+        "Tell us what you need, what stage your business is in, and what goal you want to achieve with the website. We help you think through the right option before moving forward with a proposal.",
+      ),
+    ],
+  },
+  {
     slug: "activos-digitales",
     category: "Estrategia",
-    variant: "editorial",
     title: localizedText(
       "No construimos sitios decorativos. Construimos activos digitales.",
       "We don't build decorative websites. We build digital assets.",
     ),
+    titleAccent: localizedText("activos digitales", "digital assets"),
     excerpt: localizedText(
       "Un sitio lindo que no mueve a nadie es un gasto. Cómo pensamos cada proyecto como una inversión con retorno medible.",
       "A pretty site that moves no one is an expense. How we treat every project as an investment with measurable return.",
@@ -65,8 +319,12 @@ const postEntries = [
     author: "nico",
     date: "2026-06-12",
     readingMinutes: 6,
-    featured: true,
-    tags: [localizedText("Estrategia", "Strategy"), localizedText("Producto", "Product"), localizedText("Conversión", "Conversion")],
+    featured: false,
+    tags: [
+      localizedText("Estrategia", "Strategy"),
+      localizedText("Producto", "Product"),
+      localizedText("Conversión", "Conversion"),
+    ],
     body: [
       heading("Qué es un activo digital", "What a digital asset actually is"),
       paragraph(
@@ -91,7 +349,6 @@ const postEntries = [
   {
     slug: "automatizar-con-ia",
     category: "Automatización",
-    variant: "immersive",
     title: localizedText(
       "Automatizaciones con IA: qué automatizar y qué dejar quieto.",
       "Automating with AI: what to automate and what to leave alone.",
@@ -101,15 +358,19 @@ const postEntries = [
       "AI isn't decoration. It's process. Where a workflow multiplies the team, and where it just adds noise.",
     ),
     dek: localizedText(
-      "No todo lo que se puede automatizar conviene automatizarlo. La pregunta correcta no es \"se puede\" — es \"vale la pena\".",
-      "Not everything that can be automated should be. The right question isn't \"can we\" — it's \"is it worth it\".",
+      'No todo lo que se puede automatizar conviene automatizarlo. La pregunta correcta no es "se puede" — es "vale la pena".',
+      'Not everything that can be automated should be. The right question isn\'t "can we" — it\'s "is it worth it".',
     ),
     image: threeD,
     author: "antto",
     date: "2026-06-04",
     readingMinutes: 8,
     featured: false,
-    tags: [localizedText("Automatización", "Automation"), localizedText("IA", "AI"), localizedText("Procesos", "Process")],
+    tags: [
+      localizedText("Automatización", "Automation"),
+      localizedText("IA", "AI"),
+      localizedText("Procesos", "Process"),
+    ],
     body: [
       paragraph(
         "La IA generativa bajó tanto la barrera de entrada que automatizar dejó de ser una decisión técnica y se volvió una decisión de criterio.",
@@ -134,11 +395,11 @@ const postEntries = [
   {
     slug: "diseno-que-convierte",
     category: "Diseño",
-    variant: "editorial",
     title: localizedText(
       "Diseño que convierte: la estética como persuasión.",
       "Design that converts: aesthetics as persuasion.",
     ),
+    titleAccent: localizedText("convierte", "converts"),
     excerpt: localizedText(
       "Cada pantalla, interacción y detalle visual existe para mover al usuario al siguiente paso. No para impresionar.",
       "Every screen, interaction and visual detail exists to move the user to the next step. Not to impress.",
@@ -147,7 +408,10 @@ const postEntries = [
       "Cada decisión visual que tomás en tu sitio impacta directamente en cuánto confía el usuario en vos. No es diseño por diseño — es estrategia.",
       "Every visual decision you make on your site directly impacts how much the user trusts you. It's not design for design's sake — it's strategy.",
     ),
-    authorRoleOverride: localizedText("Director de Diseño · Synttek", "Design Director · Synttek"),
+    authorRoleOverride: localizedText(
+      "Director de Diseño · Synttek",
+      "Design Director · Synttek",
+    ),
     image: card3,
     author: "nico",
     date: "2026-05-28",
@@ -203,7 +467,18 @@ const postEntries = [
         "Usar una sola familia tipográfica obliga a construir jerarquía con escala y peso, no con contraste de familia. El resultado es más coherente, más técnico, más memorable.",
         "Using a single type family forces you to build hierarchy with scale and weight, not family contrast. The result is more coherent, more technical, more memorable.",
       ),
-      heading("Color como decisión estratégica", "Color as a strategic decision"),
+      subheading(
+        "Por qué evitamos mezclar familias",
+        "Why we avoid mixing families",
+      ),
+      paragraph(
+        "Cada familia tipográfica nueva que sumás es una decisión más que el usuario tiene que procesar sin darse cuenta. Geist Sans hace todo el trabajo — display, body y labels — con un solo conjunto de reglas.",
+        "Every new type family you add is one more decision the user has to process without noticing. Geist Sans does all the work — display, body and labels — with a single set of rules.",
+      ),
+      heading(
+        "Color como decisión estratégica",
+        "Color as a strategic decision",
+      ),
       paragraph(
         "En Synttek usamos un solo acento: lime #A1E233. No porque nos guste el verde — sino porque un acento único aplicado con disciplina genera más memorabilidad que tres colores aplicados al azar.",
         "At Synttek we use a single accent: lime #A1E233. Not because we like green — a single accent applied with discipline builds more memorability than three colors applied at random.",
@@ -223,7 +498,6 @@ const postEntries = [
   {
     slug: "performance",
     category: "Performance",
-    variant: "immersive",
     title: localizedText(
       "Performance no es un lujo: 0.8s o nada.",
       "Performance isn't a luxury: 0.8s or nothing.",
@@ -241,7 +515,11 @@ const postEntries = [
     date: "2026-05-19",
     readingMinutes: 7,
     featured: false,
-    tags: [localizedText("Performance", "Performance"), localizedText("Core Web Vitals", "Core Web Vitals"), localizedText("Next.js", "Next.js")],
+    tags: [
+      localizedText("Performance", "Performance"),
+      localizedText("Core Web Vitals", "Core Web Vitals"),
+      localizedText("Next.js", "Next.js"),
+    ],
     body: [
       paragraph(
         "Cada 100ms de demora le cuesta conversión a cualquier sitio, sin excepción. No es una opinión — es el dato que repiten todos los estudios de Core Web Vitals desde 2021.",
@@ -249,8 +527,8 @@ const postEntries = [
       ),
       heading("Por qué 0.8s es el límite", "Why 0.8s is the line"),
       paragraph(
-        "Por encima de ese umbral, la percepción de \"rápido\" se rompe. El usuario no mide milisegundos — siente fricción, y la fricción se traduce directo en abandono.",
-        "Above that threshold, the perception of \"fast\" breaks down. Users don't measure milliseconds — they feel friction, and friction translates directly into abandonment.",
+        'Por encima de ese umbral, la percepción de "rápido" se rompe. El usuario no mide milisegundos — siente fricción, y la fricción se traduce directo en abandono.',
+        'Above that threshold, the perception of "fast" breaks down. Users don\'t measure milliseconds — they feel friction, and friction translates directly into abandonment.',
       ),
       quote(
         "La velocidad no es una característica técnica. Es la primera promesa que tu sitio cumple o rompe.",
@@ -266,7 +544,6 @@ const postEntries = [
   {
     slug: "branding-con-criterio",
     category: "Branding",
-    variant: "immersive",
     title: localizedText(
       "Branding con criterio, no con ruido.",
       "Branding with judgment, not noise.",
@@ -284,7 +561,11 @@ const postEntries = [
     date: "2026-05-10",
     readingMinutes: 5,
     featured: false,
-    tags: [localizedText("Branding", "Branding"), localizedText("Identidad", "Identity"), localizedText("Criterio", "Judgment")],
+    tags: [
+      localizedText("Branding", "Branding"),
+      localizedText("Identidad", "Identity"),
+      localizedText("Criterio", "Judgment"),
+    ],
     body: [
       paragraph(
         "El branding no es el logo. Es el conjunto de decisiones que hacen que tu marca se sienta igual en una landing, en un PDF y en una respuesta de soporte.",
@@ -299,7 +580,10 @@ const postEntries = [
         "Si tu identidad solo funciona en la presentación de venta, todavía no tenés una identidad.",
         "If your identity only works in the sales deck, you don't have an identity yet.",
       ),
-      heading("Qué sostiene una marca fuera del moodboard", "What holds a brand together outside the moodboard"),
+      heading(
+        "Qué sostiene una marca fuera del moodboard",
+        "What holds a brand together outside the moodboard",
+      ),
       paragraph(
         "Un acento, no una paleta. Una familia tipográfica, no tres. Una voz, repetida con disciplina en cada texto que sale de la marca. La restricción es lo que la hace reconocible — no la cantidad de elementos.",
         "One accent, not a palette. One type family, not three. One voice, repeated with discipline across every piece of copy the brand puts out. Restriction is what makes it recognizable — not the number of elements.",
@@ -313,7 +597,6 @@ const postEntries = [
   {
     slug: "nextjs-en-produccion",
     category: "Desarrollo",
-    variant: "editorial",
     title: localizedText(
       "Next.js en producción: decisiones que no se pagan caras en 18 meses.",
       "Next.js in production: decisions that don't cost you in 18 months.",
@@ -331,9 +614,16 @@ const postEntries = [
     date: "2026-05-02",
     readingMinutes: 9,
     featured: false,
-    tags: [localizedText("Next.js", "Next.js"), localizedText("Arquitectura", "Architecture"), localizedText("Desarrollo", "Development")],
+    tags: [
+      localizedText("Next.js", "Next.js"),
+      localizedText("Arquitectura", "Architecture"),
+      localizedText("Desarrollo", "Development"),
+    ],
     body: [
-      heading("Decisiones que importan en el día 1", "Decisions that matter on day one"),
+      heading(
+        "Decisiones que importan en el día 1",
+        "Decisions that matter on day one",
+      ),
       paragraph(
         "Server Components por default, Client Components solo donde hace falta interactividad real. Esa única regla evita la mitad de los problemas de performance que vemos en proyectos migrados desde Create React App.",
         "Server Components by default, Client Components only where real interactivity is needed. That single rule avoids half the performance problems we see in projects migrated from Create React App.",
@@ -371,6 +661,7 @@ const getLocalizedField = (value, locale = DEFAULT_LOCALE) => {
 const localizeBlock = (block, locale) => {
   switch (block.type) {
     case "heading":
+    case "subheading":
     case "paragraph":
       return { ...block, text: getLocalizedField(block.text, locale) };
     case "quote":
@@ -395,7 +686,10 @@ const localizeBlock = (block, locale) => {
     case "image":
       return {
         ...block,
-        caption: block.caption ? getLocalizedField(block.caption, locale) : undefined,
+        caption: block.caption
+          ? getLocalizedField(block.caption, locale)
+          : undefined,
+        alt: block.alt ? getLocalizedField(block.alt, locale) : undefined,
       };
     default:
       return block;
@@ -405,6 +699,9 @@ const localizeBlock = (block, locale) => {
 const localizePost = (post, locale = DEFAULT_LOCALE) => ({
   ...post,
   title: getLocalizedField(post.title, locale),
+  titleAccent: post.titleAccent
+    ? getLocalizedField(post.titleAccent, locale)
+    : undefined,
   excerpt: getLocalizedField(post.excerpt, locale),
   dek: post.dek ? getLocalizedField(post.dek, locale) : undefined,
   tags: (post.tags || []).map((tag) => getLocalizedField(tag, locale)),
@@ -435,7 +732,11 @@ export const getBlogPostBySlug = (slug, locale = DEFAULT_LOCALE) => {
   return post ? localizePost(post, locale) : undefined;
 };
 
-export const getRelatedBlogPosts = (slug, locale = DEFAULT_LOCALE, limit = 2) => {
+export const getRelatedBlogPosts = (
+  slug,
+  locale = DEFAULT_LOCALE,
+  limit = 2,
+) => {
   const all = getBlogPosts(locale);
   const current = all.find((post) => post.slug === slug);
 
