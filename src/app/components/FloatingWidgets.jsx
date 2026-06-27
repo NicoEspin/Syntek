@@ -1,3 +1,4 @@
+"use client";
 import dynamic from "next/dynamic";
 
 const ChatBot = dynamic(() => import("@/app/components/ChatBot"), {
