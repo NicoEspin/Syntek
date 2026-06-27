@@ -1,9 +1,9 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
-import ChatBot from "@/app/components/ChatBot";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
@@ -11,7 +11,6 @@ import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { getProjectById, getProjects, projects } from "@/data/projects";
 
 import ProjectDetail from "./ProjectDetail";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -73,8 +72,6 @@ export default async function ProjectPage({ params }) {
   const { locale, id } = await params;
   const localizedProjects = getProjects(locale);
 
-  setRequestLocale(locale);
-
   const project = getProjectById(id, locale);
 
   if (!project) {
@@ -111,8 +108,7 @@ export default async function ProjectPage({ params }) {
         nextProject={nextProject}
         project={project}
       />
-      <ChatBot />
-      <WhatsAppButton />
+      <FloatingWidgets />
       <Footer />
     </>
   );

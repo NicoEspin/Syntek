@@ -1,8 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import { Instagram, Linkedin, Mail, ArrowUp } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import { Instagram, Linkedin, Mail } from "lucide-react";
+import { getLocale, getTranslations } from "next-intl/server";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
 import { getPrimaryServices } from "@/data/services";
 import {
@@ -11,9 +10,8 @@ import {
   LINKEDIN_URL,
 } from "@/lib/business";
 
-const Footer = () => {
-  const t = useTranslations("Footer");
-  const locale = useLocale();
+const Footer = async () => {
+  const [t, locale] = await Promise.all([getTranslations("Footer"), getLocale()]);
   const serviceLinks = getPrimaryServices(locale);
 
   const links = [
@@ -54,12 +52,6 @@ const Footer = () => {
     },
   ];
 
-  const scrollToTop = () => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
   return (
     <footer className="bg-[#050505] text-white overflow-hidden">
 
@@ -96,10 +88,7 @@ const Footer = () => {
 
             {/* Brand */}
             <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
-              <a
-                href={`/${locale}`}
-                className="group flex items-center gap-2.5 w-fit"
-              >
+              <Link href={`/${locale}`} className="group flex items-center gap-2.5 w-fit">
                 <div className="flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] group-hover:border-white/20 transition-colors duration-300">
                   <Image
                     src={syntekIcon}
@@ -114,7 +103,7 @@ const Footer = () => {
                   </p>
                   <p className="text-[10px] text-white/30">{t("brandLabel")}</p>
                 </div>
-              </a>
+              </Link>
 
               <p className="text-sm text-white/40 leading-relaxed">
                 {t("description")}
@@ -139,13 +128,13 @@ const Footer = () => {
               </p>
               <nav className="flex flex-col gap-2.5">
                 {links.map((link) => (
-                  <a
+                  <Link
                     key={link.key}
                     href={link.href}
                     className="text-sm text-white/45 hover:text-white transition-colors duration-300 w-fit"
                   >
                     {t(`links.${link.key}`)}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -189,13 +178,13 @@ const Footer = () => {
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {serviceLinks.map((service) => (
-                  <a
+                  <Link
                     key={service.slug}
                     href={`/${locale}/servicios/${service.slug}`}
                     className="rounded-full border border-white/8 px-2.5 py-1 text-[9px] uppercase tracking-[0.15em] text-white/30 hover:border-primary1/25 hover:text-primary1 transition-all duration-300"
                   >
                     {service.shortLabel}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

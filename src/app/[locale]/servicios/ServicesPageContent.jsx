@@ -31,7 +31,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
 
   return (
     <main className="overflow-hidden bg-[#0a0a0a] text-white">
-      <ProjectCursor />
+      <ProjectCursor label={t("viewProject")} />
 
       <section className="relative px-4 pb-28 pt-32 md:px-5 md:pt-36 lg:px-10 xl:px-24">
         <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -64,7 +64,6 @@ export default function ServicesPageContent({ locale, services, featuredProjects
 
           <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.56fr)] lg:items-start xl:gap-20">
             <div>
-              {/* Eyebrow — slides from left */}
               <motion.div
                 initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -20 }}
                 animate={{ opacity: 1, x: 0 }}

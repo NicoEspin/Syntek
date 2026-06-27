@@ -1,14 +1,13 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
-import ChatBot from "@/app/components/ChatBot";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
+import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
 import { getBlogPosts } from "@/data/blogPosts";
 
 import BlogsClient from "./BlogsClient";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -55,14 +54,11 @@ export default async function BlogsPage({ params }) {
   const { locale } = await params;
   const posts = getBlogPosts(locale);
 
-  setRequestLocale(locale);
-
   return (
     <>
       <Navbar />
       <BlogsClient locale={locale} posts={posts} />
-      <ChatBot />
-      <WhatsAppButton />
+      <FloatingWidgets />
       <Footer />
     </>
   );

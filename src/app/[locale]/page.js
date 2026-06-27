@@ -9,8 +9,7 @@ import Services from "@/app/sections/Services";
 import Footer from "@/app/components/(common)/Footer";
 import Contact from "@/app/sections/Contact";
 import About from "@/app/sections/About";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
-import ChatBot from "../components/ChatBot";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -93,22 +92,14 @@ export default async function Home({ params }) {
         <Introduction />
         <Services />
         <OurTools />
-        <Projects />
+        <Projects locale={locale} />
         <About />
         <CallToAction />
         <Faqs />
         <Contact />
       </main>
       <Footer />
-        <ChatBot />
-      {/*
-        WhatsAppButton va FUERA del <main> para evitar
-        conflictos de z-index con secciones como Projects
-        que tienen cursor custom z-[9999].
-        Se renderiza como "use client" por lo que funciona
-        correctamente desde un Server Component.
-      */}
-      <WhatsAppButton />
+      <FloatingWidgets />
     </>
   );
 }

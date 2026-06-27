@@ -52,7 +52,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
 
   return (
     <main className="bg-[#0a0a0a] text-white">
-      <ProjectCursor />
+      <ProjectCursor label={t("viewProject")} />
 
       <section ref={heroRef} className="relative flex min-h-[88vh] items-end overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: heroY, opacity: heroOpacity }}>

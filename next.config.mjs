@@ -1,9 +1,7 @@
 import createNextIntlPlugin from "next-intl/plugin";
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  htmlLimitedBots: /.*/,
-};
+const nextConfig = {};
 
 const withNextIntl = createNextIntlPlugin();
 

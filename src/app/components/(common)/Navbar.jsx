@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import {
   AnimatePresence,
@@ -22,14 +23,44 @@ const ease = [0.16, 1, 0.3, 1];
 
 // ─── Componente: Link de navegación desktop ───────────────────────────────────
 function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
+  if (link.href.startsWith("#")) {
+    return (
+      <motion.a
+        href={link.href}
+        onClick={onClick}
+        aria-current={isActive ? "location" : undefined}
+        className="group relative flex flex-col items-center gap-[3px] py-1"
+      >
+        <span
+          className={cn(
+            "text-[11px] font-medium uppercase tracking-[0.18em] transition-colors duration-300",
+            isActive ? "text-white" : "text-white/45 group-hover:text-white/80",
+          )}
+        >
+          {link.label}
+        </span>
+
+        <span className="relative h-px w-full overflow-hidden">
+          <motion.span
+            layoutId="nav-underline"
+            className="absolute inset-0 bg-[#A1E233]"
+            style={{ originX: isActive ? 0 : 0.5 }}
+            animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+            transition={{ duration: shouldReduceMotion ? 0.15 : 0.38, ease }}
+          />
+          <span className="absolute inset-0 scale-x-0 bg-white/20 transition-transform duration-300 group-hover:scale-x-100" />
+        </span>
+      </motion.a>
+    );
+  }
+
   return (
-    <motion.a
+    <Link
       href={link.href}
       onClick={onClick}
       aria-current={isActive ? "location" : undefined}
       className="group relative flex flex-col items-center gap-[3px] py-1"
     >
-      {/* Texto */}
       <span
         className={cn(
           "text-[11px] font-medium uppercase tracking-[0.18em] transition-colors duration-300",
@@ -39,7 +70,6 @@ function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
         {link.label}
       </span>
 
-      {/* Subrayado deslizante — solo el activo lo tiene visible */}
       <span className="relative h-px w-full overflow-hidden">
         <motion.span
           layoutId="nav-underline"
@@ -48,10 +78,9 @@ function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
           animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
           transition={{ duration: shouldReduceMotion ? 0.15 : 0.38, ease }}
         />
-        {/* Hover underline (sin layoutId, instantáneo) */}
         <span className="absolute inset-0 scale-x-0 bg-white/20 transition-transform duration-300 group-hover:scale-x-100" />
       </span>
-    </motion.a>
+    </Link>
   );
 }
 
@@ -405,19 +434,20 @@ const Navbar = ({ floating = false }) => {
             <div className="flex items-center justify-between gap-6 px-4 py-3 md:px-6">
               {/* ── ZONA IZQUIERDA: Logo + disponibilidad ─────────────────── */}
               <div className="flex items-center gap-4 min-w-0">
-                <motion.a
-                  href={`/${locale}`}
-                  whileHover={shouldReduceMotion ? undefined : { opacity: 0.8 }}
-                  transition={{ duration: 0.2, ease: premiumEase }}
-                  className="shrink-0"
-                >
-                  <Image
-                    src={logo}
-                    alt="Synttek"
-                    className="h-20 w-[88px] object-contain  -mt-2 -mb-3"
-                    priority
-                  />
-                </motion.a>
+                <Link href={`/${locale}`} className="shrink-0">
+                  <motion.span
+                    whileHover={shouldReduceMotion ? undefined : { opacity: 0.8 }}
+                    transition={{ duration: 0.2, ease: premiumEase }}
+                    className="block"
+                  >
+                    <Image
+                      src={logo}
+                      alt="Synttek"
+                      className="h-20 w-[88px] object-contain  -mt-2 -mb-3"
+                      priority
+                    />
+                  </motion.span>
+                </Link>
               </div>
 
               {/* ── ZONA CENTRAL: Links desktop ───────────────────────────── */}
@@ -449,18 +479,12 @@ const Navbar = ({ floating = false }) => {
                 <span className="mx-2 hidden h-4 w-px bg-white/10 lg:block" />
 
                 {/* CTA "Contacto" — desktop */}
-                <motion.a
+                <Link
                   href={contactHref}
                   onClick={(event) => handleNavClick(event, contactHref)}
-                  whileHover={
-                    shouldReduceMotion ? undefined : { scale: 1.03, y: -1 }
-                  }
-                  whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-                  transition={{ duration: 0.2, ease }}
                   className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
                 >
                   {t("contact")}
-                  {/* Flecha diagonal */}
                   <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                     <path
                       d="M1 7L7 1M7 1H2M7 1V6"
@@ -470,7 +494,7 @@ const Navbar = ({ floating = false }) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </motion.a>
+                </Link>
 
                 {/* Hamburger mobile — dos barras persistentes que rotan a X, sin swap de íconos */}
                 <motion.button
@@ -547,27 +571,16 @@ const Navbar = ({ floating = false }) => {
                     ? isHomePage && activeSection === "#contact"
                     : isLinkActive(link);
                 const isContactCta = link.key === "contact";
-                return (
-                  <motion.a
-                    key={link.key}
-                    href={link.href}
-                    onClick={(event) => handleNavClick(event, link.href)}
-                    aria-current={isActive ? "location" : undefined}
-                    initial={{ opacity: 0, x: -24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: shouldReduceMotion ? 0.2 : 0.55,
-                      delay: shouldReduceMotion ? 0 : 0.06 + i * 0.06,
-                      ease,
-                    }}
-                    className={cn(
-                      "group flex items-center justify-between border-b py-4 transition-colors duration-300",
-                      isContactCta
-                        ? "border-[#A1E233]/20"
-                        : "border-white/[0.06]",
-                      isActive ? "border-[#A1E233]/15" : "",
-                    )}
-                  >
+                const classes = cn(
+                  "group flex items-center justify-between border-b py-4 transition-colors duration-300",
+                  isContactCta
+                    ? "border-[#A1E233]/20"
+                    : "border-white/[0.06]",
+                  isActive ? "border-[#A1E233]/15" : "",
+                );
+
+                const content = (
+                  <>
                     <span
                       className={cn(
                         "text-[clamp(1.6rem,8vw,3rem)] font-black tracking-tight leading-none transition-colors duration-300",
@@ -581,11 +594,43 @@ const Navbar = ({ floating = false }) => {
                       {link.label}
                     </span>
 
-                    {/* Número de índice */}
                     <span className="text-[10px] font-mono tracking-widest text-white/15">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                  </motion.a>
+                  </>
+                );
+
+                return (
+                  <motion.div
+                    key={link.key}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0.2 : 0.55,
+                      delay: shouldReduceMotion ? 0 : 0.06 + i * 0.06,
+                      ease,
+                    }}
+                  >
+                    {link.href.startsWith("#") ? (
+                      <a
+                        href={link.href}
+                        onClick={(event) => handleNavClick(event, link.href)}
+                        aria-current={isActive ? "location" : undefined}
+                        className={classes}
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={(event) => handleNavClick(event, link.href)}
+                        aria-current={isActive ? "location" : undefined}
+                        className={classes}
+                      >
+                        {content}
+                      </Link>
+                    )}
+                  </motion.div>
                 );
               })}
             </nav>

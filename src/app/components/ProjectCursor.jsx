@@ -7,10 +7,8 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import { useTranslations } from "next-intl";
 
-export default function ProjectCursor({ label }) {
-  const t = useTranslations("Projects");
+export default function ProjectCursor({ label = "View project" }) {
   const shouldReduceMotion = useReducedMotion();
   const [isCoarsePointer, setIsCoarsePointer] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
@@ -94,7 +92,7 @@ export default function ProjectCursor({ label }) {
       className="pointer-events-none fixed left-0 top-0 z-[9999] flex h-[84px] w-[84px] items-center justify-center rounded-full border border-black/10 bg-primary1 text-black mix-blend-difference"
     >
       <span className="text-[10px] font-semibold uppercase tracking-[0.28em]">
-        {label || t("viewProject")}
+        {label}
       </span>
     </motion.div>
   );

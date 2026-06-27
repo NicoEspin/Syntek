@@ -1,4 +1,5 @@
 import { projects } from "@/data/projects";
+import { blogPosts } from "@/data/blogPosts";
 import { getPrimaryServiceSlugs } from "@/data/services";
 import { routing } from "@/i18n/routing";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
@@ -6,6 +7,7 @@ import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 const staticRoutes = {
   home: "2026-04-09T20:36:11.080Z",
   projects: "2026-04-09T20:36:11.080Z",
+  blogs: "2026-06-24T00:00:00.000Z",
   services: "2026-05-25T00:00:00.000Z",
   servicesIndex: "2026-05-26T00:00:00.000Z",
   about: "2026-05-25T00:00:00.000Z",
@@ -33,6 +35,16 @@ export default function sitemap() {
       priority: 0.8,
       alternates: {
         languages: getLanguageAlternates("/projects"),
+      },
+    });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/blogs"),
+      lastModified: staticRoutes.blogs,
+      changeFrequency: "weekly",
+      priority: 0.75,
+      alternates: {
+        languages: getLanguageAlternates("/blogs"),
       },
     });
 
@@ -88,6 +100,20 @@ export default function sitemap() {
         priority: 0.7,
         alternates: {
           languages: getLanguageAlternates(`/projects/${project.id}`),
+        },
+      });
+    }
+
+    for (const post of blogPosts) {
+      const path = `/blogs/${post.slug}`;
+
+      routes.push({
+        url: getCanonicalUrl(locale, path),
+        lastModified: post.date,
+        changeFrequency: "monthly",
+        priority: 0.65,
+        alternates: {
+          languages: getLanguageAlternates(path),
         },
       });
     }

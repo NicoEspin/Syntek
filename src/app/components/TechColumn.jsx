@@ -1,18 +1,11 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Fragment } from "react";
 
 const TechColumn = ({ Technologies, className, reverse }) => {
   return (
-    <motion.div
-      initial={{ y: reverse ? "-50%" : 0 }}
-      animate={{ y: reverse ? 0 : "-50%" }}
-      transition={{
-        duration: 16,
-        repeat: Infinity,
-        ease: "linear",
+    <div
+      style={{
+        animation: `${reverse ? "synttek-tech-column-reverse" : "synttek-tech-column"} 16s linear infinite`,
       }}
       className={`flex flex-col gap-4 pb-4 ${className}`}
     >
@@ -40,7 +33,7 @@ const TechColumn = ({ Technologies, className, reverse }) => {
           ))}
         </Fragment>
       ))}
-    </motion.div>
+    </div>
   );
 };
 

@@ -1,8 +1,7 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
-import ChatBot from "@/app/components/ChatBot";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
@@ -87,8 +86,7 @@ export default async function AboutPage({ params }) {
       <JsonLd data={structuredData} />
       <Navbar floating />
       <AboutPageContent locale={locale} />
-      <ChatBot />
-      <WhatsAppButton />
+      <FloatingWidgets />
       <Footer />
     </>
   );

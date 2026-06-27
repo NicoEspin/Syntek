@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import Footer from "@/app/components/(common)/Footer";
-import ChatBot from "@/app/components/ChatBot";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
@@ -68,8 +67,6 @@ export default async function BlogPostPage({ params }) {
   const { locale, slug } = await params;
   const post = getBlogPostBySlug(slug, locale);
 
-  setRequestLocale(locale);
-
   if (!post) {
     notFound();
   }
@@ -101,8 +98,7 @@ export default async function BlogPostPage({ params }) {
     <>
       <JsonLd data={postSchema} />
       <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} shareUrl={shareUrl} />
-      <ChatBot />
-      <WhatsAppButton />
+      <FloatingWidgets />
       <Footer />
     </>
   );

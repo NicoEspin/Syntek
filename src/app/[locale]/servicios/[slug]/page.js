@@ -1,10 +1,9 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
-import ChatBot from "@/app/components/ChatBot";
+import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
-import WhatsAppButton from "@/app/components/WhatsAppButton";
 import { routing } from "@/i18n/routing";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -80,8 +79,6 @@ export default async function ServicePage({ params }) {
     notFound();
   }
 
-  setRequestLocale(locale);
-
   const projects = getProjects(locale);
   const relatedProjects = projects.filter((project) =>
     service.relatedProjectIds.includes(project.id),
@@ -123,8 +120,7 @@ export default async function ServicePage({ params }) {
         relatedProjects={relatedProjects}
         relatedServices={relatedServices}
       />
-      <ChatBot />
-      <WhatsAppButton />
+      <FloatingWidgets />
       <Footer />
     </>
   );

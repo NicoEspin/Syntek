@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import emailjs from "@emailjs/browser";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import { cn } from "@/lib/utils";
 import {
@@ -95,6 +93,7 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [ToastContainerComponent, setToastContainerComponent] = useState(null);
 
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-5%" });
@@ -104,12 +103,11 @@ const Contact = () => {
 
   const linksRef = useRef(null);
   const isLinksInView = useInView(linksRef, { once: true, margin: "-10%" });
-
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
-    }
-  }, []);
+  const emailJsRef = useRef(null);
+  const toastRef = useRef(null);
+  const emailJsPromiseRef = useRef(null);
+  const toastPromiseRef = useRef(null);
+  const emailJsInitializedRef = useRef(false);
 
   const contactMethods = [
     {
@@ -146,28 +144,79 @@ const Contact = () => {
     setForm((c) => ({ ...c, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const ensureToastify = useCallback(async () => {
+    if (toastRef.current) {
+      return toastRef.current;
+    }
+
+    if (!toastPromiseRef.current) {
+      toastPromiseRef.current = import("react-toastify").then((module) => {
+        toastRef.current = module.toast;
+        setToastContainerComponent(() => module.ToastContainer);
+        return module.toast;
+      });
+    }
+
+    return toastPromiseRef.current;
+  }, []);
+
+  const ensureEmailJs = useCallback(async () => {
+    if (emailJsRef.current) {
+      return emailJsRef.current;
+    }
+
+    if (!emailJsPromiseRef.current) {
+      emailJsPromiseRef.current = import("@emailjs/browser").then((module) => {
+        emailJsRef.current = module.default;
+
+        if (
+          !emailJsInitializedRef.current &&
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        ) {
+          emailJsRef.current.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+          emailJsInitializedRef.current = true;
+        }
+
+        return emailJsRef.current;
+      });
+    }
+
+    return emailJsPromiseRef.current;
+  }, []);
+
+  const warmUpContactLibs = useCallback(() => {
+    void ensureToastify();
+
+    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      void ensureEmailJs();
+    }
+  }, [ensureEmailJs, ensureToastify]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const toast = await ensureToastify();
 
     if (!serviceId || !templateId || !publicKey) {
       toast.error(t("config_error"));
       return;
     }
 
+    const emailjs = await ensureEmailJs();
+
     setLoading(true);
     const send = emailjs.send(
       serviceId,
       templateId,
-        {
-          from_name: form.name,
-          to_name: "Synttek",
-          from_email: form.email,
-          to_email: BUSINESS_EMAIL,
-          message: form.message,
-        },
+      {
+        from_name: form.name,
+        to_name: "Synttek",
+        from_email: form.email,
+        to_email: BUSINESS_EMAIL,
+        message: form.message,
+      },
       publicKey,
     );
 
@@ -189,17 +238,19 @@ const Contact = () => {
       aria-labelledby="contact-heading"
       className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
-      <ToastContainer
-        position="bottom-right"
-        autoClose={4000}
-        theme="dark"
-        pauseOnHover
-        toastClassName={() =>
-          "rounded-2xl border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
-        }
-        bodyClassName={() => "text-sm font-medium text-white/88"}
-        progressClassName={() => "!bg-[#A1E233]"}
-      />
+      {ToastContainerComponent ? (
+        <ToastContainerComponent
+          position="bottom-right"
+          autoClose={4000}
+          theme="dark"
+          pauseOnHover
+          toastClassName={() =>
+            "rounded-2xl border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+          }
+          bodyClassName={() => "text-sm font-medium text-white/88"}
+          progressClassName={() => "!bg-[#A1E233]"}
+        />
+      ) : null}
 
       {/* Fondos atmosféricos */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -296,6 +347,8 @@ const Contact = () => {
 
               <form
                 onSubmit={handleSubmit}
+                onFocusCapture={warmUpContactLibs}
+                onPointerEnter={warmUpContactLibs}
                 className="flex flex-col gap-6 no-autofill"
               >
                 <div className="grid gap-5 sm:grid-cols-2">

@@ -30,7 +30,7 @@ export default function ProjectsClient({ projects, locale }) {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#0a0a0a] pb-24 pt-28 md:pt-32">
-      <ProjectCursor />
+      <ProjectCursor label={t("viewProject")} />
 
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(161,226,51,0.08),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.04),transparent_26%)]" />
 

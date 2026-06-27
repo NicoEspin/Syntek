@@ -125,7 +125,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
 
   return (
     <main className="overflow-hidden bg-[#0a0a0a] text-white">
-      <ProjectCursor />
+      <ProjectCursor label={t("viewProject")} />
 
       <section ref={heroRef} className="relative px-4 pb-28 pt-32 md:px-5 md:pt-36 lg:px-10 xl:px-24">
         <div aria-hidden className="pointer-events-none absolute inset-0">
