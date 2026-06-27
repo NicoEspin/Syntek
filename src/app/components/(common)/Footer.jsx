@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
 import { getPrimaryServices } from "@/data/services";
 import {
@@ -15,12 +15,12 @@ const Footer = async () => {
   const serviceLinks = getPrimaryServices(locale);
 
   const links = [
-    { key: "home", href: `/${locale}` },
-    { key: "services", href: `/${locale}/servicios` },
+    { key: "home", href: "/" },
+    { key: "services", href: "/servicios" },
     { key: "projects", href: `/${locale}/#projects` },
-    { key: "blog", href: `/${locale}/blogs` },
-    { key: "about", href: `/${locale}/sobre-nosotros` },
-    { key: "contact", href: `/${locale}/contacto` },
+    { key: "blog", href: "/blogs" },
+    { key: "about", href: "/sobre-nosotros" },
+    { key: "contact", href: "/contacto" },
   ];
 
   const channelLinks = [
@@ -88,7 +88,7 @@ const Footer = async () => {
 
             {/* Brand */}
             <div className="col-span-2 md:col-span-1 flex flex-col gap-5">
-              <Link href={`/${locale}`} className="group flex items-center gap-2.5 w-fit">
+              <Link href="/" className="group flex items-center gap-2.5 w-fit">
                 <div className="flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] group-hover:border-white/20 transition-colors duration-300">
                   <Image
                     src={syntekIcon}
@@ -180,7 +180,7 @@ const Footer = async () => {
                 {serviceLinks.map((service) => (
                   <Link
                     key={service.slug}
-                    href={`/${locale}/servicios/${service.slug}`}
+                    href={`/servicios/${service.slug}`}
                     className="rounded-full border border-white/8 px-2.5 py-1 text-[9px] uppercase tracking-[0.15em] text-white/30 hover:border-primary1/25 hover:text-primary1 transition-all duration-300"
                   >
                     {service.shortLabel}

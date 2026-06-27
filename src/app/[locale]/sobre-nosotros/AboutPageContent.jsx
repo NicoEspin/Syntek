@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import About from "@/app/sections/About";
 import Breadcrumbs from "@/app/components/(common)/Breadcrumbs";
@@ -71,7 +71,7 @@ export default function AboutPageContent({ locale }) {
   const t = useTranslations("AboutPage");
   const shouldReduceMotion = useReducedMotion();
   const breadcrumbItems = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
+    { label: t("breadcrumbHome"), href: "/" },
     { label: t("breadcrumbCurrent") },
   ];
 
@@ -154,14 +154,14 @@ export default function AboutPageContent({ locale }) {
 
               <div className="mt-8 space-y-3">
                 <Link
-                  href={`/${locale}/contacto`}
+                  href="/contacto"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary1 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-[#b7ff1f]"
                 >
                   <span>{t("primaryCta")}</span>
                   <ArrowUpRight className="size-4" />
                 </Link>
                 <Link
-                  href={`/${locale}/servicios/desarrollo-web`}
+                  href="/servicios/desarrollo-web"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-300 hover:border-primary1/20 hover:text-white"
                 >
                   <span>{t("secondaryCta")}</span>

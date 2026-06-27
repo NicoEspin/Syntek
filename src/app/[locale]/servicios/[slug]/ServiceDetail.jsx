@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -111,8 +111,8 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
   const shouldReduceMotion = useReducedMotion();
   const accent = SERVICE_ACCENT_MAP[service.slug] ?? "#A1E233";
   const breadcrumbItems = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
-    { label: t("breadcrumbsServices"), href: `/${locale}/servicios` },
+    { label: t("breadcrumbHome"), href: "/" },
+    { label: t("breadcrumbsServices"), href: "/servicios" },
     { label: service.shortLabel },
   ];
   const heroRef = useRef(null);
@@ -292,14 +292,14 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
 
               <div className="mt-8 space-y-3">
                 <Link
-                  href={`/${locale}/contacto`}
+                  href="/contacto"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary1 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-[#b7ff1f]"
                 >
                   <span>{t("primaryCta")}</span>
                   <ArrowUpRight className="size-4" />
                 </Link>
                 <Link
-                  href={`/${locale}/projects`}
+                  href="/projects"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-300 hover:border-primary1/20 hover:text-white"
                 >
                   <span>{t("secondaryCta")}</span>
@@ -620,7 +620,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
                   transition={{ duration: shouldReduceMotion ? 0.2 : 0.78, delay: index * 0.06, ease }}
                 >
                   <Link
-                    href={`/${locale}/servicios/${relatedService.slug}`}
+                    href={`/servicios/${relatedService.slug}`}
                     className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/[0.07] bg-neutral-950/80 p-7 shadow-[0_16px_48px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-white/[0.13]"
                   >
                     {/* Accent top bar */}
@@ -707,7 +707,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
             </div>
 
             <Link
-              href={`/${locale}/contacto`}
+              href="/contacto"
               className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-primary1 px-7 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-black transition-all duration-300 hover:bg-[#b7ff1f] hover:shadow-[0_8px_32px_rgba(161,226,51,0.28)]"
             >
               <span>{t("primaryCta")}</span>

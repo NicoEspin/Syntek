@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}${PATH}`,
+      url: getCanonicalUrl(locale, PATH),
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -64,14 +64,14 @@ export default async function ContactPage({ params }) {
     {
       "@type": "ContactPage",
       name: locale === "es" ? "Contacto Synttek" : "Synttek Contact",
-      url: `${SITE_URL}/${locale}${PATH}`,
+      url: getCanonicalUrl(locale, PATH),
       mainEntity: buildOrganizationJsonLd(),
     },
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
         name: locale === "es" ? "Contacto" : "Contact",
-        item: `${SITE_URL}/${locale}${PATH}`,
+        item: getCanonicalUrl(locale, PATH),
       },
     ]),
   ]);

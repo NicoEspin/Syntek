@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import Breadcrumbs from "@/app/components/(common)/Breadcrumbs";
 import Contact from "@/app/sections/Contact";
@@ -71,7 +71,7 @@ export default function ContactPageContent({ locale }) {
   const t = useTranslations("ContactPage");
   const shouldReduceMotion = useReducedMotion();
   const breadcrumbItems = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
+    { label: t("breadcrumbHome"), href: "/" },
     { label: t("breadcrumbCurrent") },
   ];
 
@@ -142,7 +142,7 @@ export default function ContactPageContent({ locale }) {
               </div>
 
               <Link
-                href={`/${locale}/servicios/desarrollo-web`}
+                href="/servicios/desarrollo-web"
                 className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-300 hover:border-primary1/20 hover:text-white"
               >
                 <span>{t("secondaryCta")}</span>

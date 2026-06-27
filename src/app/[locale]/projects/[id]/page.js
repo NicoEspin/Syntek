@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+import { buildCreativeWorkJsonLd } from "@/lib/jsonLd";
 
 import { getProjectById, getProjects, projects } from "@/data/projects";
 
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/projects/${id}`,
+      url: getCanonicalUrl(locale, `/projects/${id}`),
       siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "article",
@@ -80,24 +81,20 @@ export default async function ProjectPage({ params }) {
 
   const currentIndex = localizedProjects.findIndex((entry) => entry.id === project.id);
   const nextProject = localizedProjects[(currentIndex + 1) % localizedProjects.length];
+  const projectUrl = getCanonicalUrl(locale, `/projects/${project.id}`);
 
-  const projectSchema = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
+  const projectSchema = buildCreativeWorkJsonLd({
     name: project.title,
-    url: `${SITE_URL}/${locale}/projects/${project.id}`,
-    author: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
     description:
       project?.description?.short ||
       (locale === "es"
         ? "Proyecto desarrollado por Synttek."
         : "Project built by Synttek."),
-    inLanguage: locale,
-  };
+    url: projectUrl,
+    image: `${SITE_URL}${project.coverImage}`,
+    dateModified: project.updatedAt,
+    locale,
+  });
 
   return (
     <>

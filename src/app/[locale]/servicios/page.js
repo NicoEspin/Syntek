@@ -2,7 +2,7 @@ import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
-import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+import { getCanonicalUrl, getLanguageAlternates, getLocalizedPath } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getFeaturedProjects } from "@/data/projects";
 import { getPrimaryServices } from "@/data/services";
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}${PATH}`,
+      url: getCanonicalUrl(locale, PATH),
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -69,7 +69,7 @@ export default async function ServicesPage({ params }) {
   const structuredData = buildGraphJsonLd([
     buildCollectionPageJsonLd({
       name: locale === "es" ? "Servicios Synttek" : "Synttek Services",
-      path: `/${locale}${PATH}`,
+      path: getLocalizedPath(locale, PATH),
       description:
         locale === "es"
           ? "Hub comercial de servicios de Synttek."
@@ -78,7 +78,7 @@ export default async function ServicesPage({ params }) {
         "@type": "Service",
         name: service.shortLabel,
         serviceType: service.title,
-        url: `${SITE_URL}/${locale}/servicios/${service.slug}`,
+        url: getCanonicalUrl(locale, `/servicios/${service.slug}`),
       })),
     }),
     buildOrganizationJsonLd(),
@@ -87,7 +87,7 @@ export default async function ServicesPage({ params }) {
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
         name: locale === "es" ? "Servicios" : "Services",
-        item: `${SITE_URL}/${locale}${PATH}`,
+        item: getCanonicalUrl(locale, PATH),
       },
     ]),
   ]);

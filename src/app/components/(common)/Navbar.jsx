@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import {
   AnimatePresence,
@@ -12,10 +11,12 @@ import {
   useScroll,
 } from "framer-motion";
 import { X } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import logo from "@/app/assets/logo.svg";
 import { premiumEase, subtleEase } from "@/lib/animations";
+import { getLocalizedPath } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
@@ -94,6 +95,7 @@ const Navbar = ({ floating = false }) => {
   const headerRef = useRef(null);
   const locale = useLocale();
   const pathname = usePathname();
+  const params = useParams();
   const router = useRouter();
   const { scrollY } = useScroll();
   const shouldReduceMotion = useReducedMotion();
@@ -102,22 +104,21 @@ const Navbar = ({ floating = false }) => {
     setIsScrolled(latest > 18);
   });
 
-  const baseHomePath = `/${locale}`;
-  const isHomePage =
-    pathname === baseHomePath || pathname === `${baseHomePath}/`;
-  const isServicesPage = pathname.startsWith(`${baseHomePath}/servicios`);
-  const isProjectsPage = pathname.startsWith(`${baseHomePath}/projects`);
-  const isBlogPage = pathname.startsWith(`${baseHomePath}/blogs`);
-  const isAboutPage = pathname === `${baseHomePath}/sobre-nosotros`;
-  const isContactPage = pathname === `${baseHomePath}/contacto`;
+  const baseHomePath = getLocalizedPath(locale, "/");
+  const isHomePage = pathname === "/";
+  const isServicesPage = pathname.startsWith("/servicios");
+  const isProjectsPage = pathname.startsWith("/projects");
+  const isBlogPage = pathname.startsWith("/blogs");
+  const isAboutPage = pathname === "/sobre-nosotros";
+  const isContactPage = pathname === "/contacto";
 
   const navLinks = useMemo(
     () => [
-      { key: "home", label: t("home"), href: isHomePage ? "#" : baseHomePath },
+      { key: "home", label: t("home"), href: isHomePage ? "#" : "/" },
       {
         key: "services",
         label: t("services"),
-        href: `${baseHomePath}/servicios`,
+        href: "/servicios",
       },
       {
         key: "tools",
@@ -127,17 +128,17 @@ const Navbar = ({ floating = false }) => {
       {
         key: "projects",
         label: t("projects"),
-        href: `${baseHomePath}/projects`,
+        href: "/projects",
       },
       {
         key: "blog",
         label: t("blog"),
-        href: `${baseHomePath}/blogs`,
+        href: "/blogs",
       },
       {
         key: "about",
         label: t("about"),
-        href: `${baseHomePath}/sobre-nosotros`,
+        href: "/sobre-nosotros",
       },
       {
         key: "faqs",
@@ -148,7 +149,7 @@ const Navbar = ({ floating = false }) => {
     [baseHomePath, isHomePage, t],
   );
 
-  const contactHref = `${baseHomePath}/contacto`;
+  const contactHref = "/contacto";
 
   const handleNavClick = (event, href) => {
     if (!isHomePage || !href.startsWith("#")) {
@@ -318,20 +319,15 @@ const Navbar = ({ floating = false }) => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const buildLocalePath = (nextLocale) => {
-    const localizedPath = pathname.replace(
-      /^\/(es|en)(?=\/|$)/,
-      `/${nextLocale}`,
-    );
-    const hash = typeof window !== "undefined" ? window.location.hash : "";
-    return `${localizedPath}${hash}`;
-  };
-
   const switchLanguage = (nextLocale) => {
     if (nextLocale === locale) return;
+
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+    const localizedPath = getLocalizedPath(nextLocale, pathname, params);
+
     startTransition(() => {
       setIsOpen(false);
-      router.push(buildLocalePath(nextLocale));
+      router.push(`${localizedPath}${hash}`);
     });
   };
 
@@ -434,7 +430,7 @@ const Navbar = ({ floating = false }) => {
             <div className="flex items-center justify-between gap-6 px-4 py-3 md:px-6">
               {/* ── ZONA IZQUIERDA: Logo + disponibilidad ─────────────────── */}
               <div className="flex items-center gap-4 min-w-0">
-                <Link href={`/${locale}`} className="shrink-0">
+                <Link href="/" className="shrink-0">
                   <motion.span
                     whileHover={shouldReduceMotion ? undefined : { opacity: 0.8 }}
                     transition={{ duration: 0.2, ease: premiumEase }}

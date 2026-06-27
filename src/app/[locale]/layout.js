@@ -22,15 +22,18 @@ const GTM_ID = "GTM-57R9P9LF";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
+  manifest: "/manifest.webmanifest",
+  applicationName: SITE_NAME,
   title: {
     default: SITE_NAME,
     template: `%s | ${SITE_NAME}`,
   },
-  description: "Agencia de desarrollo web y software",
+  description: "Boutique digital agency for web development, custom software and automation.",
   robots: {
     index: true,
     follow: true,
   },
+  themeColor: "#0a0a0a",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -39,6 +42,22 @@ export const metadata = {
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: "/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
+        alt: SITE_NAME,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/android-chrome-512x512.png"],
   },
 };
 

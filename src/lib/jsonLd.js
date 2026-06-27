@@ -60,15 +60,54 @@ export const buildProfessionalServiceJsonLd = () => ({
   ],
 });
 
+export const buildPublisherJsonLd = () => ({
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/android-chrome-512x512.png`,
+    width: 512,
+    height: 512,
+  },
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+});
+
 export const buildWebsiteJsonLd = (locale) => ({
   "@type": "WebSite",
   name: SITE_NAME,
   url: `${SITE_URL}/${locale}`,
   inLanguage: locale,
-  publisher: {
-    "@type": "Organization",
+  publisher: buildPublisherJsonLd(),
+});
+
+export const buildWebPageJsonLd = ({
+  type = "WebPage",
+  name,
+  description,
+  url,
+  locale,
+  about,
+  mainEntity,
+}) => ({
+  "@type": type,
+  name,
+  description,
+  url,
+  inLanguage: locale,
+  isPartOf: {
+    "@type": "WebSite",
     name: SITE_NAME,
-    url: SITE_URL,
+    url: `${SITE_URL}/${locale}`,
+    publisher: buildPublisherJsonLd(),
+  },
+  about,
+  mainEntity,
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/android-chrome-512x512.png`,
+    width: 512,
+    height: 512,
   },
 });
 
@@ -119,6 +158,67 @@ export const buildCollectionPageJsonLd = ({ name, path, description, items }) =>
   url: `${SITE_URL}${path}`,
   description,
   mainEntity: items,
+});
+
+export const buildItemListJsonLd = (items) => ({
+  "@type": "ItemList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    ...item,
+  })),
+});
+
+export const buildBlogPostingJsonLd = ({
+  title,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified,
+  authorName,
+  locale,
+}) => ({
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified: dateModified ?? datePublished,
+  author: {
+    "@type": "Person",
+    name: authorName,
+  },
+  publisher: buildPublisherJsonLd(),
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+  inLanguage: locale,
+});
+
+export const buildCreativeWorkJsonLd = ({
+  name,
+  description,
+  url,
+  image,
+  dateModified,
+  locale,
+}) => ({
+  "@type": "CreativeWork",
+  name,
+  description,
+  url,
+  image,
+  dateModified,
+  author: buildPublisherJsonLd(),
+  publisher: buildPublisherJsonLd(),
+  inLanguage: locale,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
 });
 
 export const buildGraphJsonLd = (nodes) => ({

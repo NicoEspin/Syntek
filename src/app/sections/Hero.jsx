@@ -5,6 +5,7 @@ import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { getLocalizedPath } from "@/lib/seo";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
@@ -460,7 +461,7 @@ const Hero = () => {
         >
           {/* CTA principal */}
           <motion.a
-            href={`/${locale}/contacto`}
+            href={getLocalizedPath(locale, "/contacto")}
             whileHover={{ scale: 1.03, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.2, ease }}

@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import img from "@/app/assets/3D.webp";
 import TitleSection from "@/app/components/(common)/TitleSection";
 
@@ -159,7 +159,6 @@ function ServiceRow({
 // ─── Componente principal ─────────────────────────────────────────────────────
 const Services = () => {
   const t = useTranslations("Services");
-  const locale = useLocale();
   const [activeIndex, setActiveIndex] = useState(0); // primer servicio activo por defecto
 
   const headerRef = useRef(null);
@@ -170,37 +169,37 @@ const Services = () => {
       titleKey: "web-development",
       descKey: "web-development-description",
       tags: ["Next.js", "React", "Node.js", "TypeScript"],
-      href: `/${locale}/servicios/desarrollo-web`,
+      href: "/servicios/desarrollo-web",
     },
     {
       titleKey: "landing-pages",
       descKey: "landing-pages-description",
       tags: ["Copy", "Motion", "Leads", "Ads"],
-      href: `/${locale}/servicios/landing-pages`,
+      href: "/servicios/landing-pages",
     },
     {
       titleKey: "custom-software",
       descKey: "custom-software-description",
       tags: ["Dashboards", "APIs", "React", "Product"],
-      href: `/${locale}/servicios/software-a-medida`,
+      href: "/servicios/software-a-medida",
     },
     {
       titleKey: "automations",
       descKey: "automations-description",
       tags: ["AI/ML", "n8n", "API", "Workflows"],
-      href: `/${locale}/servicios/automatizaciones`,
+      href: "/servicios/automatizaciones",
     },
     {
       titleKey: "ecommerce",
       descKey: "ecommerce-description",
       tags: ["Shopify", "WooCommerce", t("tags.conversion")],
-      href: `/${locale}/servicios/ecommerce`,
+      href: "/servicios/ecommerce",
     },
     {
       titleKey: "branding",
       descKey: "branding-description",
       tags: [t("tags.identity"), t("tags.logo"), t("tags.guidelines")],
-      href: `/${locale}/servicios/branding`,
+      href: "/servicios/branding",
     },
   ];
 

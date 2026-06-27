@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}${PATH}`,
+      url: getCanonicalUrl(locale, PATH),
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -64,7 +64,7 @@ export default async function AboutPage({ params }) {
     {
       "@type": "AboutPage",
       name: locale === "es" ? "Sobre Synttek" : "About Synttek",
-      url: `${SITE_URL}/${locale}${PATH}`,
+      url: getCanonicalUrl(locale, PATH),
       isPartOf: {
         "@type": "WebSite",
         name: SITE_NAME,
@@ -76,7 +76,7 @@ export default async function AboutPage({ params }) {
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
         name: locale === "es" ? "Sobre nosotros" : "About us",
-        item: `${SITE_URL}/${locale}${PATH}`,
+        item: getCanonicalUrl(locale, PATH),
       },
     ]),
   ]);

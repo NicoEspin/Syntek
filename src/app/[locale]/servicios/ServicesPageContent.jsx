@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import Breadcrumbs from "@/app/components/(common)/Breadcrumbs";
 import TitleSection from "@/app/components/(common)/TitleSection";
@@ -25,7 +25,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
   const t = useTranslations("ServicesIndexPage");
   const shouldReduceMotion = useReducedMotion();
   const breadcrumbItems = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
+    { label: t("breadcrumbHome"), href: "/" },
     { label: t("breadcrumbCurrent") },
   ];
 
@@ -183,14 +183,14 @@ export default function ServicesPageContent({ locale, services, featuredProjects
 
               <div className="mt-8 space-y-3">
                 <Link
-                  href={`/${locale}/contacto`}
+                  href="/contacto"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-primary1 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-[#b7ff1f]"
                 >
                   <span>{t("primaryCta")}</span>
                   <ArrowUpRight className="size-4" />
                 </Link>
                 <Link
-                  href={`/${locale}/projects`}
+                  href="/projects"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-300 hover:border-primary1/20 hover:text-white"
                 >
                   <span>{t("secondaryCta")}</span>
@@ -252,7 +252,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                   transition={{ duration: shouldReduceMotion ? 0.2 : 0.78, delay: index * 0.06, ease }}
                 >
                   <Link
-                    href={`/${locale}/servicios/${service.slug}`}
+                    href={`/servicios/${service.slug}`}
                     className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/[0.07] bg-neutral-950/80 p-7 shadow-[0_16px_48px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-white/[0.13]"
                   >
                     {/* Accent top bar */}

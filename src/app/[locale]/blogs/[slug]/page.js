@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+import { buildBlogPostingJsonLd } from "@/lib/jsonLd";
 
 import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/blogs/${slug}`,
+      url: getCanonicalUrl(locale, `/blogs/${slug}`),
       siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "article",
@@ -74,25 +75,15 @@ export default async function BlogPostPage({ params }) {
   const relatedPosts = getRelatedBlogPosts(slug, locale, 2);
   const shareUrl = getCanonicalUrl(locale, `/blogs/${slug}`);
 
-  const postSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
+  const postSchema = buildBlogPostingJsonLd({
+    title: post.title,
     description: post.excerpt,
+    url: shareUrl,
     image: `${SITE_URL}${post.image.src}`,
     datePublished: post.date,
-    author: {
-      "@type": "Person",
-      name: post.author.name,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    mainEntityOfPage: `${SITE_URL}/${locale}/blogs/${slug}`,
-    inLanguage: locale,
-  };
+    authorName: post.author.name,
+    locale,
+  });
 
   return (
     <>

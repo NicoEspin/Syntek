@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useMemo, useRef } from "react";
@@ -230,7 +230,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
                         {relatedServiceCards.map((service) => (
                           <Link
                             key={service.slug}
-                            href={`/${locale}/servicios/${service.slug}`}
+                            href={`/servicios/${service.slug}`}
                             className="inline-flex items-center justify-between rounded-2xl border border-white/10 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-white/60 transition-colors duration-300 hover:border-primary1/20 hover:text-primary1"
                           >
                             <span>{service.shortLabel}</span>
@@ -260,7 +260,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
       </section>
 
       <Link
-        href={`/${locale}/projects/${nextProject.id}`}
+        href={`/projects/${nextProject.id}`}
         data-cursor-zone
         className="group relative block cursor-none overflow-hidden border-t border-white/8"
       >

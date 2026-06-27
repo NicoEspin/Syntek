@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `${SITE_URL}/${locale}${path}`,
+      url: getCanonicalUrl(locale, path),
       siteName: SITE_NAME,
       locale: locale === "es" ? "es_AR" : "en_US",
       type: "website",
@@ -104,9 +104,9 @@ export default async function ServicePage({ params }) {
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
         name: t("breadcrumbsServices"),
-        item: `${SITE_URL}/${locale}/servicios`,
+        item: getCanonicalUrl(locale, "/servicios"),
       },
-      { name: service.shortLabel, item: `${SITE_URL}/${locale}${path}` },
+      { name: service.shortLabel, item: getCanonicalUrl(locale, path) },
     ]),
   ]);
 
