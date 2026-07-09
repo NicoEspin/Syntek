@@ -11,9 +11,9 @@ import {
   useScroll,
 } from "framer-motion";
 import { X } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter as useNextRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import logo from "@/app/assets/logo.svg";
 import { premiumEase, subtleEase } from "@/lib/animations";
 import { getLocalizedPath } from "@/lib/seo";
@@ -96,7 +96,7 @@ const Navbar = ({ floating = false }) => {
   const locale = useLocale();
   const pathname = usePathname();
   const params = useParams();
-  const router = useRouter();
+  const router = useNextRouter();
   const { scrollY } = useScroll();
   const shouldReduceMotion = useReducedMotion();
 
