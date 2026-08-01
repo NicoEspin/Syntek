@@ -41,6 +41,97 @@
     }
   },
 
+  "HomeV2": {
+    "waMessage": "Hi Synttek, I'd like a diagnosis of my digital presence",
+    "hero": {
+      "eyebrow": "Development agency · Córdoba, AR",
+      "headlinePre": "Web Development, Software and Automation in",
+      "headlineHighlight": "Córdoba",
+      "subtitle": "We build websites, catalogs, ecommerce stores, systems and automations for businesses that already have momentum but need to organize inquiries, build more trust and stop depending on manual processes.",
+      "ctaPrimary": "Request a diagnosis on WhatsApp",
+      "ctaSecondary": "See solutions"
+    },
+    "transform": {
+      "sectionLabel": "The transformation",
+      "title": "From improvised presence to a digital system built to sell",
+      "subtitle": "We move from scattered actions to a digital ecosystem that attracts, organizes and converts.",
+      "antesLabel": "Before",
+      "antesItems": [
+        "Everything gets answered over WhatsApp",
+        "Information is scattered",
+        "Customers can't quickly tell what you offer",
+        "There's no clear measurement",
+        "The website, if it exists, doesn't convert"
+      ],
+      "connectorLabel": "Strategy + design + technology",
+      "dragHint": "Drag to see the transformation",
+      "despuesStatus": "System active",
+      "despuesLabel": "After, with Synttek",
+      "despuesItems": [
+        "A clear, professional website",
+        "Better-qualified inquiries",
+        "Catalog, landing page, ecommerce or system, based on your business",
+        "Simple automations",
+        "A flow built to capture, organize and convert"
+      ],
+      "indicators": [
+        { "number": "01", "label": "Clarity — clearer messaging" },
+        { "number": "02", "label": "Automation — fewer manual tasks" },
+        { "number": "03", "label": "Conversion — more sales opportunities" }
+      ]
+    },
+    "solutions": {
+      "sectionLabel": "Solutions",
+      "title": "We don't sell standalone tools. We choose the right solution for your business.",
+      "subtitle": "We pick the tool based on your business goal, not the other way around.",
+      "activeLabel": "Active solution",
+      "available": "solutions",
+      "rowCta": "Let's talk about this",
+      "cards": [
+        { "tag": "Inquiries", "title": "I want more inquiries", "description": "Landing pages, local SEO, forms and direct WhatsApp." },
+        { "tag": "Online sales", "title": "I want to sell or take orders online", "description": "Digital catalog, ecommerce, order system and integrations." },
+        { "tag": "Automation", "title": "I want to stop answering the same questions", "description": "Automations that follow predefined flows and rules: FAQs, WhatsApp and forms that resolve repetitive inquiries." },
+        { "tag": "Internal processes", "title": "I want to organize internal processes", "description": "Custom software, dashboards, a simple CRM and management systems." },
+        { "tag": "AI agent", "title": "I want to add an AI-powered team member", "description": "An AI agent that understands context, decides what action to take, updates your systems and escalates cases to a person when needed." }
+      ]
+    },
+    "process": {
+      "sectionLabel": "How we work",
+      "title": "We don't start with technology. We start by understanding your business.",
+      "steps": [
+        { "number": "01", "title": "Diagnosis", "description": "We review where you stand today: which channels you use, where inquiries get lost and what's holding you back." },
+        { "number": "02", "title": "Strategy", "description": "We define which solution makes sense for your business: website, landing page, ecommerce, automation or system." },
+        { "number": "03", "title": "Design & development", "description": "We build with a focus on clarity and conversion, not just aesthetics." },
+        { "number": "04", "title": "Launch & improve", "description": "We publish, measure real results and adjust with the business already up and running." }
+      ]
+    },
+    "faq": {
+      "sectionLabel": "FAQ",
+      "title": "Frequently asked questions",
+      "askMore": "Got another question?",
+      "askMoreDetail": "We reply on WhatsApp the same day.",
+      "ctaBtn": "Message on WhatsApp",
+      "questionsCount": "questions",
+      "items": [
+        { "question": "Do I need a website if I already sell on Instagram?", "answer": "Instagram helps you showcase your work, but it doesn't always convert: a lot of people search on Google, want clear pricing, or compare you to others before messaging you. A website organizes that part and makes Instagram work better — it doesn't replace it." },
+        { "question": "What's better: a website, landing page, ecommerce or digital catalog?", "answer": "It depends on your goal. If you need to capture inquiries from a specific campaign, a landing page. If you want to sell online, an ecommerce. If you want to show your full offering without charging online, a digital catalog. During the diagnosis we tell you which one makes sense for your business." },
+        { "question": "How much does a website cost in Argentina in 2026?", "answer": "It varies with scope: a simple landing page isn't the same as an ecommerce or a custom system. We put together a proposal with a clear price after the diagnosis — no surprises, no generic packages." },
+        { "question": "Can you connect the website to WhatsApp?", "answer": "Yes. It's one of the most requested automations: forms that go straight to your WhatsApp, quick-contact buttons and flows that organize the inquiry before someone even messages you." },
+        { "question": "Can I update my website without knowing how to code?", "answer": "Yes, we work with simple panels so you can change text, prices or images without depending on us for every detail." },
+        { "question": "Do you work with businesses in Córdoba and Argentina?", "answer": "Yes, we're an agency based in Córdoba and we work with businesses across Argentina and LATAM, remotely or in person depending on the project." },
+        { "question": "Do you also build automations or internal systems?", "answer": "Yes. Besides websites and ecommerce, we build custom software, dashboards, simple CRMs and automations to organize internal processes." },
+        { "question": "How long does a professional web project take?", "answer": "A landing page can be ready in a few weeks; an ecommerce or custom system takes longer depending on scope. During the strategy stage we give you a concrete timeline." }
+      ]
+    },
+    "ctaFinal": {
+      "title": "If your business already has momentum, it's time to get your <hl>digital presence</hl> in order",
+      "subtitle": "We help you pinpoint which part of your digital flow is holding back inquiries, sales or productivity, and propose a clear solution: website, landing page, ecommerce, automation or custom software.",
+      "ctaPrimary": "Request a diagnosis on WhatsApp",
+      "ctaSecondary": "Send an inquiry",
+      "marquee": ["Websites", "Ecommerce", "Automations", "Custom software", "Landing pages", "Local SEO"]
+    }
+  },
+
   "Navbar": {
     "home": "Home",
     "about": "About Us",
