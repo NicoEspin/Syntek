@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -23,8 +23,24 @@ export default function ProjectCard({
   const locale = localeProp || useLocale();
   const t = useTranslations("Projects");
   const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const prefersReduced = useReducedMotion();
   const href = `/${locale}/projects/${project.id}`;
   const categoryLabel = t(`categories.${project.category}`);
+
+  // tilt 3D en hover — sólo el card "featured" (el que se usa en la home),
+  // JS puro para no pelear con el whileHover de framer en la imagen interna.
+  const handleTiltMove = (e) => {
+    if (prefersReduced) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const py = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+    e.currentTarget.style.transform = `perspective(1000px) rotateX(${py}deg) rotateY(${px}deg) scale(1.02)`;
+    e.currentTarget.style.transition = "transform 0.1s ease-out";
+  };
+  const handleTiltLeave = (e) => {
+    e.currentTarget.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+    e.currentTarget.style.transition = "transform 0.6s cubic-bezier(0.16,1,0.3,1)";
+  };
 
   if (variant === "featured") {
     return (
@@ -39,6 +55,8 @@ export default function ProjectCard({
           initial={{ opacity: 0, y: 56 }}
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ ...transition, delay: index * 0.12 }}
+          onMouseMove={handleTiltMove}
+          onMouseLeave={handleTiltLeave}
           className={cn(
             "relative overflow-hidden rounded-3xl border border-white/8 bg-neutral-900/70 backdrop-blur-sm transition-colors duration-500 hover:border-primary1/30",
             "flex flex-col md:min-h-[30rem] md:flex-row",

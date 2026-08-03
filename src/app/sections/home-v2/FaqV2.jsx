@@ -4,24 +4,20 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
+import RevealBlock from "@/app/components/RevealBlock";
 import { getWhatsAppUrl } from "@/lib/business";
 
 const ease = [0.16, 1, 0.3, 1];
 
 // ─── Item de FAQ ──────────────────────────────────────────────────────────────
 function FaqItem({ question, answer, index, isOpen, onToggle }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-6%" });
   const accent = "#A1E233";
   const panelId = `faq-v2-panel-${index}`;
   const triggerId = `faq-v2-trigger-${index}`;
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 22 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.06, ease }}
+    <RevealBlock
+      delay={index * 0.06}
       className="group relative border-b border-white/[0.06] last:border-b-0"
     >
       <motion.div
@@ -81,7 +77,7 @@ function FaqItem({ question, answer, index, isOpen, onToggle }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </RevealBlock>
   );
 }
 
@@ -159,13 +155,7 @@ const FaqV2 = () => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.7, ease }}
-          className="mx-auto mt-16 flex max-w-3xl flex-col items-start justify-between gap-6 rounded-2xl border border-white/6 bg-neutral-950/50 px-7 py-6 sm:flex-row sm:items-center"
-        >
+        <RevealBlock className="mx-auto mt-16 flex max-w-3xl flex-col items-start justify-between gap-6 rounded-2xl border border-white/6 bg-neutral-950/50 px-7 py-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-medium text-white/70">{t("askMore")}</p>
             <p className="mt-1 text-xs text-white/28">{t("askMoreDetail")}</p>
@@ -184,7 +174,7 @@ const FaqV2 = () => {
               <path d="M1 7L7 1M7 1H2M7 1V6" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </motion.a>
-        </motion.div>
+        </RevealBlock>
       </div>
     </section>
   );

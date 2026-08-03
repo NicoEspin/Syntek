@@ -7,9 +7,20 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import img from "@/app/assets/3D.webp";
 import TitleSection from "@/app/components/(common)/TitleSection";
+import SplitHeadline from "@/app/components/SplitHeadline";
+import ParallaxImage from "@/app/components/ParallaxImage";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease } },
+};
 
 // Acento cromático único por servicio — dentro de la paleta oscura de Synttek
 const SERVICE_ACCENTS = [
@@ -34,15 +45,9 @@ function ServiceRow({
   ctaLabel,
   href,
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-8%" });
-
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, delay: index * 0.07, ease }}
+      variants={itemVariants}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       className="group relative border-b border-white/[0.06] last:border-b-0"
@@ -228,18 +233,20 @@ const Services = () => {
           <div className="lg:sticky lg:top-32">
             {/* Headline */}
             <div ref={headerRef} className="mb-10">
-              <div className="overflow-hidden">
-                <motion.h2
-                  id="services-heading"
-                  initial={{ y: "105%" }}
-                  animate={isHeaderInView ? { y: 0 } : {}}
-                  transition={{ duration: 1, delay: 0.05, ease }}
-                  className="text-[clamp(2.2rem,4.5vw,4rem)] font-black leading-[0.95] tracking-tight text-white"
-                >
-                  <span className="block">{t("title")}</span>
-                  <span className="block text-[#A1E233]">{t("green-title")}</span>
-                </motion.h2>
-              </div>
+              <h2
+                id="services-heading"
+                aria-label={`${t("title")} ${t("green-title")}`}
+                className="text-[clamp(2.2rem,4.5vw,4rem)] font-black leading-[0.95] tracking-tight text-white"
+              >
+                <SplitHeadline as="span" text={t("title")} ariaHidden className="block" />
+                <SplitHeadline
+                  as="span"
+                  text={t("green-title")}
+                  ariaHidden
+                  delay={(t("title").split(" ").length + 1) * 0.055}
+                  className="block text-[#A1E233]"
+                />
+              </h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
@@ -268,13 +275,15 @@ const Services = () => {
               />
 
               <div className="relative overflow-hidden rounded-3xl border border-white/6 bg-neutral-950/60 aspect-square max-w-[280px]">
-                <Image
-                  src={img}
-                  alt={t("image-alt")}
-                  fill
-                  className="object-cover opacity-80"
-                  sizes="280px"
-                />
+                <ParallaxImage range="-10%">
+                  <Image
+                    src={img}
+                    alt={t("image-alt")}
+                    fill
+                    className="scale-110 object-cover opacity-80"
+                    sizes="280px"
+                  />
+                </ParallaxImage>
                 {/* Overlay con gradiente */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/80 via-transparent to-transparent" />
 
@@ -326,25 +335,32 @@ const Services = () => {
               className="mb-0 h-px w-full bg-white/[0.06]"
             />
 
-            {services.map((service, i) => (
-              <ServiceRow
-                key={service.titleKey}
-                index={i}
-                title={t(service.titleKey)}
-                description={t(service.descKey)}
-                tags={service.tags}
-                accent={SERVICE_ACCENTS[i]}
-                isActive={activeIndex === i}
-                onEnter={() => setActiveIndex(i)}
-                ctaLabel={
-                  service.href.includes("/servicios/")
-                    ? t("view-service")
-                    : t("start-service")
-                }
-                href={service.href}
-                onLeave={() => {}} // mantiene el último activo al salir
-              />
-            ))}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-8%" }}
+            >
+              {services.map((service, i) => (
+                <ServiceRow
+                  key={service.titleKey}
+                  index={i}
+                  title={t(service.titleKey)}
+                  description={t(service.descKey)}
+                  tags={service.tags}
+                  accent={SERVICE_ACCENTS[i]}
+                  isActive={activeIndex === i}
+                  onEnter={() => setActiveIndex(i)}
+                  ctaLabel={
+                    service.href.includes("/servicios/")
+                      ? t("view-service")
+                      : t("start-service")
+                  }
+                  href={service.href}
+                  onLeave={() => {}} // mantiene el último activo al salir
+                />
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>

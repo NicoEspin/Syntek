@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useAnimate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimate, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Pointer from "@/app/components/Pointer";
+import MagneticButton from "@/app/components/MagneticButton";
+import AnimatedCounter from "@/app/components/AnimatedCounter";
+import RotatingWord from "@/app/components/RotatingWord";
 import { getWhatsAppUrl } from "@/lib/business";
 
 const ease = [0.16, 1, 0.3, 1];
@@ -102,9 +105,9 @@ function CodeCard({ strings }) {
 // ─── Card derecha: dashboard de métricas ─────────────────────────────────────
 function DashboardCard({ strings }) {
   const metrics = [
-    { label: strings.conversionLabel, value: "+147%", delta: strings.conversionDelta },
-    { label: strings.loadTimeLabel, value: "0.8s", delta: strings.loadTimeDelta },
-    { label: strings.leadsLabel, value: "2.4k", delta: strings.leadsDelta },
+    { label: strings.conversionLabel, target: 147, prefix: "+", suffix: "%", decimals: 0, delta: strings.conversionDelta },
+    { label: strings.loadTimeLabel, target: 0.8, suffix: "s", decimals: 1, delta: strings.loadTimeDelta },
+    { label: strings.leadsLabel, target: 2.4, suffix: "k", decimals: 1, delta: strings.leadsDelta },
   ];
   const bars = [38, 52, 44, 70, 61, 85, 78, 92, 68, 95, 82, 100];
 
@@ -158,7 +161,9 @@ function DashboardCard({ strings }) {
             >
               <div>
                 <p className="text-[10px] tracking-wide text-white/30">{m.label}</p>
-                <p className="text-xs font-semibold text-white">{m.value}</p>
+                <p className="text-xs font-semibold text-white">
+                  <AnimatedCounter target={m.target} prefix={m.prefix} suffix={m.suffix} decimals={m.decimals} />
+                </p>
               </div>
               <span className="rounded-full border border-[#A1E233]/15 bg-[#A1E233]/8 px-2 py-0.5 text-[10px] font-medium text-[#A1E233]">
                 {m.delta}
@@ -171,17 +176,36 @@ function DashboardCard({ strings }) {
   );
 }
 
+// entrada escalonada de los elementos centrales del hero. `initial` queda fijo
+// en "hidden" (SSR-safe, no es el LCP) y sólo `animate` cambia de "hidden" a
+// "visible" tras el mount — así el entrance realmente se reproduce en cliente
+// en vez de quedar "pegado" al primer render como pasa si se alterna `initial`.
+const heroVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, delay, ease },
+  }),
+};
+
 // ─── Componente principal ─────────────────────────────────────────────────────
 const HeroV2 = () => {
   const t = useTranslations("HomeV2");
   const tc = useTranslations("Homepage");
   const waHref = getWhatsAppUrl(t("waMessage"));
+  const rotatingLocations = t.raw("hero.rotatingLocations");
+  const prefersReduced = useReducedMotion();
+
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const [leftDesignScope, leftDesignAnimate] = useAnimate();
   const [leftPointerScope, leftPointerAnimate] = useAnimate();
   const [rightDesignScope, rightDesignAnimate] = useAnimate();
   const [rightPointerScope, rightPointerAnimate] = useAnimate();
   const heroRef = useRef(null);
+  const glowRef = useRef(null);
 
   const codeCardStrings = {
     goal: tc("heroCards.code.goal"),
@@ -202,10 +226,23 @@ const HeroV2 = () => {
   };
 
   useEffect(() => {
+    if (prefersReduced) {
+      leftDesignAnimate(leftDesignScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
+      leftPointerAnimate(leftPointerScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
+      rightDesignAnimate(rightDesignScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
+      rightPointerAnimate(rightPointerScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
+      return;
+    }
+
+    // entrada; el float idle infinito va aparte (una secuencia de useAnimate no
+    // soporta repeat: Infinity en uno de sus pasos — framer tira "Repeat count
+    // too high" porque intenta expandir el loop dentro de la secuencia misma).
     leftDesignAnimate([
       [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
       [leftDesignScope.current, { y: 0, x: 0 }, { duration: 0.7, ease }],
-    ]);
+    ]).then(() => {
+      leftDesignAnimate(leftDesignScope.current, { y: [0, -10, 0] }, { duration: 5, repeat: Infinity, ease: "easeInOut" });
+    });
     leftPointerAnimate([
       [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
       [leftPointerScope.current, { y: 0, x: -100 }, { duration: 0.5 }],
@@ -214,13 +251,49 @@ const HeroV2 = () => {
     rightDesignAnimate([
       [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.2 }],
       [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.7, ease }],
-    ]);
+    ]).then(() => {
+      rightDesignAnimate(rightDesignScope.current, { y: [0, -8, 0] }, { duration: 4.5, repeat: Infinity, ease: "easeInOut" });
+    });
     rightPointerAnimate([
       [rightPointerScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.2 }],
       [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
       [rightPointerScope.current, { x: 0, y: [0, 20, 0] }, { duration: 0.5, ease: "easeInOut" }],
     ]);
-  }, []);
+  }, [prefersReduced]);
+
+  // glow radial del hero que sigue al mouse con lerp suave — desktop/puntero fino
+  // únicamente, y desactivado con prefers-reduced-motion.
+  useEffect(() => {
+    if (prefersReduced) return;
+    if (typeof window === "undefined" || !window.matchMedia("(pointer: fine)").matches) return;
+
+    let targetX = 50;
+    let targetY = 50;
+    let glowX = 50;
+    let glowY = 50;
+    let raf;
+
+    const onMove = (e) => {
+      targetX = (e.clientX / window.innerWidth) * 100;
+      targetY = (e.clientY / window.innerHeight) * 100;
+    };
+
+    const animate = () => {
+      glowX += (targetX - glowX) * 0.05;
+      glowY += (targetY - glowY) * 0.05;
+      if (glowRef.current) {
+        glowRef.current.style.background = `radial-gradient(600px circle at ${glowX}% ${glowY}%, rgba(161,226,51,0.12) 0%, transparent 60%)`;
+      }
+      raf = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    raf = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [prefersReduced]);
 
   return (
     <section
@@ -239,6 +312,7 @@ const HeroV2 = () => {
       <div aria-hidden className="pointer-events-none absolute left-0 right-0" style={{ top: "42%" }}>
         <div className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" />
       </div>
+      <div ref={glowRef} aria-hidden className="pointer-events-none absolute inset-0" />
 
       {/* CARD IZQUIERDA */}
       <motion.div
@@ -277,9 +351,10 @@ const HeroV2 = () => {
       {/* CONTENIDO CENTRAL */}
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease }}
+          variants={heroVariants}
+          custom={0.1}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
           className="mb-6 flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-4 py-2"
         >
           <span className="relative flex size-1.5">
@@ -312,33 +387,34 @@ const HeroV2 = () => {
               transition={{ duration: 1, delay: 0.3, ease }}
               className="block"
             >
-              {t("hero.headlineHighlight")}
+              <RotatingWord words={rotatingLocations} />
             </motion.span>
           </span>
         </h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55, ease }}
+          variants={heroVariants}
+          custom={0.55}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
           className="mb-10 max-w-xl text-base font-light leading-relaxed text-white/42 md:text-lg"
         >
           {t("hero.subtitle")}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.75, ease }}
+          variants={heroVariants}
+          custom={0.7}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
           className="flex flex-wrap items-center justify-center gap-3"
         >
-          <motion.a
+          <MagneticButton
+            as="a"
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.2, ease }}
+            hoverScale={1.03}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#A1E233] px-7 py-3.5 text-sm font-bold tracking-wide text-black"
           >
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
@@ -346,7 +422,7 @@ const HeroV2 = () => {
             <svg width="9" height="9" viewBox="0 0 8 8" fill="none" aria-hidden="true">
               <path d="M1 7L7 1M7 1H2M7 1V6" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </motion.a>
+          </MagneticButton>
 
           <motion.a
             href="#soluciones"
@@ -360,9 +436,10 @@ const HeroV2 = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
+          variants={heroVariants}
+          custom={1.1}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
           className="mt-12 flex flex-wrap items-center justify-center gap-3"
         >
           <span className="text-[9px] uppercase tracking-[0.22em] text-white/18">Stack</span>

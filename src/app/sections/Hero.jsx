@@ -1,44 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Pointer from "@/app/components/Pointer";
-import { motion, useAnimate, AnimatePresence } from "framer-motion";
+import RotatingWord from "@/app/components/RotatingWord";
+import { motion, useAnimate } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { getLocalizedPath } from "@/lib/seo";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
-
-// Las palabras que rotan en el typewriter
-// ─── Componente: Typewriter de palabras rotantes ──────────────────────────────
-function RotatingWord({ words }) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % words.length);
-    }, 2200);
-    return () => clearInterval(id);
-  }, [words]);
-
-  return (
-    <span className="relative inline-block overflow-hidden align-bottom">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ y: "110%", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "-110%", opacity: 0 }}
-          transition={{ duration: 0.55, ease }}
-          className="inline-block text-[#A1E233]"
-        >
-          {words[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
 
 // ─── Card izquierda: fragmento de código ─────────────────────────────────────
 function CodeCard({ strings }) {

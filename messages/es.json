@@ -45,14 +45,15 @@
     "hero": {
       "eyebrow": "Agencia de desarrollo · Córdoba, AR",
       "headlinePre": "Desarrollo Web, Software y Automatizaciones en",
-      "headlineHighlight": "Córdoba",
-      "subtitle": "Creamos webs, catálogos, ecommerce, sistemas y automatizaciones para negocios que ya tienen movimiento, pero necesitan ordenar consultas, transmitir más confianza y dejar de depender de procesos manuales.",
+      "rotatingLocations": ["Córdoba", "Villa Carlos Paz", "Argentina"],
+      "subtitle": "Somos una agencia de Villa Carlos Paz, Córdoba, y desarrollamos soluciones digitales para empresas de toda Argentina.",
       "ctaPrimary": "Solicitar diagnóstico por WhatsApp",
       "ctaSecondary": "Ver soluciones"
     },
     "transform": {
       "sectionLabel": "La transformación",
       "title": "De presencia improvisada a sistema digital preparado para vender",
+      "titleHighlight": " para vender",
       "subtitle": "Pasamos de acciones aisladas a un ecosistema digital que atrae, ordena y convierte.",
       "antesLabel": "Antes",
       "antesItems": [
@@ -96,13 +97,28 @@
     },
     "process": {
       "sectionLabel": "Cómo trabajamos",
-      "title": "No empezamos por tecnología. Empezamos por entender tu negocio.",
+      "eyebrow": "Método Synttek · 01—04",
+      "title": "Tu negocio ya tiene señales. Las convertimos en un sistema que funciona.",
+      "titleHighlight": "sistema que funciona",
+      "stepLabel": "Paso",
       "steps": [
-        { "number": "01", "title": "Diagnóstico", "description": "Revisamos cómo estás hoy: qué canales usás, dónde se pierden consultas y qué te está frenando." },
-        { "number": "02", "title": "Estrategia", "description": "Definimos qué solución tiene sentido para tu negocio: web, landing, ecommerce, automatización o sistema." },
-        { "number": "03", "title": "Diseño y desarrollo", "description": "Construimos con foco en claridad y conversión, no solo en estética." },
-        { "number": "04", "title": "Lanzamiento y mejora", "description": "Publicamos, medimos resultados reales y ajustamos con el negocio ya en marcha." }
-      ]
+        { "number": "01", "category": "Diagnóstico", "title": "Encontramos la fricción.", "description": "Detectamos dónde se pierden consultas, tiempo y oportunidades. Analizamos tus canales, procesos y herramientas antes de proponer una solución.", "outcome": "Mapa de oportunidades" },
+        { "number": "02", "category": "Estrategia", "title": "Definimos la jugada correcta.", "description": "Priorizamos lo que realmente necesita el negocio: una landing, un ecommerce, una automatización o un sistema interno.", "outcome": "Ruta de proyecto" },
+        { "number": "03", "category": "Diseño y desarrollo", "title": "Lo volvemos real.", "description": "Diseñamos, desarrollamos e integramos cada pieza con foco en claridad, conversión, rendimiento y escalabilidad.", "outcome": "Sistema listo para operar" },
+        { "number": "04", "category": "Lanzamiento y mejora", "title": "Lo hacemos crecer.", "description": "Publicamos, medimos resultados y mejoramos el sistema con el negocio ya en movimiento.", "outcome": "Evolución continua" }
+      ],
+      "visual": {
+        "frictionNodes": ["Consultas", "WhatsApp", "Formularios", "Sitio web", "Tareas manuales", "Planillas"],
+        "strategyLabel": "Prioridad definida",
+        "buildLayers": ["Estructura", "Diseño", "Contenido", "Desarrollo", "Integraciones"],
+        "growthLabel": "Medición activa",
+        "growthMetrics": ["Consultas", "Conversión", "Tiempo ahorrado", "Evolución"]
+      },
+      "closing": {
+        "phrase": "Menos fricción. Más claridad. Un sistema preparado para crecer.",
+        "cta": "Contanos qué querés mejorar",
+        "waMessage": "Hola Synttek, quiero contarles qué necesito mejorar en mi negocio"
+      }
     },
     "faq": {
       "sectionLabel": "FAQ",

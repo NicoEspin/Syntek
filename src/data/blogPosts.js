@@ -1,10 +1,8 @@
-import card3 from "@/app/assets/card3.webp";
-import threeD from "@/app/assets/3D.webp";
-import nico from "@/app/assets/nico.webp";
 import antto from "@/app/assets/antto.webp";
-import preciosWebArgentina2026 from "@/app/assets/blog/precio-web.webp";
 import diseñoRedes from "@/app/assets/blog/diseño-synttek.webp";
 import paginaNegocio from "@/app/assets/blog/pagina-negocio.webp";
+import preciosWebArgentina2026 from "@/app/assets/blog/precio-web.webp";
+import nico from "@/app/assets/nico.webp";
 
 const DEFAULT_LOCALE = "es";
 
@@ -300,7 +298,7 @@ const postEntries = [
       ),
     ],
   },
- 
+
   {
     slug: "necesito-una-web-para-mi-negocio",
     category: "Desarrollo",

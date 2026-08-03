@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import About from "@/app/sections/About";
 import Breadcrumbs from "@/app/components/(common)/Breadcrumbs";
 import TitleSection from "@/app/components/(common)/TitleSection";
+import OurTools from "@/app/sections/OurTools";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -173,6 +174,7 @@ export default function AboutPageContent({ locale }) {
       </section>
 
       <About />
+      <OurTools />
 
       <section className="px-4 pb-28 pt-4 md:px-5 lg:px-10 xl:px-24">
         <div className="mx-auto max-w-screen-2xl">

@@ -34,14 +34,14 @@ const projectEntries = [
       "/projects/hotel-california/gallery-3.webp",
     ],
     accentColor: "#C9A96E",
-    featured: true,
+    featured: false,
     link: "https://demo-hotel-eight.vercel.app/",
     relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
     updatedAt: "2026-04-09T20:36:11.080Z",
   },
   {
     id: "viajes-cordoba",
-    index: "02",
+    index: "01",
     title: "Viajes Córdoba",
     subtitle: localizedText(
       "Landing Page + Conversion para turismo",
@@ -118,7 +118,7 @@ const projectEntries = [
       "/projects/thumblify/gallery-3.webp",
     ],
     accentColor: "#EC4899",
-    featured: true,
+    featured: false,
     link: "https://thumblify.com",
     relatedServiceSlugs: [
       "software-a-medida",
@@ -129,7 +129,7 @@ const projectEntries = [
   },
   {
     id: "cari-turismo",
-    index: "04",
+    index: "02",
     title: "Cari Turismo",
     subtitle: localizedText(
       "Landing Page + Conversion por WhatsApp",
@@ -201,6 +201,55 @@ const projectEntries = [
     relatedServiceSlugs: ["branding"],
     updatedAt: "2026-02-01T15:00:00.000Z",
   },
+  {
+  id: "ranch-vcp",
+  index: "03",
+  title: "Ranch VCP",
+  subtitle: localizedText(
+    "Sitio web + Carta digital + Reservas",
+    "Website + Digital Menu + Reservations"
+  ),
+  category: "Desarrollo Web",
+  year: "2026",
+  client: "Ranch VCP",
+  services: [
+    "Diseño UX/UI",
+    "Desarrollo Web",
+
+    "SEO",
+  ],
+  tags: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "GSAP",
+    "WhatsApp",
+    "SEO Local",
+  ],
+  description: {
+    short: localizedText(
+      "Experiencia web gastronómica para Ranch VCP, con carta digital interactiva, armado de pedidos y reservas directas por WhatsApp.",
+      "Digital restaurant experience for Ranch VCP, featuring an interactive menu, order building and direct WhatsApp reservations."
+    ),
+    long: localizedText(
+      "Ranch VCP necesitaba transformar su presencia digital en una experiencia capaz de mostrar el carácter del local y, al mismo tiempo, resolver acciones concretas: descubrir la propuesta, consultar la carta, armar un pedido y reservar una mesa. Diseñamos un sitio gastronómico inmersivo con una dirección de arte nocturna, tipografía editorial y animaciones que transmiten la energía de la marca sin sacrificar claridad ni velocidad. La carta digital organiza hamburguesas, pizzas, lomos, empanadas, picadas y bebidas, permite sumar productos a un pedido y enviarlo directamente por WhatsApp, sin aplicaciones ni registro. También desarrollamos un flujo de reservas que contempla sus dos sucursales de Villa Carlos Paz, además de accesos a mapas, horarios e información clave. Construido con Next.js, TypeScript, Tailwind CSS y GSAP, el resultado combina experiencia mobile-first, SEO local y conversión directa en una plataforma preparada para acompañar el crecimiento del negocio.",
+      "Ranch VCP needed to turn its digital presence into an experience that could express the restaurant's character while helping customers complete real actions: discover the offering, browse the menu, build an order and book a table. We designed an immersive restaurant website with a nighttime art direction, editorial typography and motion that captures the brand's energy without sacrificing clarity or speed. The digital menu organizes burgers, pizzas, lomos, empanadas, sharing plates and drinks, lets customers add items to an order and send it directly through WhatsApp, with no app or account required. We also developed a reservation flow for its two Villa Carlos Paz locations, along with map links, opening hours and essential visitor information. Built with Next.js, TypeScript, Tailwind CSS and GSAP, the result combines a mobile-first experience, local SEO and direct conversion in a platform ready to support the business as it grows."
+    ),
+  },
+  coverImage: "/projects/ranch-vcp/cover.webp",
+  heroImage: "/projects/ranch-vcp/hero.webp",
+  gallery: [
+    "/projects/ranch-vcp/gallery-1.webp",
+    "/projects/ranch-vcp/gallery-2.webp",
+    "/projects/ranch-vcp/gallery-3.webp",
+  ],
+  accentColor: "#E8B84B",
+  featured: true,
+  link: "https://ranchvcp.vercel.app/",
+  relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+  updatedAt: "2026-08-03T12:00:00.000Z",
+},
+  
 ];
 
 const getLocalizedField = (value, locale = DEFAULT_LOCALE) => {

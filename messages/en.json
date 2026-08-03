@@ -46,7 +46,7 @@
     "hero": {
       "eyebrow": "Development agency · Córdoba, AR",
       "headlinePre": "Web Development, Software and Automation in",
-      "headlineHighlight": "Córdoba",
+      "rotatingLocations": ["Córdoba", "Villa Carlos Paz", "Argentina"],
       "subtitle": "We build websites, catalogs, ecommerce stores, systems and automations for businesses that already have momentum but need to organize inquiries, build more trust and stop depending on manual processes.",
       "ctaPrimary": "Request a diagnosis on WhatsApp",
       "ctaSecondary": "See solutions"
@@ -54,6 +54,7 @@
     "transform": {
       "sectionLabel": "The transformation",
       "title": "From improvised presence to a digital system built to sell",
+      "titleHighlight": "sell",
       "subtitle": "We move from scattered actions to a digital ecosystem that attracts, organizes and converts.",
       "antesLabel": "Before",
       "antesItems": [
@@ -97,13 +98,28 @@
     },
     "process": {
       "sectionLabel": "How we work",
-      "title": "We don't start with technology. We start by understanding your business.",
+      "eyebrow": "Synttek Method · 01—04",
+      "title": "Your business already has signals. We turn them into a system that works.",
+      "titleHighlight": "system that works",
+      "stepLabel": "Step",
       "steps": [
-        { "number": "01", "title": "Diagnosis", "description": "We review where you stand today: which channels you use, where inquiries get lost and what's holding you back." },
-        { "number": "02", "title": "Strategy", "description": "We define which solution makes sense for your business: website, landing page, ecommerce, automation or system." },
-        { "number": "03", "title": "Design & development", "description": "We build with a focus on clarity and conversion, not just aesthetics." },
-        { "number": "04", "title": "Launch & improve", "description": "We publish, measure real results and adjust with the business already up and running." }
-      ]
+        { "number": "01", "category": "Diagnosis", "title": "We find the friction.", "description": "We detect where inquiries, time and opportunities are lost. We analyze your channels, processes and tools before proposing a solution.", "outcome": "Opportunity map" },
+        { "number": "02", "category": "Strategy", "title": "We define the right move.", "description": "We prioritize what the business actually needs: a landing page, an ecommerce, an automation or an internal system.", "outcome": "Project roadmap" },
+        { "number": "03", "category": "Design & development", "title": "We make it real.", "description": "We design, build and integrate every piece with a focus on clarity, conversion, performance and scalability.", "outcome": "System ready to operate" },
+        { "number": "04", "category": "Launch & improve", "title": "We make it grow.", "description": "We publish, measure results and improve the system with the business already up and running.", "outcome": "Continuous evolution" }
+      ],
+      "visual": {
+        "frictionNodes": ["Inquiries", "WhatsApp", "Forms", "Website", "Manual tasks", "Spreadsheets"],
+        "strategyLabel": "Priority defined",
+        "buildLayers": ["Structure", "Design", "Content", "Development", "Integrations"],
+        "growthLabel": "Measurement active",
+        "growthMetrics": ["Inquiries", "Conversion", "Time saved", "Evolution"]
+      },
+      "closing": {
+        "phrase": "Less friction. More clarity. A system ready to grow.",
+        "cta": "Tell us what you want to improve",
+        "waMessage": "Hi Synttek, I'd like to tell you what I need to improve in my business"
+      }
     },
     "faq": {
       "sectionLabel": "FAQ",

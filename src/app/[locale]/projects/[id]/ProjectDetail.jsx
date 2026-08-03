@@ -79,7 +79,7 @@ export default function ProjectDetail({ project, nextProject, locale }) {
             className="mb-8"
           >
             <Link
-              href={`/${locale}/projects`}
+              href="/projects"
               className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-300 hover:text-primary1"
             >
               <span>{t("backToProjects")}</span>

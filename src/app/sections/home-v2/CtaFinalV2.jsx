@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimate } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import RevealBlock from "@/app/components/RevealBlock";
+import MagneticButton from "@/app/components/MagneticButton";
 import { getWhatsAppUrl } from "@/lib/business";
 import { getLocalizedPath } from "@/lib/seo";
 
@@ -60,13 +62,7 @@ const CtaFinalV2 = () => {
       </div>
 
       {/* Bloque CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.8, ease }}
-        className="relative mx-auto mt-16 max-w-3xl px-4 text-center"
-      >
+      <RevealBlock className="relative mx-auto mt-16 max-w-3xl px-4 text-center">
         <h2
           id="cta-final-heading"
           className="text-[clamp(2rem,4.5vw,3.6rem)] font-black leading-[1.03] tracking-tight text-white"
@@ -78,13 +74,12 @@ const CtaFinalV2 = () => {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <motion.a
+          <MagneticButton
+            as="a"
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.2, ease }}
+            hoverScale={1.03}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#A1E233] px-7 py-3.5 text-sm font-bold tracking-wide text-black"
           >
             <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
@@ -92,7 +87,7 @@ const CtaFinalV2 = () => {
             <svg width="9" height="9" viewBox="0 0 8 8" fill="none" aria-hidden="true">
               <path d="M1 7L7 1M7 1H2M7 1V6" stroke="black" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </motion.a>
+          </MagneticButton>
 
           <motion.a
             href={getLocalizedPath(locale, "/contacto")}
@@ -104,7 +99,7 @@ const CtaFinalV2 = () => {
             {t("ctaFinal.ctaSecondary")}
           </motion.a>
         </div>
-      </motion.div>
+      </RevealBlock>
     </section>
   );
 };

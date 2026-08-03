@@ -5,14 +5,26 @@ import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import SpotlightCard from "@/app/components/SpotlightCard";
 import StarBorder from "@/app/components/StarBorder";
+import SplitHeadline from "@/app/components/SplitHeadline";
+import RevealBlock from "@/app/components/RevealBlock";
 
 const ease = [0.16, 1, 0.3, 1];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
 
 const TransformSection = () => {
   const t = useTranslations("HomeV2.transform");
   const antesItems = t.raw("antesItems");
   const despuesItems = t.raw("despuesItems");
   const indicators = t.raw("indicators");
+  const titleHighlight = t("titleHighlight");
 
   return (
     <section
@@ -33,18 +45,14 @@ const TransformSection = () => {
 
         {/* Header */}
         <div className="mx-auto mb-10 mt-14 max-w-3xl text-center">
-          <div className="overflow-hidden">
-            <motion.h2
-              id="transform-heading"
-              initial={{ y: "105%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 1, delay: 0.05, ease }}
-              className="text-[clamp(1.9rem,3.8vw,3.2rem)] font-black leading-[1.02] tracking-tight text-white"
-            >
-              {t("title")}
-            </motion.h2>
-          </div>
+          <SplitHeadline
+            id="transform-heading"
+            text={t("title")}
+            delay={0.05}
+            highlightWords={titleHighlight.split(" ")}
+            highlightClassName="text-[#A1E233]"
+            className="text-[clamp(1.9rem,3.8vw,3.2rem)] font-black leading-[1.02] tracking-tight text-white"
+          />
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,18 +65,15 @@ const TransformSection = () => {
         </div>
 
         {/* motor de la transformación */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.6, delay: 0.15, ease }}
+        <RevealBlock
+          delay={0.15}
           className="mx-auto mb-8 flex w-fit items-center gap-2 rounded-full border border-[#A1E233]/25 bg-[#A1E233]/[0.04] px-4 py-2"
         >
           <span aria-hidden className="text-[11px] text-[#A1E233]">✸</span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/65">
             {t("connectorLabel")}
           </span>
-        </motion.div>
+        </RevealBlock>
 
         {/* Antes → conducto → Después */}
         <div className="flex flex-wrap items-stretch justify-center gap-6 lg:flex-nowrap lg:gap-0">
@@ -98,14 +103,17 @@ const TransformSection = () => {
                   {t("antesLabel")}
                 </span>
               </div>
-              <div className="relative mt-6 flex flex-col gap-4">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10%" }}
+                className="relative mt-6 flex flex-col gap-4"
+              >
                 {antesItems.map((item, i) => (
                   <motion.div
                     key={item}
-                    initial={{ opacity: 0, x: -6 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{ duration: 0.45, ease, delay: 0.06 * i }}
+                    variants={itemVariants}
                     className={`flex items-center gap-3 ${i < antesItems.length - 1 ? "border-b border-white/[0.05] pb-4" : ""}`}
                   >
                     <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-white/12 text-[10px] font-light text-white/30">
@@ -114,7 +122,7 @@ const TransformSection = () => {
                     <span className="text-[15px] leading-snug text-white/45">{item}</span>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -217,17 +225,14 @@ const TransformSection = () => {
         {/* Indicadores */}
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-12">
           {indicators.map((indicator, i) => (
-            <motion.div
+            <RevealBlock
               key={indicator.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-15%" }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease }}
+              delay={i * 0.1}
               className="flex flex-col gap-3 border-t border-white/8 pt-6"
             >
               <span className="font-mono text-sm font-semibold text-[#A1E233]">{indicator.number}</span>
               <span className="text-[15px] font-medium leading-snug text-white/80">{indicator.label}</span>
-            </motion.div>
+            </RevealBlock>
           ))}
         </div>
       </div>

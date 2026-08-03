@@ -6,6 +6,8 @@ import { routing } from "@/i18n/routing";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 import { Geist, Geist_Mono } from "next/font/google";
+import SmoothScroll from "@/app/components/SmoothScroll";
+import CustomCursor from "@/app/components/CustomCursor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -90,7 +92,10 @@ export default async function LocaleLayout({ children, params }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </NextIntlClientProvider>
+        <CustomCursor />
       </body>
     </html>
   );

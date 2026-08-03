@@ -120,11 +120,7 @@ const Navbar = ({ floating = false }) => {
         label: t("services"),
         href: "/servicios",
       },
-      {
-        key: "tools",
-        label: t("tools"),
-        href: isHomePage ? "#tools" : `${baseHomePath}#tools`,
-      },
+
       {
         key: "projects",
         label: t("projects"),
@@ -139,11 +135,6 @@ const Navbar = ({ floating = false }) => {
         key: "about",
         label: t("about"),
         href: "/sobre-nosotros",
-      },
-      {
-        key: "faqs",
-        label: t("faqs"),
-        href: isHomePage ? "#faqs" : `${baseHomePath}#faqs`,
       },
     ],
     [baseHomePath, isHomePage, t],
