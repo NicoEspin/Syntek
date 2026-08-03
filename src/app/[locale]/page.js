@@ -1,16 +1,17 @@
-import Hero from "@/app/sections/Hero";
 import Navbar from "@/app/components/(common)/Navbar";
-import CallToAction from "@/app/sections/CallToAction";
-import OurTools from "@/app/sections/OurTools";
-import Projects from "@/app/sections/Projects";
-import Introduction from "@/app/sections/Introduction";
-import Faqs from "@/app/sections/Faqs";
-import Services from "@/app/sections/Services";
 import Footer from "@/app/components/(common)/Footer";
-import Contact from "@/app/sections/Contact";
-import About from "@/app/sections/About";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
+import HeroV2 from "@/app/sections/home-v2/HeroV2";
+import Introduction from "@/app/sections/Introduction";
+import TransformSection from "@/app/sections/home-v2/TransformSection";
+import SolutionsSection from "@/app/sections/home-v2/SolutionsSection";
+import Services from "@/app/sections/Services";
+import Projects from "@/app/sections/Projects";
+import ProcessSection from "@/app/sections/home-v2/ProcessSection";
+import FaqV2 from "@/app/sections/home-v2/FaqV2";
+import CtaFinalV2 from "@/app/sections/home-v2/CtaFinalV2";
+import Contact from "@/app/sections/Contact";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
@@ -67,13 +68,8 @@ export async function generateMetadata({ params }) {
 
 export default async function Home({ params }) {
   const { locale } = await params;
-  const isEs = locale === "es";
-  const faqTranslations = await getTranslations({ locale, namespace: "Faqs" });
-
-  const faqs = Array.from({ length: 10 }, (_, index) => ({
-    question: faqTranslations(`question${index + 1}`),
-    answer: faqTranslations(`answer${index + 1}`),
-  }));
+  const faqTranslations = await getTranslations({ locale, namespace: "HomeV2.faq" });
+  const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
     buildOrganizationJsonLd(),
@@ -88,14 +84,15 @@ export default async function Home({ params }) {
 
       <Navbar />
       <main className="bg-[#0a0a0a] text-[#ededed]">
-        <Hero />
+        <HeroV2 />
         <Introduction />
+        <TransformSection />
+        <SolutionsSection />
         <Services />
-        <OurTools />
         <Projects locale={locale} />
-        <About />
-        <CallToAction />
-        <Faqs />
+        <ProcessSection />
+        <FaqV2 />
+        <CtaFinalV2 />
         <Contact />
       </main>
       <Footer />

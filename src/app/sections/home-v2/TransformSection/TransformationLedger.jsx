@@ -1,0 +1,67 @@
+"use client";
+
+import { motion, useTransform } from "framer-motion";
+
+// umbrales repartidos a lo largo del recorrido (0-100) — cada transformación
+// "ocurre" en su propio tramo, así el usuario ve el cambio ítem por ítem en
+// vez de un crossfade global de toda la lista a la vez.
+const THRESHOLDS = [14, 28, 43, 57, 71, 86];
+const SPAN = 16;
+
+function useItemMotion(progress, threshold) {
+  const afterOpacity = useTransform(progress, [threshold - SPAN, threshold], [0, 1]);
+  const beforeOpacity = useTransform(progress, [threshold - SPAN, threshold], [1, 0]);
+  const markScale = useTransform(progress, [threshold - SPAN, threshold], [1, 0]);
+  const checkScale = useTransform(progress, [threshold - SPAN, threshold], [0, 1]);
+  return { afterOpacity, beforeOpacity, markScale, checkScale };
+}
+
+function LedgerItem({ item, motionValues }) {
+  const { afterOpacity, beforeOpacity, markScale, checkScale } = motionValues;
+  return (
+    <div className="relative flex items-start gap-3 border-t border-white/8 pt-4">
+      <span className="relative mt-0.5 flex size-5 shrink-0 items-center justify-center">
+        <motion.span
+          aria-hidden
+          className="absolute flex size-5 items-center justify-center rounded-full border border-white/12 text-[10px] font-light text-white/35"
+          style={{ opacity: beforeOpacity, scale: markScale }}
+        >
+          ✕
+        </motion.span>
+        <motion.span
+          aria-hidden
+          className="absolute flex size-5 items-center justify-center rounded-full bg-[#A1E233] text-[10px] font-bold text-black"
+          style={{ opacity: afterOpacity, scale: checkScale }}
+        >
+          ✓
+        </motion.span>
+      </span>
+      <span className="relative block min-h-[2.6em] flex-1 text-[13px] leading-snug">
+        <motion.span className="absolute inset-0 text-white/40 line-through decoration-white/20" style={{ opacity: beforeOpacity }}>
+          {item.before}
+        </motion.span>
+        <motion.span className="absolute inset-0 font-medium text-white" style={{ opacity: afterOpacity }}>
+          {item.after}
+        </motion.span>
+      </span>
+    </div>
+  );
+}
+
+export default function TransformationLedger({ transformations, progress }) {
+  const m0 = useItemMotion(progress, THRESHOLDS[0]);
+  const m1 = useItemMotion(progress, THRESHOLDS[1]);
+  const m2 = useItemMotion(progress, THRESHOLDS[2]);
+  const m3 = useItemMotion(progress, THRESHOLDS[3]);
+  const m4 = useItemMotion(progress, THRESHOLDS[4]);
+  const m5 = useItemMotion(progress, THRESHOLDS[5]);
+  const motions = [m0, m1, m2, m3, m4, m5];
+
+  return (
+    <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
+      {transformations.map((item, i) => (
+        <LedgerItem key={item.before} item={item} motionValues={motions[i]} />
+      ))}
+    </div>
+  );
+}

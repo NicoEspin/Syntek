@@ -177,8 +177,7 @@ src/
     [locale]/
       globals.css              # @theme Tailwind v4 — fuente de verdad de tokens
       layout.js                # fonts Geist + Geist_Mono, providers globales
-      nueva-home/
-        page.js                # landing nueva (/es/nueva-home) ← trabajo principal
+      page.js                  # home (/es, /en) ← landing principal, trabajo principal
     components/
       (common)/                # Navbar, Footer, TitleSection
       *.jsx                    # componentes compartidos
@@ -225,7 +224,7 @@ public/
 
 - Locales: `es` (default) y `en`
 - Rutas bajo `src/app/[locale]/`
-- La nueva landing: `src/app/[locale]/nueva-home/page.js`
+- La landing principal: `src/app/[locale]/page.js` (`/es`, `/en`)
 - Acceso en server components: `getTranslations({ locale, namespace })`
 - Acceso en client components: `useTranslations("Namespace")`
 - Locale actual en client: `useLocale()`
@@ -243,7 +242,7 @@ Estas skills contienen las reglas, patrones de código y contexto específico de
 
 | Skill | Cuándo invocarla |
 |---|---|
-| `synttek-landing` | **Siempre primero.** Cualquier tarea en la landing `/es/nueva-home`. Contiene stack, tokens, estructura de archivos y buyer persona. |
+| `synttek-landing` | **Siempre primero.** Cualquier tarea en la landing principal (`/es`, `/en`). Contiene stack, tokens, estructura de archivos y buyer persona. |
 | `synttek-motion` | Cualquier animación, efecto de scroll, transición o interacción. Patrones de framer-motion v12 listos para usar. |
 | `synttek-copy` | Escribir o revisar cualquier texto visible: headlines, subtítulos, CTAs, bullets, FAQ. |
 | `synttek-perf` | Agregar imágenes, componentes, scripts o animaciones nuevas. Auditar performance. Pre-deploy. |

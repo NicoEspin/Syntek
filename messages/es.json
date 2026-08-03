@@ -51,33 +51,43 @@
       "ctaSecondary": "Ver soluciones"
     },
     "transform": {
-      "sectionLabel": "La transformación",
-      "title": "De presencia improvisada a sistema digital preparado para vender",
-      "titleHighlight": " para vender",
-      "subtitle": "Pasamos de acciones aisladas a un ecosistema digital que atrae, ordena y convierte.",
-      "antesLabel": "Antes",
-      "antesItems": [
-        "Todo se responde por WhatsApp",
-        "La información está dispersa",
-        "El cliente no entiende rápido qué ofrecés",
-        "No hay medición clara",
-        "La web, si existe, no convierte"
+      "sectionLabel": "Sistema digital",
+      "title": "Tu negocio no necesita más herramientas. Necesita que todo funcione junto.",
+      "titleHighlight": "junto.",
+      "description": "Conectamos presencia, consultas, automatización y medición para que cada parte empuje hacia el mismo objetivo: vender mejor.",
+      "comparatorLegend": "Un solo sistema, dos estados. Deslizá para ver cómo se conecta todo.",
+      "ariaLabel": "Comparador: presencia digital improvisada versus sistema activo con Synttek",
+      "dragHint": "Arrastrá para comparar",
+      "phaseFragmented": "Mayormente presencia improvisada",
+      "phaseTransitioning": "Sistema en transición",
+      "phaseActive": "Mayormente sistema activo",
+      "left": {
+        "label": "Con Synttek",
+        "status": "Sistema activo",
+        "description": "Cada punto conectado a un mismo objetivo."
+      },
+      "right": {
+        "label": "Presencia improvisada",
+        "status": "Sistema fragmentado",
+        "description": "Herramientas activas, pero trabajando por separado.",
+        "connectionLabel": "Conexión incompleta",
+        "moduleLabels": ["WhatsApp", "Planilla", "Sitio web", "Tareas manuales", "Seguimiento", "Métricas"]
+      },
+      "systemFlow": ["Atraer", "Explicar", "Calificar", "Convertir", "Medir"],
+      "nodeStatus": ["Activo", "Conectado", "Conectado", "Activo", "Medición activa"],
+      "transformations": [
+        { "before": "Consultas desordenadas", "after": "Flujo claro de consultas" },
+        { "before": "Información dispersa", "after": "Una única fuente de información" },
+        { "before": "Propuesta poco clara", "after": "Un mensaje que se entiende rápido" },
+        { "before": "Tareas repetitivas", "after": "Automatizaciones simples" },
+        { "before": "Sin medición", "after": "Decisiones basadas en datos" },
+        { "before": "Web aislada", "after": "Experiencia preparada para convertir" }
       ],
-      "connectorLabel": "Estrategia + diseño + tecnología",
-      "dragHint": "Arrastrá para ver la transformación",
-      "despuesStatus": "Sistema activo",
-      "despuesLabel": "Después, con Synttek",
-      "despuesItems": [
-        "Web clara y profesional",
-        "Consultas mejor preparadas",
-        "Catálogo, landing, ecommerce o sistema según el negocio",
-        "Automatizaciones simples",
-        "Un flujo pensado para captar, ordenar y convertir"
-      ],
-      "indicators": [
-        { "number": "01", "label": "Claridad — mensajes más claros" },
-        { "number": "02", "label": "Automatización — menos tareas manuales" },
-        { "number": "03", "label": "Conversión — más oportunidades de venta" }
+      "mobileControl": { "improvised": "Improvisado", "active": "Sistema activo" },
+      "outcomes": [
+        { "number": "01", "title": "Claridad", "description": "Tu propuesta se entiende rápido." },
+        { "number": "02", "title": "Eficiencia", "description": "El sistema absorbe tareas repetitivas." },
+        { "number": "03", "title": "Conversión", "description": "Las consultas llegan mejor preparadas." }
       ]
     },
     "solutions": {

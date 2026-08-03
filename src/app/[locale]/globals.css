@@ -132,6 +132,23 @@ body {
   }
 }
 
+/* ── pulso de sistema (TransformSection, SystemComparator > ~80% revelado) */
+.syn-transform-pulse {
+  background-image: linear-gradient(90deg, transparent 0%, rgba(161, 226, 51, 0.22) 50%, transparent 100%);
+  background-size: 45% 100%;
+  background-repeat: no-repeat;
+  background-position: -50% 0;
+  animation: syn-transform-pulse-sweep 0.9s var(--ease-premium) forwards;
+}
+@keyframes syn-transform-pulse-sweep {
+  from {
+    background-position: -50% 0;
+  }
+  to {
+    background-position: 150% 0;
+  }
+}
+
 /* ── StarBorder (anillo de energía orbitando el borde) ──────────────────── */
 @keyframes syn-orbit-spin {
   from {
@@ -145,7 +162,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .syn-flow-beam,
   .syn-flow-dot,
-  .syn-orbit {
+  .syn-orbit,
+  .syn-transform-pulse {
     animation: none !important;
   }
 }

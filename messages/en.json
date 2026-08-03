@@ -52,33 +52,43 @@
       "ctaSecondary": "See solutions"
     },
     "transform": {
-      "sectionLabel": "The transformation",
-      "title": "From improvised presence to a digital system built to sell",
-      "titleHighlight": "sell",
-      "subtitle": "We move from scattered actions to a digital ecosystem that attracts, organizes and converts.",
-      "antesLabel": "Before",
-      "antesItems": [
-        "Everything gets answered over WhatsApp",
-        "Information is scattered",
-        "Customers can't quickly tell what you offer",
-        "There's no clear measurement",
-        "The website, if it exists, doesn't convert"
+      "sectionLabel": "Digital system",
+      "title": "Your business doesn't need more tools. It needs everything working together.",
+      "titleHighlight": "together.",
+      "description": "We connect presence, inquiries, automation and measurement so every part pushes toward the same goal: selling better.",
+      "comparatorLegend": "One system, two states. Drag to see how everything connects.",
+      "ariaLabel": "Comparator: improvised digital presence versus an active system with Synttek",
+      "dragHint": "Drag to compare",
+      "phaseFragmented": "Mostly improvised presence",
+      "phaseTransitioning": "System in transition",
+      "phaseActive": "Mostly active system",
+      "left": {
+        "label": "With Synttek",
+        "status": "System active",
+        "description": "Every point connected to the same goal."
+      },
+      "right": {
+        "label": "Improvised presence",
+        "status": "System fragmented",
+        "description": "Tools that are active, but working separately.",
+        "connectionLabel": "Incomplete connection",
+        "moduleLabels": ["WhatsApp", "Spreadsheet", "Website", "Manual tasks", "Follow-up", "Metrics"]
+      },
+      "systemFlow": ["Attract", "Explain", "Qualify", "Convert", "Measure"],
+      "nodeStatus": ["Active", "Connected", "Connected", "Active", "Measuring active"],
+      "transformations": [
+        { "before": "Disorganized inquiries", "after": "A clear flow of inquiries" },
+        { "before": "Scattered information", "after": "One single source of information" },
+        { "before": "An unclear pitch", "after": "A message people get instantly" },
+        { "before": "Repetitive tasks", "after": "Simple automations" },
+        { "before": "No measurement", "after": "Decisions based on data" },
+        { "before": "An isolated website", "after": "An experience built to convert" }
       ],
-      "connectorLabel": "Strategy + design + technology",
-      "dragHint": "Drag to see the transformation",
-      "despuesStatus": "System active",
-      "despuesLabel": "After, with Synttek",
-      "despuesItems": [
-        "A clear, professional website",
-        "Better-qualified inquiries",
-        "Catalog, landing page, ecommerce or system, based on your business",
-        "Simple automations",
-        "A flow built to capture, organize and convert"
-      ],
-      "indicators": [
-        { "number": "01", "label": "Clarity — clearer messaging" },
-        { "number": "02", "label": "Automation — fewer manual tasks" },
-        { "number": "03", "label": "Conversion — more sales opportunities" }
+      "mobileControl": { "improvised": "Improvised", "active": "Active system" },
+      "outcomes": [
+        { "number": "01", "title": "Clarity", "description": "Your pitch gets understood fast." },
+        { "number": "02", "title": "Efficiency", "description": "The system absorbs repetitive tasks." },
+        { "number": "03", "title": "Conversion", "description": "Inquiries arrive better qualified." }
       ]
     },
     "solutions": {
