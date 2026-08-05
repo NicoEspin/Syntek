@@ -302,15 +302,17 @@ function SolutionsMobileRail({ header, cards, ctaLabel, href }) {
   );
 }
 
-const SolutionsSection = () => {
-  const t = useTranslations("HomeV2.solutions");
-  const waHref = getWhatsAppUrl(useTranslations("HomeV2")("waMessage"));
-  const cards = t.raw("cards");
-  const total = cards.length;
-  const [line1, line2] = t("title").split(". ");
-  const prefersReduced = useReducedMotion();
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-
+// ─── Desktop: escenario sticky con crossfade entre cards, controlado por
+// scroll dentro de un contenedor alto (`total * 100vh`). Vive en su propio
+// componente (en vez de mezclarse en SolutionsSection) porque `useScroll`
+// hace el bind de `target` en un `useLayoutEffect` que corre una sola vez al
+// montar — si el contenedor sólo se monta condicionalmente más tarde (cuando
+// `isDesktop` pasa a `true` via useMediaQuery), ese layout effect ya corrió
+// con `containerRef.current` en `null` y queda trackeando scroll de la
+// página entera en vez del contenedor, rompiendo el crossfade. Montando todo
+// esto junto (ref + useScroll) en un componente que aparece de una sola vez
+// evita el problema: el ref ya está adjunto cuando el layout effect corre.
+function SolutionsDesktopStack({ cards, total, ctaLabel, href, cardHeightClass }) {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -324,8 +326,78 @@ const SolutionsSection = () => {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  const cardHeightClass = "lg:h-[560px] xl:h-[610px]";
   const activeAccent = SOLUTIONS_META[activeIndex % SOLUTIONS_META.length].accent;
+
+  return (
+    // stackRef alto = escenario sticky que se mantiene fijo mientras scrolleás
+    // (sólo desktop — mobile usa el carousel horizontal de arriba)
+    <div ref={containerRef} className="relative" style={{ height: `${total * 100}vh` }}>
+      {/* pt-20/24 = despeje del navbar flotante fixed */}
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-20 md:pt-24">
+        {/* halo ambiental de fondo: muta de color según la solución activa */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div
+            className="absolute left-1/2 top-[38%] size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.14] blur-[130px] transition-colors duration-700 ease-premium md:size-[560px]"
+            style={{ backgroundColor: activeAccent }}
+          />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-screen-2xl px-4 md:px-5 lg:px-10 xl:px-24">
+          <div className={`relative ${cardHeightClass}`}>
+            {cards.map((card, i) => (
+              <SolutionCard
+                key={card.title}
+                card={card}
+                index={i}
+                total={total}
+                accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
+                img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
+                progress={scrollYProgress}
+                ctaLabel={ctaLabel}
+                href={href}
+              />
+            ))}
+
+            {/* indicador de progreso — índice + rail */}
+            <div className="pointer-events-none absolute right-1 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-3 lg:flex xl:right-4">
+              {cards.map((c, i) => (
+                <div key={c.title} className="flex items-center gap-2.5">
+                  <span
+                    className="font-mono text-[11px] font-semibold tabular-nums transition-[color,transform] duration-500 ease-out"
+                    style={{
+                      color: i === activeIndex ? "#A1E233" : "rgba(255,255,255,0.28)",
+                      transform: i === activeIndex ? "scale(1.15)" : "scale(1)",
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className="w-[3px] rounded-full transition-[height,background-color] duration-500 ease-out"
+                    style={{
+                      height: i === activeIndex ? "26px" : "8px",
+                      backgroundColor: i <= activeIndex ? "#A1E233" : "rgba(255,255,255,0.16)",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SolutionsSection = () => {
+  const t = useTranslations("HomeV2.solutions");
+  const waHref = getWhatsAppUrl(useTranslations("HomeV2")("waMessage"));
+  const cards = t.raw("cards");
+  const total = cards.length;
+  const [line1, line2] = t("title").split(". ");
+  const prefersReduced = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  const cardHeightClass = "lg:h-[560px] xl:h-[610px]";
   const showDesktopVariant = isDesktop;
 
   return (
@@ -403,62 +475,13 @@ const SolutionsSection = () => {
           ))}
         </div>
         ) : (
-        // stackRef alto = escenario sticky que se mantiene fijo mientras scrolleás
-        // (sólo desktop — mobile usa el carousel horizontal de arriba)
-        <div ref={containerRef} className="relative" style={{ height: `${total * 100}vh` }}>
-          {/* pt-20/24 = despeje del navbar flotante fixed */}
-          <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-20 md:pt-24">
-            {/* halo ambiental de fondo: muta de color según la solución activa */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-              <div
-                className="absolute left-1/2 top-[38%] size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.14] blur-[130px] transition-colors duration-700 ease-premium md:size-[560px]"
-                style={{ backgroundColor: activeAccent }}
-              />
-            </div>
-
-            <div className="relative mx-auto w-full max-w-screen-2xl px-4 md:px-5 lg:px-10 xl:px-24">
-              <div className={`relative ${cardHeightClass}`}>
-                {cards.map((card, i) => (
-                  <SolutionCard
-                    key={card.title}
-                    card={card}
-                    index={i}
-                    total={total}
-                    accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
-                    img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
-                    progress={scrollYProgress}
-                    ctaLabel={t("rowCta")}
-                    href={waHref}
-                  />
-                ))}
-
-                {/* indicador de progreso — índice + rail */}
-                <div className="pointer-events-none absolute right-1 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-3 lg:flex xl:right-4">
-                  {cards.map((c, i) => (
-                    <div key={c.title} className="flex items-center gap-2.5">
-                      <span
-                        className="font-mono text-[11px] font-semibold tabular-nums transition-[color,transform] duration-500 ease-out"
-                        style={{
-                          color: i === activeIndex ? "#A1E233" : "rgba(255,255,255,0.28)",
-                          transform: i === activeIndex ? "scale(1.15)" : "scale(1)",
-                        }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span
-                        className="w-[3px] rounded-full transition-[height,background-color] duration-500 ease-out"
-                        style={{
-                          height: i === activeIndex ? "26px" : "8px",
-                          backgroundColor: i <= activeIndex ? "#A1E233" : "rgba(255,255,255,0.16)",
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <SolutionsDesktopStack
+            cards={cards}
+            total={total}
+            ctaLabel={t("rowCta")}
+            href={waHref}
+            cardHeightClass={cardHeightClass}
+          />
         )
       ) : null}
     </section>

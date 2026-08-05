@@ -3,7 +3,6 @@
 import { useId } from "react";
 import { motion, useTransform } from "framer-motion";
 import {
-  Activity,
   Clock,
   Code2,
   FileText,
@@ -144,7 +143,7 @@ function Pill({ Icon, label, style, pulse, className }) {
 
 export default function ProcessVisual({ progress, labels, animated = true, className }) {
   const gridId = useId();
-  const { frictionNodes, strategyLabel, buildLayers, growthLabel, growthMetrics } = labels;
+  const { frictionNodes, strategyLabel, buildLayers, growthMetrics } = labels;
 
   // nodos — hooks unrolled (rules-of-hooks: nada de useTransform en loops)
   const node0 = useNodeMotion(progress, NODES[0], DISCONNECTED_INDICES.includes(0));
@@ -186,12 +185,6 @@ export default function ProcessVisual({ progress, labels, animated = true, class
     top: pct(NODES[PRIORITY_INDEX].aligned.y),
     opacity: priorityTagOpacity,
     transform: "translate(-50%, calc(-100% - 20px))",
-  };
-  const growthLabelStyle = {
-    left: pct(122),
-    top: pct(392),
-    opacity: growthLabelOpacity,
-    transform: "translate(-50%, -50%)",
   };
 
   return (
@@ -382,7 +375,6 @@ export default function ProcessVisual({ progress, labels, animated = true, class
         ))}
 
         <Pill Icon={Target} label={strategyLabel} style={priorityLabelStyle} />
-        <Pill Icon={Activity} label={growthLabel} pulse style={growthLabelStyle} className="max-lg:hidden" />
 
         {layerMotions.map((l, i) => {
           const barY = LAYER_START_Y + i * (LAYER_HEIGHT + LAYER_GAP);

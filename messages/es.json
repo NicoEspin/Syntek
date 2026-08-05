@@ -112,7 +112,6 @@
         "frictionNodes": ["Consultas", "WhatsApp", "Formularios", "Sitio web", "Tareas manuales", "Planillas"],
         "strategyLabel": "Prioridad definida",
         "buildLayers": ["Estructura", "Diseño", "Contenido", "Desarrollo", "Integraciones"],
-        "growthLabel": "Medición activa",
         "growthMetrics": ["Consultas", "Conversión", "Tiempo ahorrado", "Evolución"]
       },
       "closing": {

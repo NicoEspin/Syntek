@@ -19,7 +19,6 @@ const ProcessSection = async () => {
       frictionNodes: t.raw("visual.frictionNodes"),
       strategyLabel: t("visual.strategyLabel"),
       buildLayers: t.raw("visual.buildLayers"),
-      growthLabel: t("visual.growthLabel"),
       growthMetrics: t.raw("visual.growthMetrics"),
     },
   };
