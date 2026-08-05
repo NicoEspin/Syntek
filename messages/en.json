@@ -56,9 +56,6 @@
       "title": "Your business doesn't need more tools. It needs everything working together.",
       "titleHighlight": "together.",
       "description": "We connect presence, inquiries, automation and measurement so every part pushes toward the same goal: selling better.",
-      "comparatorLegend": "One system, two states. Drag to see how everything connects.",
-      "ariaLabel": "Comparator: improvised digital presence versus an active system with Synttek",
-      "dragHint": "Drag to compare",
       "phaseFragmented": "Mostly improvised presence",
       "phaseTransitioning": "System in transition",
       "phaseActive": "Mostly active system",
@@ -83,12 +80,6 @@
         { "before": "Repetitive tasks", "after": "Simple automations" },
         { "before": "No measurement", "after": "Decisions based on data" },
         { "before": "An isolated website", "after": "An experience built to convert" }
-      ],
-      "mobileControl": { "improvised": "Improvised", "active": "Active system" },
-      "outcomes": [
-        { "number": "01", "title": "Clarity", "description": "Your pitch gets understood fast." },
-        { "number": "02", "title": "Efficiency", "description": "The system absorbs repetitive tasks." },
-        { "number": "03", "title": "Conversion", "description": "Inquiries arrive better qualified." }
       ]
     },
     "solutions": {
@@ -430,8 +421,8 @@
   "BlogPage": {
     "backHome": "Back to home",
     "eyebrow": "Blog",
-    "headingLine1": "Ideas, judgment and",
-    "headingAccent": "process.",
+    "headingLine1": "Web development, software, and",
+    "headingAccent": "automation,",
     "intro": "Notes on how we think, design and build. No buzzwords, no filler — what actually moves the needle.",
     "filterLabel": "Filter articles",
     "allPosts": "All",

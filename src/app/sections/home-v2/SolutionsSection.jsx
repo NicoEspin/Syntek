@@ -1,20 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import SplitHeadline from "@/app/components/SplitHeadline";
 import { getWhatsAppUrl } from "@/lib/business";
 
 const ease = [0.16, 1, 0.3, 1];
+
+// useLayoutEffect tira warning en SSR ("does nothing on the server") — Next
+// server-renderea los Client Components igual. Con esto medimos sync antes
+// del primer paint en cliente, sin el warning ni el salto post-mount.
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+// cuánto scroll vertical "extra" (además de la distancia horizontal medida)
+// hace falta para completar el rail. En 1x el recorrido completo entra en un
+// solo flick de mobile y se "come" 2-3 cards de un scroll — con 2x cada card
+// pide un scroll deliberado, nunca arranca a mitad de camino.
+const RAIL_SCROLL_SPEED = 2;
 
 // acento + imagen por solución (imágenes generadas con IA →
 // /public/nueva-home/soluciones). Mientras no existan, el gradiente del panel
@@ -131,8 +136,9 @@ function SolutionCardBody({ card, index, accent, img, ctaLabel, href, imgY }) {
 }
 
 // ─── Card scroll-driven — cada una ocupa 1/total del progreso del contenedor
-// sticky. Crossfade + scale-in + parallax de imagen (desktop, sin reduced-motion).
-function SolutionCard({ card, index, total, accent, img, progress, ctaLabel, href, parallaxEnabled }) {
+// sticky. Crossfade + scale-in + parallax de imagen. Sólo se usa en desktop
+// (mobile tiene su propio layout horizontal, ver SolutionsMobileRail).
+function SolutionCard({ card, index, total, accent, img, progress, ctaLabel, href }) {
   const start = index / total;
   const end = (index + 1) / total;
   const pad = Math.min(0.1, 0.6 / total);
@@ -145,7 +151,7 @@ function SolutionCard({ card, index, total, accent, img, progress, ctaLabel, hre
   const scale = useTransform(progress, [Math.max(0, start - pad), start + pad], [0.94, 1]);
   const y = useTransform(progress, [Math.max(0, start - pad), start + pad], [40, 0]);
   const pointerEvents = useTransform(opacity, (v) => (v > 0.5 ? "auto" : "none"));
-  const imgY = useTransform(progress, [start, end], parallaxEnabled ? ["-6%", "6%"] : ["0%", "0%"]);
+  const imgY = useTransform(progress, [start, end], ["-6%", "6%"]);
 
   return (
     <motion.div
@@ -159,6 +165,142 @@ function SolutionCard({ card, index, total, accent, img, progress, ctaLabel, hre
   );
 }
 
+// ─── Mobile: rail horizontal (título + cards), activado por scroll VERTICAL
+// normal. Mecanismo tipo "GalleryRail": la sección mide el ancho real del
+// track (`scrollWidth`) contra el viewport con ResizeObserver, y usa esa
+// distancia — no un valor asumido en vw — como alto extra de la sección
+// (`100svh + maxShift`). Sticky adentro + `scrollYProgress` 1:1 en `x`: el
+// progreso vertical es exactamente la distancia horizontal recorrida, sin
+// pasos discretos ni snapping — por eso no se "corta" nada ni arranca
+// desalineado. `prefers-reduced-motion` cae a scroll horizontal nativo con
+// CSS snap (ahí sí es swipe, no scroll-jacking).
+function SolutionsMobileRail({ header, cards, ctaLabel, href }) {
+  const prefersReduced = useReducedMotion();
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  const shiftRef = useRef(0);
+  const [maxShift, setMaxShift] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const x = useTransform(scrollYProgress, (p) => p * -shiftRef.current);
+  // se apaga sobre el final del recorrido — para qué mostrar progreso si ya
+  // terminaste de ver las cards.
+  const barOpacity = useTransform(scrollYProgress, [0.92, 1], [1, 0]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (prefersReduced) return;
+
+    const measure = () => {
+      if (!sectionRef.current || !trackRef.current) return;
+      const viewportWidth = sectionRef.current.getBoundingClientRect().width;
+      const shift = Math.max(0, trackRef.current.scrollWidth - viewportWidth);
+      shiftRef.current = shift;
+      setMaxShift(shift);
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(sectionRef.current);
+    ro.observe(trackRef.current);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [prefersReduced]);
+
+  const headerBlock = (
+    <div className="flex w-full flex-col">
+      <TitleSection title={header.sectionLabel} />
+      <h2
+        id="solutions-heading-mobile"
+        aria-label={header.title}
+        className="mt-5 text-[clamp(1.8rem,7vw,2.4rem)] font-black leading-[1.05] tracking-tight text-white"
+      >
+        {header.line1}. <span className="text-[#A1E233]">{header.line2}</span>
+      </h2>
+      <p className="mt-5 text-sm font-light leading-relaxed text-white/40">{header.subtitle}</p>
+    </div>
+  );
+
+  if (prefersReduced) {
+    return (
+      <div className="lg:hidden">
+        {headerBlock}
+        <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-4 pl-4 pr-[9vw] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {cards.map((card, i) => (
+            <div key={card.title} className="w-[84vw] max-w-sm shrink-0 snap-center">
+              <SolutionCardBody
+                card={card}
+                index={i}
+                accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
+                img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
+                ctaLabel={ctaLabel}
+                href={href}
+                imgY={null}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={sectionRef}
+      style={{ height: `calc(100svh + ${maxShift * RAIL_SCROLL_SPEED}px)` }}
+      className="relative overflow-clip lg:hidden"
+    >
+      {/* items-start (NO items-center): el wrapper es flex-col, así que
+          align-items controla el eje horizontal (cross axis). Con center, el
+          track (mucho más ancho que el viewport) queda CENTRADO en vez de
+          arrancar pegado al borde izquierdo — a x:0 ya se ve la mitad del
+          recorrido, la intro y la card 1 quedan fuera de cámara para siempre. */}
+      <div className="sticky top-0 flex h-[100svh] flex-col items-start justify-center overflow-hidden pt-20">
+        <motion.div
+          ref={trackRef}
+          style={{ x, willChange: "transform" }}
+          className="flex items-center gap-4 pl-4 pr-[9vw]"
+        >
+          <div className="w-[84vw] max-w-sm shrink-0">{headerBlock}</div>
+          {cards.map((card, i) => (
+            <div key={card.title} className="h-[min(600px,72vh)] w-[84vw] max-w-sm shrink-0">
+              <SolutionCardBody
+                card={card}
+                index={i}
+                accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
+                img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
+                ctaLabel={ctaLabel}
+                href={href}
+                imgY={null}
+              />
+            </div>
+          ))}
+        </motion.div>
+
+        {/* indicador de progreso — sólo `scaleX`/`opacity`, derivados 1:1 de
+            scrollYProgress (no dependen del re-render de React). Se achica y
+            se apaga sobre el final del recorrido. */}
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute bottom-6 left-1/2 h-[2px] w-20 -translate-x-1/2 overflow-hidden rounded-full bg-white/10"
+          style={{ opacity: barOpacity }}
+        >
+          <motion.div
+            className="absolute inset-y-0 left-0 w-full origin-left rounded-full bg-[#A1E233]"
+            style={{ scaleX: scrollYProgress }}
+          />
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 const SolutionsSection = () => {
   const t = useTranslations("HomeV2.solutions");
   const waHref = getWhatsAppUrl(useTranslations("HomeV2")("waMessage"));
@@ -169,15 +311,6 @@ const SolutionsSection = () => {
 
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mq.matches);
-    const onChange = (e) => setIsMobile(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -189,13 +322,13 @@ const SolutionsSection = () => {
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
-  const cardHeightClass = "h-[580px] sm:h-[560px] md:h-[500px] lg:h-[560px] xl:h-[610px]";
+  const cardHeightClass = "lg:h-[560px] xl:h-[610px]";
   const activeAccent = SOLUTIONS_META[activeIndex % SOLUTIONS_META.length].accent;
 
   return (
     <section
       id="soluciones"
-      aria-labelledby="solutions-heading"
+      aria-labelledby="solutions-heading solutions-heading-mobile"
       className="relative px-4 pb-24 pt-16 md:px-5 lg:px-10 xl:px-24"
     >
       <div
@@ -204,7 +337,9 @@ const SolutionsSection = () => {
         style={{ background: "radial-gradient(ellipse 55% 45% at 80% 30%, rgba(161,226,51,0.03) 0%, transparent 60%)" }}
       />
 
-      <div className="relative mx-auto max-w-screen-2xl">
+      {/* En mobile (sin reduced-motion) el título pasa a ser el primer slide del
+          layout horizontal — ver SolutionsMobileRail más abajo. */}
+      <div className={`relative mx-auto max-w-screen-2xl ${prefersReduced ? "" : "hidden lg:block"}`}>
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -229,10 +364,17 @@ const SolutionsSection = () => {
         </motion.div>
       </div>
 
+      <SolutionsMobileRail
+        header={{ sectionLabel: t("sectionLabel"), title: t("title"), line1, line2, subtitle: t("subtitle") }}
+        cards={cards}
+        ctaLabel={t("rowCta")}
+        href={waHref}
+      />
+
       {prefersReduced ? (
         // Sin scroll-jacking ni parallax: lista estática, cada card entra con un
         // fade simple al entrar en viewport.
-        <div className="relative mx-auto mt-14 flex max-w-screen-2xl flex-col gap-6">
+        <div className="relative mx-auto mt-14 hidden max-w-screen-2xl flex-col gap-6 lg:flex">
           {cards.map((card, i) => (
             <motion.div
               key={card.title}
@@ -256,7 +398,8 @@ const SolutionsSection = () => {
         </div>
       ) : (
         // stackRef alto = escenario sticky que se mantiene fijo mientras scrolleás
-        <div ref={containerRef} className="relative" style={{ height: `${total * 100}vh` }}>
+        // (sólo desktop — mobile usa el carousel horizontal de arriba)
+        <div ref={containerRef} className="relative hidden lg:block" style={{ height: `${total * 100}vh` }}>
           {/* pt-20/24 = despeje del navbar flotante fixed */}
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-20 md:pt-24">
             {/* halo ambiental de fondo: muta de color según la solución activa */}
@@ -280,7 +423,6 @@ const SolutionsSection = () => {
                     progress={scrollYProgress}
                     ctaLabel={t("rowCta")}
                     href={waHref}
-                    parallaxEnabled={!isMobile}
                   />
                 ))}
 

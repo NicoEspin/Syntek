@@ -1,83 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import ActiveSystem from "./ActiveSystem";
 import FragmentedSystem from "./FragmentedSystem";
+import ComparatorHandle from "./ComparatorHandle";
 import TransformationLedger from "./TransformationLedger";
-import OutcomeRail from "./OutcomeRail";
-import { EASE_PREMIUM } from "./constants";
+import { PHASE_BREAKPOINTS, PULSE_THRESHOLD } from "./constants";
 
-// mobile (< 768px): sin drag — un segmented control de 2 estados. El mismo
-// panel vertical reorganiza su contenido; el ledger y el riel de resultados
-// reutilizan los mismos componentes que el canvas de desktop, alimentados por
-// un progress "sintético" (0 o 100) que se anima brevemente al cambiar de
-// estado en vez de saltar de golpe.
+// mobile/tablet (< 768px): mismo modelo que SystemComparator — el progress
+// (0-100) se sincroniza con el scroll de un wrapper "story" más alto que la
+// card (scrollytelling con pin), sin tabs ni botones: la card queda sticky
+// mientras se recorre ese alto extra, dando tiempo real a ver la
+// transformación completa antes de que la página siga bajando. El progress se
+// controla ÚNICAMENTE por scroll — no hay drag ni tap.
 export default function MobileStateControl({ copy }) {
-  const [active, setActive] = useState(false);
+  const storyRef = useRef(null);
+  const lastValueRef = useRef(0);
+
   const prefersReduced = useReducedMotion();
-  const progress = useMotionValue(50);
+  const progress = useMotionValue(0);
+  const { scrollYProgress } = useScroll({ target: storyRef, offset: ["start start", "end end"] });
+
+  const [active, setActive] = useState(false);
+  const [phase, setPhase] = useState("fragmented");
+  const [pulseKey, setPulseKey] = useState(0);
+
+  const left = useTransform(progress, (v) => `${v}%`);
+  const fragmentedOpacity = useTransform(progress, [35, 65], [1, 0]);
+  const activeOpacity = useTransform(progress, [35, 65], [0, 1]);
+  const glowOpacity = useTransform(progress, [0, 100], [0.15, 0.4]);
+
+  useMotionValueEvent(progress, "change", (v) => {
+    const nextActive = v >= 50;
+    setActive((prev) => (prev === nextActive ? prev : nextActive));
+    const nextPhase =
+      v < PHASE_BREAKPOINTS.fragmented ? "fragmented" : v > PHASE_BREAKPOINTS.transitioning ? "active" : "transitioning";
+    setPhase((prev) => (prev === nextPhase ? prev : nextPhase));
+    if (v >= PULSE_THRESHOLD && lastValueRef.current < PULSE_THRESHOLD && !prefersReduced) {
+      setPulseKey((k) => k + 1);
+    }
+    lastValueRef.current = v;
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (prefersReduced) return;
+    progress.set(v * 100);
+  });
 
   useEffect(() => {
-    const target = active ? 100 : 0;
-    if (prefersReduced) {
-      progress.set(target);
-      return;
-    }
-    const controls = animate(progress, target, { duration: 0.5, ease: EASE_PREMIUM });
-    return () => controls.stop();
-  }, [active, prefersReduced, progress]);
+    if (!prefersReduced) return;
+    progress.set(100);
+  }, [prefersReduced, progress]);
+
+  const phaseText = phase === "fragmented" ? copy.phaseFragmented : phase === "active" ? copy.phaseActive : copy.phaseTransitioning;
 
   return (
     <div>
-      <div role="group" aria-label={copy.ariaLabel} className="grid grid-cols-2 gap-2 rounded-full border border-white/10 bg-white/[0.03] p-1.5">
-        <button
-          type="button"
-          aria-pressed={!active}
-          onClick={() => setActive(false)}
-          className={cn(
-            "min-h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A1E233]/60",
-            !active ? "bg-white/10 text-white" : "text-white/40",
-          )}
-        >
-          {copy.mobileControl.improvised}
-        </button>
-        <button
-          type="button"
-          aria-pressed={active}
-          onClick={() => setActive(true)}
-          className={cn(
-            "min-h-11 rounded-full text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A1E233]/60",
-            active ? "bg-[#A1E233] text-black" : "text-white/40",
-          )}
-        >
-          {copy.mobileControl.active}
-        </button>
-      </div>
-
-      <div className="relative mt-5 min-h-[360px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0a0a0a]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
-            backgroundSize: "36px 36px",
-          }}
-        />
-        <AnimatePresence mode="wait">
-          {active ? (
+      <div ref={storyRef} className={cn("relative", prefersReduced ? "h-auto" : "h-[170vh]")}>
+        <div className={cn(prefersReduced ? "" : "sticky top-24 flex flex-col justify-center")}>
+          <div className="relative min-h-[440px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0a0a0a]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.35]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+                backgroundSize: "36px 36px",
+              }}
+            />
             <motion.div
-              key="active"
-              initial={{ opacity: 0, y: prefersReduced ? 0 : 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: prefersReduced ? 0 : -12 }}
-              transition={{ duration: prefersReduced ? 0.01 : 0.4, ease: EASE_PREMIUM }}
-              className="relative"
-            >
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background: "radial-gradient(ellipse 90% 55% at 50% 25%, rgba(161,226,51,1) 0%, transparent 70%)",
+                opacity: glowOpacity,
+              }}
+            />
+
+            <motion.div aria-hidden={active} className="absolute inset-0" style={{ opacity: fragmentedOpacity }}>
+              <FragmentedSystem copy={copy.right} compact moduleLimit={5} />
+            </motion.div>
+            <motion.div aria-hidden={!active} className="absolute inset-0" style={{ opacity: activeOpacity }}>
               <ActiveSystem
                 copy={copy.left}
                 systemFlow={copy.systemFlow}
@@ -87,27 +92,19 @@ export default function MobileStateControl({ copy }) {
                 reduceMotion={prefersReduced}
               />
             </motion.div>
-          ) : (
-            <motion.div
-              key="fragmented"
-              initial={{ opacity: 0, y: prefersReduced ? 0 : 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: prefersReduced ? 0 : -12 }}
-              transition={{ duration: prefersReduced ? 0.01 : 0.4, ease: EASE_PREMIUM }}
-              className="relative"
-            >
-              <FragmentedSystem copy={copy.right} compact moduleLimit={5} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+            {pulseKey > 0 && <div key={pulseKey} aria-hidden className="syn-transform-pulse pointer-events-none absolute inset-0" />}
+
+            <ComparatorHandle variant="track" left={left} />
+          </div>
+
+          <TransformationLedger transformations={copy.transformations} progress={progress} />
+        </div>
       </div>
 
       <output className="sr-only" aria-live="polite">
-        {active ? copy.left.status : copy.right.status}
+        {phaseText}
       </output>
-
-      <TransformationLedger transformations={copy.transformations} progress={progress} />
-      <OutcomeRail outcomes={copy.outcomes} progress={progress} />
     </div>
   );
 }

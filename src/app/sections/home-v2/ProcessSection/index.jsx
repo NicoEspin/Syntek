@@ -1,12 +1,10 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { getWhatsAppUrl } from "@/lib/business";
 import ProcessDesktop from "./ProcessDesktop";
 import ProcessMobile from "./ProcessMobile";
 
-const ProcessSection = () => {
-  const t = useTranslations("HomeV2.process");
+const ProcessSection = async () => {
+  const t = await getTranslations("HomeV2.process");
   const steps = t.raw("steps");
 
   const copy = {

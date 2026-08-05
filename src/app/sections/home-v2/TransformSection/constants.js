@@ -4,19 +4,8 @@ import { CircleCheck, ListFilter, Megaphone, MessageSquare, TrendingUp } from "l
 export const EASE_PREMIUM = [0.16, 1, 0.3, 1];
 export const EASE_SUBTLE = [0.4, 0, 0.2, 1];
 
-export const REVEAL_MIN = 0;
-export const REVEAL_MAX = 100;
-export const REVEAL_DEFAULT = 50;
-
-export const DEMO_START = 18;
-export const DEMO_END = 68;
-export const DEMO_DURATION = 1.5;
-
 export const PULSE_THRESHOLD = 80;
 export const FEATHER = 7; // ancho de la zona de degradado entre capas, en % del canvas
-
-// umbrales (0-100) en los que cada resultado del OutcomeRail se activa
-export const OUTCOME_THRESHOLDS = [35, 60, 85];
 
 // umbrales de "fase" semántica usados para aria-valuetext, aria-live y el pulso del sistema
 export const PHASE_BREAKPOINTS = { fragmented: 30, transitioning: 70 };

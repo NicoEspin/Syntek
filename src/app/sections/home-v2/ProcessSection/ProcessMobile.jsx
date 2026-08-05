@@ -74,7 +74,7 @@ function ProcessStaticStep({ step, index, visualLabels }) {
         progress={progress}
         labels={visualLabels}
         animated={false}
-        className="relative mt-6 aspect-square w-full max-w-[260px]"
+        className="relative mt-6 aspect-square w-full max-w-[360px]"
       />
     </RevealBlock>
   );
@@ -148,11 +148,11 @@ export default function ProcessMobile({ copy, steps, waHref }) {
         // scroll real mueve el progreso (0–1) que anima visual + crossfade de
         // texto — no hay que "scrollear cada parte", el paso avanza solo.
         <div ref={containerRef} className="relative mt-14" style={{ height: `${TOTAL_STEPS * 100}vh` }}>
-          <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pb-[150px] pt-24">
+          <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pb-[110px] pt-20">
             <ProcessVisual
               progress={scrollYProgress}
               labels={copy.visual}
-              className="relative mx-auto aspect-square w-full max-w-[min(78vw,30vh,270px)] [@media(min-height:760px)]:max-w-[min(66vw,40vh,340px)]"
+              className="relative mx-auto aspect-square w-full max-w-[min(80vw,30vh,280px)] [@media(min-height:760px)]:max-w-[min(92vw,38vh,400px)]"
             />
 
             <div className="relative mt-3 min-h-[150px] w-full max-w-sm text-center [@media(min-height:760px)]:mt-8">

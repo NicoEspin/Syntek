@@ -21,7 +21,7 @@ export default function ActiveSystem({ copy, systemFlow, nodeStatus, compact = f
 
   if (compact) {
     return (
-      <div className="flex flex-col gap-5 p-6">
+      <div className="flex flex-col gap-5 p-6 pb-16">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="relative flex size-1.5">

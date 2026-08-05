@@ -1,17 +1,10 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/app/components/(common)/Navbar";
 import Footer from "@/app/components/(common)/Footer";
-import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import HeroV2 from "@/app/sections/home-v2/HeroV2";
-import Introduction from "@/app/sections/Introduction";
-import TransformSection from "@/app/sections/home-v2/TransformSection";
-import SolutionsSection from "@/app/sections/home-v2/SolutionsSection";
-import Services from "@/app/sections/Services";
 import Projects from "@/app/sections/Projects";
 import ProcessSection from "@/app/sections/home-v2/ProcessSection";
-import FaqV2 from "@/app/sections/home-v2/FaqV2";
-import CtaFinalV2 from "@/app/sections/home-v2/CtaFinalV2";
-import Contact from "@/app/sections/Contact";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
@@ -22,6 +15,15 @@ import {
   buildProfessionalServiceJsonLd,
   buildWebsiteJsonLd,
 } from "@/lib/jsonLd";
+
+const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets"));
+const Introduction = dynamic(() => import("@/app/sections/Introduction"));
+const TransformSection = dynamic(() => import("@/app/sections/home-v2/TransformSection"));
+const SolutionsSection = dynamic(() => import("@/app/sections/home-v2/SolutionsSection"));
+const Services = dynamic(() => import("@/app/sections/Services"));
+const FaqV2 = dynamic(() => import("@/app/sections/home-v2/FaqV2"));
+const CtaFinalV2 = dynamic(() => import("@/app/sections/home-v2/CtaFinalV2"));
+const Contact = dynamic(() => import("@/app/sections/Contact"));
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;

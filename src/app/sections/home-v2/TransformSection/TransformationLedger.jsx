@@ -19,7 +19,12 @@ function useItemMotion(progress, threshold) {
 function LedgerItem({ item, motionValues }) {
   const { afterOpacity, beforeOpacity, markScale, checkScale } = motionValues;
   return (
-    <div className="relative flex items-start gap-3 border-t border-white/8 pt-4">
+    <div className="relative flex items-start gap-3 overflow-hidden border-t border-white/8 pt-4 max-sm:gap-2 max-sm:rounded-xl max-sm:border-t-0 max-sm:bg-white/[0.025] max-sm:px-2.5 max-sm:py-2">
+      <motion.span
+        aria-hidden
+        className="absolute left-0 top-0 h-full w-[2px] origin-top bg-[#A1E233] sm:hidden"
+        style={{ scaleY: checkScale }}
+      />
       <span className="relative mt-0.5 flex size-5 shrink-0 items-center justify-center">
         <motion.span
           aria-hidden
@@ -36,7 +41,7 @@ function LedgerItem({ item, motionValues }) {
           ✓
         </motion.span>
       </span>
-      <span className="relative block min-h-[2.6em] flex-1 text-[13px] leading-snug">
+      <span className="relative block min-h-[2.6em] flex-1 text-[13px] leading-snug max-sm:min-h-[3.9em] max-sm:text-[12px]">
         <motion.span className="absolute inset-0 text-white/40 line-through decoration-white/20" style={{ opacity: beforeOpacity }}>
           {item.before}
         </motion.span>
@@ -58,7 +63,7 @@ export default function TransformationLedger({ transformations, progress }) {
   const motions = [m0, m1, m2, m3, m4, m5];
 
   return (
-    <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3">
+    <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-1 max-sm:mt-5 max-sm:gap-x-2.5 max-sm:gap-y-2 lg:mt-10 lg:grid-cols-3">
       {transformations.map((item, i) => (
         <LedgerItem key={item.before} item={item} motionValues={motions[i]} />
       ))}

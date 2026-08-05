@@ -1,24 +1,16 @@
-"use client";
-
-import { useId } from "react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import TransformHeader from "./TransformHeader";
 import SystemComparator from "./SystemComparator";
 import MobileStateControl from "./MobileStateControl";
 
-const TransformSection = () => {
-  const t = useTranslations("HomeV2.transform");
-  const reactId = useId();
-  const comparatorId = `transform-comparator-${reactId}`;
+const TransformSection = async () => {
+  const t = await getTranslations("HomeV2.transform");
 
   const copy = {
     sectionLabel: t("sectionLabel"),
     title: t("title"),
     titleHighlight: t("titleHighlight"),
     description: t("description"),
-    comparatorLegend: t("comparatorLegend"),
-    ariaLabel: t("ariaLabel"),
-    dragHint: t("dragHint"),
     phaseFragmented: t("phaseFragmented"),
     phaseTransitioning: t("phaseTransitioning"),
     phaseActive: t("phaseActive"),
@@ -27,15 +19,13 @@ const TransformSection = () => {
     systemFlow: t.raw("systemFlow"),
     nodeStatus: t.raw("nodeStatus"),
     transformations: t.raw("transformations"),
-    mobileControl: t.raw("mobileControl"),
-    outcomes: t.raw("outcomes"),
   };
 
   return (
     <section
       id="transform"
       aria-labelledby="transform-heading"
-      className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
+      className="relative px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       <div
         aria-hidden
@@ -50,7 +40,7 @@ const TransformSection = () => {
         <TransformHeader copy={copy} headingId="transform-heading" />
 
         <div className="mt-14 hidden md:block">
-          <SystemComparator copy={copy} id={comparatorId} />
+          <SystemComparator copy={copy} />
         </div>
         <div className="mt-10 md:hidden">
           <MobileStateControl copy={copy} />

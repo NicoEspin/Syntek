@@ -11,7 +11,7 @@ export default function FragmentedSystem({ copy, compact = false, moduleLimit = 
 
   if (compact) {
     return (
-      <div className="flex flex-col gap-5 p-6">
+      <div className="flex flex-col gap-5 p-6 pb-16">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span aria-hidden className="size-1.5 rounded-full bg-white/25" />

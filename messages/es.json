@@ -55,9 +55,6 @@
       "title": "Tu negocio no necesita más herramientas. Necesita que todo funcione junto.",
       "titleHighlight": "junto.",
       "description": "Conectamos presencia, consultas, automatización y medición para que cada parte empuje hacia el mismo objetivo: vender mejor.",
-      "comparatorLegend": "Un solo sistema, dos estados. Deslizá para ver cómo se conecta todo.",
-      "ariaLabel": "Comparador: presencia digital improvisada versus sistema activo con Synttek",
-      "dragHint": "Arrastrá para comparar",
       "phaseFragmented": "Mayormente presencia improvisada",
       "phaseTransitioning": "Sistema en transición",
       "phaseActive": "Mayormente sistema activo",
@@ -82,12 +79,6 @@
         { "before": "Tareas repetitivas", "after": "Automatizaciones simples" },
         { "before": "Sin medición", "after": "Decisiones basadas en datos" },
         { "before": "Web aislada", "after": "Experiencia preparada para convertir" }
-      ],
-      "mobileControl": { "improvised": "Improvisado", "active": "Sistema activo" },
-      "outcomes": [
-        { "number": "01", "title": "Claridad", "description": "Tu propuesta se entiende rápido." },
-        { "number": "02", "title": "Eficiencia", "description": "El sistema absorbe tareas repetitivas." },
-        { "number": "03", "title": "Conversión", "description": "Las consultas llegan mejor preparadas." }
       ]
     },
     "solutions": {
@@ -427,8 +418,8 @@
   "BlogPage": {
     "backHome": "Volver al inicio",
     "eyebrow": "Blog",
-    "headingLine1": "Ideas, criterio y",
-    "headingAccent": "proceso.",
+    "headingLine1": "Desarrollo web, diseño y",
+    "headingAccent": "automatización.",
     "intro": "Notas sobre cómo pensamos, diseñamos y construimos. Sin buzzwords, sin relleno — lo que realmente mueve la aguja.",
     "filterLabel": "Filtrar artículos",
     "allPosts": "Todos",

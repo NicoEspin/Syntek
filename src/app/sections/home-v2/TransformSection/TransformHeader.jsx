@@ -26,12 +26,6 @@ export default function TransformHeader({ copy, headingId }) {
         <RevealBlock delay={0.2}>
           <p className="text-sm font-light leading-relaxed text-white/55 md:text-base">{copy.description}</p>
         </RevealBlock>
-        <RevealBlock delay={0.3} className="flex items-center gap-2 border-t border-white/8 pt-4">
-          <span aria-hidden className="text-[#A1E233]">
-            ↔
-          </span>
-          <span className="text-xs font-medium uppercase tracking-[0.14em] text-white/45">{copy.comparatorLegend}</span>
-        </RevealBlock>
       </div>
     </div>
   );

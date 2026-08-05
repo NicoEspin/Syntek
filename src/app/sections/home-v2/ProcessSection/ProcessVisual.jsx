@@ -54,7 +54,7 @@ const NODE_ICONS = [MessageCircle, Smartphone, FileText, Globe, Clock, Table];
 const PRIORITY_INDEX = 0;
 const DISCONNECTED_INDICES = [2, 4];
 
-const FRAME = { x: 115, y: 75, width: 250, height: 300, rx: 18 };
+const FRAME = { x: 115, y: 75, width: 250, height: 258, rx: 18 };
 const CHROME_H = 26;
 const LAYER_INNER_X = 135;
 const LAYER_WIDTH = 210;
@@ -284,7 +284,7 @@ export default function ProcessVisual({ progress, labels, animated = true, class
             cx={n.x}
             cy={n.y}
             r={4}
-            fill={i === PRIORITY_INDEX ? n.priorityColor : "#ededed"}
+            fill={n.priorityColor}
             style={{ opacity: n.opacity }}
           />
         ))}
@@ -376,13 +376,13 @@ export default function ProcessVisual({ progress, labels, animated = true, class
             key={`node-label-${i}`}
             Icon={NODE_ICONS[i]}
             label={frictionNodes[i]}
-            accentColor={i === PRIORITY_INDEX ? n.priorityColor : "rgba(237,237,237,0.55)"}
+            accentColor={n.priorityColor}
             style={{ left: n.left, top: n.top, opacity: n.opacity, transform: "translate(-50%, 12px)" }}
           />
         ))}
 
         <Pill Icon={Target} label={strategyLabel} style={priorityLabelStyle} />
-        <Pill Icon={Activity} label={growthLabel} pulse style={growthLabelStyle} />
+        <Pill Icon={Activity} label={growthLabel} pulse style={growthLabelStyle} className="max-lg:hidden" />
 
         {layerMotions.map((l, i) => {
           const barY = LAYER_START_Y + i * (LAYER_HEIGHT + LAYER_GAP);
