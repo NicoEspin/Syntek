@@ -24,10 +24,10 @@ export default function RotatingWord({ words, interval = 2200 }) {
 
   return (
     <span className="relative inline-block overflow-hidden align-bottom">
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false} mode="wait">
         <motion.span
           key={index}
-          initial={{ y: "110%", opacity: 0 }}
+          initial={false}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: "-110%", opacity: 0 }}
           transition={{ duration: 0.55, ease }}

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/app/components/(common)/Navbar";
 import Footer from "@/app/components/(common)/Footer";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import JsonLd from "@/components/JsonLd";
 import HeroV2 from "@/app/sections/home-v2/HeroV2";
 import Projects from "@/app/sections/Projects";
@@ -84,21 +85,41 @@ export default async function Home({ params }) {
     <>
       <JsonLd data={structuredData} />
 
-      <Navbar />
-      <main className="bg-[#0a0a0a] text-[#ededed]">
-        <HeroV2 />
-        <Introduction />
-        <TransformSection />
-        <SolutionsSection />
-        <Services />
-        <Projects locale={locale} />
-        <ProcessSection />
-        <FaqV2 />
-        <CtaFinalV2 />
-        <Contact />
-      </main>
+      <ScopedIntlProvider
+        locale={locale}
+        namespaces={[
+          "Navbar",
+          "HomeV2.hero",
+          "HomeV2.transform",
+          "HomeV2.solutions",
+          "HomeV2.process",
+          "HomeV2.faq",
+          "HomeV2.ctaFinal",
+          "HomeV2.waMessage",
+          "Homepage.heroCards",
+          "Introduction",
+          "Services",
+          "Projects",
+          "Contact",
+          "ChatBot",
+        ]}
+      >
+        <Navbar />
+        <main className="bg-[#0a0a0a] text-[#ededed]">
+          <HeroV2 />
+          <Introduction />
+          <TransformSection />
+          <SolutionsSection />
+          <Services />
+          <Projects locale={locale} />
+          <ProcessSection />
+          <FaqV2 />
+          <CtaFinalV2 />
+          <Contact />
+        </main>
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
-      <FloatingWidgets />
     </>
   );
 }

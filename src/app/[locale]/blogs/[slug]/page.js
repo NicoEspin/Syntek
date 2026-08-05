@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Footer from "@/app/components/(common)/Footer";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
@@ -88,8 +89,10 @@ export default async function BlogPostPage({ params }) {
   return (
     <>
       <JsonLd data={postSchema} />
-      <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} shareUrl={shareUrl} />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "BlogPage", "ChatBot"]}>
+        <PostDetail post={post} relatedPosts={relatedPosts} locale={locale} shareUrl={shareUrl} />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );

@@ -1,5 +1,6 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
@@ -99,13 +100,15 @@ export default async function ProjectPage({ params }) {
   return (
     <>
       <JsonLd data={projectSchema} />
-      <Navbar floating />
-      <ProjectDetail
-        locale={locale}
-        nextProject={nextProject}
-        project={project}
-      />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "Projects", "ChatBot"]}>
+        <Navbar floating />
+        <ProjectDetail
+          locale={locale}
+          nextProject={nextProject}
+          project={project}
+        />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );

@@ -92,7 +92,7 @@ export default async function LocaleLayout({ children, params }) {
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={null}>
           <SmoothScroll>{children}</SmoothScroll>
         </NextIntlClientProvider>
         <CustomCursor />

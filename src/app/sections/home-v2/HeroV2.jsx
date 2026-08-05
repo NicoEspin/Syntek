@@ -196,9 +196,11 @@ const HeroV2 = () => {
   const waHref = getWhatsAppUrl(t("waMessage"));
   const rotatingLocations = t.raw("hero.rotatingLocations");
   const prefersReduced = useReducedMotion();
-
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const [leftDesignScope, leftDesignAnimate] = useAnimate();
   const [leftPointerScope, leftPointerAnimate] = useAnimate();
@@ -372,7 +374,7 @@ const HeroV2 = () => {
         >
           <span className="block overflow-hidden">
             <motion.span
-              initial={{ y: "105%" }}
+              initial={false}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease }}
               className="block"
@@ -382,7 +384,7 @@ const HeroV2 = () => {
           </span>
           <span className="block overflow-hidden text-[#A1E233]">
             <motion.span
-              initial={{ y: "105%" }}
+              initial={false}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease }}
               className="block"
@@ -393,10 +395,9 @@ const HeroV2 = () => {
         </h1>
 
         <motion.p
-          variants={heroVariants}
-          custom={0.55}
-          initial="hidden"
-          animate={mounted ? "visible" : "hidden"}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.55, ease }}
           className="mb-10 max-w-xl text-base font-light leading-relaxed text-white/42 md:text-lg"
         >
           {t("hero.subtitle")}

@@ -8,21 +8,48 @@ export default function SmoothScroll({ children }) {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) return;
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-
+    let lenis;
     let raf;
-    function loop(time) {
-      lenis.raf(time);
+    let timeoutId;
+    let cancelled = false;
+
+    const startLenis = () => {
+      if (cancelled || lenis) return;
+
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      const loop = (time) => {
+        lenis.raf(time);
+        raf = requestAnimationFrame(loop);
+      };
+
       raf = requestAnimationFrame(loop);
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(() => {
+        startLenis();
+      }, { timeout: 1200 });
+
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(idleId);
+        clearTimeout(timeoutId);
+        cancelAnimationFrame(raf);
+        lenis?.destroy();
+      };
     }
-    raf = requestAnimationFrame(loop);
+
+    timeoutId = window.setTimeout(startLenis, 250);
 
     return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
       cancelAnimationFrame(raf);
-      lenis.destroy();
+      lenis?.destroy();
     };
   }, []);
 

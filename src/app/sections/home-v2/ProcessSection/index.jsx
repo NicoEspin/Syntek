@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { getWhatsAppUrl } from "@/lib/business";
-import ProcessDesktop from "./ProcessDesktop";
-import ProcessMobile from "./ProcessMobile";
+import ProcessResponsive from "./ProcessResponsive";
 
 const ProcessSection = async () => {
   const t = await getTranslations("HomeV2.process");
@@ -32,8 +31,7 @@ const ProcessSection = async () => {
       aria-labelledby="process-heading process-heading-mobile"
       className="relative overflow-x-clip px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
-      <ProcessDesktop copy={copy} steps={steps} waHref={waHref} />
-      <ProcessMobile copy={copy} steps={steps} waHref={waHref} />
+      <ProcessResponsive copy={copy} steps={steps} waHref={waHref} />
     </section>
   );
 };

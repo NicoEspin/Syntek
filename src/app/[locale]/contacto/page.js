@@ -1,5 +1,6 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
@@ -79,9 +80,11 @@ export default async function ContactPage({ params }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <Navbar floating />
-      <ContactPageContent locale={locale} />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "ContactPage", "Contact", "ChatBot"]}>
+        <Navbar floating />
+        <ContactPageContent locale={locale} />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );

@@ -1,5 +1,6 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
@@ -100,9 +101,11 @@ export default async function BlogsPage({ params }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <Navbar />
-      <BlogsClient locale={locale} posts={posts} />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "BlogPage", "ChatBot"]}>
+        <Navbar />
+        <BlogsClient locale={locale} posts={posts} />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );

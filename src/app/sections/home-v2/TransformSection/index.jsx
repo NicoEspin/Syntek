@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import TransformHeader from "./TransformHeader";
-import SystemComparator from "./SystemComparator";
-import MobileStateControl from "./MobileStateControl";
+import TransformResponsive from "./TransformResponsive";
 
 const TransformSection = async () => {
   const t = await getTranslations("HomeV2.transform");
@@ -38,13 +37,7 @@ const TransformSection = async () => {
 
       <div className="relative mx-auto max-w-screen-2xl">
         <TransformHeader copy={copy} headingId="transform-heading" />
-
-        <div className="mt-14 hidden md:block">
-          <SystemComparator copy={copy} />
-        </div>
-        <div className="mt-10 md:hidden">
-          <MobileStateControl copy={copy} />
-        </div>
+        <TransformResponsive copy={copy} />
       </div>
     </section>
   );

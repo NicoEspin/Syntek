@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
+const HOME_SECTION_IDS = ["services", "projects", "tools", "about", "faqs", "contact"];
 
 // ─── Componente: Link de navegación desktop ───────────────────────────────────
 function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
@@ -232,14 +233,18 @@ const Navbar = ({ floating = false }) => {
       return undefined;
     }
 
-    const sectionIds = [
-      "services",
-      "projects",
-      "tools",
-      "about",
-      "faqs",
-      "contact",
-    ];
+    let rafId = null;
+    let sectionPositions = [];
+
+    const measureSections = () => {
+      sectionPositions = HOME_SECTION_IDS.map((id) => document.getElementById(id))
+        .filter(Boolean)
+        .map((section) => ({
+          id: section.id,
+          top: section.offsetTop,
+        }))
+        .sort((a, b) => a.top - b.top);
+    };
 
     const updateActiveSection = () => {
       const currentScroll = window.scrollY;
@@ -252,16 +257,7 @@ const Navbar = ({ floating = false }) => {
       const anchorLine = currentScroll + navOffset;
       let current = "#";
 
-      const sectionsByPosition = sectionIds
-        .map((id) => document.getElementById(id))
-        .filter(Boolean)
-        .map((section) => ({
-          id: section.id,
-          top: section.getBoundingClientRect().top + window.scrollY,
-        }))
-        .sort((a, b) => a.top - b.top);
-
-      sectionsByPosition.forEach((section) => {
+      sectionPositions.forEach((section) => {
         if (anchorLine >= section.top) {
           current = `#${section.id}`;
         }
@@ -270,13 +266,30 @@ const Navbar = ({ floating = false }) => {
       setActiveSection(current);
     };
 
+    const scheduleUpdate = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        updateActiveSection();
+      });
+    };
+
+    const handleResize = () => {
+      measureSections();
+      updateActiveSection();
+    };
+
+    measureSections();
     updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isAboutPage, isBlogPage, isContactPage, isHomePage, isProjectsPage, isServicesPage]);
 

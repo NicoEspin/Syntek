@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
+import useMediaQuery from "@/app/components/useMediaQuery";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import SplitHeadline from "@/app/components/SplitHeadline";
 import { getWhatsAppUrl } from "@/lib/business";
@@ -308,6 +309,7 @@ const SolutionsSection = () => {
   const total = cards.length;
   const [line1, line2] = t("title").split(". ");
   const prefersReduced = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -324,6 +326,7 @@ const SolutionsSection = () => {
 
   const cardHeightClass = "lg:h-[560px] xl:h-[610px]";
   const activeAccent = SOLUTIONS_META[activeIndex % SOLUTIONS_META.length].accent;
+  const showDesktopVariant = isDesktop;
 
   return (
     <section
@@ -339,10 +342,11 @@ const SolutionsSection = () => {
 
       {/* En mobile (sin reduced-motion) el título pasa a ser el primer slide del
           layout horizontal — ver SolutionsMobileRail más abajo. */}
-      <div className={`relative mx-auto max-w-screen-2xl ${prefersReduced ? "" : "hidden lg:block"}`}>
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+      {showDesktopVariant ? (
+        <div className="relative mx-auto max-w-screen-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.7, ease }}
           className="mx-auto max-w-2xl text-center"
@@ -358,23 +362,25 @@ const SolutionsSection = () => {
               <SplitHeadline as="span" text={line2} ariaHidden delay={(line1.split(" ").length + 1) * 0.055} className="inline" />
             </span>
           </h2>
-          <p className="mx-auto mt-5 max-w-lg text-sm font-light leading-relaxed text-white/40 md:text-base">
-            {t("subtitle")}
-          </p>
-        </motion.div>
-      </div>
+            <p className="mx-auto mt-5 max-w-lg text-sm font-light leading-relaxed text-white/40 md:text-base">
+              {t("subtitle")}
+            </p>
+          </motion.div>
+        </div>
+      ) : (
+        <SolutionsMobileRail
+          header={{ sectionLabel: t("sectionLabel"), title: t("title"), line1, line2, subtitle: t("subtitle") }}
+          cards={cards}
+          ctaLabel={t("rowCta")}
+          href={waHref}
+        />
+      )}
 
-      <SolutionsMobileRail
-        header={{ sectionLabel: t("sectionLabel"), title: t("title"), line1, line2, subtitle: t("subtitle") }}
-        cards={cards}
-        ctaLabel={t("rowCta")}
-        href={waHref}
-      />
-
-      {prefersReduced ? (
+      {showDesktopVariant ? (
+        prefersReduced ? (
         // Sin scroll-jacking ni parallax: lista estática, cada card entra con un
         // fade simple al entrar en viewport.
-        <div className="relative mx-auto mt-14 hidden max-w-screen-2xl flex-col gap-6 lg:flex">
+        <div className="relative mx-auto mt-14 max-w-screen-2xl flex-col gap-6">
           {cards.map((card, i) => (
             <motion.div
               key={card.title}
@@ -396,10 +402,10 @@ const SolutionsSection = () => {
             </motion.div>
           ))}
         </div>
-      ) : (
+        ) : (
         // stackRef alto = escenario sticky que se mantiene fijo mientras scrolleás
         // (sólo desktop — mobile usa el carousel horizontal de arriba)
-        <div ref={containerRef} className="relative hidden lg:block" style={{ height: `${total * 100}vh` }}>
+        <div ref={containerRef} className="relative" style={{ height: `${total * 100}vh` }}>
           {/* pt-20/24 = despeje del navbar flotante fixed */}
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-20 md:pt-24">
             {/* halo ambiental de fondo: muta de color según la solución activa */}
@@ -453,7 +459,8 @@ const SolutionsSection = () => {
             </div>
           </div>
         </div>
-      )}
+        )
+      ) : null}
     </section>
   );
 };

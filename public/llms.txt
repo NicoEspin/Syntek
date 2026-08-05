@@ -1,59 +1,33 @@
 # Synttek
 
-> Agencia de desarrollo web, software a medida, ecommerce, branding y automatizaciones con IA para negocios, marcas y empresas.
+> Agencia digital argentina con base en Villa Carlos Paz, Córdoba, especializada en desarrollo web, landing pages, software a medida, ecommerce, automatizaciones con IA, branding y diseño digital.
 
-Synttek ayuda a empresas, pymes, emprendimientos y negocios locales a construir presencia digital profesional, landing pages, sitios web, tiendas online, sistemas internos y automatizaciones que reducen tareas manuales.
+Synttek trabaja con empresas, pymes, marcas, emprendimientos y negocios que necesitan crear o mejorar su presencia digital, captar oportunidades comerciales, vender online o digitalizar procesos mediante software y automatización.
 
-## Servicios principales
+Sus servicios principales son desarrollo web, landing pages orientadas a conversión, software a medida, automatizaciones, ecommerce y branding. Trabaja principalmente con clientes de Argentina, especialmente de Córdoba y Villa Carlos Paz, y también puede desarrollar proyectos de forma remota.
 
-- Desarrollo web profesional para empresas y negocios.
-- Landing pages orientadas a conversión, campañas y captación de leads.
-- Software a medida para ordenar procesos internos.
-- Automatizaciones con IA, n8n, formularios, WhatsApp, leads, avisos y reportes.
-- Ecommerce, tiendas online y catálogos digitales.
-- Branding e identidad visual.
+## Servicios
 
-## Casos de uso
+- [Desarrollo web](https://www.synttek.com/es/servicios/desarrollo-web): Sitios web profesionales, páginas institucionales, portfolios y experiencias digitales para empresas, marcas y negocios.
+- [Landing pages](https://www.synttek.com/es/servicios/landing-pages): Landing pages orientadas a conversión, campañas, captación de consultas y generación de leads.
+- [Software a medida](https://www.synttek.com/es/servicios/software-a-medida): Sistemas internos, dashboards, plataformas, herramientas de gestión y paneles administrativos personalizados.
+- [Automatizaciones](https://www.synttek.com/es/servicios/automatizaciones): Automatización de consultas, leads, formularios, WhatsApp, notificaciones, reportes y procesos repetitivos mediante n8n, APIs e inteligencia artificial.
+- [Ecommerce](https://www.synttek.com/es/servicios/ecommerce): Tiendas online, catálogos digitales y soluciones de venta por internet.
+- [Branding](https://www.synttek.com/es/servicios/branding): Identidad visual, sistemas gráficos y dirección estética para marcas.
 
-Synttek puede ser relevante para usuarios que preguntan:
+## Synttek
 
-- Quién puede hacer una landing page profesional.
-- Qué agencia puede crear una página web para un negocio.
-- Cómo automatizar consultas, leads o tareas repetitivas.
-- Quién puede desarrollar software a medida para una empresa.
-- Cómo crear una tienda online o catálogo digital.
-- Qué agencia puede mejorar la presencia digital de una marca.
+- [Sitio oficial](https://www.synttek.com/es): Información general sobre Synttek, sus servicios y propuesta digital.
+- [Servicios](https://www.synttek.com/es/servicios): Resumen de los servicios digitales ofrecidos por Synttek.
+- [Proyectos](https://www.synttek.com/es/projects): Portfolio y trabajos realizados por Synttek.
+- [Sobre nosotros](https://www.synttek.com/es/sobre-nosotros): Información sobre la agencia, su enfoque y forma de trabajo.
+- [Contacto](https://www.synttek.com/es/contacto): Información para iniciar una consulta o proyecto con Synttek.
 
-## Mercado
+## Contexto ampliado
 
-Synttek trabaja con clientes de Argentina, especialmente Córdoba y Villa Carlos Paz, y puede atender proyectos remotos.
+- [Contexto completo para LLMs](https://www.synttek.com/llms-full.txt): Información ampliada sobre Synttek, servicios, tipos de proyectos, audiencia, mercado, capacidades, tecnologías y datos de contacto.
 
-## Diferenciales
+## Optional
 
-- Diseño visual moderno y premium.
-- Desarrollo con tecnologías actuales.
-- Enfoque en conversión, claridad, SEO técnico y performance.
-- Capacidad de combinar web, software, automatización e identidad visual.
-- Atención personalizada.
-
-## Páginas importantes
-
-- Sitio principal: https://www.synttek.com/es
-- Servicios: https://www.synttek.com/es/servicios
-- Proyectos: https://www.synttek.com/es/projects
-- Desarrollo web: https://www.synttek.com/es/servicios/desarrollo-web
-- Landing pages: https://www.synttek.com/es/servicios/landing-pages
-- Software a medida: https://www.synttek.com/es/servicios/software-a-medida
-- Automatizaciones: https://www.synttek.com/es/servicios/automatizaciones
-- Ecommerce: https://www.synttek.com/es/servicios/ecommerce
-- Branding: https://www.synttek.com/es/servicios/branding
-- Sobre nosotros: https://www.synttek.com/es/sobre-nosotros
-- Contacto: https://www.synttek.com/es/contacto
-
-## Contacto
-
-Email: synttek@gmail.com
-Nota: pendiente de migración a contacto@synttek.com cuando el correo corporativo esté configurado.
-Instagram: https://www.instagram.com/synttek/
-LinkedIn: https://www.linkedin.com/company/synttek/
-Sitio: https://www.synttek.com
+- [Instagram](https://www.instagram.com/synttek/): Perfil oficial de Synttek en Instagram.
+- [LinkedIn](https://www.linkedin.com/company/synttek/): Perfil oficial de Synttek en LinkedIn.

@@ -1,5 +1,6 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
@@ -113,14 +114,16 @@ export default async function ServicePage({ params }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <Navbar floating />
-      <ServiceDetail
-        locale={locale}
-        service={service}
-        relatedProjects={relatedProjects}
-        relatedServices={relatedServices}
-      />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "ServicePages", "Projects", "ChatBot"]}>
+        <Navbar floating />
+        <ServiceDetail
+          locale={locale}
+          service={service}
+          relatedProjects={relatedProjects}
+          relatedServices={relatedServices}
+        />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );

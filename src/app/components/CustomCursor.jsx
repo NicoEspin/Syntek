@@ -18,10 +18,32 @@ export default function CustomCursor() {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isTouch || prefersReduced) return;
 
-    document.documentElement.classList.add("has-custom-cursor");
-    setEnabled(true);
+    let cancelled = false;
+    let timeoutId;
 
-    return () => document.documentElement.classList.remove("has-custom-cursor");
+    const enableCursor = () => {
+      if (cancelled) return;
+      document.documentElement.classList.add("has-custom-cursor");
+      setEnabled(true);
+    };
+
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(enableCursor, { timeout: 1500 });
+
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(idleId);
+        document.documentElement.classList.remove("has-custom-cursor");
+      };
+    }
+
+    timeoutId = window.setTimeout(enableCursor, 250);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+      document.documentElement.classList.remove("has-custom-cursor");
+    };
   }, []);
 
   useEffect(() => {

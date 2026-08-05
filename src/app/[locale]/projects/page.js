@@ -1,5 +1,6 @@
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
+import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
@@ -99,9 +100,11 @@ export default async function ProjectsPage({ params }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <Navbar />
-      <ProjectsClient locale={locale} projects={projects} />
-      <FloatingWidgets />
+      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "Projects", "ChatBot"]}>
+        <Navbar />
+        <ProjectsClient locale={locale} projects={projects} />
+        <FloatingWidgets />
+      </ScopedIntlProvider>
       <Footer />
     </>
   );
