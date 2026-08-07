@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
+  useInView,
   useMotionValue,
   useMotionValueEvent,
   useReducedMotion,
@@ -96,6 +97,7 @@ export default function ProcessMobile({ copy, steps, waHref }) {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const prefersReduced = useReducedMotion();
+  const isSectionInView = useInView(containerRef, { margin: "20% 0px 20% 0px" });
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -103,6 +105,10 @@ export default function ProcessMobile({ copy, steps, waHref }) {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (!isSectionInView) {
+      return;
+    }
+
     const idx = Math.min(TOTAL_STEPS - 1, Math.max(0, Math.floor(v * TOTAL_STEPS)));
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
@@ -149,11 +155,16 @@ export default function ProcessMobile({ copy, steps, waHref }) {
         // texto — no hay que "scrollear cada parte", el paso avanza solo.
         <div ref={containerRef} className="relative mt-14" style={{ height: `${TOTAL_STEPS * 100}vh` }}>
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pb-[110px] pt-20">
-            <ProcessVisual
-              progress={scrollYProgress}
-              labels={copy.visual}
-              className="relative mx-auto aspect-square w-full max-w-[min(80vw,30vh,280px)] [@media(min-height:760px)]:max-w-[min(92vw,38vh,400px)]"
-            />
+            {isSectionInView ? (
+              <ProcessVisual
+                progress={scrollYProgress}
+                labels={copy.visual}
+                compact
+                className="relative mx-auto aspect-square w-full max-w-[min(80vw,30vh,280px)] [@media(min-height:760px)]:max-w-[min(92vw,38vh,400px)]"
+              />
+            ) : (
+              <div className="relative mx-auto aspect-square w-full max-w-[min(80vw,30vh,280px)] [@media(min-height:760px)]:max-w-[min(92vw,38vh,400px)]" />
+            )}
 
             <div className="relative mt-3 min-h-[150px] w-full max-w-sm text-center [@media(min-height:760px)]:mt-8">
               <AnimatePresence mode="wait">

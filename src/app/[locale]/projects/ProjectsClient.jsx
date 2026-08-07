@@ -108,6 +108,7 @@ export default function ProjectsClient({ projects, locale }) {
                 variant="grid"
                 index={index}
                 locale={locale}
+                accentMode="projects-page"
               />
             ))}
           </motion.div>

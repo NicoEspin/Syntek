@@ -7,6 +7,7 @@ import Pointer from "@/app/components/Pointer";
 import MagneticButton from "@/app/components/MagneticButton";
 import AnimatedCounter from "@/app/components/AnimatedCounter";
 import RotatingWord from "@/app/components/RotatingWord";
+import useMediaQuery from "@/app/components/useMediaQuery";
 import { getWhatsAppUrl } from "@/lib/business";
 
 const ease = [0.16, 1, 0.3, 1];
@@ -196,6 +197,7 @@ const HeroV2 = () => {
   const waHref = getWhatsAppUrl(t("waMessage"));
   const rotatingLocations = t.raw("hero.rotatingLocations");
   const prefersReduced = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -228,6 +230,8 @@ const HeroV2 = () => {
   };
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     if (prefersReduced) {
       leftDesignAnimate(leftDesignScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
       leftPointerAnimate(leftPointerScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
@@ -261,7 +265,7 @@ const HeroV2 = () => {
       [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
       [rightPointerScope.current, { x: 0, y: [0, 20, 0] }, { duration: 0.5, ease: "easeInOut" }],
     ]);
-  }, [prefersReduced]);
+  }, [isDesktop, leftDesignAnimate, leftPointerAnimate, prefersReduced, rightDesignAnimate, rightPointerAnimate]);
 
   // glow radial del hero que sigue al mouse con lerp suave — desktop/puntero fino
   // únicamente, y desactivado con prefers-reduced-motion.
@@ -316,39 +320,43 @@ const HeroV2 = () => {
       </div>
       <div ref={glowRef} aria-hidden className="pointer-events-none absolute inset-0" />
 
-      {/* CARD IZQUIERDA */}
-      <motion.div
-        ref={leftDesignScope}
-        initial={{ opacity: 0, y: 80, x: -80 }}
-        dragConstraints={heroRef}
-        className="absolute left-8 top-1/2 hidden -translate-y-[55%] lg:block xl:left-16"
-      >
-        <CodeCard strings={codeCardStrings} />
-      </motion.div>
-      <motion.div
-        ref={leftPointerScope}
-        initial={{ opacity: 0, y: 80, x: -200 }}
-        className="absolute left-[340px] top-[38%] hidden lg:block xl:left-[370px]"
-      >
-        <Pointer color={"bg-pink-500"} />
-      </motion.div>
+      {isDesktop ? (
+        <>
+          {/* CARD IZQUIERDA */}
+          <motion.div
+            ref={leftDesignScope}
+            initial={{ opacity: 0, y: 80, x: -80 }}
+            dragConstraints={heroRef}
+            className="absolute left-8 top-1/2 hidden -translate-y-[55%] lg:block xl:left-16"
+          >
+            <CodeCard strings={codeCardStrings} />
+          </motion.div>
+          <motion.div
+            ref={leftPointerScope}
+            initial={{ opacity: 0, y: 80, x: -200 }}
+            className="absolute left-[340px] top-[38%] hidden lg:block xl:left-[370px]"
+          >
+            <Pointer color={"bg-pink-500"} />
+          </motion.div>
 
-      {/* CARD DERECHA */}
-      <motion.div
-        ref={rightDesignScope}
-        initial={{ opacity: 0, x: 80, y: 80 }}
-        dragConstraints={heroRef}
-        className="absolute right-8 top-1/2 hidden -translate-y-[45%] lg:block xl:right-16"
-      >
-        <DashboardCard strings={dashboardStrings} />
-      </motion.div>
-      <motion.div
-        ref={rightPointerScope}
-        initial={{ opacity: 0, x: 200, y: 80 }}
-        className="absolute right-[340px] top-[35%] hidden lg:block xl:right-[370px]"
-      >
-        <Pointer color={"bg-blue-500"} />
-      </motion.div>
+          {/* CARD DERECHA */}
+          <motion.div
+            ref={rightDesignScope}
+            initial={{ opacity: 0, x: 80, y: 80 }}
+            dragConstraints={heroRef}
+            className="absolute right-8 top-1/2 hidden -translate-y-[45%] lg:block xl:right-16"
+          >
+            <DashboardCard strings={dashboardStrings} />
+          </motion.div>
+          <motion.div
+            ref={rightPointerScope}
+            initial={{ opacity: 0, x: 200, y: 80 }}
+            className="absolute right-[340px] top-[35%] hidden lg:block xl:right-[370px]"
+          >
+            <Pointer color={"bg-blue-500"} />
+          </motion.div>
+        </>
+      ) : null}
 
       {/* CONTENIDO CENTRAL */}
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">

@@ -1,36 +1,52 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import TitleSection from "@/app/components/(common)/TitleSection";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-
 const Introduction = () => {
-   const t = useTranslations("Introduction");
+  const t = useTranslations("Introduction");
   const scrollTarget = useRef(null);
-  const containerRef = useRef(null);
+  const wordRefs = useRef([]);
+  const currentWordRef = useRef(-1);
   const { scrollYProgress } = useScroll({
     target: scrollTarget,
     offset: ["start end", "end end"],
   });
-  const [currentWord, setCurrentWord] = useState(0);
-const text = t("text");
-  const words = text.split(" ");
+  const text = t("text");
+  const words = useMemo(() => text.split(" "), [text]);
   const wordIndex = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, words.length]
+    [0, words.length],
   );
 
-  useEffect(() => {
-    const unsubscribe = wordIndex.on("change", (value) => {
-      setCurrentWord(Math.floor(value));
-    });
-    return () => unsubscribe();
-  }, [wordIndex]);
+  useMotionValueEvent(wordIndex, "change", (value) => {
+    const nextWord = Math.max(-1, Math.min(words.length - 1, Math.floor(value)));
+    const previousWord = currentWordRef.current;
+
+    if (nextWord === previousWord) {
+      return;
+    }
+
+    const start = Math.min(previousWord, nextWord) + 1;
+    const end = Math.max(previousWord, nextWord);
+
+    for (let index = start; index <= end; index += 1) {
+      const word = wordRefs.current[index];
+
+      if (!word) {
+        continue;
+      }
+
+      word.classList.toggle("text-white", index <= nextWord);
+    }
+
+    currentWordRef.current = nextWord;
+  });
 
   return (
-    <section aria-labelledby="introduction-heading" className="py-28 px-4 md:pt-64 lg:px-10 xl:px-24" ref={containerRef}>
+    <section aria-labelledby="introduction-heading" className="px-4 py-28 md:pt-64 lg:px-10 xl:px-24">
       <div className="sticky top-20 md:top-40">
         <TitleSection title={t("title")} />
         <h2 id="introduction-heading" className="sr-only">
@@ -42,7 +58,10 @@ const text = t("text");
             {words.map((word, index) => (
               <span
                 key={index}
-                className={index <= currentWord ? "text-white transition-colors duration-500" : ""}
+                ref={(node) => {
+                  wordRefs.current[index] = node;
+                }}
+                className="transition-colors duration-500"
               >
                 {word}{" "}
               </span>

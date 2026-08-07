@@ -70,10 +70,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                 transition={{ duration: shouldReduceMotion ? 0.2 : 0.72, delay: 0.05, ease }}
                 className="mb-8 flex items-center gap-3"
               >
-                <span className="h-px w-6 bg-[#A1E233]" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#A1E233]">
-                  {t("heroLabel")}
-                </span>
+ 
               </motion.div>
 
               {/* H1 — line clip reveal per line */}

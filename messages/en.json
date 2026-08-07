@@ -400,7 +400,9 @@
       "SaaS": "SaaS",
       "Integracion Backend": "Backend Integration",
       "Arquitectura Frontend": "Frontend Architecture",
-      "SEO": "SEO"
+      "SEO": "SEO",
+      "Diseño de Redes": "Social Media Design",
+      "Dirección de Arte": "Art Direction"
     },
     "detail": {
       "client": "Client",
@@ -411,7 +413,18 @@
       "visitSite": "Visit site",
       "nextProject": "Next project",
       "overview": "Overview",
-      "galleryImageAlt": "{title} - image {index}"
+      "galleryImageAlt": "{title} - image {index}",
+      "carouselHint": "Swipe to see more",
+      "slideCounter": "{current} of {total}",
+      "brandPalette": "Brand palette",
+      "postAlt": "{title} - post {index}",
+      "carouselBadge": "Carousel",
+      "expandImage": "View {title} full screen",
+      "closeLightbox": "Close",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "demoVideo": "Demo",
+      "demoVideoAlt": "{title} demo video"
     },
     "pageTitle": "Web development, software and branding portfolio | Synttek",
     "pageDescription": "Explore Synttek projects across web development, software, branding and ecommerce for companies that want to grow with technology.",

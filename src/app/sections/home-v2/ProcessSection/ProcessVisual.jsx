@@ -141,7 +141,7 @@ function Pill({ Icon, label, style, pulse, className }) {
   );
 }
 
-export default function ProcessVisual({ progress, labels, animated = true, className }) {
+export default function ProcessVisual({ progress, labels, animated = true, compact = false, className }) {
   const gridId = useId();
   const { frictionNodes, strategyLabel, buildLayers, growthMetrics } = labels;
 
@@ -416,9 +416,11 @@ export default function ProcessVisual({ progress, labels, animated = true, class
               {/* el label de texto sólo entra en el render grande de desktop — en
                   mobile/tablet el contenedor es demasiado angosto para 4 palabras
                   sin que se pisen entre sí (aria-hidden, es puramente decorativo) */}
-              <span className="hidden text-center font-mono text-[7px] uppercase leading-[1.15] tracking-wider text-white/40 lg:block">
-                {growthMetrics[i]}
-              </span>
+              {!compact ? (
+                <span className="hidden text-center font-mono text-[7px] uppercase leading-[1.15] tracking-wider text-white/40 lg:block">
+                  {growthMetrics[i]}
+                </span>
+              ) : null}
             </motion.div>
           );
         })}

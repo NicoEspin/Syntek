@@ -18,6 +18,7 @@ export default function ProjectCard({
   variant = "grid",
   index = 0,
   locale: localeProp,
+  accentMode = "default",
 }) {
   const ref = useRef(null);
   const locale = localeProp || useLocale();
@@ -26,6 +27,11 @@ export default function ProjectCard({
   const prefersReduced = useReducedMotion();
   const href = `/${locale}/projects/${project.id}`;
   const categoryLabel = t(`categories.${project.category}`);
+  const isDesignProject =
+    project.category === "Branding" ||
+    project.category === "Diseño de Redes" ||
+    project.services?.includes("Diseño Grafico");
+  const useVioletAccent = accentMode === "projects-page" && isDesignProject;
 
   // tilt 3D en hover — sólo el card "featured" (el que se usa en la home),
   // JS puro para no pelear con el whileHover de framer en la imagen interna.
@@ -138,6 +144,7 @@ export default function ProjectCard({
     <Link
       href={href}
       data-cursor-zone
+      data-cursor-accent={useVioletAccent ? "violet" : "primary"}
       aria-label={`${project.title} - ${t("viewProject")}`}
       className="group block cursor-none"
     >
@@ -146,7 +153,10 @@ export default function ProjectCard({
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.7, delay: index * 0.08, ease: transition.ease }}
-        className="overflow-hidden rounded-3xl border border-white/8 bg-neutral-900/60 backdrop-blur-sm transition-colors duration-500 hover:border-primary1/25"
+        className={cn(
+          "overflow-hidden rounded-3xl border border-white/8 bg-neutral-900/60 backdrop-blur-sm transition-colors duration-500",
+          useVioletAccent ? "hover:border-violet/35" : "hover:border-primary1/25"
+        )}
       >
         <div className="relative aspect-[16/10] overflow-hidden">
           <motion.div
@@ -163,7 +173,14 @@ export default function ProjectCard({
             />
           </motion.div>
 
-          <div className="absolute left-4 top-4 rounded-full border border-primary1/15 bg-black/45 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-primary1 backdrop-blur-sm">
+          <div
+            className={cn(
+              "absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] backdrop-blur-sm",
+              useVioletAccent
+                ? "border border-violet-hover/35 bg-violet-deep/92 text-on-violet"
+                : "border border-primary1/20 bg-primary1/92 text-black"
+            )}
+          >
             {categoryLabel}
           </div>
           <span className="absolute bottom-4 right-4 text-xs tracking-[0.24em] text-white/25">
@@ -174,7 +191,12 @@ export default function ProjectCard({
         <div className="space-y-3 p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h3 className="text-xl font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-primary1">
+              <h3
+                className={cn(
+                  "text-xl font-semibold tracking-tight text-white transition-colors duration-300",
+                  useVioletAccent ? "group-hover:text-violet" : "group-hover:text-primary1"
+                )}
+              >
                 {project.title}
               </h3>
               <p className="mt-1 text-sm text-white/40">{project.subtitle}</p>

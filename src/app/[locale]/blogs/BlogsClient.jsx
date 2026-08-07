@@ -9,6 +9,7 @@ import BlogPostCard from "@/app/components/BlogPostCard";
 import BlogFilterBar from "@/app/components/BlogFilterBar";
 import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
+import ProjectCursor from "@/app/components/ProjectCursor";
 
 export default function BlogsClient({ posts, locale }) {
   const t = useTranslations("BlogPage");
@@ -42,6 +43,8 @@ export default function BlogsClient({ posts, locale }) {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#0a0a0a] pb-24 pt-28 md:pt-32">
+      <ProjectCursor label={t("viewPost")} />
+
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(161,226,51,0.08),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(134,79,254,0.06),transparent_26%)]" />
 
       <div className="relative mx-auto max-w-screen-2xl px-4 md:px-5 lg:px-10 xl:px-24">
