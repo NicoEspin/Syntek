@@ -162,7 +162,7 @@ export default function SocialDesignProjectDetail({ project, nextProject }) {
           variants={gridVariants}
           initial="hidden"
           animate={gridInView ? "visible" : "hidden"}
-          className="-mx-2 grid grid-cols-2 gap-1 md:mx-0 md:grid-cols-3"
+          className="-mx-2 grid grid-cols-1 gap-1 md:mx-0 md:grid-cols-3"
         >
           {project.posts.map((post, index) => {
             const aspectClass = post.format === "4:5" ? "aspect-[4/5]" : "aspect-square";

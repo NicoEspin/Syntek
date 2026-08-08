@@ -24,6 +24,7 @@ export default function PostCarousel({
 }) {
   const prefersReduced = useReducedMotion();
   const trackRef = useRef(null);
+  const dragDistanceRef = useRef(0);
   const [index, setIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const x = useMotionValue(0);
@@ -79,8 +80,17 @@ export default function PostCarousel({
           drag={canDrag ? "x" : false}
           dragConstraints={{ left: -Math.max(total - 1, 0) * width, right: 0 }}
           dragElastic={0.08}
+          onDragStart={() => {
+            dragDistanceRef.current = 0;
+          }}
+          onDrag={(_event, info) => {
+            dragDistanceRef.current = Math.max(dragDistanceRef.current, Math.abs(info.offset.x));
+          }}
           onDragEnd={handleDragEnd}
-          onTap={() => onImageOpen?.(index)}
+          onTap={() => {
+            if (dragDistanceRef.current > 5) return;
+            onImageOpen?.(index);
+          }}
         >
           {images.map((src, i) => (
             <div key={src} className="relative h-full w-full shrink-0">

@@ -24,43 +24,85 @@ const GTM_ID = "GTM-57R9P9LF";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
+
   manifest: "/manifest.webmanifest",
   applicationName: SITE_NAME,
+
   title: {
-    default: SITE_NAME,
+    default: "Synttek | Web, Software, Diseño e IA",
     template: `%s | ${SITE_NAME}`,
   },
-  description: "Boutique digital agency for web development, custom software and automation.",
+
+  description:
+    "Agencia digital de Córdoba especializada en desarrollo web, software a medida, diseño y soluciones con inteligencia artificial.",
+
   robots: {
     index: true,
     follow: true,
   },
-  themeColor: "#0a0a0a",
+
   icons: {
     icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      {
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
-  openGraph: {
-    type: "website",
-    siteName: SITE_NAME,
-    images: [
       {
-        url: "/android-chrome-512x512.png",
-        width: 512,
-        height: 512,
-        alt: SITE_NAME,
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
       },
     ],
   },
+
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "es_AR",
+
+    title: "Synttek | Web, Software, Diseño e IA",
+
+    description:
+      "Creamos soluciones digitales que hacen crecer tu negocio: desarrollo web, software a medida, diseño e inteligencia artificial.",
+
+    images: [
+      {
+        url: "/og-synttek.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Synttek — Web, Software, Diseño e Inteligencia Artificial",
+        type: "image/jpeg",
+      },
+    ],
+  },
+
   twitter: {
     card: "summary_large_image",
-    images: ["/android-chrome-512x512.png"],
+
+    title: "Synttek | Web, Software, Diseño e IA",
+
+    description: "Creamos soluciones digitales que hacen crecer tu negocio.",
+
+    images: [
+      {
+        url: "/og-synttek.jpg",
+        alt: "Synttek — Web, Software, Diseño e Inteligencia Artificial",
+      },
+    ],
   },
+};
+
+export const viewport = {
+  themeColor: "#0a0a0a",
 };
 
 export function generateStaticParams() {

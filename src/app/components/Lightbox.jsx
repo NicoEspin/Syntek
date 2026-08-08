@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect } from "react";
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1];
@@ -58,51 +58,42 @@ export default function Lightbox({
         <X className="h-5 w-5" strokeWidth={2} />
       </button>
 
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={index}
-          initial={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={prefersReduced ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-          transition={{ duration: prefersReduced ? 0.01 : 0.4, ease: EASE_PREMIUM }}
-          className="relative flex w-fit max-w-full items-center justify-center"
-        >
-          <Image
-            src={images[index]}
-            alt={alts[index] || ""}
-            width={1600}
-            height={2000}
-            sizes="100vw"
-            className="max-h-[85vh] w-auto max-w-full rounded-lg"
-          />
+      <div className="relative flex w-fit max-w-full items-center justify-center">
+        <Image
+          src={images[index]}
+          alt={alts[index] || ""}
+          width={1600}
+          height={2000}
+          sizes="100vw"
+          className="max-h-[85vh] w-auto max-w-full rounded-lg"
+        />
 
-          {total > 1 ? (
-            <>
-              {index > 0 ? (
-                <button
-                  type="button"
-                  onClick={() => onIndexChange(index - 1)}
-                  aria-label={prevLabel}
-                  className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-black/70"
-                >
-                  <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
-                </button>
-              ) : null}
+        {total > 1 ? (
+          <>
+            {index > 0 ? (
+              <button
+                type="button"
+                onClick={() => onIndexChange(index - 1)}
+                aria-label={prevLabel}
+                className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-black/70"
+              >
+                <ChevronLeft className="h-5 w-5" strokeWidth={2.5} />
+              </button>
+            ) : null}
 
-              {index < total - 1 ? (
-                <button
-                  type="button"
-                  onClick={() => onIndexChange(index + 1)}
-                  aria-label={nextLabel}
-                  className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-black/70"
-                >
-                  <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
-                </button>
-              ) : null}
-            </>
-          ) : null}
-        </motion.div>
-      </AnimatePresence>
+            {index < total - 1 ? (
+              <button
+                type="button"
+                onClick={() => onIndexChange(index + 1)}
+                aria-label={nextLabel}
+                className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-black/70"
+              >
+                <ChevronRight className="h-5 w-5" strokeWidth={2.5} />
+              </button>
+            ) : null}
+          </>
+        ) : null}
+      </div>
 
       {total > 1 ? (
         <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 rounded-full border border-white/15 bg-black/50 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white backdrop-blur-sm">
