@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useReducedMotion,
   useSpring,
-} from "framer-motion";
+} from "motion/react";
 
 export default function ProjectCursor({ label = "View project" }) {
   const shouldReduceMotion = useReducedMotion();

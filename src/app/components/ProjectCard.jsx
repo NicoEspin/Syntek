@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -21,7 +21,8 @@ export default function ProjectCard({
   accentMode = "default",
 }) {
   const ref = useRef(null);
-  const locale = localeProp || useLocale();
+  const currentLocale = useLocale();
+  const locale = localeProp || currentLocale;
   const t = useTranslations("Projects");
   const isInView = useInView(ref, { once: true, margin: "-10%" });
   const prefersReduced = useReducedMotion();

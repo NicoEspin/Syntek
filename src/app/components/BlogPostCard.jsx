@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -42,7 +42,8 @@ function MetaRow({ post, locale, size = "sm" }) {
 
 export default function BlogPostCard({ post, variant = "grid", index = 0, locale: localeProp }) {
   const ref = useRef(null);
-  const locale = localeProp || useLocale();
+  const currentLocale = useLocale();
+  const locale = localeProp || currentLocale;
   const t = useTranslations("BlogPage");
   const isInView = useInView(ref, { once: true, margin: "-10%" });
   const href = `/${locale}/blogs/${post.slug}`;

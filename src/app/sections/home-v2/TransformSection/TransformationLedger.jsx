@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform } from "motion/react";
 
 // umbrales repartidos a lo largo del recorrido (0-100) — cada transformación
 // "ocurre" en su propio tramo, así el usuario ve el cambio ítem por ítem en

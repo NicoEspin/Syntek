@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll } from "motion/react";
 import { useTranslations } from "next-intl";
 
 import Navbar from "@/app/components/(common)/Navbar";
@@ -154,7 +154,7 @@ export default function PostDetail({ post, relatedPosts, locale, shareUrl }) {
 
     headingEls.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [headings.length]);
+  }, [headings]);
 
   const authorRole = post.authorRoleOverride || post.author.role;
 

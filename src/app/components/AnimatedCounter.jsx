@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animate, useInView, useMotionValue, useReducedMotion, useTransform, motion } from "framer-motion";
+import { animate, useInView, useMotionValue, useReducedMotion, useTransform, motion } from "motion/react";
 
 // Contador animado — anima solo el valor numérico (transform-free, es texto),
 // prefix/suffix se renderizan estáticos alrededor.
@@ -20,7 +20,7 @@ export default function AnimatedCounter({ target, prefix = "", suffix = "", deci
     }
     const controls = animate(count, target, { duration, ease: "easeOut" });
     return () => controls.stop();
-  }, [isInView, target, prefersReduced]);
+  }, [count, duration, isInView, prefersReduced, target]);
 
   return <motion.span ref={ref}>{rounded}</motion.span>;
 }

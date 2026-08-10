@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useAnimate } from "framer-motion";
+import { motion, useAnimate } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import RevealBlock from "@/app/components/RevealBlock";
 import MagneticButton from "@/app/components/MagneticButton";
@@ -23,7 +23,7 @@ const CtaFinalV2 = () => {
 
   useEffect(() => {
     animation.current = animate(scope.current, { x: "-50%" }, { duration: 30, ease: "linear", repeat: Infinity });
-  }, []);
+  }, [animate, scope]);
   useEffect(() => {
     if (animation.current) animation.current.speed = isHovered ? 0.5 : 1;
   }, [isHovered]);

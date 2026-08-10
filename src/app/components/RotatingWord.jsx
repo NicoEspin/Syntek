@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -24,13 +24,13 @@ export default function RotatingWord({ words, interval = 2200 }) {
 
   return (
     <span className="relative inline-block overflow-hidden align-bottom">
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence initial={false} mode="popLayout">
         <motion.span
           key={index}
-          initial={false}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ y: "110%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "-110%", opacity: 0 }}
-          transition={{ duration: 0.55, ease }}
+          transition={{ duration: 0.6, ease }}
           className="inline-block"
         >
           {words[index]}

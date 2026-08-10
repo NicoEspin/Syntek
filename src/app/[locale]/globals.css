@@ -159,11 +159,30 @@ body {
   }
 }
 
+/* ── entrada del navbar (Navbar.jsx) — CSS puro: corre en el motor de
+   animación nativo del browser, no depende de que React/Framer Motion
+   termine de hidratar/montar, así nunca queda pegado en opacity:0. */
+@keyframes syn-navbar-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.syn-navbar-enter {
+  animation: syn-navbar-enter 0.8s var(--ease-premium) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .syn-flow-beam,
   .syn-flow-dot,
   .syn-orbit,
-  .syn-transform-pulse {
+  .syn-transform-pulse,
+  .syn-navbar-enter {
     animation: none !important;
   }
 }

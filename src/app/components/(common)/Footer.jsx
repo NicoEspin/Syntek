@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { Instagram, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
+import { InstagramIcon, LinkedinIcon } from "@/app/components/icons/SocialIcons";
 import { getPrimaryServices } from "@/data/services";
 import {
   BUSINESS_EMAIL,
@@ -34,7 +35,7 @@ const Footer = async () => {
     },
     {
       key: "instagram",
-      icon: Instagram,
+      icon: InstagramIcon,
       href: INSTAGRAM_URL,
       label: t("channels.instagram.label"),
       value: t("channels.instagram.value"),
@@ -43,7 +44,7 @@ const Footer = async () => {
     },
     {
       key: "linkedin",
-      icon: Linkedin,
+      icon: LinkedinIcon,
       href: LINKEDIN_URL,
       label: t("channels.linkedin.label"),
       value: t("channels.linkedin.value"),

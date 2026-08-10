@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { useTranslations } from "next-intl";
 import SpotlightCard from "@/app/components/SpotlightCard";
 

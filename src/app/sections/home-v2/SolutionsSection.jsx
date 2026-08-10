@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
 import useMediaQuery from "@/app/components/useMediaQuery";
 import TitleSection from "@/app/components/(common)/TitleSection";

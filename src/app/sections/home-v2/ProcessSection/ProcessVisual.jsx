@@ -1,7 +1,7 @@
 "use client";
 
 import { useId } from "react";
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform } from "motion/react";
 import {
   Clock,
   Code2,

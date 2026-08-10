@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { getFadeUp, premiumEase, subtleEase } from "@/lib/animations";
 
 export default function AboutTeamCard({
@@ -135,7 +135,7 @@ export default function AboutTeamCard({
             transition={{ duration: 0.34, ease: subtleEase }}
             className="mt-3 rounded-2xl border border-white/8 px-4 py-4 text-sm leading-relaxed text-white/76 italic"
           >
-            "{quote}"
+            &quot;{quote}&quot;
           </motion.blockquote>
         </div>
       </div>

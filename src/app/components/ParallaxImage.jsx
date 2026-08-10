@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 
 // Parallax suave para imágenes decorativas (renders 3D). Deshabilitado en
 // mobile (< 768px) y con prefers-reduced-motion. Nunca usar sobre texto.

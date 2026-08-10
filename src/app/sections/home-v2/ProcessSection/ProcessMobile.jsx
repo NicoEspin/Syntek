@@ -9,11 +9,12 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-} from "framer-motion";
+  useTransform,
+} from "motion/react";
 import Button from "@/app/components/Button";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import RevealBlock from "@/app/components/RevealBlock";
-import { EASE as ease, SETTLED_POINTS, TOTAL_STEPS } from "./constants";
+import { EASE as ease, getStepIndexFromProgress, getVisualProgress, SETTLED_POINTS, TOTAL_STEPS } from "./constants";
 import ProcessVisual from "./ProcessVisual";
 
 // rail de puntos — misma lógica que el rail de desktop (click = scrollea al
@@ -109,7 +110,7 @@ export default function ProcessMobile({ copy, steps, waHref }) {
       return;
     }
 
-    const idx = Math.min(TOTAL_STEPS - 1, Math.max(0, Math.floor(v * TOTAL_STEPS)));
+    const idx = getStepIndexFromProgress(v);
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
@@ -126,6 +127,7 @@ export default function ProcessMobile({ copy, steps, waHref }) {
   }, []);
 
   const activeStep = steps[activeIndex];
+  const visualProgress = useTransform(scrollYProgress, getVisualProgress);
   const [titlePre, titlePost] = copy.title.split(copy.titleHighlight);
 
   return (
@@ -157,7 +159,7 @@ export default function ProcessMobile({ copy, steps, waHref }) {
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pb-[110px] pt-20">
             {isSectionInView ? (
               <ProcessVisual
-                progress={scrollYProgress}
+                progress={visualProgress}
                 labels={copy.visual}
                 compact
                 className="relative mx-auto aspect-square w-full max-w-[min(80vw,30vh,280px)] [@media(min-height:760px)]:max-w-[min(92vw,38vh,400px)]"

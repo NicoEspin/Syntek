@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "motion/react";
 
 // Botón magnético — sigue sutilmente al cursor. JS puro (sin framer) para
 // evitar overhead de estado en cada mousemove. Factor 0.2 = movimiento sutil.

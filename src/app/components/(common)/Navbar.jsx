@@ -9,7 +9,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-} from "framer-motion";
+} from "motion/react";
 import { X } from "lucide-react";
 import { useParams, useRouter as useNextRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
@@ -138,7 +138,7 @@ const Navbar = ({ floating = false }) => {
         href: "/sobre-nosotros",
       },
     ],
-    [baseHomePath, isHomePage, t],
+    [isHomePage, t],
   );
 
   const contactHref = "/contacto";
@@ -402,13 +402,10 @@ const Navbar = ({ floating = false }) => {
   return (
     <>
       {/* ── NAVBAR ─────────────────────────────────────────────────────────── */}
-      <motion.header
+      <header
         ref={headerRef}
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: shouldReduceMotion ? 0.2 : 0.8, ease }}
         className={cn(
-          "z-50 px-4 md:px-5 lg:px-10 xl:px-24",
+          "syn-navbar-enter z-50 px-4 md:px-5 lg:px-10 xl:px-24",
           floating ? "fixed inset-x-0 top-4" : "sticky top-4",
         )}
       >
@@ -527,7 +524,7 @@ const Navbar = ({ floating = false }) => {
             </div>
           </motion.div>
         </div>
-      </motion.header>
+      </header>
 
       {/* ── OVERLAY MOBILE: fullscreen editorial ─────────────────────────────── */}
       <AnimatePresence>

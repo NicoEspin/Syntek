@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "motion/react";
 import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import RevealBlock from "@/app/components/RevealBlock";

@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useRef } from "react";
 import TitleSection from "@/app/components/(common)/TitleSection";
-import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
 
 const Introduction = () => {

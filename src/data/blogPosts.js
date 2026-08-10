@@ -1,4 +1,5 @@
 import antto from "@/app/assets/antto.webp";
+import automatizarWhatsapp from "@/app/assets/blog/como-automatizar-consultas-whatsapp-negocio.webp";
 import diseñoRedes from "@/app/assets/blog/diseño-synttek.webp";
 import paginaNegocio from "@/app/assets/blog/pagina-negocio.webp";
 import preciosWebArgentina2026 from "@/app/assets/blog/precio-web.webp";
@@ -881,6 +882,323 @@ const postEntries = [
         "Improve your brand's visual presence",
         "Si sentís que tus redes no reflejan el nivel real de tu negocio, podemos ayudarte a crear una línea visual más profesional, clara y consistente.",
         "If you feel your social media does not reflect the real level of your business, we can help you create a more professional, clear, and consistent visual line.",
+      ),
+    ],
+  },
+  {
+    slug: "como-automatizar-consultas-whatsapp-negocio",
+    category: "Automatización",
+    title: localizedText(
+      "Cómo automatizar las consultas de WhatsApp de tu negocio",
+      "How to automate your business's WhatsApp inquiries",
+    ),
+    titleAccent: localizedText("consultas de WhatsApp", "WhatsApp inquiries"),
+    excerpt: localizedText(
+      "Descubrí cómo automatizar las consultas de WhatsApp para responder más rápido, clasificar oportunidades, registrar datos y derivar cada conversación al lugar correcto.",
+      "Discover how to automate your business's WhatsApp inquiries to respond faster, classify opportunities, log data, and route every conversation to the right place.",
+    ),
+    dek: localizedText(
+      "Automatizar WhatsApp no es instalar un chatbot que contesta cualquier cosa. Es ordenar un sistema completo que recibe, interpreta, clasifica y responde consultas, y que sabe cuándo pasarle la conversación a una persona.",
+      "Automating WhatsApp is not about installing a chatbot that answers anything. It is about organizing a full system that receives, interprets, classifies, and answers inquiries, and knows when to hand the conversation to a person.",
+    ),
+    image: automatizarWhatsapp,
+    author: "antto",
+    date: "2026-08-10",
+    readingMinutes: 9,
+    featured: false,
+    tags: [
+      localizedText("Automatización", "Automation"),
+      localizedText("WhatsApp Business", "WhatsApp Business"),
+      localizedText("Atención al Cliente", "Customer Service"),
+      localizedText("Pymes", "SMBs"),
+    ],
+    body: [
+      paragraph(
+        "WhatsApp suele convertirse en uno de los canales comerciales más importantes de un negocio, incluso sin que nadie lo haya planeado así. Ahí llegan las consultas por precios, las dudas sobre horarios, los pedidos de disponibilidad, las reservas y los presupuestos. El problema aparece cuando ese canal crece más rápido que la capacidad de respuesta: los mensajes se acumulan, las respuestas se demoran y algunas consultas terminan perdiéndose entre notificaciones.",
+        "WhatsApp often becomes one of a business's most important sales channels, even if nobody planned it that way. That is where price questions arrive, along with doubts about hours, requests for availability, bookings, and quote requests. The problem shows up when that channel grows faster than the team's ability to respond: messages pile up, replies get delayed, and some inquiries end up lost among notifications.",
+      ),
+      paragraph(
+        "Automatizar las consultas de WhatsApp no significa reemplazar esa conversación por un robot que contesta cualquier cosa. Significa ordenar la atención: que las preguntas frecuentes se resuelvan solas, que la información se registre en un solo lugar y que una persona del equipo intervenga exactamente cuando hace falta, con todo el contexto ya armado.",
+        "Automating WhatsApp inquiries does not mean replacing that conversation with a bot that answers anything. It means organizing the way inquiries are handled: letting frequent questions resolve themselves, keeping information logged in one place, and having a team member step in exactly when needed, with the context already built.",
+      ),
+      callout(
+        "Respuesta rápida",
+        "Quick answer",
+        "Automatizar WhatsApp es organizar un sistema, no instalar un chatbot",
+        "Automating WhatsApp means organizing a system, not installing a chatbot",
+        "Automatizar las consultas de WhatsApp implica recibir el mensaje, interpretar qué necesita esa persona, buscar información en las herramientas del negocio, responder o ejecutar una acción, registrar lo que pasó y derivar la conversación a alguien del equipo cuando la situación lo requiere.",
+        "Automating WhatsApp inquiries means receiving the message, understanding what the person needs, checking the business's own tools for information, answering or executing an action, logging what happened, and handing the conversation to a team member when the situation calls for it.",
+      ),
+
+      heading(
+        "Qué significa automatizar las consultas de WhatsApp",
+        "What it means to automate WhatsApp inquiries",
+      ),
+      paragraph(
+        "Automatizar las consultas de WhatsApp puede incluir varias tareas encadenadas: recibir el mensaje, identificar qué intención tiene la persona que escribe, pedir los datos que falten para poder responder, consultar información actualizada del negocio, contestar una pregunta frecuente, clasificar esa conversación como una oportunidad concreta, dejar un registro de lo que ocurrió, ejecutar una acción puntual como agendar un turno y, si corresponde, pasar la conversación a un integrante del equipo.",
+        "Automating WhatsApp inquiries can include several linked tasks: receiving the message, identifying what the person writing it needs, asking for any missing details, checking up-to-date information from the business, answering a frequent question, classifying that conversation as a real opportunity, logging what happened, executing a specific action such as booking an appointment and, when needed, handing the conversation over to a team member.",
+      ),
+      paragraph(
+        "Ahí está la diferencia principal con una respuesta automática básica. Un mensaje predefinido que contesta siempre lo mismo puede servir para un aviso de horario fuera de atención, pero no resuelve una consulta real. Un sistema conectado con las herramientas del negocio, en cambio, puede leer un calendario, consultar un catálogo, completar un formulario o avisar a alguien del equipo, porque no vive aislado: forma parte de un proceso más amplio.",
+        "That is the main difference from a basic automated reply. A canned message that always says the same thing can work fine for an out-of-hours notice, but it does not resolve a real inquiry. A system connected to the business's own tools, on the other hand, can read a calendar, check a catalog, fill out a form, or notify someone on the team, because it is not isolated — it is part of a larger process.",
+      ),
+
+      heading(
+        "Qué consultas se pueden automatizar",
+        "Which inquiries can be automated",
+      ),
+      paragraph(
+        "No todas las consultas requieren el mismo tratamiento, pero muchas de las que llegan todos los días a WhatsApp se repiten con una lógica bastante predecible. Preguntas sobre precios y servicios, horarios y ubicación, disponibilidad de productos, reservas y turnos, estado de un pedido, solicitudes de presupuesto o dudas frecuentes suelen tener una respuesta clara que no necesita intervención humana cada vez. También es posible automatizar la primera atención fuera del horario comercial, para que ninguna consulta quede sin una respuesta inicial, y automatizar la captura y clasificación de potenciales clientes, para que el equipo comercial reciba la información ya ordenada.",
+        "Not every inquiry needs the same treatment, but many of the ones that arrive on WhatsApp every day follow a fairly predictable pattern. Questions about prices and services, hours and location, product availability, bookings and appointments, order status, quote requests, or frequent questions usually have a clear answer that does not need a person involved every time. It is also possible to automate the first response outside business hours, so no inquiry goes without an initial reply, and to automate the capture and classification of potential customers, so the sales team receives the information already organized.",
+      ),
+      paragraph(
+        "Lo que no conviene automatizar por completo son las conversaciones sensibles, excepcionales o que requieren negociación. Un reclamo, una situación puntual o una consulta compleja necesitan la mirada de una persona. Por eso una buena automatización no intenta resolver todo: identifica qué puede resolver sola y qué tiene que pasar a manos de alguien del equipo.",
+        "What should not be fully automated are sensitive, exceptional, or negotiation-heavy conversations. A complaint, a specific situation, or a complex request needs a person's judgment. That is why good automation does not try to solve everything: it identifies what it can resolve on its own and what needs to move into a team member's hands.",
+      ),
+
+      heading(
+        "Cómo funciona una automatización de WhatsApp",
+        "How a WhatsApp automation works",
+      ),
+      paragraph(
+        "Aunque cada negocio tiene su propia lógica, el recorrido básico de una automatización de WhatsApp suele seguir una secuencia parecida. El cliente envía una consulta. El sistema interpreta qué necesita, ya sea con reglas predefinidas o con un modelo de lenguaje que reconoce la intención del mensaje. Si falta información, la solicita de forma ordenada, sin pedir todo de una vez. Cuando corresponde, consulta datos en sistemas externos: un calendario, un catálogo, una base de precios o un CRM. Con esa información responde la consulta o ejecuta una acción concreta, como reservar un horario o generar un pedido. Después registra el resultado de la conversación y, si la situación lo requiere, deriva el caso a una persona con todo el contexto ya reunido.",
+        "Even though every business has its own logic, the basic path of a WhatsApp automation usually follows a similar sequence. The customer sends an inquiry. The system interprets what they need, either through predefined rules or a language model that recognizes the message's intent. If information is missing, it asks for it in an orderly way, without requesting everything at once. When needed, it checks external systems: a calendar, a catalog, a pricing database, or a CRM. With that information, it answers the inquiry or executes a specific action, such as booking a time slot or generating an order. It then logs the outcome and, if the situation calls for it, hands the case to a person with the context already gathered.",
+      ),
+      paragraph(
+        "Un ejemplo simple ayuda a verlo completo: alguien escribe preguntando si hay disponibilidad para un servicio el próximo sábado. El sistema identifica la intención, pregunta el horario preferido, consulta la agenda, confirma un turno disponible, informa el precio, registra la reserva y avisa al negocio que hay un nuevo turno confirmado. Si la persona pide una condición especial que el sistema no puede resolver, la conversación pasa directamente a alguien del equipo, que ya tiene todos los datos necesarios para continuar sin pedirle de nuevo lo mismo al cliente.",
+        "A simple example helps show the whole picture: someone writes asking whether a service is available next Saturday. The system identifies the intent, asks for a preferred time, checks the calendar, confirms an available slot, shares the price, logs the booking, and notifies the business that a new appointment was confirmed. If the person asks for a special condition the system cannot resolve, the conversation moves directly to a team member, who already has everything needed to continue without asking the customer to repeat themselves.",
+      ),
+
+      heading(
+        "Qué herramientas puede conectar el sistema",
+        "Which tools the system can connect to",
+      ),
+      paragraph(
+        "Una automatización de WhatsApp no funciona aislada: su valor está justamente en conectarse con las herramientas que el negocio ya usa. Puede integrarse con la WhatsApp Business Platform para gestionar los mensajes, con un CRM para ordenar leads y seguimiento comercial, con una agenda o calendario para reservas y turnos, con formularios para completar datos, con un ecommerce o un sistema de reservas para procesar pedidos, con una base de datos o planillas para consultar y actualizar información, con email para enviar confirmaciones, y con un panel administrativo para que el equipo supervise lo que va pasando. Herramientas como n8n suelen usarse para conectar estos sistemas entre sí sin depender de desarrollos a medida para cada integración.",
+        "A WhatsApp automation does not work in isolation — its value comes precisely from connecting to the tools a business already uses. It can integrate with the WhatsApp Business Platform to manage messages, a CRM to organize leads and follow-up, a calendar for bookings and appointments, forms to collect data, an ecommerce or booking system to process orders, a database or spreadsheets to check and update information, email to send confirmations, and an admin panel so the team can oversee what is happening. Tools like n8n are often used to connect these systems without needing custom development for every integration.",
+      ),
+      paragraph(
+        "No existe una combinación de herramientas que funcione igual para todos los negocios. La arquitectura correcta depende del proceso real que ya tiene cada empresa: qué sistemas usa, cómo se organiza el equipo y qué información necesita quedar registrada. Por eso, antes de elegir qué conectar, conviene entender bien cómo se maneja hoy la atención.",
+        "There is no single combination of tools that works the same way for every business. The right architecture depends on the real process each company already has: which systems it uses, how the team is organized, and what information needs to be logged. That is why, before choosing what to connect, it is worth understanding how inquiries are actually handled today.",
+      ),
+
+      heading(
+        "Automatización tradicional o inteligencia artificial",
+        "Traditional automation or artificial intelligence",
+      ),
+      subheading(
+        "Reglas y menús para procesos predecibles",
+        "Rules and menus for predictable processes",
+      ),
+      paragraph(
+        "Cuando las consultas siguen un patrón claro y repetible, un sistema basado en reglas y menús de opciones suele ser suficiente. Es predecible, fácil de mantener y funciona bien para procesos como reservar un turno, consultar un horario o elegir entre un conjunto cerrado de opciones.",
+        "When inquiries follow a clear, repeatable pattern, a system based on rules and option menus is usually enough. It is predictable, easy to maintain, and works well for processes like booking a slot, checking a schedule, or choosing from a closed set of options.",
+      ),
+      subheading(
+        "Inteligencia artificial para interpretar lenguaje más flexible",
+        "Artificial intelligence to interpret more flexible language",
+      ),
+      paragraph(
+        "Cuando las consultas llegan escritas de formas muy distintas, con errores, abreviaciones o preguntas poco estructuradas, un modelo de lenguaje puede interpretar mejor la intención real del mensaje. Ahí es donde la automatización con inteligencia artificial aporta más, porque entiende variaciones que un menú fijo no puede cubrir.",
+        "When inquiries arrive written in many different ways, with typos, abbreviations, or loosely structured questions, a language model can better interpret the message's real intent. This is where AI-driven automation adds the most value, since it understands variations a fixed menu cannot cover.",
+      ),
+      subheading(
+        "Un enfoque híbrido, la opción más frecuente",
+        "A hybrid approach, the most common option",
+      ),
+      paragraph(
+        "En la práctica, la mayoría de las automatizaciones que funcionan bien combinan ambos enfoques: reglas claras para lo que es predecible, e inteligencia artificial para interpretar lo que no lo es tanto. Usar inteligencia artificial no significa dejar que el sistema responda sin control: siempre conviene definir límites, validaciones y un criterio claro de cuándo derivar la conversación a una persona.",
+        "In practice, most automations that work well combine both approaches: clear rules for what is predictable, and artificial intelligence to interpret what is not. Using artificial intelligence does not mean letting the system respond without control: it is always worth defining limits, validations, and a clear criterion for when to hand the conversation to a person.",
+      ),
+
+      heading(
+        "Cuándo derivar la conversación a una persona",
+        "When to hand the conversation to a person",
+      ),
+      paragraph(
+        "Ninguna automatización debería intentar resolver el cien por ciento de las conversaciones. Hay situaciones que necesitan intervención humana: un reclamo, una negociación, un presupuesto complejo, información ambigua que el sistema no puede interpretar con seguridad, un cliente prioritario, una excepción fuera de lo habitual o, simplemente, alguien que pide explícitamente hablar con una persona. También conviene derivar cuando la confianza en la interpretación del mensaje es baja: es preferible pasar la conversación a tiempo antes que responder algo incorrecto.",
+        "No automation should try to resolve one hundred percent of conversations. Some situations need human intervention: a complaint, a negotiation, a complex quote, ambiguous information the system cannot interpret with confidence, a priority customer, an unusual exception, or simply someone explicitly asking to speak with a person. It is also worth handing off a conversation when confidence in the message's interpretation is low: it is better to pass it along in time than to respond incorrectly.",
+      ),
+      paragraph(
+        "Una automatización bien diseñada no corta la conversación de golpe cuando deriva un caso. Le entrega al equipo el contexto que ya se recopiló: qué preguntó la persona, qué datos dio y en qué punto quedó la conversación. Así se evita que el cliente tenga que repetir todo desde cero.",
+        "A well-designed automation does not cut the conversation off abruptly when it hands off a case. It gives the team the context already gathered: what the person asked, what details they provided, and where the conversation stands. This way the customer does not have to repeat everything from scratch.",
+      ),
+      quote(
+        "Una buena automatización no reemplaza al equipo. Le saca el trabajo repetitivo de encima para que pueda ocuparse de las conversaciones que realmente necesitan su criterio.",
+        "Good automation does not replace the team. It takes the repetitive work off their hands so they can focus on the conversations that actually need their judgment.",
+      ),
+
+      heading("Beneficios para el negocio", "Benefits for the business"),
+      paragraph(
+        "Cuando el sistema está bien pensado, los beneficios se notan en el día a día: respuestas iniciales más rápidas, atención disponible fuera del horario comercial, menos tiempo dedicado a tareas repetitivas, consultas organizadas por tipo y urgencia, un registro consistente de cada conversación, mejor seguimiento de oportunidades comerciales y una distribución más clara del trabajo entre las distintas áreas del negocio. Todo eso permite atender más consultas sin que el trabajo manual crezca en la misma proporción.",
+        "When the system is well designed, the benefits show up in everyday operations: faster initial replies, availability outside business hours, less time spent on repetitive tasks, inquiries organized by type and urgency, a consistent log of every conversation, better tracking of sales opportunities, and a clearer distribution of work across the business's different areas. All of that makes it possible to handle more inquiries without manual work growing at the same rate.",
+      ),
+      paragraph(
+        "Es importante ser realistas: automatizar WhatsApp no garantiza más ventas ni resultados automáticos. Lo que sí ofrece es un canal más ordenado, con menos fricción para el cliente y menos carga operativa para el equipo, que son condiciones necesarias para vender mejor, aunque no las únicas.",
+        "It is important to be realistic: automating WhatsApp does not guarantee more sales or automatic results. What it does offer is a more organized channel, with less friction for the customer and less operational load for the team — necessary conditions for selling better, though not the only ones.",
+      ),
+
+      heading(
+        "Errores frecuentes al automatizar WhatsApp",
+        "Common mistakes when automating WhatsApp",
+      ),
+      subheading(
+        "Automatizar un proceso que ya estaba desordenado",
+        "Automating a process that was already disorganized",
+      ),
+      paragraph(
+        "Automatizar algo que no funciona bien manualmente no lo arregla, lo replica más rápido. Antes de automatizar conviene ordenar el proceso real: qué información se necesita, en qué orden y quién debería intervenir en cada etapa.",
+        "Automating something that does not work well manually does not fix it, it just replicates it faster. Before automating, it is worth organizing the real process first: what information is needed, in what order, and who should step in at each stage.",
+      ),
+      subheading(
+        "Crear conversaciones demasiado rígidas",
+        "Building overly rigid conversations",
+      ),
+      paragraph(
+        "Cuando el sistema solo puede seguir un camino fijo, cualquier mensaje inesperado lo deja sin respuesta útil. Conviene prever variaciones razonables y, sobre todo, una salida clara cuando el sistema no entiende.",
+        "When the system can only follow one fixed path, any unexpected message leaves it without a useful reply. It is worth planning for reasonable variations and, above all, a clear way out when the system does not understand.",
+      ),
+      subheading(
+        "No ofrecer una salida hacia una persona",
+        "Not offering a way to reach a person",
+      ),
+      paragraph(
+        "Si la única opción es seguir hablando con el sistema, algunos clientes se van a frustrar. Siempre debería existir una forma simple de pedir hablar con alguien del equipo.",
+        "If the only option is to keep talking to the system, some customers will get frustrated. There should always be a simple way to ask to speak with someone on the team.",
+      ),
+      subheading(
+        "Pedir demasiados datos al principio",
+        "Asking for too much information upfront",
+      ),
+      paragraph(
+        "Solicitar toda la información de golpe, antes de haber generado algo de valor en la conversación, suele hacer que la persona abandone. Es mejor pedir los datos de a poco, a medida que son necesarios.",
+        "Requesting all the information at once, before the conversation has offered any value, tends to make people drop off. It is better to ask for data gradually, as it becomes necessary.",
+      ),
+      subheading(
+        "No contemplar errores o mensajes inesperados",
+        "Not accounting for errors or unexpected messages",
+      ),
+      paragraph(
+        "Un audio, una imagen o una pregunta fuera de lo previsto pueden hacer que el sistema quede trabado. Conviene definir qué pasa en esos casos, incluso si la respuesta es simplemente derivar la conversación.",
+        "A voice note, an image, or an unplanned question can leave the system stuck. It is worth defining what happens in those cases, even if the answer is simply to hand off the conversation.",
+      ),
+      subheading(
+        "Responder sin consultar información actualizada",
+        "Responding without checking up-to-date information",
+      ),
+      paragraph(
+        "Si el sistema contesta con datos que no están conectados a la información real del negocio, como stock, precios o disponibilidad, el riesgo de generar confusión o malestar es alto.",
+        "If the system answers with data that is not connected to the business's real information, such as stock, prices, or availability, the risk of causing confusion or frustration is high.",
+      ),
+      subheading(
+        "No registrar ni medir las conversaciones",
+        "Not logging or measuring conversations",
+      ),
+      paragraph(
+        "Sin un registro claro es imposible saber qué consultas se repiten más, dónde se traba la automatización o qué conviene mejorar. Medir es lo que permite ajustar el sistema con el tiempo.",
+        "Without a clear record, it is impossible to know which inquiries repeat the most, where the automation gets stuck, or what is worth improving. Measuring is what allows the system to be adjusted over time.",
+      ),
+      subheading(
+        "Querer automatizar todo desde la primera versión",
+        "Trying to automate everything from the first version",
+      ),
+      paragraph(
+        "Intentar cubrir cada escenario posible desde el primer día suele generar proyectos largos, caros y difíciles de mantener. Conviene empezar por lo que se repite más y crecer desde ahí.",
+        "Trying to cover every possible scenario from day one tends to produce long, expensive, and hard-to-maintain projects. It is better to start with what repeats the most and grow from there.",
+      ),
+
+      heading("Cómo empezar paso a paso", "How to get started, step by step"),
+      paragraph(
+        "Un proceso razonable para automatizar las consultas de WhatsApp de un negocio suele seguir estos pasos: analizar cuáles son las consultas que más se repiten, elegir un caso de uso concreto para empezar, diseñar el recorrido conversacional de ese caso, definir qué integraciones y reglas hacen falta, construir una primera versión acotada, probarla con situaciones reales y, a partir de los resultados, medir, corregir y ampliar el alcance de a poco.",
+        "A reasonable process for automating a business's WhatsApp inquiries usually follows these steps: analyze which inquiries repeat the most, choose one specific use case to start with, design the conversational path for that case, define which integrations and rules are needed, build a limited first version, test it with real situations, and, based on the results, measure, correct, and gradually expand its scope.",
+      ),
+
+      heading(
+        "Cuánto puede automatizar realmente un negocio",
+        "How much a business can actually automate",
+      ),
+      paragraph(
+        "La respuesta depende de varios factores: el volumen de consultas, qué tan repetitivas son, la calidad y disponibilidad de los datos del negocio, y las integraciones que sea posible construir. Un negocio con pocas consultas por día y procesos muy variables va a automatizar menos que uno con alto volumen y consultas predecibles.",
+        "The answer depends on several factors: the volume of inquiries, how repetitive they are, the quality and availability of the business's data, and which integrations are feasible to build. A business with few daily inquiries and highly variable processes will automate less than one with high volume and predictable inquiries.",
+      ),
+      paragraph(
+        "La recomendación general es empezar por lo repetitivo, lo que consume tiempo sin aportar demasiado criterio humano, y mantener la intervención de una persona en las decisiones comerciales, las negociaciones y los casos especiales. No se trata de automatizar por automatizar, sino de liberar tiempo del equipo para las conversaciones que realmente lo necesitan.",
+        "The general recommendation is to start with what is repetitive — what takes up time without requiring much human judgment — and keep a person involved in commercial decisions, negotiations, and special cases. It is not about automating for its own sake, but about freeing up the team's time for the conversations that truly need it.",
+      ),
+      quote(
+        "La pregunta no es si conviene automatizar WhatsApp, sino qué parte de esa conversación puede resolverse sola sin perder calidad de atención.",
+        "The question is not whether it makes sense to automate WhatsApp, but which part of that conversation can be resolved on its own without losing quality of service.",
+      ),
+
+      heading(
+        "Automatizar WhatsApp con una solución adaptada a tu negocio",
+        "Automating WhatsApp with a solution built for your business",
+      ),
+      paragraph(
+        "La mejor solución para automatizar las consultas de WhatsApp no empieza eligiendo un chatbot ni una herramienta de moda. Empieza por entender cómo llegan hoy las consultas, qué preguntas se repiten, qué información falta y en qué punto del proceso se pierde tiempo o se pierden clientes.",
+        "The best solution for automating WhatsApp inquiries does not start by picking a chatbot or a trendy tool. It starts by understanding how inquiries arrive today, which questions repeat, what information is missing, and where in the process time or customers are being lost.",
+      ),
+      paragraph(
+        "En Synttek analizamos ese proceso junto al equipo del negocio y desarrollamos automatizaciones conectadas con las herramientas que ya usan: agenda, CRM, catálogo, formularios o sistemas internos, para que las consultas de WhatsApp se resuelvan más rápido y las conversaciones que necesitan una persona lleguen con todo el contexto necesario.",
+        "At Synttek, we analyze that process together with the business's team and build automations connected to the tools they already use — calendar, CRM, catalog, forms, or internal systems — so WhatsApp inquiries get resolved faster and the conversations that need a person arrive with all the necessary context.",
+      ),
+      callout(
+        "Próximo paso",
+        "Next step",
+        "Contanos cómo llegan hoy las consultas de tu negocio",
+        "Tell us how inquiries reach your business today",
+        "Si estás pensando en automatizar las consultas de WhatsApp de tu negocio, escribinos. Podemos ayudarte a analizar el proceso actual y definir qué automatización tiene sentido para tu caso, sin prometer más de lo que un sistema bien diseñado puede cumplir.",
+        "If you are thinking about automating your business's WhatsApp inquiries, message us. We can help you analyze the current process and define what automation makes sense for your case, without promising more than a well-designed system can actually deliver.",
+      ),
+
+      heading("Preguntas frecuentes", "Frequently asked questions"),
+      subheading(
+        "¿Se pueden automatizar las consultas de WhatsApp Business?",
+        "Can WhatsApp Business inquiries be automated?",
+      ),
+      paragraph(
+        "Sí. La WhatsApp Business Platform permite conectar el número del negocio con sistemas externos para automatizar respuestas, clasificar conversaciones y ejecutar acciones, siempre respetando las políticas de la plataforma.",
+        "Yes. The WhatsApp Business Platform allows the business's number to connect with external systems to automate replies, classify conversations, and execute actions, always within the platform's policies.",
+      ),
+      subheading(
+        "¿Necesito inteligencia artificial para automatizar WhatsApp?",
+        "Do I need artificial intelligence to automate WhatsApp?",
+      ),
+      paragraph(
+        "No siempre. Muchos procesos predecibles funcionan bien con reglas y menús de opciones. La inteligencia artificial suma valor cuando las consultas llegan con lenguaje más variado o cuando conviene interpretar mejor la intención de cada mensaje.",
+        "Not always. Many predictable processes work well with rules and option menus. Artificial intelligence adds value when inquiries arrive in more varied language or when it helps to better interpret each message's intent.",
+      ),
+      subheading(
+        "¿La automatización puede derivar una conversación a una persona?",
+        "Can the automation hand a conversation off to a person?",
+      ),
+      paragraph(
+        "Sí, y debería poder hacerlo siempre que la situación lo requiera. Una buena automatización identifica cuándo un caso necesita intervención humana y le entrega al equipo el contexto ya recopilado.",
+        "Yes, and it should be able to whenever the situation calls for it. Good automation identifies when a case needs human intervention and gives the team the context already gathered.",
+      ),
+      subheading(
+        "¿Se puede conectar WhatsApp con un CRM o una agenda?",
+        "Can WhatsApp be connected to a CRM or a calendar?",
+      ),
+      paragraph(
+        "Sí. Es una de las integraciones más comunes: permite que las consultas queden registradas como oportunidades y que las reservas o turnos se confirmen directamente contra la disponibilidad real.",
+        "Yes. It is one of the most common integrations: it allows inquiries to be logged as opportunities and bookings or appointments to be confirmed directly against real availability.",
+      ),
+      subheading(
+        "¿Qué consultas conviene automatizar primero?",
+        "Which inquiries should be automated first?",
+      ),
+      paragraph(
+        "Conviene empezar por las que más se repiten y tienen una respuesta clara, como precios, horarios, disponibilidad o preguntas frecuentes. Desde ahí, la automatización puede ampliarse a procesos más complejos.",
+        "It is best to start with the ones that repeat the most and have a clear answer, such as prices, hours, availability, or frequently asked questions. From there, automation can expand to more complex processes.",
+      ),
+      subheading(
+        "¿Una automatización de WhatsApp funciona fuera del horario comercial?",
+        "Does a WhatsApp automation work outside business hours?",
+      ),
+      paragraph(
+        "Sí. Uno de sus principales beneficios es dar una primera respuesta aunque el negocio esté cerrado, para que ninguna consulta quede sin atención inicial hasta que el equipo esté disponible.",
+        "Yes. One of its main benefits is providing an initial response even when the business is closed, so no inquiry goes without a first reply until the team is available.",
       ),
     ],
   },

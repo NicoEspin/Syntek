@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Button from "@/app/components/Button";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import { cn } from "@/lib/utils";
-import { EASE as ease, TOTAL_STEPS } from "./constants";
+import { EASE as ease, getStepIndexFromProgress, getVisualProgress, TOTAL_STEPS } from "./constants";
 import ProcessVisual from "./ProcessVisual";
 
 function ProcessRail({ steps, activeIndex, onSelect, label }) {
@@ -54,7 +54,7 @@ export default function ProcessDesktop({ copy, steps, waHref }) {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const idx = Math.min(TOTAL_STEPS - 1, Math.max(0, Math.floor(v * TOTAL_STEPS)));
+    const idx = getStepIndexFromProgress(v);
     setActiveIndex((prev) => (prev === idx ? prev : idx));
   });
 
@@ -72,6 +72,7 @@ export default function ProcessDesktop({ copy, steps, waHref }) {
 
   const activeStep = steps[activeIndex];
   const isLastStep = activeIndex === TOTAL_STEPS - 1;
+  const visualProgress = useTransform(scrollYProgress, getVisualProgress);
   const [titlePre, titlePost] = copy.title.split(copy.titleHighlight);
 
   return (
@@ -161,7 +162,7 @@ export default function ProcessDesktop({ copy, steps, waHref }) {
             </div>
 
             {/* ── motor visual ── */}
-            <ProcessVisual progress={scrollYProgress} labels={copy.visual} className="relative mx-auto aspect-square w-full max-w-[560px]" />
+            <ProcessVisual progress={visualProgress} labels={copy.visual} className="relative mx-auto aspect-square w-full max-w-[560px]" />
           </div>
         </div>
       </div>

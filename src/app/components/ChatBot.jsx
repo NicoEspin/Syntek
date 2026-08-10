@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useTranslations } from "next-intl";
 import { getWhatsAppUrl } from "@/lib/business";
 

@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ProjectCard from "@/app/components/ProjectCard";

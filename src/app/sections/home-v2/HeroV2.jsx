@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useAnimate, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Pointer from "@/app/components/Pointer";
 import MagneticButton from "@/app/components/MagneticButton";
@@ -204,10 +204,6 @@ const HeroV2 = () => {
     setMounted(true);
   }, []);
 
-  const [leftDesignScope, leftDesignAnimate] = useAnimate();
-  const [leftPointerScope, leftPointerAnimate] = useAnimate();
-  const [rightDesignScope, rightDesignAnimate] = useAnimate();
-  const [rightPointerScope, rightPointerAnimate] = useAnimate();
   const heroRef = useRef(null);
   const glowRef = useRef(null);
 
@@ -228,44 +224,6 @@ const HeroV2 = () => {
     leadsLabel: tc("heroCards.dashboard.metrics.leads.label"),
     leadsDelta: tc("heroCards.dashboard.metrics.leads.delta"),
   };
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    if (prefersReduced) {
-      leftDesignAnimate(leftDesignScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
-      leftPointerAnimate(leftPointerScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
-      rightDesignAnimate(rightDesignScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
-      rightPointerAnimate(rightPointerScope.current, { opacity: 1, x: 0, y: 0 }, { duration: 0 });
-      return;
-    }
-
-    // entrada; el float idle infinito va aparte (una secuencia de useAnimate no
-    // soporta repeat: Infinity en uno de sus pasos — framer tira "Repeat count
-    // too high" porque intenta expandir el loop dentro de la secuencia misma).
-    leftDesignAnimate([
-      [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [leftDesignScope.current, { y: 0, x: 0 }, { duration: 0.7, ease }],
-    ]).then(() => {
-      leftDesignAnimate(leftDesignScope.current, { y: [0, -10, 0] }, { duration: 5, repeat: Infinity, ease: "easeInOut" });
-    });
-    leftPointerAnimate([
-      [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [leftPointerScope.current, { y: 0, x: -100 }, { duration: 0.5 }],
-      [leftPointerScope.current, { x: 0, y: [0, 16, 0] }, { duration: 0.5, ease: "easeInOut" }],
-    ]);
-    rightDesignAnimate([
-      [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.2 }],
-      [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.7, ease }],
-    ]).then(() => {
-      rightDesignAnimate(rightDesignScope.current, { y: [0, -8, 0] }, { duration: 4.5, repeat: Infinity, ease: "easeInOut" });
-    });
-    rightPointerAnimate([
-      [rightPointerScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.2 }],
-      [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
-      [rightPointerScope.current, { x: 0, y: [0, 20, 0] }, { duration: 0.5, ease: "easeInOut" }],
-    ]);
-  }, [isDesktop, leftDesignAnimate, leftPointerAnimate, prefersReduced, rightDesignAnimate, rightPointerAnimate]);
 
   // glow radial del hero que sigue al mouse con lerp suave — desktop/puntero fino
   // únicamente, y desactivado con prefers-reduced-motion.
@@ -324,36 +282,106 @@ const HeroV2 = () => {
         <>
           {/* CARD IZQUIERDA */}
           <motion.div
-            ref={leftDesignScope}
             initial={{ opacity: 0, y: 80, x: -80 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{
+              opacity: { duration: 0.5 },
+              x: { duration: 0.7, ease },
+              y: { duration: 0.7, ease },
+            }}
             dragConstraints={heroRef}
             className="absolute left-8 top-1/2 hidden -translate-y-[55%] lg:block xl:left-16"
           >
-            <CodeCard strings={codeCardStrings} />
+            <motion.div
+              animate={
+                prefersReduced ? undefined : { y: [0, -10, 0] }
+              }
+              transition={
+                prefersReduced
+                  ? undefined
+                  : { duration: 5, delay: 0.7, repeat: Infinity, ease: "easeInOut" }
+              }
+            >
+              <CodeCard strings={codeCardStrings} />
+            </motion.div>
           </motion.div>
           <motion.div
-            ref={leftPointerScope}
             initial={{ opacity: 0, y: 80, x: -200 }}
+            animate={{ opacity: 1, x: -100, y: 0 }}
+            transition={{
+              opacity: { duration: 0.5 },
+              x: { duration: 0.5, ease },
+              y: { duration: 0.5, ease },
+            }}
             className="absolute left-[340px] top-[38%] hidden lg:block xl:left-[370px]"
           >
-            <Pointer color={"bg-pink-500"} />
+            <motion.div
+              animate={
+                prefersReduced ? undefined : { x: [0, 100], y: [0, 16, 0] }
+              }
+              transition={
+                prefersReduced
+                  ? undefined
+                  : {
+                      x: { duration: 0.5, delay: 0.5, ease: "easeInOut" },
+                      y: { duration: 0.5, delay: 0.5, ease: "easeInOut" },
+                    }
+              }
+            >
+              <Pointer color={"bg-pink-500"} />
+            </motion.div>
           </motion.div>
 
           {/* CARD DERECHA */}
           <motion.div
-            ref={rightDesignScope}
             initial={{ opacity: 0, x: 80, y: 80 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{
+              opacity: { duration: 0.5, delay: 1.2 },
+              x: { duration: 0.7, delay: 1.2, ease },
+              y: { duration: 0.7, delay: 1.2, ease },
+            }}
             dragConstraints={heroRef}
             className="absolute right-8 top-1/2 hidden -translate-y-[45%] lg:block xl:right-16"
           >
-            <DashboardCard strings={dashboardStrings} />
+            <motion.div
+              animate={
+                prefersReduced ? undefined : { y: [0, -8, 0] }
+              }
+              transition={
+                prefersReduced
+                  ? undefined
+                  : { duration: 4.5, delay: 1.9, repeat: Infinity, ease: "easeInOut" }
+              }
+            >
+              <DashboardCard strings={dashboardStrings} />
+            </motion.div>
           </motion.div>
           <motion.div
-            ref={rightPointerScope}
             initial={{ opacity: 0, x: 200, y: 80 }}
+            animate={{ opacity: 1, x: 175, y: 0 }}
+            transition={{
+              opacity: { duration: 0.5, delay: 1.2 },
+              x: { duration: 0.5, delay: 1.2, ease },
+              y: { duration: 0.5, delay: 1.2, ease },
+            }}
             className="absolute right-[340px] top-[35%] hidden lg:block xl:right-[370px]"
           >
-            <Pointer color={"bg-blue-500"} />
+            <motion.div
+              animate={
+                prefersReduced ? undefined : { x: [0, -175], y: [0, 20, 0] }
+              }
+              transition={
+                prefersReduced
+                  ? undefined
+                  : {
+                      x: { duration: 0.5, delay: 1.7, ease: "easeInOut" },
+                      y: { duration: 0.5, delay: 1.7, ease: "easeInOut" },
+                    }
+              }
+            >
+              <Pointer color={"bg-blue-500"} />
+            </motion.div>
           </motion.div>
         </>
       ) : null}
@@ -382,9 +410,9 @@ const HeroV2 = () => {
         >
           <span className="block overflow-hidden">
             <motion.span
-              initial={false}
+              initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease }}
+              transition={{ duration: 0.9, delay: 0.2, ease }}
               className="block"
             >
               {t("hero.headlinePre")}
@@ -392,9 +420,9 @@ const HeroV2 = () => {
           </span>
           <span className="block overflow-hidden text-[#A1E233]">
             <motion.span
-              initial={false}
+              initial={{ y: "100%" }}
               animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease }}
+              transition={{ duration: 0.9, delay: 0.3, ease }}
               className="block"
             >
               <RotatingWord words={rotatingLocations} />
@@ -403,7 +431,7 @@ const HeroV2 = () => {
         </h1>
 
         <motion.p
-          initial={false}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.55, ease }}
           className="mb-10 max-w-xl text-base font-light leading-relaxed text-white/42 md:text-lg"

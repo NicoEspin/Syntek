@@ -5,7 +5,7 @@ import { getHreflangLinkHeader, getPathWithoutLocale } from "./lib/seo";
  
 const intlMiddleware = createMiddleware(routing);
 
-export default function middleware(request) {
+export default function proxy(request) {
   const forwardedHost = request.headers.get("x-forwarded-host");
   const host = forwardedHost ?? request.headers.get("host");
   const hostname = host?.split(":")[0];

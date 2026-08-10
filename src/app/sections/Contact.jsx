@@ -1,11 +1,12 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { motion, useInView, useReducedMotion } from "motion/react";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import "react-toastify/dist/ReactToastify.css";
 import TitleSection from "@/app/components/(common)/TitleSection";
+import { InstagramIcon, LinkedinIcon } from "@/app/components/icons/SocialIcons";
 import { cn } from "@/lib/utils";
 import {
   BUSINESS_EMAIL,
@@ -126,14 +127,14 @@ const Contact = () => {
     },
     {
       key: "instagram",
-      icon: Instagram,
+      icon: InstagramIcon,
       href: INSTAGRAM_URL,
       value: t("methods.instagram.value"),
       external: true,
     },
     {
       key: "linkedin",
-      icon: Linkedin,
+      icon: LinkedinIcon,
       href: LINKEDIN_URL,
       value: t("methods.linkedin.value"),
       external: true,

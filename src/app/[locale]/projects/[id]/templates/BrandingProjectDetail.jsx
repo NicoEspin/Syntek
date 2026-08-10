@@ -8,7 +8,7 @@ import {
   useReducedMotion,
   useScroll,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { useTranslations } from "next-intl";
 import { useMemo, useRef } from "react";
 
