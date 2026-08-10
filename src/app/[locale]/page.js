@@ -7,7 +7,15 @@ import HeroV2 from "@/app/sections/home-v2/HeroV2";
 import Projects from "@/app/sections/Projects";
 import ProcessSection from "@/app/sections/home-v2/ProcessSection";
 import { getTranslations } from "next-intl/server";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  SITE_NAME,
+  SITE_OG_IMAGE_ALT,
+  SITE_OG_IMAGE_HEIGHT,
+  SITE_OG_IMAGE_TYPE,
+  SITE_OG_IMAGE_URL,
+  SITE_OG_IMAGE_WIDTH,
+  SITE_URL,
+} from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
   buildFaqPageJsonLd,
@@ -53,10 +61,12 @@ export async function generateMetadata({ params }) {
       type: "website",
       images: [
         {
-          url: `${baseUrl}/android-chrome-512x512.png`,
-          width: 512,
-          height: 512,
-          alt: title,
+          url: SITE_OG_IMAGE_URL,
+          secureUrl: SITE_OG_IMAGE_URL,
+          width: SITE_OG_IMAGE_WIDTH,
+          height: SITE_OG_IMAGE_HEIGHT,
+          alt: SITE_OG_IMAGE_ALT,
+          type: SITE_OG_IMAGE_TYPE,
         },
       ],
     },
@@ -64,7 +74,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/android-chrome-512x512.png`],
+      images: [SITE_OG_IMAGE_URL],
     },
   };
 }

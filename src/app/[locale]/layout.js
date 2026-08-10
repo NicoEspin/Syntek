@@ -3,7 +3,15 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { routing } from "@/i18n/routing";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  SITE_NAME,
+  SITE_OG_IMAGE_ALT,
+  SITE_OG_IMAGE_HEIGHT,
+  SITE_OG_IMAGE_TYPE,
+  SITE_OG_IMAGE_URL,
+  SITE_OG_IMAGE_WIDTH,
+  SITE_URL,
+} from "@/lib/site";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import SmoothScroll from "@/app/components/SmoothScroll";
@@ -76,11 +84,12 @@ export const metadata = {
 
     images: [
       {
-        url: "/og-synttek.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Synttek — Web, Software, Diseño e Inteligencia Artificial",
-        type: "image/jpeg",
+        url: SITE_OG_IMAGE_URL,
+        secureUrl: SITE_OG_IMAGE_URL,
+        width: SITE_OG_IMAGE_WIDTH,
+        height: SITE_OG_IMAGE_HEIGHT,
+        alt: SITE_OG_IMAGE_ALT,
+        type: SITE_OG_IMAGE_TYPE,
       },
     ],
   },
@@ -94,8 +103,8 @@ export const metadata = {
 
     images: [
       {
-        url: "/og-synttek.jpg",
-        alt: "Synttek — Web, Software, Diseño e Inteligencia Artificial",
+        url: SITE_OG_IMAGE_URL,
+        alt: SITE_OG_IMAGE_ALT,
       },
     ],
   },
