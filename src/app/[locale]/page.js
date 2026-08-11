@@ -87,7 +87,7 @@ export default async function Home({ params }) {
   const structuredData = buildGraphJsonLd([
     buildOrganizationJsonLd(),
     buildLocalBusinessJsonLd(),
-    buildWebsiteJsonLd(locale),
+    buildWebsiteJsonLd({ locale, url: SITE_URL }),
     buildFaqPageJsonLd(faqs),
   ]);
 

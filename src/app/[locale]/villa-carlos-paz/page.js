@@ -8,7 +8,12 @@ import ProcessSection from "@/app/sections/home-v2/ProcessSection";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_OG_IMAGE_ALT, SITE_OG_IMAGE_HEIGHT, SITE_OG_IMAGE_TYPE, SITE_OG_IMAGE_URL, SITE_OG_IMAGE_WIDTH, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { buildFaqPageJsonLd, buildGraphJsonLd, buildVillaCarlosPazJsonLd } from "@/lib/jsonLd";
+import {
+  buildBreadcrumbJsonLd,
+  buildFaqPageJsonLd,
+  buildGraphJsonLd,
+  buildVillaCarlosPazJsonLd,
+} from "@/lib/jsonLd";
 
 const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets"));
 const VCPServices = dynamic(() => import("@/app/sections/vcp/VCPServices"));
@@ -69,6 +74,13 @@ export default async function VillaCarlosPazPage({ params }) {
   const structuredData = buildGraphJsonLd([
     buildVillaCarlosPazJsonLd(),
     buildFaqPageJsonLd(faqs),
+    buildBreadcrumbJsonLd([
+      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      {
+        name: "Villa Carlos Paz",
+        item: getCanonicalUrl(locale, "/villa-carlos-paz"),
+      },
+    ]),
   ]);
 
   return (

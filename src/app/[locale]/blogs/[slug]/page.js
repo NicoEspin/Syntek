@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { buildArticleJsonLd } from "@/lib/jsonLd";
+import { buildArticleJsonLd, buildBreadcrumbJsonLd, buildGraphJsonLd } from "@/lib/jsonLd";
 
 import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
 
@@ -75,19 +75,27 @@ export default async function BlogPostPage({ params }) {
 
   const relatedPosts = getRelatedBlogPosts(slug, locale, 2);
   const shareUrl = getCanonicalUrl(locale, `/blogs/${slug}`);
+  const t = await getTranslations({ locale, namespace: "BlogPage" });
 
-  const postSchema = buildArticleJsonLd({
-    title: post.title,
-    description: post.excerpt,
-    url: shareUrl,
-    image: `${SITE_URL}${post.image.src}`,
-    datePublished: post.date,
-    authorName: post.author.name,
-    articleSection: post.category,
-    keywords: post.tags,
-    locale,
-    timeRequired: `PT${post.readingMinutes}M`,
-  });
+  const postSchema = buildGraphJsonLd([
+    buildArticleJsonLd({
+      title: post.title,
+      description: post.excerpt,
+      url: shareUrl,
+      image: `${SITE_URL}${post.image.src}`,
+      datePublished: post.date,
+      authorName: post.author.name,
+      articleSection: post.category,
+      keywords: post.tags,
+      locale,
+      timeRequired: `PT${post.readingMinutes}M`,
+    }),
+    buildBreadcrumbJsonLd([
+      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: t("pageTitle"), item: getCanonicalUrl(locale, "/blogs") },
+      { name: post.title, item: shareUrl },
+    ]),
+  ]);
 
   return (
     <>

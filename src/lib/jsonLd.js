@@ -176,13 +176,19 @@ export const buildPublisherJsonLd = () => ({
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
 });
 
-export const buildWebsiteJsonLd = (locale) => ({
-  "@type": "WebSite",
-  name: SITE_NAME,
-  url: `${SITE_URL}/${locale}`,
-  inLanguage: locale,
-  publisher: buildPublisherJsonLd(),
-});
+export const buildWebsiteJsonLd = (options) => {
+  const locale = typeof options === "string" ? options : options?.locale;
+  const url = typeof options === "string" ? `${SITE_URL}/${options}` : options?.url ?? SITE_URL;
+
+  return {
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url,
+    ...(locale ? { inLanguage: locale } : {}),
+    publisher: buildPublisherJsonLd(),
+    ...(options?.potentialAction ? { potentialAction: options.potentialAction } : {}),
+  };
+};
 
 export const buildWebPageJsonLd = ({
   type = "WebPage",
