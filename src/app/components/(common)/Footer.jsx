@@ -18,7 +18,7 @@ const Footer = async () => {
   const links = [
     { key: "home", href: "/" },
     { key: "services", href: "/servicios" },
-    { key: "projects", href: `/${locale}/#projects` },
+    { key: "projects", href: "/#projects" },
     { key: "blog", href: "/blogs" },
     { key: "about", href: "/sobre-nosotros" },
     { key: "contact", href: "/contacto" },

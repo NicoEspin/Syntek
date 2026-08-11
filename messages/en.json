@@ -661,5 +661,115 @@
     "projectsHeadingLine2": "work.",
     "projectsHeading": "Case studies where those services already became concrete, measurable and visually strong experiences.",
     "viewProject": "View project"
+  },
+  "VCP": {
+    "waMessage": "Hi Synttek, I'm from Villa Carlos Paz and I'm interested in improving my online presence",
+    "hero": {
+      "eyebrow": "Web agency · Villa Carlos Paz",
+      "headline": "Your Carlos Paz business, with the presence it deserves",
+      "headlineHighlight": ["it", "deserves"],
+      "subtitle": "We design and build websites that organize your brand, capture inquiries and work on their own — so you stop depending on Instagram and WhatsApp all day.",
+      "ctaPrimary": "Request a free diagnosis",
+      "ctaSecondary": "See projects"
+    },
+    "services": {
+      "sectionLabel": "What we do",
+      "title": "Everything your Carlos Paz business needs to look professional",
+      "titleHighlight": ["look", "professional"],
+      "subtitle": "We choose the solution based on your business, not the other way around.",
+      "items": [
+        {
+          "icon": "globe",
+          "title": "Websites that convert",
+          "description": "Your website loads in under 1 second and leads visitors to reach out, not to bounce."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Landing pages for high season",
+          "description": "Capture tourists and locals right when they search on Google, before they decide."
+        },
+        {
+          "icon": "zap",
+          "title": "Custom software",
+          "description": "Stop running everything on spreadsheets. Your processes run on their own."
+        },
+        {
+          "icon": "bot",
+          "title": "Automations",
+          "description": "Answer inquiries, confirm bookings and send quotes without being available all day."
+        }
+      ]
+    },
+    "proof": {
+      "eyebrow": "Real case · Villa Carlos Paz",
+      "title": "<hl>Cari Turismo</hl>: from Instagram to a system that runs itself",
+      "description": "A travel agency in Carlos Paz that ran everything through WhatsApp and Instagram. We built their website with local SEO and direct WhatsApp conversion. Today they receive organized inquiries without answering everything by hand.",
+      "metricValue": 3,
+      "metricPrefix": "+",
+      "metricSuffix": "",
+      "metricLabel": "active acquisition channels",
+      "ctaLabel": "View the project"
+    },
+    "cta": {
+      "title": "Do you have a business in <hl>Carlos Paz</hl>?",
+      "subtitle": "Tell us what you need. We reply in under 2 hours.",
+      "ctaPrimary": "Talk on WhatsApp",
+      "note": "No commitment. First consultation is free."
+    }
+  },
+  "Cordoba": {
+    "waMessage": "Hi Synttek, I'm from Córdoba and I'm interested in improving my online presence",
+    "hero": {
+      "eyebrow": "Web agency · Córdoba",
+      "headline": "The online presence your Córdoba business needs",
+      "headlineHighlight": ["business", "needs"],
+      "subtitle": "We design and build websites for SMEs and businesses in Córdoba that want to attract more clients, look professional and stop depending on Instagram and WhatsApp.",
+      "ctaPrimary": "Request a free diagnosis",
+      "ctaSecondary": "See projects"
+    },
+    "services": {
+      "sectionLabel": "What we do",
+      "title": "Everything your Córdoba business needs to look professional",
+      "titleHighlight": ["look", "professional"],
+      "subtitle": "We choose the solution based on your business, not the other way around.",
+      "items": [
+        {
+          "icon": "globe",
+          "title": "Websites that convert",
+          "description": "Your website loads in under 1 second and turns visits into real inquiries."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Landing pages for campaigns",
+          "description": "Capture leads from Google Ads or social media with pages designed to convert."
+        },
+        {
+          "icon": "zap",
+          "title": "Custom software",
+          "description": "Automate internal processes and stop running everything on Excel spreadsheets."
+        },
+        {
+          "icon": "bot",
+          "title": "Automations",
+          "description": "Answer inquiries, send quotes and confirm orders without being available all day."
+        }
+      ]
+    },
+    "proof": {
+      "eyebrow": "Real case · Córdoba",
+      "title": "<hl>Cari Turismo</hl>: a digital system that runs itself",
+      "description": "A travel agency based in Córdoba province that ran everything through WhatsApp and Instagram. We built their website with local SEO and direct WhatsApp conversion. Today they receive organized inquiries without answering everything by hand.",
+      "metricValue": 3,
+      "metricPrefix": "+",
+      "metricSuffix": "",
+      "metricLabel": "active acquisition channels",
+      "ctaLabel": "View the project"
+    },
+    "cta": {
+      "title": "Do you have a business in <hl>Córdoba</hl>?",
+      "subtitle": "Tell us what you need. We reply in under 2 hours.",
+      "ctaPrimary": "Talk on WhatsApp",
+      "note": "No commitment. First consultation is free."
+    }
   }
 }

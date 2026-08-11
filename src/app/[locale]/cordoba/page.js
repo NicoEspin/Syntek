@@ -3,59 +3,41 @@ import Navbar from "@/app/components/(common)/Navbar";
 import Footer from "@/app/components/(common)/Footer";
 import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import JsonLd from "@/components/JsonLd";
-import HeroV2 from "@/app/sections/home-v2/HeroV2";
-import Projects from "@/app/sections/Projects";
+import CordobaHero from "@/app/sections/cordoba/CordobaHero";
 import ProcessSection from "@/app/sections/home-v2/ProcessSection";
 import { getTranslations } from "next-intl/server";
-import {
-  SITE_NAME,
-  SITE_OG_IMAGE_ALT,
-  SITE_OG_IMAGE_HEIGHT,
-  SITE_OG_IMAGE_TYPE,
-  SITE_OG_IMAGE_URL,
-  SITE_OG_IMAGE_WIDTH,
-  SITE_URL,
-} from "@/lib/site";
+import { SITE_NAME, SITE_OG_IMAGE_ALT, SITE_OG_IMAGE_HEIGHT, SITE_OG_IMAGE_TYPE, SITE_OG_IMAGE_URL, SITE_OG_IMAGE_WIDTH, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import {
-  buildFaqPageJsonLd,
-  buildGraphJsonLd,
-  buildLocalBusinessJsonLd,
-  buildOrganizationJsonLd,
-  buildWebsiteJsonLd,
-} from "@/lib/jsonLd";
+import { buildCordobaJsonLd, buildFaqPageJsonLd, buildGraphJsonLd } from "@/lib/jsonLd";
 
 const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets"));
-const Introduction = dynamic(() => import("@/app/sections/Introduction"));
-const TransformSection = dynamic(() => import("@/app/sections/home-v2/TransformSection"));
-const SolutionsSection = dynamic(() => import("@/app/sections/home-v2/SolutionsSection"));
-const Services = dynamic(() => import("@/app/sections/Services"));
+const CordobaServices = dynamic(() => import("@/app/sections/cordoba/CordobaServices"));
+const CordobaProof = dynamic(() => import("@/app/sections/cordoba/CordobaProof"));
 const FaqV2 = dynamic(() => import("@/app/sections/home-v2/FaqV2"));
-const CtaFinalV2 = dynamic(() => import("@/app/sections/home-v2/CtaFinalV2"));
-const Contact = dynamic(() => import("@/app/sections/Contact"));
+const CordobaCta = dynamic(() => import("@/app/sections/cordoba/CordobaCta"));
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
-  const baseUrl = SITE_URL;
+  const path = "/cordoba";
   const title = isEs
-    ? "Synttek - Desarrollo web, software y automatizaciones en Córdoba"
-    : "Web development, software and automation agency in Cordoba";
+    ? "Agencia Web en Córdoba | Synttek"
+    : "Web Agency in Córdoba | Synttek";
   const description = isEs
-    ? "Creamos sitios web, software a medida, ecommerce y automatizaciones para marcas, pymes y negocios que quieren crecer con tecnología."
-    : "At Synttek we build websites, custom software, ecommerce and automations for brands and companies that want to grow with technology.";
+    ? "Desarrollamos sitios web, landing pages y software a medida para negocios y pymes de Córdoba capital. Presencia digital profesional que convierte visitas en consultas."
+    : "We build websites, landing pages and custom software for businesses and SMEs in Córdoba. A professional online presence that turns visits into inquiries.";
 
   return {
     title: { absolute: title },
     description,
     alternates: {
-      canonical: getCanonicalUrl(locale),
-      languages: getLanguageAlternates(),
+      canonical: getCanonicalUrl(locale, path),
+      languages: getLanguageAlternates(path),
     },
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}`,
+      url: `${SITE_URL}/${locale}${path}`,
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -79,15 +61,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home({ params }) {
+export default async function CordobaPage({ params }) {
   const { locale } = await params;
   const faqTranslations = await getTranslations({ locale, namespace: "HomeV2.faq" });
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildOrganizationJsonLd(),
-    buildLocalBusinessJsonLd(),
-    buildWebsiteJsonLd(locale),
+    buildCordobaJsonLd(),
     buildFaqPageJsonLd(faqs),
   ]);
 
@@ -99,33 +79,26 @@ export default async function Home({ params }) {
         locale={locale}
         namespaces={[
           "Navbar",
-          "HomeV2.hero",
-          "HomeV2.transform",
-          "HomeV2.solutions",
-          "HomeV2.process",
-          "HomeV2.faq",
-          "HomeV2.ctaFinal",
-          "HomeV2.waMessage",
+          "Cordoba.waMessage",
+          "Cordoba.hero",
+          "Cordoba.services",
+          "Cordoba.proof",
+          "Cordoba.cta",
           "Homepage.heroCards",
-          "Introduction",
-          "Services",
           "Projects",
-          "Contact",
+          "HomeV2.faq",
+          "HomeV2.waMessage",
           "ChatBot",
         ]}
       >
         <Navbar />
         <main className="bg-[#0a0a0a] text-[#ededed]">
-          <HeroV2 />
-          <Introduction />
-          <TransformSection />
-          <SolutionsSection />
-          <Services />
-          <Projects locale={locale} />
+          <CordobaHero />
+          <CordobaServices />
           <ProcessSection />
+          <CordobaProof />
           <FaqV2 />
-          <CtaFinalV2 />
-          <Contact />
+          <CordobaCta />
         </main>
         <FloatingWidgets />
       </ScopedIntlProvider>

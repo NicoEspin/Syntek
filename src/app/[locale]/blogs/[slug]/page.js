@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { buildBlogPostingJsonLd } from "@/lib/jsonLd";
+import { buildArticleJsonLd } from "@/lib/jsonLd";
 
 import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from "@/data/blogPosts";
 
@@ -76,14 +76,17 @@ export default async function BlogPostPage({ params }) {
   const relatedPosts = getRelatedBlogPosts(slug, locale, 2);
   const shareUrl = getCanonicalUrl(locale, `/blogs/${slug}`);
 
-  const postSchema = buildBlogPostingJsonLd({
+  const postSchema = buildArticleJsonLd({
     title: post.title,
     description: post.excerpt,
     url: shareUrl,
     image: `${SITE_URL}${post.image.src}`,
     datePublished: post.date,
     authorName: post.author.name,
+    articleSection: post.category,
+    keywords: post.tags,
     locale,
+    timeRequired: `PT${post.readingMinutes}M`,
   });
 
   return (

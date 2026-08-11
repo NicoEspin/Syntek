@@ -473,7 +473,7 @@
       "success": "¡Listo!"
     },
     "pageTitle": "Blog: ideas sobre desarrollo, diseño y automatización | Synttek",
-    "pageDescription": "Notas de Synttek sobre desarrollo web, diseño, automatización y estrategia digital. Sin buzzwords, sin relleno."
+    "pageDescription": "Blog de Synttek con notas sobre desarrollo web, diseño, automatización y estrategia digital para negocios que quieren crecer con criterio."
   },
   "Faqs": {
     "title-section": "FAQs",
@@ -658,5 +658,115 @@
     "projectsHeadingLine2": "conectado.",
     "projectsHeading": "Casos donde esos servicios ya se transformaron en experiencias concretas, medibles y visualmente sólidas.",
     "viewProject": "Ver proyecto"
+  },
+  "VCP": {
+    "waMessage": "Hola Synttek, soy de Villa Carlos Paz y me interesa mejorar mi presencia digital",
+    "hero": {
+      "eyebrow": "Agencia web · Villa Carlos Paz",
+      "headline": "Tu negocio de Carlos Paz, con la presencia que se merece",
+      "headlineHighlight": ["se", "merece"],
+      "subtitle": "Diseñamos y desarrollamos sitios web que ordenan tu marca, capturan consultas y funcionan solos — para que no dependas de Instagram ni del WhatsApp todo el día.",
+      "ctaPrimary": "Solicitar diagnóstico gratuito",
+      "ctaSecondary": "Ver proyectos"
+    },
+    "services": {
+      "sectionLabel": "Qué hacemos",
+      "title": "Todo lo que tu negocio de Carlos Paz necesita para verse profesional",
+      "titleHighlight": ["verse", "profesional"],
+      "subtitle": "Elegimos la solución según tu negocio, no al revés.",
+      "items": [
+        {
+          "icon": "globe",
+          "title": "Sitios web que convierten",
+          "description": "Tu web carga en menos de 1 segundo y lleva al visitante a consultarte, no a perderse."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Landing pages para temporada alta",
+          "description": "Captá turistas y locales cuando buscan en Google, justo antes de decidir."
+        },
+        {
+          "icon": "zap",
+          "title": "Software a medida",
+          "description": "Dejás de resolver todo con planillas. Tus procesos funcionan solos."
+        },
+        {
+          "icon": "bot",
+          "title": "Automatizaciones",
+          "description": "Respondés consultas, confirmás reservas y mandás presupuestos sin estar disponible todo el día."
+        }
+      ]
+    },
+    "proof": {
+      "eyebrow": "Caso real · Villa Carlos Paz",
+      "title": "<hl>Cari Turismo</hl>: de Instagram a un sistema que trabaja solo",
+      "description": "Agencia de turismo de Carlos Paz que operaba todo por WhatsApp e Instagram. Desarrollamos su sitio web con SEO local y conversión directa por WhatsApp. Hoy reciben consultas organizadas sin depender de responder todo a mano.",
+      "metricValue": 3,
+      "metricPrefix": "+",
+      "metricSuffix": "",
+      "metricLabel": "canales de captación activos",
+      "ctaLabel": "Ver el proyecto"
+    },
+    "cta": {
+      "title": "¿Tenés un negocio en <hl>Carlos Paz</hl>?",
+      "subtitle": "Contanos qué necesitás. Respondemos en menos de 2 horas.",
+      "ctaPrimary": "Hablar por WhatsApp",
+      "note": "Sin compromiso. Primera consulta gratuita."
+    }
+  },
+  "Cordoba": {
+    "waMessage": "Hola Synttek, soy de Córdoba y me interesa mejorar mi presencia digital",
+    "hero": {
+      "eyebrow": "Agencia web · Córdoba",
+      "headline": "La presencia digital que tu negocio cordobés necesita",
+      "headlineHighlight": ["cordobés", "necesita"],
+      "subtitle": "Diseñamos y desarrollamos sitios web para pymes y negocios de Córdoba que quieren captar más clientes, verse profesionales y dejar de depender de Instagram y WhatsApp.",
+      "ctaPrimary": "Solicitar diagnóstico gratuito",
+      "ctaSecondary": "Ver proyectos"
+    },
+    "services": {
+      "sectionLabel": "Qué hacemos",
+      "title": "Todo lo que tu negocio de Córdoba necesita para verse profesional",
+      "titleHighlight": ["verse", "profesional"],
+      "subtitle": "Elegimos la solución según tu negocio, no al revés.",
+      "items": [
+        {
+          "icon": "globe",
+          "title": "Sitios web que convierten",
+          "description": "Tu web carga en menos de 1 segundo y convierte visitas en consultas reales."
+        },
+        {
+          "icon": "map-pin",
+          "title": "Landing pages para campañas",
+          "description": "Capturá leads de Google Ads o redes sociales con páginas diseñadas para convertir."
+        },
+        {
+          "icon": "zap",
+          "title": "Software a medida",
+          "description": "Automatizá procesos internos y dejá de resolver todo con planillas de Excel."
+        },
+        {
+          "icon": "bot",
+          "title": "Automatizaciones",
+          "description": "Respondé consultas, enviá presupuestos y confirmá pedidos sin estar disponible todo el día."
+        }
+      ]
+    },
+    "proof": {
+      "eyebrow": "Caso real · Córdoba",
+      "title": "<hl>Cari Turismo</hl>: un sistema digital que trabaja solo",
+      "description": "Agencia de turismo de la provincia de Córdoba que operaba todo por WhatsApp e Instagram. Desarrollamos su sitio web con SEO local y conversión directa por WhatsApp. Hoy reciben consultas organizadas sin depender de responder todo a mano.",
+      "metricValue": 3,
+      "metricPrefix": "+",
+      "metricSuffix": "",
+      "metricLabel": "canales de captación activos",
+      "ctaLabel": "Ver el proyecto"
+    },
+    "cta": {
+      "title": "¿Tenés un negocio en <hl>Córdoba</hl>?",
+      "subtitle": "Contanos qué necesitás. Respondemos en menos de 2 horas.",
+      "ctaPrimary": "Hablar por WhatsApp",
+      "note": "Sin compromiso. Primera consulta gratuita."
+    }
   }
 }

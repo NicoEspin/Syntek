@@ -7,7 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates, getLocalizedPath } from "@/lib/seo";
 import {
-  buildBlogPostingJsonLd,
+  buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildCollectionPageJsonLd,
   buildGraphJsonLd,
@@ -86,14 +86,17 @@ export default async function BlogsPage({ params }) {
     buildOrganizationJsonLd(),
     buildWebsiteJsonLd(locale),
     ...posts.map((post) =>
-      buildBlogPostingJsonLd({
+      buildArticleJsonLd({
         title: post.title,
         description: post.excerpt,
         url: getCanonicalUrl(locale, `/blogs/${post.slug}`),
         image: `${SITE_URL}${post.image.src}`,
         datePublished: post.date,
         authorName: post.author.name,
+        articleSection: post.category,
+        keywords: post.tags,
         locale,
+        timeRequired: `PT${post.readingMinutes}M`,
       }),
     ),
   ]);

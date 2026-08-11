@@ -2,8 +2,10 @@ import {
   BUSINESS_EMAIL,
   BUSINESS_LOCATION,
   BUSINESS_PHONE_DISPLAY,
+  GOOGLE_MAPS_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
+  SORTLIST_URL,
 } from "@/lib/business";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -14,7 +16,7 @@ export const buildOrganizationJsonLd = () => ({
   logo: `${SITE_URL}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -38,7 +40,7 @@ export const buildProfessionalServiceJsonLd = () => ({
   image: `${SITE_URL}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   address: {
     "@type": "PostalAddress",
     addressLocality: BUSINESS_LOCATION.city,
@@ -48,6 +50,11 @@ export const buildProfessionalServiceJsonLd = () => ({
   areaServed: [
     { "@type": "Country", name: "Argentina" },
     { "@type": "AdministrativeArea", name: BUSINESS_LOCATION.region },
+    {
+      "@type": "City",
+      name: "Villa Carlos Paz",
+      containedInPlace: { "@type": "State", name: "Córdoba" },
+    },
   ],
   knowsAbout: [
     "desarrollo web",
@@ -60,6 +67,102 @@ export const buildProfessionalServiceJsonLd = () => ({
   ],
 });
 
+export const buildLocalBusinessJsonLd = () => ({
+  "@type": "LocalBusiness",
+  name: SITE_NAME,
+  url: SITE_URL,
+  image: `${SITE_URL}/android-chrome-512x512.png`,
+  email: BUSINESS_EMAIL,
+  telephone: BUSINESS_PHONE_DISPLAY,
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: BUSINESS_LOCATION.city,
+    addressRegion: BUSINESS_LOCATION.region,
+    addressCountry: BUSINESS_LOCATION.countryCode,
+  },
+  areaServed: [
+    { "@type": "Country", name: "Argentina" },
+    { "@type": "AdministrativeArea", name: BUSINESS_LOCATION.region },
+    {
+      "@type": "City",
+      name: "Villa Carlos Paz",
+      containedInPlace: { "@type": "State", name: "Córdoba" },
+    },
+  ],
+});
+
+export const buildVillaCarlosPazJsonLd = () => ({
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  name: SITE_NAME,
+  description:
+    "Agencia de desarrollo web y software a medida en Villa Carlos Paz, Córdoba.",
+  url: `${SITE_URL}/es/villa-carlos-paz`,
+  image: `${SITE_URL}/android-chrome-512x512.png`,
+  email: BUSINESS_EMAIL,
+  telephone: BUSINESS_PHONE_DISPLAY,
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: BUSINESS_LOCATION.city,
+    addressRegion: BUSINESS_LOCATION.region,
+    addressCountry: BUSINESS_LOCATION.countryCode,
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Villa Carlos Paz",
+      containedInPlace: { "@type": "State", name: "Córdoba" },
+    },
+    { "@type": "State", name: "Córdoba" },
+    { "@type": "Country", name: "Argentina" },
+  ],
+  serviceArea: {
+    "@type": "GeoCircle",
+    geoMidpoint: { "@type": "GeoCoordinates", latitude: -31.4235, longitude: -64.5003 },
+    geoRadius: "80000",
+  },
+});
+
+export const buildCordobaJsonLd = () => ({
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  name: SITE_NAME,
+  description:
+    "Agencia de desarrollo web y software a medida para negocios y pymes de Córdoba, Argentina.",
+  url: `${SITE_URL}/es/cordoba`,
+  image: `${SITE_URL}/android-chrome-512x512.png`,
+  email: BUSINESS_EMAIL,
+  telephone: BUSINESS_PHONE_DISPLAY,
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: BUSINESS_LOCATION.city,
+    addressRegion: BUSINESS_LOCATION.region,
+    addressCountry: BUSINESS_LOCATION.countryCode,
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Córdoba",
+      containedInPlace: { "@type": "State", name: "Córdoba" },
+    },
+    {
+      "@type": "City",
+      name: "Villa Carlos Paz",
+      containedInPlace: { "@type": "State", name: "Córdoba" },
+    },
+    { "@type": "State", name: "Córdoba" },
+    { "@type": "Country", name: "Argentina" },
+  ],
+  serviceArea: {
+    "@type": "GeoCircle",
+    geoMidpoint: { "@type": "GeoCoordinates", latitude: -31.4201, longitude: -64.1888 },
+    geoRadius: "100000",
+  },
+});
+
 export const buildPublisherJsonLd = () => ({
   "@type": "Organization",
   name: SITE_NAME,
@@ -70,7 +173,7 @@ export const buildPublisherJsonLd = () => ({
     width: 512,
     height: 512,
   },
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
 });
 
 export const buildWebsiteJsonLd = (locale) => ({
@@ -134,7 +237,7 @@ export const buildServiceJsonLd = ({ name, title, description, path }) => ({
     name: SITE_NAME,
     url: SITE_URL,
     email: BUSINESS_EMAIL,
-    sameAs: [INSTAGRAM_URL, LINKEDIN_URL],
+    sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   },
   areaServed: [
     { "@type": "Country", name: "Argentina" },
@@ -169,7 +272,7 @@ export const buildItemListJsonLd = (items) => ({
   })),
 });
 
-export const buildBlogPostingJsonLd = ({
+export const buildArticleJsonLd = ({
   title,
   description,
   url,
@@ -177,15 +280,21 @@ export const buildBlogPostingJsonLd = ({
   datePublished,
   dateModified,
   authorName,
+  articleSection,
+  keywords,
   locale,
+  timeRequired,
 }) => ({
-  "@type": "BlogPosting",
+  "@type": "Article",
   headline: title,
   description,
   url,
   image,
   datePublished,
   dateModified: dateModified ?? datePublished,
+  articleSection,
+  keywords,
+  timeRequired,
   author: {
     "@type": "Person",
     name: authorName,

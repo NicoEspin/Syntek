@@ -28,7 +28,9 @@ export const routing = defineRouting({
     '/contacto': {
       es: '/contacto',
       en: '/contact'
-    }
+    },
+    '/villa-carlos-paz': '/villa-carlos-paz',
+    '/cordoba': '/cordoba'
   },
 
   // Keep `/` stable on the default locale instead of

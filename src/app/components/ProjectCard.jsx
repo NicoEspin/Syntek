@@ -19,6 +19,7 @@ export default function ProjectCard({
   index = 0,
   locale: localeProp,
   accentMode = "default",
+  titleClassName = "text-white",
 }) {
   const ref = useRef(null);
   const currentLocale = useLocale();
@@ -105,7 +106,12 @@ export default function ProjectCard({
                 <span className="text-white/30">{project.year}</span>
               </div>
 
-              <h3 className="max-w-md text-3xl font-semibold leading-[1.05] tracking-tight text-white md:text-4xl lg:text-5xl">
+              <h3
+                className={cn(
+                  "max-w-md text-3xl font-semibold leading-[1.05] tracking-tight md:text-4xl lg:text-5xl",
+                  titleClassName
+                )}
+              >
                 {project.title}
               </h3>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-white/45 md:text-base">

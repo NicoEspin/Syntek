@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: getCanonicalUrl(locale, PATH),
