@@ -1,17 +1,27 @@
+import dynamic from "next/dynamic";
 import Footer from "@/app/components/(common)/Footer";
 import Navbar from "@/app/components/(common)/Navbar";
 import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
-import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
+import AboutHero from "@/app/sections/about/AboutHero";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
-  buildBreadcrumbJsonLd,
-  buildGraphJsonLd,
-  buildOrganizationJsonLd,
-} from "@/lib/jsonLd";
+  BUSINESS_EMAIL,
+  BUSINESS_LOCATION,
+  GOOGLE_MAPS_URL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  SORTLIST_URL,
+} from "@/lib/business";
+import { buildBreadcrumbJsonLd, buildGraphJsonLd } from "@/lib/jsonLd";
 
-import AboutPageContent from "./AboutPageContent";
+const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets"));
+const GrowthSystem = dynamic(() => import("@/app/sections/about/GrowthSystem"));
+const AboutPhilosophy = dynamic(() => import("@/app/sections/about/AboutPhilosophy"));
+const AboutTeam = dynamic(() => import("@/app/sections/about/AboutTeam"));
+const TestimonialsSection = dynamic(() => import("@/app/sections/home-v2/TestimonialsSection"));
+const AboutCta = dynamic(() => import("@/app/sections/about/AboutCta"));
 
 const PATH = "/sobre-nosotros";
 
@@ -19,11 +29,11 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
   const title = isEs
-    ? "Sobre Synttek | Estrategia, diseño y desarrollo"
-    : "About Synttek | Strategy, design and development";
+    ? "Sobre nosotros | Synttek — Villa Carlos Paz, Córdoba"
+    : "About us | Synttek — Villa Carlos Paz, Córdoba";
   const description = isEs
-    ? "Conocé cómo piensa Synttek: una agencia que combina estrategia, diseño y desarrollo para construir activos digitales con criterio comercial y técnico."
-    : "Learn how Synttek works: a studio combining strategy, design and development to build digital assets with commercial and technical judgment.";
+    ? "Somos el equipo que diagnostica qué necesita tu negocio y lo construye: web, software a medida, agentes de IA y contenido, todo conectado."
+    : "We're the team that diagnoses what your business needs and builds it: websites, custom software, AI agents and content, all connected.";
   const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
 
   return {
@@ -60,23 +70,43 @@ export async function generateMetadata({ params }) {
 
 export default async function AboutPage({ params }) {
   const { locale } = await params;
+  const isEs = locale === "es";
 
   const structuredData = buildGraphJsonLd([
     {
-      "@type": "AboutPage",
-      name: locale === "es" ? "Sobre Synttek" : "About Synttek",
-      url: getCanonicalUrl(locale, PATH),
-      isPartOf: {
-        "@type": "WebSite",
-        name: SITE_NAME,
-        url: SITE_URL,
-      },
-      about: buildOrganizationJsonLd(),
+      "@type": ["Organization", "ProfessionalService"],
+      name: SITE_NAME,
+      foundingDate: "2025",
+      description: isEs
+        ? "Agencia boutique de desarrollo web, diseño y automatizaciones fundada en Villa Carlos Paz, Córdoba, Argentina."
+        : "Boutique web development, design and automation agency founded in Villa Carlos Paz, Córdoba, Argentina.",
+      url: SITE_URL,
+      email: BUSINESS_EMAIL,
+      areaServed: [
+        { "@type": "City", name: "Villa Carlos Paz" },
+        { "@type": "State", name: BUSINESS_LOCATION.region },
+        { "@type": "Country", name: "Argentina" },
+      ],
+      numberOfEmployees: { "@type": "QuantitativeValue", value: 2 },
+      knowsAbout: [
+        "Desarrollo web con Next.js y React",
+        "Landing pages de alta conversión",
+        "Automatizaciones con n8n",
+        "Agentes de inteligencia artificial para negocios",
+        "Ecommerce",
+        "Branding digital",
+        "Software a medida",
+      ],
+      employee: [
+        { "@type": "Person", name: "Nicolás Espín", jobTitle: "Fundador, Desarrollo y Estrategia" },
+        { "@type": "Person", name: "Antto Cattalano", jobTitle: "Diseño y Contenido" },
+      ],
+      sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
     },
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
       {
-        name: locale === "es" ? "Sobre nosotros" : "About us",
+        name: isEs ? "Sobre nosotros" : "About us",
         item: getCanonicalUrl(locale, PATH),
       },
     ]),
@@ -85,9 +115,19 @@ export default async function AboutPage({ params }) {
   return (
     <>
       <JsonLd data={structuredData} />
-      <ScopedIntlProvider locale={locale} namespaces={["Navbar", "AboutPage", "About", "Tools", "ChatBot"]}>
+      <ScopedIntlProvider
+        locale={locale}
+        namespaces={["Navbar", "AboutPage", "HomeV2.testimonials", "ChatBot"]}
+      >
         <Navbar floating />
-        <AboutPageContent locale={locale} />
+        <main className="overflow-hidden bg-[#0a0a0a] text-[#ededed]">
+          <AboutHero />
+          <GrowthSystem />
+          <AboutPhilosophy />
+          <AboutTeam />
+          <TestimonialsSection />
+          <AboutCta />
+        </main>
         <FloatingWidgets />
       </ScopedIntlProvider>
       <Footer />

@@ -139,6 +139,17 @@
         { "question": "How long does a professional web project take?", "answer": "A landing page can be ready in a few weeks; an ecommerce or custom system takes longer depending on scope. During the strategy stage we give you a concrete timeline." }
       ]
     },
+    "testimonials": {
+      "sectionLabel": "Clients",
+      "title": "What our clients say.",
+      "ratingLabel": "Rating: 5 out of 5",
+      "googleBadge": "Google",
+      "footerText": "Verified reviews on Google Business Profile",
+      "items": [
+        { "quote": "Excelente servicio.", "author": "Enrique Callejon" },
+        { "quote": "Excelente servicio, gracias por ayudarnos con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron... la página un lujo.", "author": "Vale Sosa" }
+      ]
+    },
     "ctaFinal": {
       "title": "If your business already has momentum, it's time to get your <hl>digital presence</hl> in order",
       "subtitle": "We help you pinpoint which part of your digital flow is holding back inquiries, sales or productivity, and propose a clear solution: website, landing page, ecommerce, automation or custom software.",
@@ -402,7 +413,11 @@
       "Arquitectura Frontend": "Frontend Architecture",
       "SEO": "SEO",
       "Diseño de Redes": "Social Media Design",
-      "Dirección de Arte": "Art Direction"
+      "Dirección de Arte": "Art Direction",
+      "Auditoría de Seguridad": "Security Audit",
+      "Migración de Stack": "Stack Migration",
+      "Hardening": "Hardening",
+      "Documentación Técnica": "Technical Documentation"
     },
     "detail": {
       "client": "Client",
@@ -566,38 +581,76 @@
     "breadcrumbHome": "Home"
   },
   "AboutPage": {
-    "eyebrow": "About us",
-    "title": "We build digital assets where strategy, design and development stay aligned.",
-    "description": "Synttek combines visual judgment, technical architecture and commercial focus to design experiences that feel premium, work well and help businesses grow with less improvisation.",
-    "signals": [
-      "Strategy before empty aesthetics",
-      "Design with commercial intent",
-      "Solid, maintainable development"
-    ],
-    "sidebarLabel": "How we work",
-    "sidebarBody": "We are not a screen factory or a studio built on visual smoke. We step in when a business needs a more serious digital presence, better conversion or a technical base that can survive real growth.",
-    "primaryCta": "Talk to Synttek",
-    "secondaryCta": "View primary service",
-    "breadcrumbHome": "Home",
-    "breadcrumbCurrent": "About us",
-    "cardsLabel": "Our judgment",
-    "cardsTitle": "Three decisions that support every project we take on.",
-    "cardsHeadingLine1": "What",
-    "cardsHeadingLine2": "defines us.",
-    "cards": [
-      {
-        "title": "We choose clarity over noise",
-        "body": "If an interface impresses but does not explain, it is failing. Our aesthetics must elevate perceived value without making comprehension harder."
-      },
-      {
-        "title": "We design for business, not for Dribbble",
-        "body": "Visual direction matters, but always in service of a business decision: sell better, organize a process or build trust."
-      },
-      {
-        "title": "We build with the next stage in mind",
-        "body": "The first version matters, but it matters even more that the project can evolve without breaking every time it needs to grow or integrate something new."
-      }
-    ]
+    "waMessage": "Hi Synttek, I want to tell you where my business is at right now",
+    "hero": {
+      "eyebrow": "VILLA CARLOS PAZ · CÓRDOBA · SINCE 2025",
+      "headline": "We're not just another agency.\nWe're the team that diagnoses\nwhat your business needs\nand builds it.",
+      "paragraph": "Most agencies sell you a service. We ask what problem you have. The answer could be a website, custom software, an AI agent or visual content — or all of it together. All from the same team, all connected."
+    },
+    "growthSystem": {
+      "eyebrow": "THE SYSTEM",
+      "title": "One problem, one solution. All connected.",
+      "items": [
+        {
+          "number": "01",
+          "icon": "TrendingUp",
+          "title": "More sales",
+          "copy": "A modern, fast website designed to turn visits into real inquiries."
+        },
+        {
+          "number": "02",
+          "icon": "LayoutGrid",
+          "title": "More order",
+          "copy": "Custom software that replaces spreadsheets, WhatsApp chats and broken processes."
+        },
+        {
+          "number": "03",
+          "icon": "Bot",
+          "title": "More time",
+          "copy": "AI agents that answer, qualify and route — without you having to be available."
+        },
+        {
+          "number": "04",
+          "icon": "Sparkles",
+          "title": "Better presence",
+          "copy": "Social content and videos that show your business at the level it deserves."
+        }
+      ],
+      "closing": "You can start with one. Then scale what works."
+    },
+    "philosophy": {
+      "title": "Diagnosis first. Solution second.",
+      "paragraphs": [
+        "We don't start with the service. We start with the problem. What you're losing, what's eating your time, what's holding your growth back. The solution comes from there.",
+        "We use the most modern technical stack on the market — Next.js, React, n8n, AI agents — not because it's trendy, but because it builds things that last and scale.",
+        "We don't use WordPress. We don't outsource. What we design is what we deliver."
+      ]
+    },
+    "team": {
+      "eyebrow": "THE TEAM",
+      "title": "Two people. The whole stack.",
+      "members": [
+        {
+          "name": "Nicolás Espín",
+          "role": "Founder · Development & Strategy",
+          "bio": "Web development, custom software and AI agents. I handle the full cycle: architecture, implementation and delivery.",
+          "tags": ["Next.js", "Node.js", "n8n", "AI"]
+        },
+        {
+          "name": "Antto Cattalano",
+          "role": "Design & Content",
+          "bio": "Visual direction, social content and video. The design level that makes a business look like it deserves.",
+          "tags": ["Figma", "Motion", "Branding", "Social"]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Tell us where you're at.",
+      "subtitle": "We'll tell you what's worth building first.",
+      "cta": "Talk on WhatsApp →",
+      "note": "We reply in under 2 hours. No commitment."
+    },
+    "breadcrumbCurrent": "About us"
   },
   "ContactPage": {
     "eyebrow": "Contact",
@@ -770,6 +823,21 @@
       "subtitle": "Tell us what you need. We reply in under 2 hours.",
       "ctaPrimary": "Talk on WhatsApp",
       "note": "No commitment. First consultation is free."
+    }
+  },
+  "NotFoundPage": {
+    "eyebrow": "Error 404",
+    "headline": "This page got lost along the way.",
+    "subtitle": "The link might be broken or the page no longer exists. Head back home or tell us what you were looking for — we'll help either way.",
+    "ctaPrimary": "Back to home",
+    "ctaSecondary": "Message on WhatsApp",
+    "waMessage": "Hi Synttek, I landed on a page I couldn't find and wanted to ask about it",
+    "exploreLabel": "You might be looking for",
+    "links": {
+      "services": "Services",
+      "projects": "Projects",
+      "blog": "Blog",
+      "contact": "Contact"
     }
   }
 }

@@ -19,6 +19,7 @@ const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets")
 const VCPServices = dynamic(() => import("@/app/sections/vcp/VCPServices"));
 const VCPProof = dynamic(() => import("@/app/sections/vcp/VCPProof"));
 const FaqV2 = dynamic(() => import("@/app/sections/home-v2/FaqV2"));
+const TestimonialsSection = dynamic(() => import("@/app/sections/home-v2/TestimonialsSection"));
 const VCPCta = dynamic(() => import("@/app/sections/vcp/VCPCta"));
 
 export async function generateMetadata({ params }) {
@@ -99,6 +100,7 @@ export default async function VillaCarlosPazPage({ params }) {
           "Homepage.heroCards",
           "Projects",
           "HomeV2.faq",
+          "HomeV2.testimonials",
           "HomeV2.waMessage",
           "ChatBot",
         ]}
@@ -110,6 +112,7 @@ export default async function VillaCarlosPazPage({ params }) {
           <ProcessSection />
           <VCPProof />
           <FaqV2 />
+          <TestimonialsSection />
           <VCPCta />
         </main>
         <FloatingWidgets />

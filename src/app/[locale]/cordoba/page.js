@@ -19,6 +19,7 @@ const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets")
 const CordobaServices = dynamic(() => import("@/app/sections/cordoba/CordobaServices"));
 const CordobaProof = dynamic(() => import("@/app/sections/cordoba/CordobaProof"));
 const FaqV2 = dynamic(() => import("@/app/sections/home-v2/FaqV2"));
+const TestimonialsSection = dynamic(() => import("@/app/sections/home-v2/TestimonialsSection"));
 const CordobaCta = dynamic(() => import("@/app/sections/cordoba/CordobaCta"));
 
 export async function generateMetadata({ params }) {
@@ -99,6 +100,7 @@ export default async function CordobaPage({ params }) {
           "Homepage.heroCards",
           "Projects",
           "HomeV2.faq",
+          "HomeV2.testimonials",
           "HomeV2.waMessage",
           "ChatBot",
         ]}
@@ -110,6 +112,7 @@ export default async function CordobaPage({ params }) {
           <ProcessSection />
           <CordobaProof />
           <FaqV2 />
+          <TestimonialsSection />
           <CordobaCta />
         </main>
         <FloatingWidgets />

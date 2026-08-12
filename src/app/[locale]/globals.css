@@ -177,6 +177,42 @@ body {
   animation: syn-navbar-enter 0.8s var(--ease-premium) both;
 }
 
+/* ── glitch del numeral 404 (NotFoundHero.jsx) — RGB split vía clip-path,
+   solo transform/clip-path (compositor, sin reflow). Estático la mayor
+   parte del ciclo, glitchea en pulsos breves. */
+.syn-404-glitch {
+  position: relative;
+  display: inline-block;
+}
+.syn-404-glitch::before,
+.syn-404-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+.syn-404-glitch::before {
+  color: var(--color-violet);
+  animation: syn-404-glitch-1 3.4s infinite linear;
+}
+.syn-404-glitch::after {
+  color: var(--color-accent);
+  animation: syn-404-glitch-2 2.8s infinite linear;
+}
+@keyframes syn-404-glitch-1 {
+  0%, 92%, 100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+  93% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, 1px); }
+  95% { clip-path: inset(60% 0 5% 0); transform: translate(3px, -1px); }
+  97% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 2px); }
+}
+@keyframes syn-404-glitch-2 {
+  0%, 90%, 100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+  91% { clip-path: inset(70% 0 5% 0); transform: translate(3px, -1px); }
+  94% { clip-path: inset(15% 0 55% 0); transform: translate(-3px, 1px); }
+  96% { clip-path: inset(40% 0 30% 0); transform: translate(2px, -2px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .syn-flow-beam,
   .syn-flow-dot,
@@ -184,6 +220,12 @@ body {
   .syn-transform-pulse,
   .syn-navbar-enter {
     animation: none !important;
+  }
+
+  .syn-404-glitch::before,
+  .syn-404-glitch::after {
+    animation: none !important;
+    opacity: 0;
   }
 }
 

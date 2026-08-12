@@ -220,6 +220,31 @@ export const buildWebPageJsonLd = ({
   },
 });
 
+export const buildAggregateRatingReviewJsonLd = () => ({
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: "2",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Enrique Callejon" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: "Excelente servicio.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Vale Sosa" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody:
+        "Excelente servicio, gracias por ayudarnos con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron... la página un lujo.",
+    },
+  ],
+});
+
 export const buildFaqPageJsonLd = (faqs) => ({
   "@type": "FAQPage",
   mainEntity: faqs.map((faq) => ({

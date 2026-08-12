@@ -4,6 +4,8 @@ import diseñoRedes from "@/app/assets/blog/diseño-synttek.webp";
 import paginaNegocio from "@/app/assets/blog/pagina-negocio.webp";
 import preciosWebArgentina2026 from "@/app/assets/blog/precio-web.webp";
 import nico from "@/app/assets/nico.webp";
+import agenteIA from "@/app/assets/blog/agente-de-ia.webp";
+import landingPage from "@/app/assets/blog/que-es-una-landing-page.webp";
 
 const DEFAULT_LOCALE = "es";
 
@@ -1199,6 +1201,350 @@ const postEntries = [
       paragraph(
         "Sí. Uno de sus principales beneficios es dar una primera respuesta aunque el negocio esté cerrado, para que ninguna consulta quede sin atención inicial hasta que el equipo esté disponible.",
         "Yes. One of its main benefits is providing an initial response even when the business is closed, so no inquiry goes without a first reply until the team is available.",
+      ),
+    ],
+  },
+  {
+    slug: "que-es-una-landing-page",
+    category: "Desarrollo",
+    title: localizedText("Qué es una landing page", "What is a landing page"),
+    titleAccent: localizedText(
+      "y por qué convierte más que tu sitio web",
+      "and why it converts better than your website",
+    ),
+    excerpt: localizedText(
+      "Una landing page no es tu sitio web. Tiene un solo objetivo, un solo llamado a la acción y ninguna distracción. Así convierte más.",
+      "A landing page is not your website. It has one goal, one call to action, and zero distractions. That's why it converts better.",
+    ),
+    dek: localizedText(
+      "Si tenés un negocio y estás pagando publicidad, cada visita que no convierte es plata tirada. Acá te explicamos qué es una landing page, en qué se diferencia de un sitio web y cuándo usar cada una.",
+      "If you're running paid ads and visitors aren't converting, you're burning money. Here's what a landing page is, how it differs from a website, and when to use each.",
+    ),
+    image: landingPage, // reemplazar con: landingPageImg
+    author: "nico",
+    date: "2026-08-12",
+    readingMinutes: 6,
+    featured: false,
+    tags: [
+      localizedText("Landing page", "Landing page"),
+      localizedText("Desarrollo web", "Web development"),
+      localizedText("Conversiones", "Conversions"),
+      localizedText("Marketing digital", "Digital marketing"),
+    ],
+    body: [
+      paragraph(
+        "Tenés un negocio. Ponés plata en publicidad o en redes sociales. La gente llega a tu sitio web. Y después... nada. Se van sin hacer nada. Sin llamar, sin escribir, sin comprar.",
+        "You have a business. You put money into ads or social media. People land on your website. And then... nothing. They leave without doing anything. No call, no message, no purchase.",
+      ),
+      paragraph(
+        "El problema, casi siempre, no es la publicidad. Es el destino al que mandás a esas personas.",
+        "The problem, almost always, isn't the ad. It's where you're sending those people.",
+      ),
+      heading(
+        "Un sitio web y una landing page no son lo mismo",
+        "A website and a landing page are not the same thing",
+      ),
+      paragraph(
+        "Un sitio web es tu presencia completa en internet. Tiene páginas de servicios, galería, blog, sobre nosotros, contacto. Es para que quien ya te conoce te investigue, para que Google te encuentre, para que un cliente que te buscó por nombre sepa que existís.",
+        "A website is your full online presence. It has service pages, gallery, blog, about us, contact. It's for people who already know you, for Google to find you, for someone who searched your name to confirm you exist.",
+      ),
+      paragraph(
+        "Una landing page tiene un solo objetivo. Una sola acción que querés que haga el visitante. Y todo en esa página está diseñado para que esa acción ocurra.",
+        "A landing page has a single goal. One action you want the visitor to take. And everything on that page is designed to make that action happen.",
+      ),
+      callout(
+        "La diferencia clave",
+        "The key difference",
+        "Sitio web vs. landing page",
+        "Website vs. landing page",
+        "Un sitio web tiene menú, múltiples secciones, varios destinos posibles. Una landing page no tiene menú, no tiene distracciones, y todo lleva al mismo lugar: el botón de acción.",
+        "A website has a menu, multiple sections, many possible paths. A landing page has no menu, no distractions, and everything leads to one place: the action button.",
+      ),
+      heading(
+        "¿Cuándo necesitás una landing page?",
+        "When do you need a landing page?",
+      ),
+      paragraph(
+        "La regla es simple: cada vez que invertís en traer tráfico con un objetivo específico, necesitás una landing page. No tu sitio web completo.",
+        "The rule is simple: whenever you invest in driving traffic with a specific goal, you need a landing page. Not your full website.",
+      ),
+      subheading("Publicidad en Google o Meta", "Google or Meta ads"),
+      paragraph(
+        'Si alguien hace clic en un anuncio que dice "Instalación de aire acondicionado en Córdoba" y llega a la página de inicio de tu empresa, ya perdiste. No sabe qué hacer. Ve opciones. Se va.',
+        "If someone clicks an ad that says \"Air conditioning installation in Córdoba\" and lands on your company homepage, you've already lost them. They don't know what to do. They see options. They leave.",
+      ),
+      paragraph(
+        "Si llega a una página que dice exactamente eso, muestra el precio, explica cómo funciona el servicio y tiene un botón de WhatsApp: convertís.",
+        "If they land on a page that says exactly that, shows the price, explains how the service works, and has a WhatsApp button: you convert.",
+      ),
+      subheading("Promociones o lanzamientos", "Promotions or launches"),
+      paragraph(
+        "Estás lanzando un producto nuevo o tenés una promo por tiempo limitado. No querés que el visitante se pierda navegando tu sitio. Querés que haga una sola cosa: aprovechar la promo.",
+        "You're launching a new product or running a time-limited promo. You don't want the visitor wandering around your site. You want them to do one thing: take the offer.",
+      ),
+      subheading("Formularios de captura de leads", "Lead capture forms"),
+      paragraph(
+        "Ofrecés algo a cambio de datos de contacto: una consulta gratis, un presupuesto, un PDF. Una landing page con ese único objetivo convierte mucho más que un formulario enterrado en tu sitio web.",
+        "You offer something in exchange for contact info: a free consultation, a quote, a PDF. A landing page with that single goal converts far better than a form buried somewhere on your website.",
+      ),
+      heading(
+        "Qué tiene que tener una landing page para convertir",
+        "What a high-converting landing page needs",
+      ),
+      paragraph(
+        "No alcanza con quitar el menú. Una landing page bien hecha tiene elementos específicos, en un orden específico, con un propósito claro.",
+        "Removing the menu isn't enough. A well-built landing page has specific elements, in a specific order, with a clear purpose.",
+      ),
+      subheading(
+        "1. Un titular que habla del resultado, no del servicio",
+        "1. A headline that speaks to the result, not the service",
+      ),
+      paragraph(
+        '"Diseño web profesional" no le dice nada a nadie. "Conseguí más clientes con una web que trabaja mientras vos dormís" le habla directamente a quien tiene ese problema.',
+        '"Professional web design" means nothing to anyone. "Get more clients with a website that works while you sleep" speaks directly to the person who has that problem.',
+      ),
+      subheading(
+        "2. Un subtítulo que explica cómo",
+        "2. A subtitle that explains how",
+      ),
+      paragraph(
+        "El titular captura la atención. El subtítulo dice quién sos y qué hacés. Es el momento de ser específico: servicio, zona geográfica, para quién.",
+        "The headline grabs attention. The subtitle says who you are and what you do. That's when you get specific: service, location, target audience.",
+      ),
+      subheading("3. Prueba social visible", "3. Visible social proof"),
+      paragraph(
+        "Reseñas de clientes, casos de éxito, logos de marcas con las que trabajaste. Las personas no le creen a lo que una empresa dice de sí misma. Le creen a lo que dicen otros.",
+        "Client reviews, case studies, logos of brands you've worked with. People don't believe what a company says about itself. They believe what others say.",
+      ),
+      subheading(
+        "4. Un llamado a la acción claro y único",
+        "4. One clear and singular call to action",
+      ),
+      paragraph(
+        'Un solo botón. Una sola acción. "Pedí tu presupuesto", "Escribinos por WhatsApp", "Reservá tu lugar". No des opciones: guiá.',
+        'One button. One action. "Request your quote", "Message us on WhatsApp", "Reserve your spot". Don\'t give options: lead.',
+      ),
+      subheading("5. Sin menú de navegación", "5. No navigation menu"),
+      paragraph(
+        "El menú es una invitación a irse. En una landing page, cada salida que no sea la acción deseada es una conversión perdida. Eliminarlo es un cambio que impacta directamente en los resultados.",
+        "A menu is an invitation to leave. In a landing page, every exit that isn't the desired action is a lost conversion. Removing it directly impacts results.",
+      ),
+      heading(
+        "Landing page vs. sitio web: no son excluyentes",
+        "Landing page vs. website: they're not mutually exclusive",
+      ),
+      paragraph(
+        "No se trata de elegir uno o el otro. Un negocio serio necesita las dos cosas.",
+        "It's not about choosing one or the other. A serious business needs both.",
+      ),
+      paragraph(
+        "El sitio web construye autoridad, posiciona en Google, da contexto a quien te busca directamente. La landing page convierte el tráfico pagado y las campañas específicas.",
+        "The website builds authority, ranks on Google, gives context to people who search you directly. The landing page converts paid traffic and specific campaigns.",
+      ),
+      paragraph(
+        "La combinación ideal es: un sitio web sólido como base, y landing pages puntuales para cada campaña o servicio que querés destacar.",
+        "The ideal combination is: a solid website as your foundation, and targeted landing pages for each campaign or service you want to push.",
+      ),
+      quote(
+        "Una landing page bien hecha no es un gasto. Es el lugar donde tu inversión en publicidad finalmente se convierte en clientes.",
+        "A well-built landing page isn't an expense. It's where your advertising investment finally turns into clients.",
+      ),
+      heading(
+        "¿Cuánto tarda en hacerse una landing page?",
+        "How long does a landing page take?",
+      ),
+      paragraph(
+        "En Synttek entregamos landing pages en 7 a 14 días hábiles, dependiendo de la complejidad y si el cliente ya tiene el copy y las imágenes. El proceso incluye diseño, desarrollo, integración de formularios o WhatsApp, y optimización para móviles y velocidad.",
+        "At Synttek we deliver landing pages in 7 to 14 business days, depending on complexity and whether the client already has copy and images. The process includes design, development, form or WhatsApp integration, and mobile and speed optimization.",
+      ),
+      paragraph(
+        "Si venís con publicidad activa y tu sitio actual no está convirtiendo, ese es el primer problema que hay que resolver.",
+        "If you're running active ads and your current site isn't converting, that's the first problem to solve.",
+      ),
+      callout(
+        "¿Necesitás una landing page?",
+        "Do you need a landing page?",
+        "Hablemos",
+        "Let's talk",
+        "Contanos de tu negocio y te decimos si lo que necesitás es una landing page, un sitio web completo o las dos cosas. Sin compromiso.",
+        "Tell us about your business and we'll tell you whether you need a landing page, a full website, or both. No strings attached.",
+      ),
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // POST 2 — "Agente de IA para negocios Argentina"
+  // ─────────────────────────────────────────────
+  {
+    slug: "agente-ia-para-negocios-argentina",
+    category: "Automatización",
+    title: localizedText(
+      "Agente de IA para negocios en Argentina",
+      "AI agent for businesses in Argentina",
+    ),
+    titleAccent: localizedText(
+      "qué es, para qué sirve y cómo implementarlo",
+      "what it is, what it's for, and how to implement it",
+    ),
+    excerpt: localizedText(
+      "Un agente de IA puede responder consultas, calificar leads y automatizar tareas repetitivas, las 24 horas. Sin contratar más gente.",
+      "An AI agent can answer queries, qualify leads, and automate repetitive tasks, 24 hours a day. Without hiring more people.",
+    ),
+    dek: localizedText(
+      "Cada vez más negocios argentinos preguntan cómo usar inteligencia artificial para ahorrar tiempo y atender mejor a sus clientes. Acá explicamos qué es un agente de IA, cómo funciona en la práctica y en qué casos tiene sentido implementarlo.",
+      "More and more Argentine businesses are asking how to use artificial intelligence to save time and serve their clients better. Here's what an AI agent is, how it works in practice, and when it makes sense to implement one.",
+    ),
+    image: agenteIA, // reemplazar con: agenteIaImg
+    author: "nico",
+    date: "2026-08-12",
+    readingMinutes: 7,
+    featured: false,
+    tags: [
+      localizedText("Inteligencia artificial", "Artificial intelligence"),
+      localizedText("Automatización", "Automation"),
+      localizedText("Agente de IA", "AI agent"),
+      localizedText("Argentina", "Argentina"),
+      localizedText("WhatsApp", "WhatsApp"),
+    ],
+    body: [
+      paragraph(
+        "El teléfono suena. Alguien escribe por WhatsApp a las 11 de la noche preguntando precio y disponibilidad. Mañana a la mañana también hay tres consultas nuevas. Y mientras tanto, vos o tu equipo están ocupados con el trabajo real.",
+        "The phone rings. Someone messages on WhatsApp at 11pm asking about price and availability. Tomorrow morning there'll be three more new inquiries. And meanwhile, you or your team are busy with actual work.",
+      ),
+      paragraph(
+        "Ese desfasaje entre la demanda de atención y el tiempo disponible es el problema que resuelve un agente de IA.",
+        "That gap between demand for attention and available time is the problem an AI agent solves.",
+      ),
+      heading("Qué es un agente de IA", "What is an AI agent"),
+      paragraph(
+        "Un agente de IA es un sistema automatizado que puede recibir preguntas, entenderlas, consultar información de tu negocio y responder de forma coherente — sin intervención humana.",
+        "An AI agent is an automated system that can receive questions, understand them, look up your business information, and respond coherently — without human intervention.",
+      ),
+      paragraph(
+        "No es un chatbot con respuestas predefinidas que frustra al usuario cuando pregunta algo que no estaba en el guión. Es un sistema conectado a un modelo de lenguaje que puede entender preguntas en lenguaje natural y responder con información real de tu negocio.",
+        "It's not a chatbot with predefined responses that frustrates users when they ask something off-script. It's a system connected to a language model that can understand natural language questions and respond with real information about your business.",
+      ),
+      callout(
+        "Diferencia clave",
+        "Key difference",
+        "Chatbot vs. agente de IA",
+        "Chatbot vs. AI agent",
+        "Un chatbot tradicional responde según un árbol de decisiones fijo. Si no encontró la respuesta, falla. Un agente de IA razona sobre la pregunta, consulta la información disponible y genera una respuesta apropiada, aunque la pregunta sea nueva.",
+        "A traditional chatbot responds according to a fixed decision tree. If it can't find the answer, it fails. An AI agent reasons about the question, looks up available information, and generates an appropriate response — even for brand-new questions.",
+      ),
+      heading(
+        "Para qué lo usa un negocio en Argentina",
+        "How businesses in Argentina use it",
+      ),
+      paragraph(
+        "Los casos de uso más concretos que vemos en negocios locales son estos:",
+        "The most concrete use cases we see in local businesses are these:",
+      ),
+      subheading(
+        "Atención por WhatsApp fuera del horario comercial",
+        "WhatsApp support outside business hours",
+      ),
+      paragraph(
+        "El 70% de las consultas a negocios locales en Argentina llegan por WhatsApp. Muchas de esas consultas llegan de noche o el fin de semana. Un agente conectado a tu número puede responder preguntas frecuentes, dar precios, confirmar disponibilidad y agendar una llamada — sin que nadie del equipo tenga que estar disponible.",
+        "70% of inquiries to local businesses in Argentina come through WhatsApp. Many arrive at night or on weekends. An agent connected to your number can answer FAQs, quote prices, confirm availability, and schedule a call — without anyone on your team needing to be available.",
+      ),
+      subheading(
+        "Calificación de leads antes de la primera llamada",
+        "Lead qualification before the first call",
+      ),
+      paragraph(
+        "No todas las consultas son iguales. Algunas son de personas listas para comprar. Otras son consultas exploratorias que no van a ningún lado. Un agente puede hacer las preguntas correctas, identificar si la persona es un cliente potencial real y priorizar a quién le respondés primero.",
+        "Not all inquiries are equal. Some are from people ready to buy. Others are exploratory and go nowhere. An agent can ask the right questions, identify whether someone is a real potential client, and prioritize who you respond to first.",
+      ),
+      subheading(
+        "Respuestas automáticas en formularios de contacto",
+        "Automatic responses to contact forms",
+      ),
+      paragraph(
+        "Cuando alguien completa un formulario en tu sitio web, un agente puede enviarle una respuesta personalizada en segundos: confirmación de recepción, información inicial relevante, próximo paso claro. Sin esperar a que alguien lo vea manualmente.",
+        "When someone fills out a contact form on your website, an agent can send them a personalized response in seconds: confirmation of receipt, relevant initial information, clear next step. Without waiting for someone to manually check it.",
+      ),
+      subheading(
+        "Soporte interno para el equipo",
+        "Internal support for your team",
+      ),
+      paragraph(
+        "No solo para clientes. Un agente entrenado con documentación interna puede responder preguntas del equipo: procedimientos, precios actualizados, información de productos, políticas. Menos tiempo buscando en carpetas, más tiempo trabajando.",
+        "Not just for clients. An agent trained on internal documentation can answer team questions: procedures, updated prices, product information, policies. Less time searching through folders, more time working.",
+      ),
+      heading("Cómo funciona en la práctica", "How it works in practice"),
+      paragraph(
+        "El proceso de implementar un agente de IA para un negocio tiene tres etapas:",
+        "Implementing an AI agent for a business has three stages:",
+      ),
+      subheading(
+        "1. Definir qué tiene que saber y qué tiene que hacer",
+        "1. Define what it needs to know and what it needs to do",
+      ),
+      paragraph(
+        "Un agente no sabe nada de tu negocio por defecto. Hay que alimentarlo con información: precios, servicios, condiciones, horarios, formas de pago, preguntas frecuentes. Cuanto más específica sea esa información, mejores van a ser las respuestas.",
+        "An agent knows nothing about your business by default. You need to feed it information: prices, services, terms, hours, payment methods, FAQs. The more specific that information, the better the responses.",
+      ),
+      subheading(
+        "2. Conectarlo al canal donde están tus clientes",
+        "2. Connect it to the channel where your clients are",
+      ),
+      paragraph(
+        "WhatsApp Business API, Instagram DMs, formularios de contacto, chat en el sitio web. El agente vive donde viven tus clientes. No al revés.",
+        "WhatsApp Business API, Instagram DMs, contact forms, website chat. The agent lives where your clients are. Not the other way around.",
+      ),
+      subheading(
+        "3. Definir cuándo pasa la conversación a una persona real",
+        "3. Define when the conversation passes to a real person",
+      ),
+      paragraph(
+        "Un buen agente sabe hasta dónde puede llegar solo. Cuando la consulta es compleja, cuando el cliente quiere hablar con alguien, o cuando hay que cerrar una venta importante, la conversación se transfiere a una persona del equipo — con todo el contexto de lo que ya se habló.",
+        "A good agent knows how far it can go alone. When the inquiry is complex, when the client wants to speak to someone, or when there's an important sale to close, the conversation transfers to a team member — with full context of everything already discussed.",
+      ),
+      heading("¿Qué tecnología se usa?", "What technology is used?"),
+      paragraph(
+        "En Synttek usamos n8n como plataforma de automatización para conectar los distintos sistemas, y APIs de modelos de lenguaje como GPT-4o o Claude para el procesamiento de lenguaje natural. La integración con WhatsApp se hace vía WhatsApp Business API a través de proveedores habilitados.",
+        "At Synttek we use n8n as the automation platform to connect different systems, and language model APIs like GPT-4o or Claude for natural language processing. WhatsApp integration is done via the WhatsApp Business API through authorized providers.",
+      ),
+      paragraph(
+        "El stack no es lo más importante. Lo que importa es que el sistema responda bien, escale sin explotar y sea fácil de actualizar cuando cambian los precios o los servicios.",
+        "The tech stack isn't the most important thing. What matters is that the system responds well, scales without breaking, and is easy to update when prices or services change.",
+      ),
+      heading(
+        "¿Para qué tipo de negocio tiene sentido?",
+        "What type of business benefits most?",
+      ),
+      paragraph(
+        "Un agente de IA tiene más impacto cuando hay volumen de consultas repetitivas. Si respondés diez veces por día la misma pregunta sobre precio o disponibilidad, ahí hay tiempo recuperable.",
+        "An AI agent has the most impact when there's a volume of repetitive inquiries. If you answer the same question about price or availability ten times a day, that's recoverable time.",
+      ),
+      paragraph(
+        "Los rubros donde más lo vemos implementado en Argentina: inmobiliarias, estudios de medicina estética, servicios de turismo, estudios contables, e-commerce, negocios de servicios a domicilio (plomeros, electricistas, técnicos), y cualquier negocio que tenga un equipo de ventas que se satura de consultas.",
+        "The industries where we see it implemented most in Argentina: real estate agencies, aesthetic medicine clinics, tourism services, accounting firms, e-commerce, home service businesses (plumbers, electricians, technicians), and any business with a sales team overwhelmed by inquiries.",
+      ),
+      quote(
+        "El objetivo no es reemplazar a las personas. Es liberarlas de las tareas repetitivas para que puedan enfocarse en lo que realmente requiere criterio humano.",
+        "The goal isn't to replace people. It's to free them from repetitive tasks so they can focus on what genuinely requires human judgment.",
+      ),
+      heading(
+        "¿Cuánto cuesta implementar un agente de IA?",
+        "How much does it cost to implement an AI agent?",
+      ),
+      paragraph(
+        "El costo depende de la complejidad: cuántos canales hay que integrar, qué tan compleja es la lógica de calificación de leads, si hay que conectarlo a sistemas existentes como un CRM o una base de datos de productos.",
+        "The cost depends on complexity: how many channels to integrate, how complex the lead qualification logic is, whether it needs to connect to existing systems like a CRM or product database.",
+      ),
+      paragraph(
+        "Una implementación básica — agente respondiendo por WhatsApp con información del negocio y derivación a humano — puede estar lista en dos semanas. Las integraciones más complejas con CRM, calendarios y múltiples canales toman más tiempo.",
+        "A basic implementation — agent responding on WhatsApp with business information and human handoff — can be ready in two weeks. More complex integrations with CRM, calendars, and multiple channels take longer.",
+      ),
+      callout(
+        "¿Querés saber si tiene sentido para tu negocio?",
+        "Want to know if it makes sense for your business?",
+        "Hablemos sin compromiso",
+        "Let's talk, no strings attached",
+        "Contanos qué tipo de consultas recibís y cuánto tiempo le dedica tu equipo. Te decimos si un agente de IA ayuda y cómo lo implementaríamos.",
+        "Tell us what kind of inquiries you receive and how much time your team spends on them. We'll tell you if an AI agent helps and how we'd implement it.",
       ),
     ],
   },

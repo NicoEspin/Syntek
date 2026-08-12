@@ -18,6 +18,7 @@ import {
 } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
+  buildAggregateRatingReviewJsonLd,
   buildFaqPageJsonLd,
   buildGraphJsonLd,
   buildLocalBusinessJsonLd,
@@ -31,6 +32,7 @@ const TransformSection = dynamic(() => import("@/app/sections/home-v2/TransformS
 const SolutionsSection = dynamic(() => import("@/app/sections/home-v2/SolutionsSection"));
 const Services = dynamic(() => import("@/app/sections/Services"));
 const FaqV2 = dynamic(() => import("@/app/sections/home-v2/FaqV2"));
+const TestimonialsSection = dynamic(() => import("@/app/sections/home-v2/TestimonialsSection"));
 const CtaFinalV2 = dynamic(() => import("@/app/sections/home-v2/CtaFinalV2"));
 const Contact = dynamic(() => import("@/app/sections/Contact"));
 
@@ -85,7 +87,7 @@ export default async function Home({ params }) {
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildOrganizationJsonLd(),
+    { ...buildOrganizationJsonLd(), ...buildAggregateRatingReviewJsonLd() },
     buildLocalBusinessJsonLd(),
     buildWebsiteJsonLd({ locale, url: SITE_URL }),
     buildFaqPageJsonLd(faqs),
@@ -104,6 +106,7 @@ export default async function Home({ params }) {
           "HomeV2.solutions",
           "HomeV2.process",
           "HomeV2.faq",
+          "HomeV2.testimonials",
           "HomeV2.ctaFinal",
           "HomeV2.waMessage",
           "Homepage.heroCards",
@@ -124,6 +127,7 @@ export default async function Home({ params }) {
           <Projects locale={locale} />
           <ProcessSection />
           <FaqV2 />
+          <TestimonialsSection />
           <CtaFinalV2 />
           <Contact />
         </main>

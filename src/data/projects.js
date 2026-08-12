@@ -376,6 +376,43 @@ const projectEntries = [
     relatedServiceSlugs: ["branding"],
     updatedAt: "2026-08-07T19:00:00.000Z",
   },
+  {
+    id: "alquileres-carlos-paz",
+    index: "10",
+    title: "A Carlos Paz",
+    subtitle: localizedText(
+      "Auditoría de Seguridad + Migración PHP 8.4",
+      "Security Audit + PHP 8.4 Migration",
+    ),
+    category: "Integracion Backend",
+    year: "2026",
+    client: "A Carlos Paz",
+    services: [
+      "Auditoría de Seguridad",
+      "Migración de Stack",
+      "Hardening",
+      "Documentación Técnica",
+    ],
+    tags: ["PHP 8.4", "MySQLi", "MariaDB", "Docker", "Apache", ".htaccess"],
+    description: {
+      short: localizedText(
+        "Portal turístico de Villa Carlos Paz rescatado de un hackeo activo y migrado de PHP legacy a PHP 8.4 con hardening de seguridad completo.",
+        "Tourism portal from Villa Carlos Paz rescued from an active hack and migrated from legacy PHP to PHP 8.4 with full security hardening.",
+      ),
+      long: localizedText(
+        "A Carlos Paz es uno de los portales de alquileres turísticos más conocidos de Villa Carlos Paz. El proyecto llegó con dos problemas superpuestos: el código corría sobre PHP 5.6 con 394 llamadas a APIs removidas del lenguaje, y tres archivos maliciosos estaban activos en producción, recolectando IPs de visitantes y redirigiendo tráfico hacia dominios externos sin que el cliente lo supiera. La intervención empezó por el hallazgo más crítico: identificar, aislar y eliminar los archivos comprometidos. Después vino la migración completa del codebase a PHP 8.4 + mysqli en 44 fases documentadas, con doble entorno Docker (PHP 5.6 + PHP 8.4) para validar compatibilidad durante toda la transición. El cierre incluyó hardening real: passwords admin migrados a bcrypt, protección CSRF en formularios críticos, deletes sensibles bloqueados para GET, validación de uploads, cookies de sesión seguras y bloqueo HTTP de residuos legacy. El sitio fue aprobado para producción el 13 de mayo de 2026 corriendo PHP 8.4.21 sin warnings ni fatales en ninguna ruta.",
+        "A Carlos Paz is one of the most well-known rental portals in Villa Carlos Paz. The project arrived with two overlapping problems: the codebase ran on PHP 5.6 with 394 calls to APIs removed from the language, and three malicious files were active in production, collecting visitor IPs and silently redirecting traffic to external domains without the client's knowledge. The intervention started with the most critical finding: identifying, isolating and removing the compromised files. Then came the full codebase migration to PHP 8.4 + mysqli across 44 documented phases, using a dual Docker environment (PHP 5.6 + PHP 8.4) to validate compatibility throughout the transition. The closure included real hardening: admin passwords migrated to bcrypt, CSRF protection on critical forms, sensitive deletes blocked on GET, upload validation, secure session cookies and HTTP blocking of legacy artifacts. The site was approved for production on May 13, 2026, running PHP 8.4.21 with no warnings or fatals on any route.",
+      ),
+    },
+    coverImage: "/projects/alquileres-carlos-paz/cover.webp",
+    heroImage: "/projects/alquileres-carlos-paz/hero.webp",
+    gallery: [],
+    accentColor: "#0284c7",
+    featured: false,
+    link: "https://www.acarlospaz.com/",
+    relatedServiceSlugs: ["desarrollo-web"],
+    updatedAt: "2026-05-13T00:00:00.000Z",
+  },
 ];
 
 const getLocalizedField = (value, locale = DEFAULT_LOCALE) => {
