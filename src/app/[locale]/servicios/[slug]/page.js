@@ -41,7 +41,9 @@ export async function generateMetadata({ params }) {
   const path = `/servicios/${slug}`;
 
   return {
-    title: service.metaTitle,
+    title: {
+      absolute: service.metaTitle,
+    },
     description: service.metaDescription,
     alternates: {
       canonical: getCanonicalUrl(locale, path),
