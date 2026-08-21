@@ -121,7 +121,7 @@ const HeroV2 = () => {
             >
               {t("hero.headlinePre")}
             </motion.span>
-          </span>
+          </span>{" "}
           <span className="block overflow-hidden text-[#A1E233]">
             <motion.span
               initial={{ y: "100%" }}

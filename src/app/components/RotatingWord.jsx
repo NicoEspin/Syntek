@@ -12,10 +12,29 @@ export default function RotatingWord({ words, interval = 2200 }) {
 
   useEffect(() => {
     if (prefersReduced || words.length <= 1) return;
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % words.length);
-    }, interval);
-    return () => clearInterval(id);
+
+    let id;
+    const tick = () => setIndex((i) => (i + 1) % words.length);
+    const start = () => {
+      if (!id) id = setInterval(tick, interval);
+    };
+    const stop = () => {
+      clearInterval(id);
+      id = undefined;
+    };
+
+    // Pausar mientras la pestaña está oculta: si el intervalo sigue avisando
+    // índices con la pestaña en background, las animaciones de salida (rAF)
+    // no llegan a completarse y AnimatePresence acumula palabras sin desmontar.
+    const handleVisibility = () => (document.hidden ? stop() : start());
+
+    if (!document.hidden) start();
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, [words, interval, prefersReduced]);
 
   if (prefersReduced) {

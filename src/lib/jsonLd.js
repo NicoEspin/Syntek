@@ -224,7 +224,7 @@ export const buildAggregateRatingReviewJsonLd = () => ({
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5",
-    reviewCount: "2",
+    reviewCount: "3",
     bestRating: "5",
     worstRating: "1",
   },
@@ -234,6 +234,7 @@ export const buildAggregateRatingReviewJsonLd = () => ({
       author: { "@type": "Person", name: "Enrique Callejon" },
       reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
       reviewBody: "Excelente servicio.",
+      url: "https://maps.app.goo.gl/AamWpUonM61aL48y6",
     },
     {
       "@type": "Review",
@@ -241,6 +242,15 @@ export const buildAggregateRatingReviewJsonLd = () => ({
       reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
       reviewBody:
         "Excelente servicio, gracias por ayudarnos con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron... la página un lujo.",
+      url: "https://maps.app.goo.gl/ikGySHT5JJ2XUpwK8",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Fernando Catalano" },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody:
+        "Mi experiencia con ellos, fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel de técnico espectacular. Estoy muy contento con los resultados. Mi marca y mi sitio web quedo excelente!",
+      url: "https://maps.app.goo.gl/29Vp2xztZTZRJcUw6",
     },
   ],
 });

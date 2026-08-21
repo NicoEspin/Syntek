@@ -43,7 +43,7 @@ export default function ProjectsClient({ featuredProjects, locale, copy }) {
                   transition={{ duration: 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  <span className="block">{copy.headlineLine1}</span>
+                  <span className="block">{copy.headlineLine1}</span>{" "}
                   <span className="block text-[#A1E233]">{copy.headlineLine2}</span>
                 </motion.h2>
               </div>

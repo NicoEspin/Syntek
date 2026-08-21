@@ -497,7 +497,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
                   transition={{ duration: shouldReduceMotion ? 0.2 : 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  <span className="block">{t("projectsHeadingLine1")}</span>
+                  <span className="block">{t("projectsHeadingLine1")}</span>{" "}
                   <span className="block text-[#A1E233]">{t("projectsHeadingLine2")}</span>
                 </motion.h2>
               </div>
@@ -582,7 +582,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
                   transition={{ duration: shouldReduceMotion ? 0.2 : 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.2vw,5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  <span className="block">{t("relatedServicesHeadingLine1")}</span>
+                  <span className="block">{t("relatedServicesHeadingLine1")}</span>{" "}
                   <span className="block text-[#A1E233]">{t("relatedServicesHeadingLine2")}</span>
                 </motion.h2>
               </div>

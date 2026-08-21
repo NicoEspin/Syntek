@@ -324,7 +324,9 @@
       "blog": "Blog",
       "archive": "Archivo",
       "about": "Nosotros",
-      "contact": "Contacto"
+      "contact": "Contacto",
+      "cordoba": "Desarrollo web en Córdoba",
+      "villaCarlosPaz": "Desarrollo web en Villa Carlos Paz"
     },
     "channels": {
       "email": {

@@ -12,6 +12,8 @@ const staticRoutes = {
   servicesIndex: "2026-05-26T00:00:00.000Z",
   about: "2026-05-25T00:00:00.000Z",
   contact: "2026-05-25T00:00:00.000Z",
+  villaCarlosPaz: "2026-05-25T00:00:00.000Z",
+  cordoba: "2026-05-25T00:00:00.000Z",
 };
 
 export default function sitemap() {
@@ -75,6 +77,26 @@ export default function sitemap() {
       priority: 0.75,
       alternates: {
         languages: getLanguageAlternates("/contacto"),
+      },
+    });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/villa-carlos-paz"),
+      lastModified: staticRoutes.villaCarlosPaz,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: getLanguageAlternates("/villa-carlos-paz"),
+      },
+    });
+
+    routes.push({
+      url: getCanonicalUrl(locale, "/cordoba"),
+      lastModified: staticRoutes.cordoba,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: getLanguageAlternates("/cordoba"),
       },
     });
 

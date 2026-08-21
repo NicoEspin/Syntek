@@ -39,7 +39,7 @@ function SectionHeader({
             transition={{ duration: shouldReduceMotion ? 0.2 : 1, delay: 0.05, ease }}
             className="text-[clamp(2.2rem,5vw,5rem)] font-black leading-[0.95] tracking-tight text-white"
           >
-            <span className="block">{title}</span>
+            <span className="block">{title}</span>{" "}
             <span className="block text-[#A1E233]">{accent}</span>
           </motion.h2>
         </div>

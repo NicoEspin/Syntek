@@ -327,7 +327,9 @@
       "blog": "Blog",
       "archive": "Archive",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact",
+      "cordoba": "Web development in Córdoba",
+      "villaCarlosPaz": "Web development in Villa Carlos Paz"
     },
     "channels": {
       "email": {

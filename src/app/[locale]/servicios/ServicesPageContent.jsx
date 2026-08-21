@@ -84,7 +84,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                   >
                     {t("titleLine1")}
                   </motion.span>
-                </span>
+                </span>{" "}
                 <span className="block overflow-hidden pb-[0.08em]">
                   <motion.span
                     initial={{ y: shouldReduceMotion ? 0 : "108%", skewY: shouldReduceMotion ? 0 : 1.2 }}
@@ -211,7 +211,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                   transition={{ duration: shouldReduceMotion ? 0.2 : 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  <span className="block">{t("servicesHeadingLine1")}</span>
+                  <span className="block">{t("servicesHeadingLine1")}</span>{" "}
                   <span className="block text-[#A1E233]">{t("servicesHeadingLine2")}</span>
                 </motion.h2>
               </div>
@@ -328,7 +328,7 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                   transition={{ duration: shouldReduceMotion ? 0.2 : 1, delay: 0.05, ease }}
                   className="text-[clamp(2.2rem,5.5vw,5.5rem)] font-black leading-[0.95] tracking-tight text-white"
                 >
-                  <span className="block">{t("projectsHeadingLine1")}</span>
+                  <span className="block">{t("projectsHeadingLine1")}</span>{" "}
                   <span className="block text-[#A1E233]">{t("projectsHeadingLine2")}</span>
                 </motion.h2>
               </div>

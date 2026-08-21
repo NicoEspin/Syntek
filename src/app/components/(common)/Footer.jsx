@@ -22,6 +22,8 @@ const Footer = async () => {
     { key: "blog", href: "/blogs" },
     { key: "about", href: "/sobre-nosotros" },
     { key: "contact", href: "/contacto" },
+    { key: "cordoba", href: "/cordoba" },
+    { key: "villaCarlosPaz", href: "/villa-carlos-paz" },
   ];
 
   const channelLinks = [

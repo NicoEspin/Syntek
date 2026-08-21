@@ -45,5 +45,6 @@ export function formatBlogDate(dateString, locale) {
     day: "2-digit",
     month: "short",
     year: "numeric",
+    timeZone: "America/Argentina/Cordoba",
   }).format(new Date(dateString));
 }

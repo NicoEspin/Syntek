@@ -4,7 +4,7 @@ export default function manifest() {
   return {
     name: SITE_NAME,
     short_name: SITE_NAME,
-    description: "Boutique digital agency for web development, custom software and automation.",
+    description: "Agencia digital boutique de desarrollo web, software a medida y automatizaciones.",
     start_url: "/es",
     scope: "/",
     display: "standalone",
