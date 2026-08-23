@@ -411,13 +411,15 @@
       "SaaS": "SaaS",
       "Integracion Backend": "Integración Backend",
       "Arquitectura Frontend": "Arquitectura Frontend",
+      "Automatizaciones": "Automatizaciones",
       "SEO": "SEO",
       "Diseño de Redes": "Diseño de Redes",
       "Dirección de Arte": "Dirección de Arte",
       "Auditoría de Seguridad": "Auditoría de Seguridad",
       "Migración de Stack": "Migración de Stack",
       "Hardening": "Hardening",
-      "Documentación Técnica": "Documentación Técnica"
+      "Documentación Técnica": "Documentación Técnica",
+      "Software":"Software"
     },
     "detail": {
       "client": "Cliente",

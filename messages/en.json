@@ -414,13 +414,15 @@
       "SaaS": "SaaS",
       "Integracion Backend": "Backend Integration",
       "Arquitectura Frontend": "Frontend Architecture",
+      "Automatizaciones": "Automation",
       "SEO": "SEO",
       "Diseño de Redes": "Social Media Design",
       "Dirección de Arte": "Art Direction",
       "Auditoría de Seguridad": "Security Audit",
       "Migración de Stack": "Stack Migration",
       "Hardening": "Hardening",
-      "Documentación Técnica": "Technical Documentation"
+      "Documentación Técnica": "Technical Documentation",
+      "Software":"Software"
     },
     "detail": {
       "client": "Client",
