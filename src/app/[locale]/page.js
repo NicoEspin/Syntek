@@ -22,9 +22,11 @@ import {
   buildFaqPageJsonLd,
   buildGraphJsonLd,
   buildLocalBusinessJsonLd,
+  buildOfferCatalogJsonLd,
   buildOrganizationJsonLd,
   buildWebsiteJsonLd,
 } from "@/lib/jsonLd";
+import { getPrimaryServices } from "@/data/services";
 
 const FloatingWidgets = dynamic(() => import("@/app/components/FloatingWidgets"));
 const Introduction = dynamic(() => import("@/app/sections/Introduction"));
@@ -86,8 +88,18 @@ export default async function Home({ params }) {
   const faqTranslations = await getTranslations({ locale, namespace: "HomeV2.faq" });
   const faqs = faqTranslations.raw("items");
 
+  const offerServices = getPrimaryServices(locale).map((service) => ({
+    shortLabel: service.shortLabel,
+    description: service.description,
+    url: getCanonicalUrl(locale, `/servicios/${service.slug}`),
+  }));
+
   const structuredData = buildGraphJsonLd([
-    { ...buildOrganizationJsonLd(), ...buildAggregateRatingReviewJsonLd() },
+    {
+      ...buildOrganizationJsonLd(),
+      ...buildAggregateRatingReviewJsonLd(),
+      ...buildOfferCatalogJsonLd(offerServices),
+    },
     buildLocalBusinessJsonLd(),
     buildWebsiteJsonLd({ locale, url: SITE_URL }),
     buildFaqPageJsonLd(faqs),

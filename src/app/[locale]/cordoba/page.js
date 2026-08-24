@@ -73,7 +73,7 @@ export default async function CordobaPage({ params }) {
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildCordobaJsonLd(),
+    buildCordobaJsonLd(locale),
     buildFaqPageJsonLd(faqs),
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },

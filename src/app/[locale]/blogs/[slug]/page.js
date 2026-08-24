@@ -85,6 +85,8 @@ export default async function BlogPostPage({ params }) {
       image: `${SITE_URL}${post.image.src}`,
       datePublished: post.date,
       authorName: post.author.name,
+      authorUrl: post.author.url,
+      authorSameAs: post.author.sameAs,
       articleSection: post.category,
       keywords: post.tags,
       locale,

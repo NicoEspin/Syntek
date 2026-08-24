@@ -20,6 +20,8 @@ export const AUTHORS = {
       "Builds interfaces that combine precise visual direction with a solid technical foundation. For Nico, every project is a business hypothesis.",
     ),
     image: nico,
+    url: "https://nicolasespin.vercel.app/",
+    sameAs: ["https://www.linkedin.com/in/nicol%C3%A1s-espin/"],
   },
   antto: {
     name: "Antto Cattalano",
@@ -32,6 +34,8 @@ export const AUTHORS = {
       "Designs systems and automations that connect real tools to real decisions. For Antto, automation is process, not decoration.",
     ),
     image: antto,
+    url: "https://anttonella-catalano.vercel.app/",
+    sameAs: ["https://www.linkedin.com/in/anttonella-catalano-872439258/"],
   },
 };
 
@@ -1620,6 +1624,8 @@ const localizePost = (post, locale = DEFAULT_LOCALE) => ({
     role: getLocalizedField(AUTHORS[post.author].role, locale),
     bio: getLocalizedField(AUTHORS[post.author].bio, locale),
     image: AUTHORS[post.author].image,
+    url: AUTHORS[post.author].url,
+    sameAs: AUTHORS[post.author].sameAs,
   },
 });
 

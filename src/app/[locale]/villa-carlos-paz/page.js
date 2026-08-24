@@ -73,7 +73,7 @@ export default async function VillaCarlosPazPage({ params }) {
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildVillaCarlosPazJsonLd(),
+    buildVillaCarlosPazJsonLd(locale),
     buildFaqPageJsonLd(faqs),
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: `${SITE_URL}/${locale}` },

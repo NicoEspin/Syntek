@@ -92,12 +92,12 @@ export const buildLocalBusinessJsonLd = () => ({
   ],
 });
 
-export const buildVillaCarlosPazJsonLd = () => ({
+export const buildVillaCarlosPazJsonLd = (locale = "es") => ({
   "@type": ["LocalBusiness", "ProfessionalService"],
   name: SITE_NAME,
   description:
     "Agencia de desarrollo web y software a medida en Villa Carlos Paz, Córdoba.",
-  url: `${SITE_URL}/es/villa-carlos-paz`,
+  url: `${SITE_URL}/${locale}/villa-carlos-paz`,
   image: `${SITE_URL}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
@@ -125,12 +125,12 @@ export const buildVillaCarlosPazJsonLd = () => ({
   },
 });
 
-export const buildCordobaJsonLd = () => ({
+export const buildCordobaJsonLd = (locale = "es") => ({
   "@type": ["LocalBusiness", "ProfessionalService"],
   name: SITE_NAME,
   description:
     "Agencia de desarrollo web y software a medida para negocios y pymes de Córdoba, Argentina.",
-  url: `${SITE_URL}/es/cordoba`,
+  url: `${SITE_URL}/${locale}/cordoba`,
   image: `${SITE_URL}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
@@ -267,6 +267,22 @@ export const buildFaqPageJsonLd = (faqs) => ({
   })),
 });
 
+export const buildOfferCatalogJsonLd = (services = []) => ({
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios Synttek",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.shortLabel,
+        description: service.description,
+        url: service.url,
+      },
+    })),
+  },
+});
+
 export const buildServiceJsonLd = ({ name, title, description, path }) => ({
   "@type": "Service",
   name,
@@ -321,6 +337,8 @@ export const buildArticleJsonLd = ({
   datePublished,
   dateModified,
   authorName,
+  authorUrl,
+  authorSameAs,
   articleSection,
   keywords,
   locale,
@@ -339,6 +357,8 @@ export const buildArticleJsonLd = ({
   author: {
     "@type": "Person",
     name: authorName,
+    ...(authorUrl ? { url: authorUrl } : {}),
+    ...(authorSameAs?.length ? { sameAs: authorSameAs } : {}),
   },
   publisher: buildPublisherJsonLd(),
   mainEntityOfPage: {
