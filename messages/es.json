@@ -247,19 +247,19 @@
     },
     "channels": {
       "label": "Canales directos",
-      "title": "Elegí cómo preferís escribirnos.",
-      "description": "Email para briefs, línea directa para consultas y perfiles sociales como puerta de entrada mientras terminamos de pulir presencia externa."
+      "title": "¿Preferís escribirnos ya?",
+      "description": "Si no querés completar el formulario, elegí WhatsApp o email y arrancamos la charla ahora."
     },
     "methods": {
+      "whatsapp": {
+        "label": "WhatsApp",
+        "note": "Respuesta más rápida. Ideal para consultas cortas.",
+        "ariaLabel": "Escribir por WhatsApp a Synttek"
+      },
       "email": {
         "label": "Email",
         "note": "Ideal para compartir contexto, objetivos, referencias y tiempos desde el primer mensaje.",
         "ariaLabel": "Enviar un email a Synttek"
-      },
-      "phone": {
-        "label": "Teléfono",
-        "note": "Línea directa para consultas iniciales, coordinación comercial y seguimiento del proyecto.",
-        "ariaLabel": "Llamar a Synttek"
       },
       "instagram": {
         "label": "Instagram",
@@ -275,26 +275,51 @@
       }
     },
     "form": {
-      "eyebrow": "Así arrancamos",
-      "title": "Contanos qué necesita tu negocio y en qué etapa estás.",
-      "description": "No hace falta que tengas todo definido. Contanos el problema y te decimos cuál es el mejor próximo paso.",
-      "helper": "Cuanto más claro venga el problema, más precisa va a ser nuestra respuesta.",
+      "steps": ["Tu objetivo", "Tus datos", "Confirmar"],
+      "step1": {
+        "title": "¿Qué necesita tu negocio ahora mismo?",
+        "subtitle": "Elegí la opción que más se acerca. Lo ajustamos después charlando.",
+        "footnote": "Sin compromiso. Te respondemos en 24 a 48 horas."
+      },
+      "step2": {
+        "title": "Contanos cómo contactarte",
+        "subtitle": "Con tu nombre y celular alcanza, nosotros te escribimos.",
+        "goalTag": "Tu objetivo",
+        "footnote": "Cuanto más claro venga el problema, más precisa va a ser nuestra respuesta."
+      },
+      "step3": {
+        "title": "Revisá y enviá",
+        "subtitle": "Así queda tu consulta. La revisamos y te respondemos.",
+        "summaryLabel": "Tu brief",
+        "summary": "Objetivo: {goal}. Lo revisamos y te contestamos con un próximo paso concreto.",
+        "footnote": "Te contestamos al celular que dejaste, por llamada o WhatsApp."
+      },
+      "goals": [
+        { "title": "Quiero verme profesional online", "desc": "Necesito una web que hable bien de mi negocio y sume consultas." },
+        { "title": "Quiero vender por mi cuenta", "desc": "Catálogo o tienda propia, sin pagar comisión por cada venta." },
+        { "title": "Quiero dejar de responder siempre lo mismo", "desc": "Automatizar turnos, pedidos o consultas repetitivas." },
+        { "title": "Quiero ordenar un proceso interno", "desc": "Un sistema a medida para dejar de usar planillas sueltas." },
+        { "title": "Quiero renovar cómo se ve mi marca", "desc": "Logo, colores y piezas que representen lo que ofrecés." },
+        { "title": "Todavía no tengo claro qué necesito", "desc": "Contame tu situación y te decimos qué solución tiene sentido." }
+      ],
+      "back": "Volver",
+      "continue": "Continuar",
       "footer": "Te respondemos en menos de 48 hs.",
       "button_idle": "Enviar consulta",
-      "button_loading": "Enviando mensaje..."
+      "button_loading": "Enviando..."
     },
     "fields": {
       "name": {
         "label": "Nombre",
         "placeholder": "¿Cómo te llamás?"
       },
-      "email": {
-        "label": "Email",
-        "placeholder": "¿Desde qué correo seguimos la charla?"
+      "phone": {
+        "label": "Celular",
+        "placeholder": "¿A qué número te escribimos?"
       },
       "message": {
-        "label": "Proyecto",
-        "placeholder": "Contanos qué necesitás, qué objetivo buscás y si tenés una fecha en mente."
+        "label": "Contanos más (opcional)",
+        "placeholder": "Fechas, referencias o cualquier detalle que sume."
       }
     },
     "sending_message": "Enviando mensaje...",

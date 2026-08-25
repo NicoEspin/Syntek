@@ -249,19 +249,19 @@
     },
     "channels": {
       "label": "Direct channels",
-      "title": "Pick whichever way you'd rather write to us.",
-      "description": "Email works best for briefs, the direct line keeps the channel structure in place and social profiles stay ready while the public presence is still being polished."
+      "title": "Want to write to us right now?",
+      "description": "Skip the form and pick WhatsApp or email to start the conversation straight away."
     },
     "methods": {
+      "whatsapp": {
+        "label": "WhatsApp",
+        "note": "Fastest reply. Best for quick questions.",
+        "ariaLabel": "Message Synttek on WhatsApp"
+      },
       "email": {
         "label": "Email",
         "note": "Best for sharing context, goals, references and timing from the first message.",
         "ariaLabel": "Send an email to Synttek"
-      },
-      "phone": {
-        "label": "Phone",
-        "note": "Direct line for early conversations, commercial coordination and project follow-up.",
-        "ariaLabel": "Call Synttek"
       },
       "instagram": {
         "label": "Instagram",
@@ -277,26 +277,51 @@
       }
     },
     "form": {
-      "eyebrow": "How we start",
-      "title": "Tell us what your business needs and where your project stands.",
-      "description": "You don't need everything figured out yet. Tell us the problem and we'll tell you the best next step.",
-      "helper": "The clearer the problem is, the sharper our response can be.",
+      "steps": ["Your goal", "Your details", "Confirm"],
+      "step1": {
+        "title": "What does your business need right now?",
+        "subtitle": "Pick whichever is closest. We'll fine-tune it once we talk.",
+        "footnote": "No commitment. We reply within 24 to 48 hours."
+      },
+      "step2": {
+        "title": "How should we reach you?",
+        "subtitle": "Your name and phone number are enough, we'll take it from there.",
+        "goalTag": "Your goal",
+        "footnote": "The clearer the problem, the sharper our response."
+      },
+      "step3": {
+        "title": "Review and send",
+        "subtitle": "Here's your inquiry. We'll review it and get back to you.",
+        "summaryLabel": "Your brief",
+        "summary": "Goal: {goal}. We'll review it and reply with a concrete next step.",
+        "footnote": "We'll reach out on the number you left, by call or WhatsApp."
+      },
+      "goals": [
+        { "title": "I want to look professional online", "desc": "I need a website that represents my business well and brings in inquiries." },
+        { "title": "I want to sell on my own", "desc": "A catalog or store of my own, without paying commission on every sale." },
+        { "title": "I want to stop answering the same question", "desc": "Automate bookings, orders or repetitive inquiries." },
+        { "title": "I want to organize an internal process", "desc": "Custom software to stop relying on scattered spreadsheets." },
+        { "title": "I want to refresh how my brand looks", "desc": "Logo, colors and pieces that represent what I offer." },
+        { "title": "I'm not sure yet what I need", "desc": "Tell us your situation and we'll tell you which solution makes sense." }
+      ],
+      "back": "Back",
+      "continue": "Continue",
       "footer": "We reply in under 48 hours.",
       "button_idle": "Send inquiry",
-      "button_loading": "Sending message..."
+      "button_loading": "Sending..."
     },
     "fields": {
       "name": {
         "label": "Name",
         "placeholder": "What's your name?"
       },
-      "email": {
-        "label": "Email",
-        "placeholder": "Which email should we reply to?"
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Which number should we text?"
       },
       "message": {
-        "label": "Project",
-        "placeholder": "Tell us what you need, what outcome you are after and whether you have a timeline in mind."
+        "label": "Tell us more (optional)",
+        "placeholder": "Dates, references or any detail that helps."
       }
     },
     "sending_message": "Sending message...",
