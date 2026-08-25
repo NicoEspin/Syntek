@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useAnimate } from "motion/react";
+import { motion, useAnimate, useReducedMotion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import RevealBlock from "@/app/components/RevealBlock";
 import MagneticButton from "@/app/components/MagneticButton";
@@ -15,15 +15,21 @@ const CtaFinalV2 = () => {
   const t = useTranslations("HomeV2");
   const waHref = getWhatsAppUrl(t("waMessage"));
   const marquee = t.raw("ctaFinal.marquee");
+  const prefersReduced = useReducedMotion();
 
-  // marquee infinito que desacelera al hover — mismo mecanismo que CallToAction
+  // marquee infinito que desacelera al hover — mismo mecanismo que CallToAction.
+  // `ease: "linear"` es deliberado acá (excepción a la regla del proyecto de no
+  // usar linear): es un desplazamiento continuo a velocidad constante, no una
+  // transición de entrada/salida — con easing suave se notaría un "acelerón"
+  // en cada vuelta del loop.
   const [isHovered, setIsHovered] = useState(false);
   const animation = useRef(null);
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
+    if (prefersReduced) return;
     animation.current = animate(scope.current, { x: "-50%" }, { duration: 30, ease: "linear", repeat: Infinity });
-  }, [animate, scope]);
+  }, [animate, scope, prefersReduced]);
   useEffect(() => {
     if (animation.current) animation.current.speed = isHovered ? 0.5 : 1;
   }, [isHovered]);

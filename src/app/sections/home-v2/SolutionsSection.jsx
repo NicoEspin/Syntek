@@ -33,26 +33,30 @@ const SOLUTIONS_META = [
   { accent: "#9B6DFF", img: "/nueva-home/soluciones/agente-ia.webp" },
 ];
 
+// posición continua de la card `index` respecto de la card activa: 0 = ya
+// llegó a su lugar (asentada); negativo = todavía viene subiendo desde abajo
+// (a -1 arranca fuera de cámara). Se deriva de `total`, no de un valor fijo,
+// así agregar/sacar una solución no rompe el rango.
+function useDeckPosition(progress, index, total) {
+  return useTransform(progress, (v) => {
+    const continuousIndex = v * (total - 1);
+    return Math.min(1.4, Math.max(-1.4, continuousIndex - index));
+  });
+}
+
 // ─── Contenido visual de una solución — sin lógica de scroll, reusado tanto
 // por la versión sticky (scroll-driven) como por el fallback estático de
 // prefers-reduced-motion. `imgY` es opcional: sólo la variante sticky pasa un
 // MotionValue de parallax.
-function SolutionCardBody({ card, index, accent, img, ctaLabel, href, imgY }) {
+function SolutionCardBody({ card, accent, img, ctaLabel, href, imgY }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.75)]">
+    <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-neutral-900 shadow-float">
       <div className="grid h-full md:grid-cols-[0.42fr_0.58fr]">
         {/* Panel de imagen (con fallback de gradiente) */}
         <div
           className="relative h-44 overflow-hidden sm:h-64 md:h-full"
           style={{ background: `radial-gradient(120% 100% at 20% 0%, ${accent}2e, transparent 55%), #0d0d0d` }}
         >
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 flex items-center justify-center text-[6rem] font-black leading-none md:text-[9rem]"
-            style={{ color: `${accent}1a` }}
-          >
-            ✸
-          </span>
           {imgY ? (
             <motion.div style={{ y: imgY }} className="relative h-full w-full">
               <Image
@@ -83,14 +87,6 @@ function SolutionCardBody({ card, index, accent, img, ctaLabel, href, imgY }) {
 
         {/* Contenido */}
         <div className="relative flex flex-col justify-center p-6 sm:p-10 md:p-12 lg:p-14">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -right-4 -top-10 select-none text-[9rem] font-black leading-none tabular-nums md:text-[11rem]"
-            style={{ color: `${accent}0d` }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
-
           <span
             className="w-fit rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]"
             style={{ color: accent, borderColor: `${accent}40`, backgroundColor: `${accent}12` }}
@@ -136,31 +132,31 @@ function SolutionCardBody({ card, index, accent, img, ctaLabel, href, imgY }) {
   );
 }
 
-// ─── Card scroll-driven — cada una ocupa 1/total del progreso del contenedor
-// sticky. Crossfade + scale-in + parallax de imagen. Sólo se usa en desktop
-// (mobile tiene su propio layout horizontal, ver SolutionsMobileRail).
+// ─── Card scroll-driven — stack físico real: la próxima card entra desde
+// abajo del viewport y se desliza hacia arriba hasta cubrir por completo a la
+// actual. No hay fade — la tapa es 100% posicional (`translateY`), y como
+// cada card siguiente es más nueva en el DOM, el propio orden del documento
+// ya la pinta por encima sin necesitar z-index. Una vez que una card llega a
+// `p=0` queda fija ahí para siempre: no sale, no se achica, sólo la termina
+// tapando físicamente la que le sigue. Sólo se usa en desktop (mobile tiene
+// su propio layout horizontal, ver SolutionsMobileRail).
 function SolutionCard({ card, index, total, accent, img, progress, ctaLabel, href }) {
-  const start = index / total;
-  const end = (index + 1) / total;
-  const pad = Math.min(0.1, 0.6 / total);
+  const p = useDeckPosition(progress, index, total);
 
-  const opacity = useTransform(
-    progress,
-    [Math.max(0, start - pad), start + pad, Math.max(start + pad, end - pad), end],
-    [index === 0 ? 1 : 0, 1, 1, index === total - 1 ? 1 : 0],
-  );
-  const scale = useTransform(progress, [Math.max(0, start - pad), start + pad], [0.94, 1]);
-  const y = useTransform(progress, [Math.max(0, start - pad), start + pad], [40, 0]);
-  const pointerEvents = useTransform(opacity, (v) => (v > 0.5 ? "auto" : "none"));
-  const imgY = useTransform(progress, [start, end], ["-6%", "6%"]);
+  const y = useTransform(p, [-1, 0], ["115%", "0%"]);
+  const scale = useTransform(p, [-1, 0], [0.95, 1]);
+  // tilt sutil sólo durante la entrada — se endereza a 0° justo al llegar y
+  // se queda ahí (la card ya asentada no vuelve a moverse).
+  const rotate = useTransform(p, [-1, 0], [index % 2 === 0 ? -1.5 : 1.5, 0]);
+  const imgY = useTransform(p, [-1, 0], ["-6%", "0%"]);
 
   return (
     <motion.div
-      style={{ opacity, scale, y, pointerEvents }}
+      style={{ y, scale, rotate, willChange: "transform" }}
       className="absolute inset-0 flex items-center justify-center px-1"
     >
       <div className="relative h-full w-full">
-        <SolutionCardBody card={card} index={index} accent={accent} img={img} ctaLabel={ctaLabel} href={href} imgY={imgY} />
+        <SolutionCardBody card={card} accent={accent} img={img} ctaLabel={ctaLabel} href={href} imgY={imgY} />
       </div>
     </motion.div>
   );
@@ -237,7 +233,6 @@ function SolutionsMobileRail({ header, cards, ctaLabel, href }) {
             <div key={card.title} className="w-[84vw] max-w-sm shrink-0 snap-center">
               <SolutionCardBody
                 card={card}
-                index={i}
                 accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
                 img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
                 ctaLabel={ctaLabel}
@@ -273,7 +268,6 @@ function SolutionsMobileRail({ header, cards, ctaLabel, href }) {
             <div key={card.title} className="h-[min(600px,72vh)] w-[84vw] max-w-sm shrink-0">
               <SolutionCardBody
                 card={card}
-                index={i}
                 accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
                 img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
                 ctaLabel={ctaLabel}
@@ -302,14 +296,14 @@ function SolutionsMobileRail({ header, cards, ctaLabel, href }) {
   );
 }
 
-// ─── Desktop: escenario sticky con crossfade entre cards, controlado por
+// ─── Desktop: escenario sticky con stack físico de cards, controlado por
 // scroll dentro de un contenedor alto (`total * 100vh`). Vive en su propio
 // componente (en vez de mezclarse en SolutionsSection) porque `useScroll`
 // hace el bind de `target` en un `useLayoutEffect` que corre una sola vez al
 // montar — si el contenedor sólo se monta condicionalmente más tarde (cuando
 // `isDesktop` pasa a `true` via useMediaQuery), ese layout effect ya corrió
 // con `containerRef.current` en `null` y queda trackeando scroll de la
-// página entera en vez del contenedor, rompiendo el crossfade. Montando todo
+// página entera en vez del contenedor, rompiendo el stack. Montando todo
 // esto junto (ref + useScroll) en un componente que aparece de una sola vez
 // evita el problema: el ref ya está adjunto cuando el layout effect corre.
 function SolutionsDesktopStack({ cards, total, ctaLabel, href, cardHeightClass }) {
@@ -357,30 +351,6 @@ function SolutionsDesktopStack({ cards, total, ctaLabel, href, cardHeightClass }
                 href={href}
               />
             ))}
-
-            {/* indicador de progreso — índice + rail */}
-            <div className="pointer-events-none absolute right-1 top-1/2 hidden -translate-y-1/2 flex-col items-end gap-3 lg:flex xl:right-4">
-              {cards.map((c, i) => (
-                <div key={c.title} className="flex items-center gap-2.5">
-                  <span
-                    className="font-mono text-[11px] font-semibold tabular-nums transition-[color,transform] duration-500 ease-out"
-                    style={{
-                      color: i === activeIndex ? "#A1E233" : "rgba(255,255,255,0.28)",
-                      transform: i === activeIndex ? "scale(1.15)" : "scale(1)",
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className="w-[3px] rounded-full transition-[height,background-color] duration-500 ease-out"
-                    style={{
-                      height: i === activeIndex ? "26px" : "8px",
-                      backgroundColor: i <= activeIndex ? "#A1E233" : "rgba(255,255,255,0.16)",
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -464,7 +434,6 @@ const SolutionsSection = () => {
             >
               <SolutionCardBody
                 card={card}
-                index={i}
                 accent={SOLUTIONS_META[i % SOLUTIONS_META.length].accent}
                 img={SOLUTIONS_META[i % SOLUTIONS_META.length].img}
                 ctaLabel={t("rowCta")}

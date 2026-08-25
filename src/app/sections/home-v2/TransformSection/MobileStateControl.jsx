@@ -58,7 +58,7 @@ export default function MobileStateControl({ copy }) {
 
   return (
     <div>
-      <div ref={storyRef} className={cn("relative", prefersReduced ? "h-auto" : "h-[170vh]")}>
+      <div ref={storyRef} className={cn("relative", prefersReduced ? "h-auto" : "h-[140vh]")}>
         <div className={cn(prefersReduced ? "" : "sticky top-24 flex flex-col justify-center")}>
           <div className="relative min-h-[440px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0a0a0a]">
             <div
@@ -89,7 +89,6 @@ export default function MobileStateControl({ copy }) {
                 nodeStatus={copy.nodeStatus}
                 compact
                 nodeLimit={5}
-                reduceMotion={prefersReduced}
               />
             </motion.div>
 

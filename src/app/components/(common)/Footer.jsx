@@ -177,7 +177,7 @@ const Footer = async () => {
             {/* Services */}
             <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
               <p className="text-[9px] uppercase tracking-[0.3em] text-white/25 font-medium">
-                Servicios
+                {t("servicesLabel")}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {serviceLinks.map((service) => (

@@ -131,7 +131,10 @@ export default function ProcessMobile({ copy, steps, waHref }) {
   const [titlePre, titlePost] = copy.title.split(copy.titleHighlight);
 
   return (
-    <div className={prefersReduced ? "block lg:hidden" : "lg:hidden"}>
+    // con reduced-motion, esta es la única variante que existe (la de desktop
+    // se oculta por completo) — por eso acá no lleva `lg:hidden`: tiene que
+    // mostrarse en todos los tamaños de pantalla, no solo en mobile.
+    <div className={prefersReduced ? "block" : "lg:hidden"}>
       <TitleSection title={copy.sectionLabel} />
 
       <div className="mt-10">

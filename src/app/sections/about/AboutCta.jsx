@@ -43,7 +43,7 @@ const AboutCta = () => {
           id="about-cta-heading"
           className="text-display-md font-semibold leading-display tracking-display text-[color:var(--color-fg-1)]"
         >
-          {t("title")}
+          {t.rich("title", { hl: (chunks) => <span className="text-[color:var(--color-accent)]">{chunks}</span> })}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base font-light leading-relaxed text-[color:var(--color-fg-2)] md:text-lg">
           {t("subtitle")}

@@ -68,7 +68,6 @@
         "label": "Improvised presence",
         "status": "System fragmented",
         "description": "Tools that are active, but working separately.",
-        "connectionLabel": "Incomplete connection",
         "moduleLabels": ["WhatsApp", "Spreadsheet", "Website", "Manual tasks", "Follow-up", "Metrics"]
       },
       "systemFlow": ["Attract", "Explain", "Qualify", "Convert", "Measure"],
@@ -99,7 +98,7 @@
     },
     "process": {
       "sectionLabel": "How we work",
-      "eyebrow": "Synttek Method · 01—04",
+      "eyebrow": "Synttek Method · 01-04",
       "title": "Your business already has signals. We turn them into a system that works.",
       "titleHighlight": "system that works",
       "stepLabel": "Step",
@@ -141,14 +140,14 @@
     },
     "testimonials": {
       "sectionLabel": "Clients",
-      "title": "What our clients say.",
+      "title": "What our <hl>clients</hl> say.",
       "ratingLabel": "Rating: 5 out of 5",
       "googleBadge": "Google",
       "footerText": "Verified reviews on Google Business Profile",
       "items": [
-        { "quote": "Excelente servicio.", "author": "Enrique Callejon" },
-        { "quote": "Excelente servicio, gracias por ayudarnos con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron... la página un lujo.", "author": "Vale Sosa" },
-        { "quote": "Mi experiencia con ellos, fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel de técnico espectacular. Estoy muy contento con los resultados. Mi marca y mi sitio web quedo excelente!", "author": "Fernando Catalano" }
+        { "quote": "Mi experiencia con ellos fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel técnico espectacular. Estoy muy contento con los resultados: mi marca y mi sitio web quedaron excelentes.", "author": "Fernando Catalano" },
+        { "quote": "Nos ayudaron con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron. La página, un lujo.", "author": "Vale Sosa" },
+        { "quote": "Excelente servicio.", "author": "Enrique Callejon" }
       ]
     },
     "ctaFinal": {
@@ -178,15 +177,15 @@
     "available": "Available"
   },
   "Introduction": {
-    "title": "Why is your own website important?",
-    "text": "visibility, builds trust, and attracts customers. Additionally, it helps you rank in search engines, ensuring that your business stands out against the competition. Investing in a professional website is key to digital success.",
-    "white-text": "Having a website increases your",
-    "cta": "That's why you should trust Synttek"
+    "title": "The problem isn't your business, it's how it looks",
+    "text": "inquiries that get lost in the chat, prices nobody can find, and a website that doesn't represent you.",
+    "white-text": "Your business already works. Your digital presence still looks like",
+    "cta": "That's what we put in order."
   },
   "Services": {
     "title-section": "Services",
-    "title": "Your success,",
-    "green-title": "Our Service",
+    "title": "Everything your business needs,",
+    "green-title": "in one place.",
     "subtitle": "Strategy, design, and technology for your brand",
     "web-development": "Web Development",
     "web-development-description": "We create fast, scalable, and customized websites to boost your digital presence with a solid foundation.",
@@ -237,20 +236,20 @@
   },
   "Contact": {
     "title-section": "Contact",
-    "headline-line1": "Ready to power up",
-    "headline-line2": "your brand?",
+    "headline-line1": "Ready to put",
+    "headline-line2": "your digital presence in order?",
     "headline-hola": "Hello",
     "eyebrow": "Let's talk about what comes next",
     "title": "Design with intent,",
     "green-title": "development with direction.",
-    "description": "If you already have an idea, an evolving brand or a product that needs to level up, this is where the conversation should begin.",
+    "description": "Tell us what's holding you back: inquiries that fall through the cracks, an outdated website, a manual process. We'll tell you which solution makes sense for your business.",
     "availability": {
       "label": "Replies in 24 to 48 hours",
-      "detail": "For branding, landing pages, websites and digital product work"
+      "detail": "For websites, ecommerce, custom software and automations"
     },
     "channels": {
       "label": "Direct channels",
-      "title": "Choose the route that fits your pace best.",
+      "title": "Pick whichever way you'd rather write to us.",
       "description": "Email works best for briefs, the direct line keeps the channel structure in place and social profiles stay ready while the public presence is still being polished."
     },
     "methods": {
@@ -260,9 +259,9 @@
         "ariaLabel": "Send an email to Synttek"
       },
       "phone": {
-        "label": "Direct line",
+        "label": "Phone",
         "note": "Direct line for early conversations, commercial coordination and project follow-up.",
-        "ariaLabel": "Call Synttek's direct line"
+        "ariaLabel": "Call Synttek"
       },
       "instagram": {
         "label": "Instagram",
@@ -278,11 +277,11 @@
       }
     },
     "form": {
-      "eyebrow": "Initial brief",
-      "title": "Tell us what you want to build and where your project stands right now.",
-      "description": "You do not need to arrive with a polished deck. Goals, context and a rough timeline are enough to define the right next step.",
+      "eyebrow": "How we start",
+      "title": "Tell us what your business needs and where your project stands.",
+      "description": "You don't need everything figured out yet. Tell us the problem and we'll tell you the best next step.",
       "helper": "The clearer the problem is, the sharper our response can be.",
-      "footer": "Short brief, long-term thinking",
+      "footer": "We reply in under 48 hours.",
       "button_idle": "Send inquiry",
       "button_loading": "Sending message..."
     },
@@ -311,15 +310,16 @@
   },
   "Footer": {
     "eyebrow": "Editorial close",
-    "brandLabel": "Boutique digital studio",
-    "title": "Design, intent and development for a presence",
-    "titleAccent": "that feels properly elevated.",
-    "description": "Synttek brings visual direction and web execution together to build websites, landing pages and digital experiences with precise aesthetics and a solid technical backbone.",
+    "brandLabel": "Web development and automation agency",
+    "title": "Your business already sells. Let's put",
+    "titleAccent": "your digital presence in order.",
+    "description": "We build websites, ecommerce, custom software and automations so your business captures more inquiries and depends less on you.",
     "availabilityLabel": "Availability",
-    "availabilityValue": "Taking on selected projects for 2026.",
+    "availabilityValue": "Taking on new projects this month.",
     "backToTop": "Return home",
     "quickLinksLabel": "Quick links",
     "channelsLabel": "Channels",
+    "servicesLabel": "Services",
     "links": {
       "home": "Home",
       "services": "Services",
@@ -337,8 +337,8 @@
         "ariaLabel": "Send an email to Synttek"
       },
       "phone": {
-        "label": "Direct line",
-        "ariaLabel": "Call Synttek's direct line"
+        "label": "Phone",
+        "ariaLabel": "Call Synttek"
       },
       "instagram": {
         "label": "Instagram",
@@ -352,7 +352,7 @@
       }
     },
     "copyright": "©2026 Synttek. All rights reserved",
-    "legalNote": "Designed with intent from Argentina."
+    "legalNote": "Made in Córdoba, Argentina."
   },
   "About": {
     "eyebrow": "Who we are",
@@ -589,12 +589,12 @@
     "waMessage": "Hi Synttek, I want to tell you where my business is at right now",
     "hero": {
       "eyebrow": "VILLA CARLOS PAZ · CÓRDOBA · SINCE 2025",
-      "headline": "We're not just another agency.\nWe're the team that diagnoses\nwhat your business needs\nand builds it.",
+      "headline": "We're not just another agency.\nWe're the team that diagnoses\nwhat <hl>your business needs\nand builds it.</hl>",
       "paragraph": "Most agencies sell you a service. We ask what problem you have. The answer could be a website, custom software, an AI agent or visual content — or all of it together. All from the same team, all connected."
     },
     "growthSystem": {
       "eyebrow": "THE SYSTEM",
-      "title": "One problem, one solution. All connected.",
+      "title": "One problem, one solution. <hl>All connected.</hl>",
       "items": [
         {
           "number": "01",
@@ -624,7 +624,7 @@
       "closing": "You can start with one. Then scale what works."
     },
     "philosophy": {
-      "title": "Diagnosis first. Solution second.",
+      "title": "Diagnosis first. <hl>Solution second.</hl>",
       "paragraphs": [
         "We don't start with the service. We start with the problem. What you're losing, what's eating your time, what's holding your growth back. The solution comes from there.",
         "We use the most modern technical stack on the market — Next.js, React, n8n, AI agents — not because it's trendy, but because it builds things that last and scale.",
@@ -633,7 +633,7 @@
     },
     "team": {
       "eyebrow": "THE TEAM",
-      "title": "Two people. The whole stack.",
+      "title": "Two people. <hl>The whole stack.</hl>",
       "members": [
         {
           "name": "Nicolás Espín",
@@ -650,7 +650,7 @@
       ]
     },
     "cta": {
-      "title": "Tell us where you're at.",
+      "title": "Tell us <hl>where you're at</hl>.",
       "subtitle": "We'll tell you what's worth building first.",
       "cta": "Talk on WhatsApp →",
       "note": "We reply in under 2 hours. No commitment."

@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -110,6 +111,11 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
   const t = useTranslations("ServicePages");
   const shouldReduceMotion = useReducedMotion();
   const accent = SERVICE_ACCENT_MAP[service.slug] ?? "#A1E233";
+  // `relatedProjects` viene filtrado en el orden del listado maestro de proyectos,
+  // no en el orden de relevancia de `service.relatedProjectIds` — para la imagen
+  // destacada del sidebar priorizamos el primero declarado en el servicio.
+  const featuredProject =
+    relatedProjects.find((project) => project.id === service.relatedProjectIds[0]) ?? relatedProjects[0];
   const breadcrumbItems = [
     { label: t("breadcrumbHome"), href: "/" },
     { label: t("breadcrumbsServices"), href: "/servicios" },
@@ -127,7 +133,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
     <main className="overflow-hidden bg-[#0a0a0a] text-white">
       <ProjectCursor label={t("viewProject")} />
 
-      <section ref={heroRef} className="relative px-4 pb-28 pt-32 md:px-5 md:pt-36 lg:px-10 xl:px-24">
+      <section ref={heroRef} className="relative px-4 pb-28 pt-20 md:px-5 md:pt-24 lg:px-10 xl:px-24">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           {/* Dot grid */}
           <div
@@ -163,20 +169,10 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
 
         <div className="relative mx-auto max-w-screen-2xl">
           <Breadcrumbs items={breadcrumbItems} />
-          <TitleSection title={t("eyebrow")} />
 
-          <div className="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.56fr)] lg:items-start xl:gap-20">
+          <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(18rem,0.56fr)] lg:items-start xl:gap-20">
             <div>
-              {/* Eyebrow — slides from left */}
-              <motion.div
-                initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: shouldReduceMotion ? 0.2 : 0.72, delay: 0.05, ease }}
-              >
-                <EditorialEyebrow>{service.shortLabel}</EditorialEyebrow>
-              </motion.div>
-
-              {/* Service badge — clip reveal */}
+              {/* Service badge — clip reveal, único eyebrow del hero */}
               <div className="mb-6 overflow-hidden">
                 <motion.span
                   initial={{ y: shouldReduceMotion ? 0 : "110%" }}
@@ -271,6 +267,32 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
               >
                 01
               </span>
+
+              {featuredProject ? (
+                <Link
+                  href={`/projects/${featuredProject.id}`}
+                  className="group relative mb-6 block aspect-[4/3] overflow-hidden rounded-2xl border border-white/8"
+                >
+                  <Image
+                    src={featuredProject.heroImage}
+                    alt={featuredProject.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 22rem"
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-[0.22em]"
+                      style={{ color: accent }}
+                    >
+                      {t("viewProject")}
+                    </span>
+                    <p className="mt-1 text-sm font-medium text-white">{featuredProject.title}</p>
+                  </div>
+                </Link>
+              ) : null}
+
               <EditorialEyebrow className="mb-5">{t("idealFor")}</EditorialEyebrow>
               <div className="mt-5 space-y-4">
                 {service.idealFor.map((item, i) => (
@@ -384,23 +406,22 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
                 initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24 }}
                 animate={processInView ? { opacity: 1, y: 0 } : undefined}
                 transition={{ duration: shouldReduceMotion ? 0.2 : 0.8, delay: 0.1, ease }}
-                className="rounded-[34px] border border-primary1/12 bg-[linear-gradient(180deg,rgba(161,226,51,0.09),rgba(255,255,255,0.02))] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.24)]"
+                className="rounded-[2.25rem] border border-white/10 bg-white/[0.03] p-2 shadow-[0_24px_80px_rgba(0,0,0,0.24)]"
               >
-                <span className="text-[10px] uppercase tracking-[0.28em] text-primary1">
-                  {t("approachTitle")}
-                </span>
-                <p className="mt-5 text-2xl font-medium leading-tight text-white md:text-[2rem]">
-                  {service.approachTitle}
-                </p>
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {service.stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-white/58"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                <div className="rounded-[calc(2.25rem-0.5rem)] border border-primary1/12 bg-[linear-gradient(180deg,rgba(161,226,51,0.09),rgba(255,255,255,0.02))] p-7">
+                  <p className="text-2xl font-medium leading-tight text-white md:text-[2rem]">
+                    {service.approachTitle}
+                  </p>
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {service.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-white/58"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -547,10 +568,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
       <section className="px-4 py-24 md:px-5 lg:px-10 xl:px-24">
         <div className="mx-auto max-w-screen-2xl">
           <div className="mb-10 max-w-3xl">
-            <span className="text-[10px] uppercase tracking-[0.28em] text-primary1">
-              {t("faqsTitle")}
-            </span>
-            <h2 className="mt-5 text-[clamp(2rem,4.6vw,4rem)] font-semibold leading-[0.95] tracking-tight text-white">
+            <h2 className="text-[clamp(2rem,4.6vw,4rem)] font-semibold leading-[0.95] tracking-tight text-white">
               {t("faqsHeading")}
             </h2>
           </div>

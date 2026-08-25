@@ -11,14 +11,16 @@ export const FEATHER = 7; // ancho de la zona de degradado entre capas, en % del
 export const PHASE_BREAKPOINTS = { fragmented: 30, transitioning: 70 };
 
 // módulos dispersos — capa "presencia improvisada". Posiciones en % dentro del
-// canvas, deliberadamente desalineadas (nunca una grilla perfecta).
+// canvas, deliberadamente desalineadas (nunca una grilla perfecta). `size`
+// alterna el tamaño de cada tarjeta para que la pila se sienta como notas
+// físicas sueltas, no como iconos idénticos flotando en el vacío.
 export const FRAGMENTED_MODULES = [
-  { Icon: MessageCircle, top: 20, left: 62, rotate: -3 },
-  { Icon: Table, top: 60, left: 55, rotate: 2 },
-  { Icon: Globe, top: 16, left: 84, rotate: 3 },
-  { Icon: Clock, top: 72, left: 78, rotate: -2 },
-  { Icon: Workflow, top: 42, left: 91, rotate: 4 },
-  { Icon: ChartBar, top: 82, left: 62, rotate: -4 },
+  { Icon: MessageCircle, top: 20, left: 62, rotate: -3, size: "md" },
+  { Icon: Table, top: 60, left: 55, rotate: 2, size: "sm" },
+  { Icon: Globe, top: 16, left: 84, rotate: 3, size: "sm" },
+  { Icon: Clock, top: 72, left: 78, rotate: -2, size: "md" },
+  { Icon: Workflow, top: 42, left: 91, rotate: 4, size: "sm" },
+  { Icon: ChartBar, top: 82, left: 62, rotate: -4, size: "md" },
 ];
 
 // nodos del flujo comercial — capa "sistema activo". x/y en % dentro del

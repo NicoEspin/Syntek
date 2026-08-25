@@ -1,6 +1,5 @@
 "use client";
 import { useMemo, useRef } from "react";
-import TitleSection from "@/app/components/(common)/TitleSection";
 import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
 
@@ -48,11 +47,10 @@ const Introduction = () => {
   return (
     <section aria-labelledby="introduction-heading" className="px-4 py-28 md:pt-64 lg:px-10 xl:px-24">
       <div className="sticky top-20 md:top-40">
-        <TitleSection title={t("title")} />
         <h2 id="introduction-heading" className="sr-only">
           {t("title")}
         </h2>
-        <div className="mt-10 text-4xl text-center md:text-5xl">
+        <div className="text-4xl text-center md:text-5xl">
           <span>{t("white-text")}</span>{" "}
           <span className="text-white/20 transition duration-800">
             {words.map((word, index) => (

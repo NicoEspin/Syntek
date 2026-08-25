@@ -218,7 +218,8 @@ body {
   .syn-flow-dot,
   .syn-orbit,
   .syn-transform-pulse,
-  .syn-navbar-enter {
+  .syn-navbar-enter,
+  .animate-ping {
     animation: none !important;
   }
 

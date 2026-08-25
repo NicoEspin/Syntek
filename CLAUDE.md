@@ -37,22 +37,22 @@
 
 ```json
 {
-  "next": "^15.5.12",
-  "react": "^19.0.0",
-  "framer-motion": "^12.10.4",
-  "motion": "^12.15.0",
-  "next-intl": "^4.1.0",
-  "lucide-react": "^0.511.0",
-  "clsx": "^2.1.1",
-  "tailwind-merge": "^3.3.0",
-  "@emailjs/browser": "^4.4.1",
-  "react-toastify": "^11.0.5"
+  "next": "16.3.0",
+  "react": "19.2.8",
+  "motion": "13.0.0",
+  "lenis": "1.3.26",
+  "next-intl": "4.13.6",
+  "lucide-react": "1.31.0",
+  "clsx": "2.1.1",
+  "tailwind-merge": "3.6.0",
+  "@emailjs/browser": "4.4.1",
+  "react-toastify": "11.1.0"
 }
 ```
 
 ### Reglas críticas del stack
 
-- **Animaciones**: usar siempre `"framer-motion"`, nunca el package `"motion"` (aunque esté en deps)
+- **Animaciones**: usar siempre `"motion"` (importar de `"motion/react"`). `framer-motion` no está instalado en el proyecto — no agregarlo ni importar de él.
 - **Estilos**: Tailwind CSS v4 — config en `@theme` dentro de CSS. **Sin `tailwind.config.js`**
 - **Imágenes**: `next/image` siempre. Nunca `<img>` nativo
 - **Navegación**: `next/link` para links internos
@@ -80,7 +80,7 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
 
 ## 2.1 Reglas de Next.js 15 (App Router)
 
-- **Server Components por defecto**. Agregar `"use client"` solo cuando haya: estado, eventos del browser, hooks de cliente, `framer-motion`, `useTranslations`, `useLocale` o browser APIs.
+- **Server Components por defecto**. Agregar `"use client"` solo cuando haya: estado, eventos del browser, hooks de cliente, `motion`, `useTranslations`, `useLocale` o browser APIs.
 - No convertir layouts o secciones enteras en Client Components si solo una parte necesita interactividad.
 - Páginas de marketing: mantenerlas lo más estáticas posible.
 - Páginas internas: incluir `generateMetadata`.
@@ -135,7 +135,7 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=
 --ease-subtle: cubic-bezier(0.4, 0, 0.2, 1)      /* movimientos continuos */
 ```
 
-En JS para framer-motion:
+En JS para `motion`:
 ```js
 const EASE_PREMIUM = [0.16, 1, 0.3, 1]
 const EASE_SUBTLE  = [0.4, 0, 0.2, 1]
@@ -243,20 +243,31 @@ Estas skills contienen las reglas, patrones de código y contexto específico de
 | Skill | Cuándo invocarla |
 |---|---|
 | `synttek-landing` | **Siempre primero.** Cualquier tarea en la landing principal (`/es`, `/en`). Contiene stack, tokens, estructura de archivos y buyer persona. |
-| `synttek-motion` | Cualquier animación, efecto de scroll, transición o interacción. Patrones de framer-motion v12 listos para usar. |
+| `synttek-motion` | Cualquier animación, efecto de scroll, transición o interacción. Patrones de `motion` (import `motion/react`) listos para usar. |
 | `synttek-copy` | Escribir o revisar cualquier texto visible: headlines, subtítulos, CTAs, bullets, FAQ. |
 | `synttek-perf` | Agregar imágenes, componentes, scripts o animaciones nuevas. Auditar performance. Pre-deploy. |
+
+### Skills de diseño visual (taste-skill)
+
+> Estas skills provienen del repositorio [taste-skill](https://github.com/leonxlnx/taste-skill). Invocarlas **después** de `synttek-landing` cuando la tarea involucre diseño visual, calidad estética o revisión de secciones existentes.
+
+| Skill | Cuándo invocarla |
+|---|---|
+| `design-taste-frontend` | Crear cualquier sección nueva de la landing. Detecta y elimina patrones AI genéricos (gradientes morados, tres cards iguales, layouts simétricos sin criterio). Fuerza diseño con identidad real. |
+| `redesign-existing-projects` | Auditar y elevar secciones ya implementadas que se sientan genéricas o dated. 200+ criterios visuales. Prioridad: tipografía → color → hover states → layout → componentes. |
+| `high-end-visual-design` | Cuando el objetivo sea nivel Awwwards: microinteracciones obsesivas, ritmo espacial cinemático, profundidad háptica. Invocar junto con `synttek-motion` en tareas de motion design crítico. |
 
 ### Combinaciones por tipo de tarea
 
 | Tarea | Skills a invocar |
 |---|---|
-| Nueva sección animada | `synttek-landing` + `synttek-motion` + `synttek-perf` |
+| Nueva sección animada | `synttek-landing` + `design-taste-frontend` + `synttek-motion` + `high-end-visual-design` + `synttek-perf` |
 | Reescribir copy de una sección | `synttek-landing` + `synttek-copy` |
 | Agregar imagen o asset nuevo | `synttek-landing` + `synttek-perf` |
-| Implementar efecto específico | `synttek-landing` + `synttek-motion` |
-| Revisar sección completa | `synttek-landing` + `synttek-copy` + `synttek-perf` |
-| Auditar antes de un deploy | `synttek-landing` + `synttek-perf` |
+| Implementar efecto específico | `synttek-landing` + `synttek-motion` + `high-end-visual-design` |
+| Revisar sección completa | `synttek-landing` + `redesign-existing-projects` + `synttek-copy` + `synttek-perf` |
+| Auditar antes de un deploy | `synttek-landing` + `synttek-perf` + `redesign-existing-projects` |
+| Elevar calidad visual de sección existente | `synttek-landing` + `redesign-existing-projects` + `design-taste-frontend` |
 | Cualquier duda sobre el proyecto | `synttek-landing` |
 
 ### Regla de invocación
@@ -291,7 +302,7 @@ Si la tarea toca múltiples áreas, invocar todos los skills relevantes antes de
 
 - **Nunca romper el sistema visual** de la sección 3
 - **Todo texto visible en `messages/`** — nunca hardcodeado en componentes
-- **`framer-motion`** para animaciones, nunca el package `motion`
+- **`motion`** (import de `"motion/react"`) para animaciones, nunca `framer-motion`
 - **`next/image`** para imágenes, nunca `<img>` nativo
 - **Mobile-first obligatorio** — breakpoints `md` y `lg` como mínimo
 - **Tailwind v4**: tokens nuevos en `globals.css`, nunca en `tailwind.config.js`
@@ -309,7 +320,8 @@ Si la tarea toca múltiples áreas, invocar todos los skills relevantes antes de
 - Agregar dependencias sin mencionar explícitamente al usuario
 - Animar propiedades que no sean `transform` u `opacity`
 - Dejar `opacity: 0` en SSR en el H1 del hero o imagen del LCP
-- Omitir `useReducedMotion()` en efectos de framer-motion
+- Omitir `useReducedMotion()` en efectos de `motion`
+- Importar animaciones del package `framer-motion` (no está instalado; usar siempre `motion/react`)
 
 ### Checklist de performance (antes de aprobar cualquier cambio)
 

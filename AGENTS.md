@@ -222,12 +222,22 @@ El agente debe invocar los skills relevantes **antes** de ejecutar cada tarea. N
 
 ### Skills visuales y de UX
 
-| Skill                    | Prioridad | Cuándo usarlo                                                                                                                                             |
+| Skill                    | Prioridad | Cuándo usarlo                                                                                                                                                             |
 | ------------------------ | --------: | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `framer-motion-animator` |      Alta | Cualquier tarea que involucre animaciones, transiciones, scroll effects, gestos o motion design. Usar siempre junto con las reglas de motion performance. |
 | `frontend-design`        |      Alta | Al crear o rediseñar componentes, secciones o páginas nuevas donde la calidad visual sea crítica.                                                         |
 | `ui-ux-pro-max`          |      Alta | Al definir layouts, jerarquía visual, flujos de usuario, interacción, navegación o decisiones de UX.                                                      |
 | `seo-audit`              |      Alta | Al tocar metadata, estructura de headings, schema, canonical, hreflang, sitemap, performance de imágenes o páginas nuevas.                                |
+
+### Skills de diseño de alta calidad (taste-skill)
+
+> Provienen del repositorio [taste-skill](https://github.com/leonxlnx/taste-skill). Invocar **en paralelo** con los skills visuales cuando la tarea involucre diseño de secciones, calidad estética o revisión de componentes existentes.
+
+| Skill                         | Prioridad | Cuándo usarlo                                                                                                                                                                                     |
+| ----------------------------- | --------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `design-taste-frontend`       |      Alta | Al crear cualquier sección nueva de la landing. Detecta y elimina patrones AI genéricos (gradientes morados, tres cards iguales, layouts simétricos sin criterio). Fuerza diseño con identidad real. |
+| `redesign-existing-projects`  |      Alta | Al auditar o mejorar secciones ya implementadas. 200+ criterios visuales. Prioridad: tipografía → color → hover states → layout → componentes. Usar antes de refactorizar visualmente.            |
+| `high-end-visual-design`      |     Media | Cuando el objetivo sea nivel Awwwards: microinteracciones obsesivas, ritmo espacial cinemático, profundidad háptica. Combinar con `framer-motion-animator` en tareas de motion crítico.            |
 
 ### Reglas de invocación
 
@@ -235,12 +245,13 @@ Leer el skill **antes** de escribir cualquier código relacionado con esa área.
 
 Si una tarea toca múltiples áreas, leer todos los skills relevantes. Ejemplos:
 
-- Nueva sección animada de la home: `frontend-design` + `ui-ux-pro-max` + `framer-motion-animator` + `react-best-practices` + `web-design-guidelines`.
+- Nueva sección animada de la home: `frontend-design` + `ui-ux-pro-max` + `design-taste-frontend` + `framer-motion-animator` + `high-end-visual-design` + `react-best-practices` + `web-design-guidelines`.
 - Optimización general de la landing: `react-best-practices` + `web-design-guidelines` + `seo-audit`.
 - Revisión post-deploy en Vercel: `vercel-optimize` + `react-best-practices`.
 - Refactor de componentes repetidos: `composition-patterns` + `react-best-practices`.
-- Nueva página interna de servicio: `seo-audit` + `react-best-practices` + `frontend-design`.
-- Cambio de animaciones: `framer-motion-animator` + `react-best-practices` + `web-design-guidelines`.
+- Nueva página interna de servicio: `seo-audit` + `react-best-practices` + `frontend-design` + `design-taste-frontend`.
+- Cambio de animaciones: `framer-motion-animator` + `high-end-visual-design` + `react-best-practices` + `web-design-guidelines`.
+- Elevar calidad visual de sección existente: `redesign-existing-projects` + `design-taste-frontend` + `frontend-design`.
 
 ### Checklist obligatorio de performance
 

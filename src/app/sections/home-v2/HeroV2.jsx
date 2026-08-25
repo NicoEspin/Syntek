@@ -175,24 +175,6 @@ const HeroV2 = () => {
             {t("hero.ctaSecondary")}
           </motion.a>
         </motion.div>
-
-        <motion.div
-          variants={heroVariants}
-          custom={1.1}
-          initial="hidden"
-          animate={mounted ? "visible" : "hidden"}
-          className="mt-12 flex flex-wrap items-center justify-center gap-3"
-        >
-          <span className="text-[9px] uppercase tracking-[0.22em] text-white/18">Stack</span>
-          {["Next.js", "React", "Node", "AI/ML", "Shopify", "Figma"].map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/6 px-2.5 py-1 text-[10px] tracking-widest text-white/25"
-            >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

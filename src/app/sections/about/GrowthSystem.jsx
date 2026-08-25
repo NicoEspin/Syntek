@@ -14,13 +14,24 @@ const ICONS = {
   Sparkles,
 };
 
+const SPANS = [
+  "md:col-span-3 md:row-span-2",
+  "md:col-span-3",
+  "md:col-span-3",
+  "md:col-span-3",
+];
+
+// Un acento cromático por ítem — misma paleta que ya usa Services.jsx en el
+// resto del sitio, ayuda a escanear las 4 ideas de un vistazo.
+const ITEM_ACCENTS = ["#A1E233", "#5B8DEF", "#E8593C", "#9B6DFF"];
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
@@ -40,61 +51,74 @@ const GrowthSystem = () => {
       className="relative px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       <div className="relative mx-auto max-w-screen-2xl">
-        <motion.span
-          initial={{ opacity: 0, y: prefersReduced ? 0 : 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8% 0px" }}
-          transition={{ duration: prefersReduced ? 0.01 : 0.6, ease }}
-          className="block text-[11px] font-medium uppercase tracking-[var(--tracking-eyebrow)] text-[color:var(--color-accent)]"
-        >
-          {t("eyebrow")}
-        </motion.span>
-
         <motion.h2
           id="growth-system-heading"
           initial={{ opacity: 0, y: prefersReduced ? 0 : 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-8% 0px" }}
-          transition={{ duration: prefersReduced ? 0.01 : 0.75, delay: 0.1, ease }}
-          className="mt-5 max-w-2xl text-display-md font-semibold leading-display tracking-display text-[color:var(--color-fg-1)]"
+          transition={{ duration: prefersReduced ? 0.01 : 0.75, ease }}
+          className="max-w-2xl text-display-md font-semibold leading-display tracking-display text-[color:var(--color-fg-1)]"
         >
-          {t("title")}
+          {t.rich("title", { hl: (chunks) => <span className="text-[color:var(--color-accent)]">{chunks}</span> })}
         </motion.h2>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={mounted ? "visible" : "hidden"}
-          className="mt-14 grid gap-4 md:grid-cols-2"
+          className="mt-14 grid gap-4 md:grid-cols-6"
         >
-          {items.map((item) => {
+          {items.map((item, index) => {
             const Icon = ICONS[item.icon];
+            const accent = ITEM_ACCENTS[index % ITEM_ACCENTS.length];
 
             return (
               <motion.div
                 key={item.number}
                 variants={itemVariants}
-                whileHover={prefersReduced ? undefined : { y: -4 }}
-                transition={{ duration: 0.3, ease }}
-                className="relative overflow-hidden rounded-3xl border border-white/8 bg-neutral-900 p-8"
+                whileHover={
+                  prefersReduced
+                    ? undefined
+                    : {
+                        y: -4,
+                        boxShadow: `0 20px 50px ${accent}29`,
+                      }
+                }
+                transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                className={`relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/8 bg-neutral-900 p-8 ${SPANS[index % SPANS.length]}`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-sm font-semibold tracking-widest text-[color:var(--color-accent)]">
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-2 -top-4 font-mono text-8xl font-bold text-white/[0.04]"
+                >
+                  {item.number}
+                </span>
+
+                <div className="relative flex items-center justify-between">
+                  <span
+                    className="font-mono text-sm font-semibold tracking-widest"
+                    style={{ color: accent }}
+                  >
                     {item.number}
                   </span>
                   {Icon ? (
-                    <Icon
-                      aria-hidden
-                      className="size-5 text-[color:var(--color-fg-3)]"
-                    />
+                    <span
+                      className="flex size-10 items-center justify-center rounded-2xl"
+                      style={{ backgroundColor: `${accent}1F` }}
+                    >
+                      <Icon aria-hidden className="size-5" style={{ color: accent }} />
+                    </span>
                   ) : null}
                 </div>
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-[color:var(--color-fg-1)]">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--color-fg-2)] md:text-base">
-                  {item.copy}
-                </p>
+
+                <div className="relative mt-6">
+                  <h3 className="text-xl font-semibold tracking-tight text-[color:var(--color-fg-1)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--color-fg-2)] md:text-base">
+                    {item.copy}
+                  </p>
+                </div>
               </motion.div>
             );
           })}

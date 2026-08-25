@@ -28,6 +28,11 @@ export default function SmoothScroll({ children }) {
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
       lenisRef.current = lenis;
+      // Lenis toma control del scroll nativo — `window.scrollTo()` ya no
+      // mueve la página mientras está activo. Exponerlo acá permite que
+      // código fuera de este componente (ej. los anchors del Navbar) le pida
+      // el scroll a Lenis en vez de al browser.
+      window.__synttekLenis = lenis;
 
       const loop = (time) => {
         lenis.raf(time);
@@ -50,6 +55,7 @@ export default function SmoothScroll({ children }) {
         cancelAnimationFrame(raf);
         lenisRef.current?.destroy();
         lenisRef.current = null;
+        window.__synttekLenis = null;
       };
     }
 
@@ -62,6 +68,7 @@ export default function SmoothScroll({ children }) {
       cancelAnimationFrame(raf);
       lenisRef.current?.destroy();
       lenisRef.current = null;
+      window.__synttekLenis = null;
     };
   }, []);
 

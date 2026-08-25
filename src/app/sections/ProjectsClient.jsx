@@ -1,18 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 
 import TitleSection from "@/app/components/(common)/TitleSection";
 import ProjectCard from "@/app/components/ProjectCard";
 import ProjectCursor from "@/app/components/ProjectCursor";
+import { subtleEase } from "@/lib/animations";
 
 const ease = [0.16, 1, 0.3, 1];
 
 export default function ProjectsClient({ featuredProjects, locale, copy }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-5%" });
+  const prefersReduced = useReducedMotion();
 
   return (
     <section id="projects" aria-labelledby="projects-heading" className="relative overflow-hidden py-24 px-4 md:px-5 lg:px-10 xl:px-24">
@@ -64,8 +66,8 @@ export default function ProjectsClient({ featuredProjects, locale, copy }) {
               >
                 <span>{copy.viewAll}</span>
                 <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  animate={prefersReduced ? undefined : { x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: subtleEase }}
                 >
                   →
                 </motion.span>

@@ -21,7 +21,9 @@ import { cn } from "@/lib/utils";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
-const HOME_SECTION_IDS = ["services", "projects", "tools", "about", "faqs", "contact"];
+// IDs reales presentes en la home — "tools", "about" y "faqs" no existen como
+// secciones ancladas ahí (quedaron de una versión anterior de página única).
+const HOME_SECTION_IDS = ["services", "projects", "contact"];
 
 // ─── Componente: Link de navegación desktop ───────────────────────────────────
 function NavLink({ link, isActive, onClick, shouldReduceMotion }) {
@@ -141,7 +143,26 @@ const Navbar = ({ floating = false }) => {
     [isHomePage, t],
   );
 
-  const contactHref = "/contacto";
+  // en la home ya existe la sección #contact embebida — llevar el CTA ahí en
+  // vez de a /contacto evita tener dos experiencias de "contacto" compitiendo
+  // en el mismo flujo. Desde cualquier otra página, sigue yendo a /contacto.
+  const contactHref = isHomePage ? "#contact" : "/contacto";
+
+  // Lenis (ver SmoothScroll.jsx) toma control del scroll cuando está activo
+  // (desktop, sin reduced-motion) — ahí `window.scrollTo()` no mueve la
+  // página. Si Lenis está montado le pedimos el scroll a él; si no, cae al
+  // scroll nativo (mobile, reduced-motion, o antes de que Lenis arranque).
+  const scrollToY = (top) => {
+    const lenis = window.__synttekLenis;
+    if (lenis) {
+      lenis.scrollTo(Math.max(top, 0), { duration: shouldReduceMotion ? 0 : 1.2 });
+      return;
+    }
+    window.scrollTo({
+      top: Math.max(top, 0),
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    });
+  };
 
   const handleNavClick = (event, href) => {
     if (!isHomePage || !href.startsWith("#")) {
@@ -156,10 +177,7 @@ const Navbar = ({ floating = false }) => {
 
     if (!sectionId) {
       window.history.replaceState(null, "", baseHomePath);
-      window.scrollTo({
-        top: 0,
-        behavior: shouldReduceMotion ? "auto" : "smooth",
-      });
+      scrollToY(0);
       setActiveSection("#");
       setIsOpen(false);
       return;
@@ -174,10 +192,7 @@ const Navbar = ({ floating = false }) => {
     const top = target.getBoundingClientRect().top + window.scrollY - navOffset;
 
     window.history.replaceState(null, "", `${baseHomePath}${href}`);
-    window.scrollTo({
-      top: Math.max(top, 0),
-      behavior: shouldReduceMotion ? "auto" : "smooth",
-    });
+    scrollToY(top);
     setActiveSection(href);
     setIsOpen(false);
   };
@@ -475,23 +490,43 @@ const Navbar = ({ floating = false }) => {
                 {/* Separador vertical */}
                 <span className="mx-2 hidden h-4 w-px bg-white/10 lg:block" />
 
-                {/* CTA "Contacto" — desktop */}
-                <Link
-                  href={contactHref}
-                  onClick={(event) => handleNavClick(event, contactHref)}
-                  className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
-                >
-                  {t("contact")}
-                  <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <path
-                      d="M1 7L7 1M7 1H2M7 1V6"
-                      stroke="black"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Link>
+                {/* CTA "Contacto" — desktop. Hash → <a> (scroll in-page a la
+                    sección embebida); ruta real → <Link> (navega a /contacto). */}
+                {contactHref.startsWith("#") ? (
+                  <a
+                    href={contactHref}
+                    onClick={(event) => handleNavClick(event, contactHref)}
+                    className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
+                  >
+                    {t("contact")}
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path
+                        d="M1 7L7 1M7 1H2M7 1V6"
+                        stroke="black"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                ) : (
+                  <Link
+                    href={contactHref}
+                    onClick={(event) => handleNavClick(event, contactHref)}
+                    className="hidden items-center gap-2 rounded-full bg-[#A1E233] px-4 py-2 text-[11px] font-bold tracking-[0.16em] uppercase text-black transition-colors duration-300 hover:bg-[#b6f53d] lg:inline-flex"
+                  >
+                    {t("contact")}
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path
+                        d="M1 7L7 1M7 1H2M7 1V6"
+                        stroke="black"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                )}
 
                 {/* Hamburger mobile — dos barras persistentes que rotan a X, sin swap de íconos */}
                 <motion.button
