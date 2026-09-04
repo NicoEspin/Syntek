@@ -51,7 +51,9 @@ function WhatsAppIcon({ className }) {
 }
 
 // ─── Canal de contacto (sidebar) ───────────────────────────────────────────────
-function ChannelCard({ icon: Icon, label, value, href, external, index }) {
+function ChannelCard({ icon: Icon, label, value, href, external, index, variant = "ghost" }) {
+  const isPrimary = variant === "primary";
+
   return (
     <motion.a
       href={href}
@@ -60,16 +62,28 @@ function ChannelCard({ icon: Icon, label, value, href, external, index }) {
       initial={{ opacity: 0, x: -16 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 0.1 * index, ease }}
-      className="group flex items-center gap-4 rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-3.5 transition-colors duration-300 hover:border-[#A1E233]/25"
+      className={cn(
+        "group flex items-center gap-4 rounded-2xl transition-all duration-300",
+        isPrimary
+          ? "bg-accent/[0.06] px-4 py-3.5 ring-1 ring-accent/15 hover:ring-accent/30"
+          : "px-1 py-2 hover:translate-x-0.5",
+      )}
     >
-      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-white/8 bg-white/[0.03] transition-all duration-300 group-hover:border-[#A1E233]/25 group-hover:bg-[#A1E233]/8">
-        <Icon className="size-[18px] text-[#A1E233]" />
+      <span
+        className={cn(
+          "flex size-10 shrink-0 items-center justify-center rounded-xl transition-all duration-300",
+          isPrimary
+            ? "bg-accent text-on-accent"
+            : "border border-white/8 bg-white/[0.03] text-white/40 group-hover:border-accent/25 group-hover:text-accent",
+        )}
+      >
+        <Icon className="size-[18px]" />
       </span>
       <span className="flex min-w-0 flex-col gap-0.5">
         <span className="text-[10px] tracking-[0.2em] uppercase text-white/28">{label}</span>
         <span className="truncate text-sm font-medium text-white/78">{value}</span>
       </span>
-      <ArrowUpRight className="ml-auto size-4 shrink-0 text-white/18 transition-colors duration-300 group-hover:text-[#A1E233]" />
+      <ArrowUpRight className="ml-auto size-4 shrink-0 text-white/18 transition-colors duration-300 group-hover:text-accent" />
     </motion.a>
   );
 }
@@ -78,7 +92,7 @@ function ChannelCard({ icon: Icon, label, value, href, external, index }) {
 function Field({ label, children, className }) {
   return (
     <label className={cn("group flex flex-col gap-2.5", className)}>
-      <span className="text-[10px] tracking-[0.22em] uppercase text-white/35 transition-colors duration-300 group-focus-within:text-[#A1E233]/70">
+      <span className="text-[10px] tracking-[0.22em] uppercase text-white/35 transition-colors duration-300 group-focus-within:text-accent/70">
         {label}
       </span>
       {children}
@@ -90,7 +104,7 @@ const inputClass = cn(
   "w-full rounded-2xl border border-white/8 bg-neutral-950/80 px-5 py-4",
   "text-sm text-white placeholder:text-white/20 outline-none",
   "transition-all duration-300",
-  "focus:border-[#A1E233]/25 focus:bg-black focus:ring-2 focus:ring-[#A1E233]/8",
+  "focus:border-accent/25 focus:bg-black focus:ring-2 focus:ring-accent/8",
 );
 
 // ─── Card de objetivo (paso 1) ─────────────────────────────────────────────────
@@ -103,21 +117,21 @@ function GoalCard({ icon: Icon, title, desc, selected, onSelect }) {
       className={cn(
         "group relative flex min-h-[44px] flex-col gap-3 rounded-2xl border p-5 text-left transition-all duration-300",
         selected
-          ? "border-[#A1E233]/50 bg-[#A1E233]/8"
+          ? "border-accent/50 bg-accent/8"
           : "border-white/8 bg-white/[0.02] hover:border-white/15",
       )}
     >
       <Icon
         className={cn(
           "size-5 transition-colors duration-300",
-          selected ? "text-[#A1E233]" : "text-white/50",
+          selected ? "text-accent" : "text-white/50",
         )}
       />
       <span className="flex flex-col gap-1.5 pr-6">
         <span
           className={cn(
             "text-sm font-semibold leading-snug transition-colors duration-300",
-            selected ? "text-[#A1E233]" : "text-white",
+            selected ? "text-accent" : "text-white",
           )}
         >
           {title}
@@ -127,10 +141,10 @@ function GoalCard({ icon: Icon, title, desc, selected, onSelect }) {
       <span
         className={cn(
           "absolute right-4 top-4 flex size-5 items-center justify-center rounded-full border transition-all duration-300",
-          selected ? "border-[#A1E233] bg-[#A1E233] opacity-100" : "border-white/15 opacity-0",
+          selected ? "border-accent bg-accent opacity-100" : "border-white/15 opacity-0",
         )}
       >
-        <Check className="size-3 text-black" strokeWidth={3} />
+        <Check className="size-3 text-on-accent" strokeWidth={3} />
       </span>
     </button>
   );
@@ -150,9 +164,9 @@ function StepIndicator({ steps, current }) {
               className={cn(
                 "flex size-6 items-center justify-center rounded-full border font-mono text-[11px] transition-colors duration-300",
                 i === current
-                  ? "border-[#A1E233] bg-[#A1E233] text-black"
+                  ? "border-accent bg-accent text-on-accent"
                   : i < current
-                    ? "border-[#A1E233]/40 bg-[#A1E233]/15 text-[#A1E233]"
+                    ? "border-accent/40 bg-accent/15 text-accent"
                     : "border-white/15 bg-transparent text-white/28",
               )}
             >
@@ -171,7 +185,7 @@ function StepIndicator({ steps, current }) {
             <span
               className={cn(
                 "h-px flex-1 transition-colors duration-500",
-                i < current ? "bg-[#A1E233]/30" : "bg-white/8",
+                i < current ? "bg-accent/30" : "bg-white/8",
               )}
             />
           )}
@@ -346,6 +360,7 @@ const Contact = () => {
       href: whatsappHref,
       value: BUSINESS_PHONE_DISPLAY,
       external: true,
+      variant: "primary",
     },
     {
       key: "email",
@@ -353,6 +368,7 @@ const Contact = () => {
       href: `mailto:${BUSINESS_EMAIL}`,
       value: BUSINESS_EMAIL,
       external: false,
+      variant: "ghost",
     },
   ];
 
@@ -384,14 +400,14 @@ const Contact = () => {
             "rounded-2xl border border-white/10 bg-neutral-950 text-white shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
           }
           bodyClassName={() => "text-sm font-medium text-white/88"}
-          progressClassName={() => "!bg-[#A1E233]"}
+          progressClassName={() => "!bg-accent"}
         />
       ) : null}
 
       {/* Fondos atmosféricos */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute right-[-5%] top-[10%] h-80 w-80 rounded-full bg-[#A1E233]/5 blur-[100px]" />
-        <div className="absolute bottom-0 left-[-5%] h-64 w-64 rounded-full bg-[#A1E233]/4 blur-[80px]" />
+        <div className="absolute right-[-5%] top-[10%] h-80 w-80 rounded-full bg-accent/5 blur-[100px]" />
+        <div className="absolute bottom-0 left-[-5%] h-64 w-64 rounded-full bg-accent/4 blur-[80px]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
       </div>
 
@@ -408,8 +424,7 @@ const Contact = () => {
               animate={isHeaderInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1, ease }}
               aria-hidden
-              className="block text-[clamp(5rem,18vw,18rem)] font-black leading-none tracking-tighter select-none"
-              style={{ color: "rgba(161,226,51,0.04)" }}
+              className="block text-[clamp(5rem,18vw,18rem)] font-black leading-none tracking-tighter text-accent/[0.04] select-none"
             >
               {t("headline-hola")}
             </motion.span>
@@ -426,7 +441,7 @@ const Contact = () => {
                 className="text-[clamp(2rem,5.5vw,5.5rem)] font-black leading-display tracking-display text-white"
               >
                 <span className="block">{t("headline-line1")}</span>{" "}
-                <span className="block text-[#A1E233]">{t("headline-line2")}</span>
+                <span className="block text-accent">{t("headline-line2")}</span>
               </motion.h2>
             </div>
           </div>
@@ -464,10 +479,11 @@ const Contact = () => {
               <StepIndicator steps={stepLabels} current={step} />
             </div>
 
-            {/* Card del form con borde sutil */}
-            <div className="relative overflow-hidden rounded-3xl border border-white/6 bg-neutral-950/50 p-6 backdrop-blur-sm md:p-8">
+            {/* Card del form: shell exterior + core interior (doble bisel) */}
+            <div className="relative rounded-[2rem] bg-white/[0.02] p-1.5 ring-1 ring-white/6">
+              <div className="relative overflow-hidden rounded-[calc(2rem-0.375rem)] bg-neutral-950/60 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm md:p-8">
               {/* Línea de acento en el tope */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A1E233]/25 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
 
               <form
                 onSubmit={handleSubmit}
@@ -567,7 +583,7 @@ const Contact = () => {
                           <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/28">
                             {t("form.step2.goalTag")}
                           </span>
-                          <span className="inline-flex items-center gap-2 rounded-full border border-[#A1E233]/25 bg-[#A1E233]/8 px-3.5 py-1.5 text-xs text-[#A1E233]">
+                          <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/8 px-3.5 py-1.5 text-xs text-accent">
                             {selectedGoalTitle}
                           </span>
                         </div>
@@ -634,7 +650,7 @@ const Contact = () => {
                         }
                         whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                         transition={{ duration: 0.2, ease }}
-                        className="group relative inline-flex min-h-[48px] shrink-0 items-center gap-3 overflow-hidden rounded-full bg-[#A1E233] px-7 text-sm font-bold tracking-wide text-black transition-all duration-300 hover:bg-[#b6f53d] disabled:cursor-not-allowed disabled:opacity-40"
+                        className="group relative inline-flex min-h-[48px] shrink-0 items-center gap-3 overflow-hidden rounded-full bg-accent px-7 text-sm font-bold tracking-wide text-on-accent transition-all duration-300 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                         {t("form.continue")}
@@ -648,7 +664,7 @@ const Contact = () => {
                         }
                         whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                         transition={{ duration: 0.2, ease }}
-                        className="group relative inline-flex min-h-[48px] shrink-0 items-center gap-3 overflow-hidden rounded-full bg-[#A1E233] px-7 text-sm font-bold tracking-wide text-black transition-all duration-300 hover:bg-[#b6f53d] disabled:cursor-not-allowed disabled:opacity-60"
+                        className="group relative inline-flex min-h-[48px] shrink-0 items-center gap-3 overflow-hidden rounded-full bg-accent px-7 text-sm font-bold tracking-wide text-on-accent transition-all duration-300 hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full" />
                         <span
@@ -663,6 +679,7 @@ const Contact = () => {
                   </div>
                 </div>
               </form>
+              </div>
             </div>
           </motion.div>
 
@@ -675,27 +692,20 @@ const Contact = () => {
             className="flex flex-col gap-8"
           >
             {/* Disponibilidad */}
-            <div className="rounded-2xl border border-[#A1E233]/12 bg-[#A1E233]/4 px-5 py-4">
-              <div className="mb-1 flex items-center gap-2">
-                {/* Dot pulsante */}
-                <span className="relative flex size-2 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A1E233] opacity-50" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[#A1E233]" />
-                </span>
-                <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-[#A1E233]">
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+                <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-accent">
                   {t("availability.label")}
                 </span>
               </div>
-              <p className="text-sm text-white/50 leading-snug pl-4">
+              <p className="pl-3.5 text-sm leading-snug text-white/50">
                 {t("availability.detail")}
               </p>
             </div>
 
             {/* Canales de contacto */}
             <div>
-              <p className="mb-1 text-[10px] tracking-[0.2em] uppercase text-white/25">
-                {t("channels.label")}
-              </p>
               <p className="text-base font-semibold text-white">{t("channels.title")}</p>
               <p className="mt-2 text-sm leading-relaxed text-white/40">
                 {t("channels.description")}
@@ -713,6 +723,7 @@ const Contact = () => {
                   href={c.href}
                   external={c.external}
                   index={i}
+                  variant={c.variant}
                 />
               ))}
             </div>
@@ -726,7 +737,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={t(`methods.${s.key}.ariaLabel`)}
-                  className="flex size-11 items-center justify-center rounded-full border border-white/8 text-white/50 transition-colors duration-300 hover:border-[#A1E233]/25 hover:text-[#A1E233]"
+                  className="flex size-11 items-center justify-center rounded-full border border-white/8 text-white/50 transition-colors duration-300 hover:border-accent/25 hover:text-accent"
                 >
                   <s.icon className="size-4" />
                 </a>
