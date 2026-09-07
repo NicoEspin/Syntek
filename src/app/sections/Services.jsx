@@ -174,37 +174,37 @@ const Services = () => {
       titleKey: "web-development",
       descKey: "web-development-description",
       tags: ["Next.js", "React", "Node.js", "TypeScript"],
-      href: "/servicios/desarrollo-web",
+      slug: "desarrollo-web",
     },
     {
       titleKey: "landing-pages",
       descKey: "landing-pages-description",
       tags: ["Copy", "Motion", "Leads", "Ads"],
-      href: "/servicios/landing-pages",
+      slug: "landing-pages",
     },
     {
       titleKey: "custom-software",
       descKey: "custom-software-description",
       tags: ["Dashboards", "APIs", "React", "Product"],
-      href: "/servicios/software-a-medida",
+      slug: "software-a-medida",
     },
     {
       titleKey: "automations",
       descKey: "automations-description",
       tags: ["AI/ML", "n8n", "API", "Workflows"],
-      href: "/servicios/automatizaciones",
+      slug: "automatizaciones",
     },
     {
       titleKey: "ecommerce",
       descKey: "ecommerce-description",
       tags: ["Shopify", "WooCommerce", t("tags.conversion")],
-      href: "/servicios/ecommerce",
+      slug: "ecommerce",
     },
     {
       titleKey: "branding",
       descKey: "branding-description",
       tags: [t("tags.identity"), t("tags.logo"), t("tags.guidelines")],
-      href: "/servicios/branding",
+      slug: "branding",
     },
   ];
 
@@ -351,12 +351,11 @@ const Services = () => {
                   accent={SERVICE_ACCENTS[i]}
                   isActive={activeIndex === i}
                   onEnter={() => setActiveIndex(i)}
-                  ctaLabel={
-                    service.href.includes("/servicios/")
-                      ? t("view-service")
-                      : t("start-service")
-                  }
-                  href={service.href}
+                  ctaLabel={t("view-service")}
+                  href={{
+                    pathname: "/servicios/[slug]",
+                    params: { slug: service.slug },
+                  }}
                   onLeave={() => {}} // mantiene el último activo al salir
                 />
               ))}

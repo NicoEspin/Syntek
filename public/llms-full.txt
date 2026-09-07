@@ -13,8 +13,7 @@ La agencia combina diseño, desarrollo de software y automatización para constr
 - Ubicación: Villa Carlos Paz, Córdoba, Argentina
 - Mercado principal: Argentina
 - Modalidad: Proyectos locales y remotos
-- Sitio oficial: https://www.synttek.com
-- Sitio en español: https://www.synttek.com/es
+- Sitio oficial y home canónica: https://www.synttek.com/es
 
 ## Servicios
 
@@ -285,7 +284,7 @@ https://www.synttek.com/es/projects
 ## Contacto
 
 - Email: synttek@gmail.com
-- Sitio: https://www.synttek.com
+- Sitio: https://www.synttek.com/es
 - Formulario de contacto: https://www.synttek.com/es/contacto
 - Instagram: https://www.instagram.com/synttek/
 - LinkedIn: https://www.linkedin.com/company/synttek/

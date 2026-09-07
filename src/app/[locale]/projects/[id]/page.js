@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { buildCreativeWorkJsonLd } from "@/lib/jsonLd";
 
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
   }
 
   const t = await getTranslations({ locale, namespace: "Projects" });
-  const baseUrl = SITE_URL;
+  const baseUrl = SITE_ORIGIN;
 
   const title = t("detailPageTitle", { title: project.title });
   const description =
@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }) {
         ? "Proyecto desarrollado por Synttek."
         : "Project built by Synttek."),
     url: projectUrl,
-    image: `${SITE_URL}${project.coverImage}`,
+    image: `${SITE_ORIGIN}${project.coverImage}`,
     dateModified: project.updatedAt,
     locale,
   });

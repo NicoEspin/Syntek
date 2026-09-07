@@ -5,7 +5,11 @@ import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import JsonLd from "@/components/JsonLd";
 import AboutHero from "@/app/sections/about/AboutHero";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  SITE_CANONICAL_HOME_URL,
+  SITE_NAME,
+  SITE_ORIGIN,
+} from "@/lib/site";
 import {
   BUSINESS_EMAIL,
   BUSINESS_LOCATION,
@@ -34,7 +38,7 @@ export async function generateMetadata({ params }) {
   const description = isEs
     ? "Somos el equipo que diagnostica qué necesita tu negocio y lo construye: web, software a medida, agentes de IA y contenido, todo conectado."
     : "We're the team that diagnoses what your business needs and builds it: websites, custom software, AI agents and content, all connected.";
-  const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
+  const socialImage = `${SITE_ORIGIN}/android-chrome-512x512.png`;
 
   return {
     title: { absolute: title },
@@ -80,7 +84,7 @@ export default async function AboutPage({ params }) {
       description: isEs
         ? "Agencia boutique de desarrollo web, diseño y automatizaciones fundada en Villa Carlos Paz, Córdoba, Argentina."
         : "Boutique web development, design and automation agency founded in Villa Carlos Paz, Córdoba, Argentina.",
-      url: SITE_URL,
+      url: SITE_CANONICAL_HOME_URL,
       email: BUSINESS_EMAIL,
       areaServed: [
         { "@type": "City", name: "Villa Carlos Paz" },
@@ -104,7 +108,7 @@ export default async function AboutPage({ params }) {
       sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
     },
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       {
         name: isEs ? "Sobre nosotros" : "About us",
         item: getCanonicalUrl(locale, PATH),

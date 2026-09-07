@@ -4,7 +4,7 @@ import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import {
   buildBreadcrumbJsonLd,
   buildGraphJsonLd,
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
   const description = isEs
     ? "Contactanos para hablar sobre desarrollo web, software a medida, automatizaciones, ecommerce o la próxima etapa digital de tu negocio."
     : "Get in touch to talk about web development, custom software, automations, ecommerce or the next digital step for your business.";
-  const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
+  const socialImage = `${SITE_ORIGIN}/android-chrome-512x512.png`;
 
   return {
     title: { absolute: title },
@@ -69,7 +69,7 @@ export default async function ContactPage({ params }) {
       mainEntity: buildOrganizationJsonLd(),
     },
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       {
         name: locale === "es" ? "Contacto" : "Contact",
         item: getCanonicalUrl(locale, PATH),

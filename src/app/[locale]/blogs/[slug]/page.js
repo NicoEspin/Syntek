@@ -5,7 +5,7 @@ import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import { buildArticleJsonLd, buildBreadcrumbJsonLd, buildGraphJsonLd } from "@/lib/jsonLd";
 
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   }
 
   const t = await getTranslations({ locale, namespace: "BlogPage" });
-  const baseUrl = SITE_URL;
+  const baseUrl = SITE_ORIGIN;
   const title = t("detailPageTitle", { title: post.title });
   const description = post.excerpt;
   const imageUrl = `${baseUrl}${post.image.src}`;
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }) {
       title: post.title,
       description: post.excerpt,
       url: shareUrl,
-      image: `${SITE_URL}${post.image.src}`,
+      image: `${SITE_ORIGIN}${post.image.src}`,
       datePublished: post.date,
       authorName: post.author.name,
       authorUrl: post.author.url,
@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }) {
       timeRequired: `PT${post.readingMinutes}M`,
     }),
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       { name: t("pageTitle"), item: getCanonicalUrl(locale, "/blogs") },
       { name: post.title, item: shareUrl },
     ]),

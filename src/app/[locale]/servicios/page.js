@@ -3,8 +3,8 @@ import Navbar from "@/app/components/(common)/Navbar";
 import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
-import { getCanonicalUrl, getLanguageAlternates, getLocalizedPath } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import { getFeaturedProjects } from "@/data/projects";
 import { getPrimaryServices } from "@/data/services";
 import {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   const description = isEs
     ? "Explorá los servicios de Synttek: desarrollo web, landing pages, software a medida, automatizaciones, ecommerce y branding."
     : "Explore Synttek services across web development, landing pages, custom software, automations, ecommerce and branding.";
-  const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
+  const socialImage = `${SITE_ORIGIN}/android-chrome-512x512.png`;
 
   return {
     title: { absolute: title },
@@ -70,7 +70,7 @@ export default async function ServicesPage({ params }) {
   const structuredData = buildGraphJsonLd([
     buildCollectionPageJsonLd({
       name: locale === "es" ? "Servicios Synttek" : "Synttek Services",
-      path: getLocalizedPath(locale, PATH),
+      url: getCanonicalUrl(locale, PATH),
       description:
         locale === "es"
           ? "Hub comercial de servicios de Synttek."
@@ -85,7 +85,7 @@ export default async function ServicesPage({ params }) {
     buildOrganizationJsonLd(),
     buildProfessionalServiceJsonLd(),
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       {
         name: locale === "es" ? "Servicios" : "Services",
         item: getCanonicalUrl(locale, PATH),

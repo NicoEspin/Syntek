@@ -14,7 +14,6 @@ import {
   SITE_OG_IMAGE_TYPE,
   SITE_OG_IMAGE_URL,
   SITE_OG_IMAGE_WIDTH,
-  SITE_URL,
 } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
@@ -41,7 +40,6 @@ const Contact = dynamic(() => import("@/app/sections/Contact"));
 export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
-  const baseUrl = SITE_URL;
   const title = isEs
     ? "Synttek - Desarrollo web, software y automatizaciones en Córdoba"
     : "Web development, software and automation agency in Cordoba";
@@ -59,7 +57,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}`,
+      url: getCanonicalUrl(locale),
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -101,7 +99,7 @@ export default async function Home({ params }) {
       ...buildOfferCatalogJsonLd(offerServices),
     },
     buildLocalBusinessJsonLd(),
-    buildWebsiteJsonLd({ locale, url: SITE_URL }),
+    buildWebsiteJsonLd({ locale, url: getCanonicalUrl(locale) }),
     buildFaqPageJsonLd(faqs),
   ]);
 

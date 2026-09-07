@@ -270,7 +270,10 @@ export default function DefaultProjectDetail({ project, nextProject, locale }) {
                         {relatedServiceCards.map((service) => (
                           <Link
                             key={service.slug}
-                            href={`/servicios/${service.slug}`}
+                            href={{
+                              pathname: "/servicios/[slug]",
+                              params: { slug: service.slug },
+                            }}
                             className="inline-flex items-center justify-between rounded-2xl border border-white/10 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-white/60 transition-colors duration-300 hover:border-primary1/20 hover:text-primary1"
                           >
                             <span>{service.shortLabel}</span>

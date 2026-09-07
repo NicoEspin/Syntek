@@ -1,6 +1,6 @@
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { SITE_URL } from "@/lib/site";
+import { SITE_ORIGIN } from "@/lib/site";
 
 const normalizePath = (path = "") => {
   if (!path || path === "/") {
@@ -144,7 +144,7 @@ const resolvePathname = (path = "/") => {
 };
 
 export const getAbsoluteUrl = (path = "/") =>
-  new URL(path, SITE_URL).toString();
+  new URL(path, SITE_ORIGIN).toString();
 
 export const getLocalizedPath = (locale, path = "/", params) => {
   const resolvedPathname = resolvePathname(path);

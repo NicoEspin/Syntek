@@ -249,7 +249,10 @@ export default function ServicesPageContent({ locale, services, featuredProjects
                   transition={{ duration: shouldReduceMotion ? 0.2 : 0.78, delay: index * 0.06, ease }}
                 >
                   <Link
-                    href={`/servicios/${service.slug}`}
+                    href={{
+                      pathname: "/servicios/[slug]",
+                      params: { slug: service.slug },
+                    }}
                     className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/[0.07] bg-neutral-950/80 p-7 shadow-[0_16px_48px_rgba(0,0,0,0.28)] transition-colors duration-500 hover:border-white/[0.13]"
                   >
                     {/* Accent top bar */}

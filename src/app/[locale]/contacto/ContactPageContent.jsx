@@ -142,7 +142,10 @@ export default function ContactPageContent({ locale }) {
               </div>
 
               <Link
-                href="/servicios/desarrollo-web"
+                href={{
+                  pathname: "/servicios/[slug]",
+                  params: { slug: "desarrollo-web" },
+                }}
                 className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/72 transition-colors duration-300 hover:border-primary1/20 hover:text-white"
               >
                 <span>{t("secondaryCta")}</span>

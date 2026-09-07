@@ -4,8 +4,8 @@ import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { getCanonicalUrl, getLanguageAlternates, getLocalizedPath } from "@/lib/seo";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
 
   const title = t("pageTitle");
   const description = t("pageDescription");
-  const baseUrl = SITE_URL;
+  const baseUrl = SITE_ORIGIN;
   const socialImage = `${baseUrl}/android-chrome-512x512.png`;
 
   return {
@@ -65,12 +65,10 @@ export default async function BlogsPage({ params }) {
   const { locale } = await params;
   const posts = getBlogPosts(locale);
   const t = await getTranslations({ locale, namespace: "BlogPage" });
-  const path = getLocalizedPath(locale, "/blogs");
-
   const structuredData = buildGraphJsonLd([
     buildCollectionPageJsonLd({
       name: t("pageTitle"),
-      path,
+      url: getCanonicalUrl(locale, "/blogs"),
       description: t("pageDescription"),
       items: buildItemListJsonLd(
         posts.map((post) => ({
@@ -84,13 +82,13 @@ export default async function BlogsPage({ params }) {
       { name: t("pageTitle"), item: getCanonicalUrl(locale, "/blogs") },
     ]),
     buildOrganizationJsonLd(),
-    buildWebsiteJsonLd(locale),
+    buildWebsiteJsonLd({ locale, url: getCanonicalUrl(locale) }),
     ...posts.map((post) =>
       buildArticleJsonLd({
         title: post.title,
         description: post.excerpt,
         url: getCanonicalUrl(locale, `/blogs/${post.slug}`),
-        image: `${SITE_URL}${post.image.src}`,
+        image: `${SITE_ORIGIN}${post.image.src}`,
         datePublished: post.date,
         authorName: post.author.name,
         articleSection: post.category,

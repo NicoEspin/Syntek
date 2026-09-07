@@ -7,13 +7,18 @@ import {
   LINKEDIN_URL,
   SORTLIST_URL,
 } from "@/lib/business";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  SITE_CANONICAL_HOME_URL,
+  SITE_NAME,
+  SITE_ORIGIN,
+} from "@/lib/site";
+import { getCanonicalUrl } from "@/lib/seo";
 
 export const buildOrganizationJsonLd = () => ({
   "@type": "Organization",
   name: SITE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/android-chrome-512x512.png`,
+  url: SITE_CANONICAL_HOME_URL,
+  logo: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
@@ -36,8 +41,8 @@ export const buildOrganizationJsonLd = () => ({
 export const buildProfessionalServiceJsonLd = () => ({
   "@type": "ProfessionalService",
   name: SITE_NAME,
-  url: SITE_URL,
-  image: `${SITE_URL}/android-chrome-512x512.png`,
+  url: SITE_CANONICAL_HOME_URL,
+  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
@@ -70,8 +75,8 @@ export const buildProfessionalServiceJsonLd = () => ({
 export const buildLocalBusinessJsonLd = () => ({
   "@type": "LocalBusiness",
   name: SITE_NAME,
-  url: SITE_URL,
-  image: `${SITE_URL}/android-chrome-512x512.png`,
+  url: SITE_CANONICAL_HOME_URL,
+  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
@@ -92,13 +97,13 @@ export const buildLocalBusinessJsonLd = () => ({
   ],
 });
 
-export const buildVillaCarlosPazJsonLd = (locale = "es") => ({
+export const buildVillaCarlosPazJsonLd = (url) => ({
   "@type": ["LocalBusiness", "ProfessionalService"],
   name: SITE_NAME,
   description:
     "Agencia de desarrollo web y software a medida en Villa Carlos Paz, Córdoba.",
-  url: `${SITE_URL}/${locale}/villa-carlos-paz`,
-  image: `${SITE_URL}/android-chrome-512x512.png`,
+  url,
+  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
@@ -125,13 +130,13 @@ export const buildVillaCarlosPazJsonLd = (locale = "es") => ({
   },
 });
 
-export const buildCordobaJsonLd = (locale = "es") => ({
+export const buildCordobaJsonLd = (url) => ({
   "@type": ["LocalBusiness", "ProfessionalService"],
   name: SITE_NAME,
   description:
     "Agencia de desarrollo web y software a medida para negocios y pymes de Córdoba, Argentina.",
-  url: `${SITE_URL}/${locale}/cordoba`,
-  image: `${SITE_URL}/android-chrome-512x512.png`,
+  url,
+  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
   sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
@@ -166,10 +171,10 @@ export const buildCordobaJsonLd = (locale = "es") => ({
 export const buildPublisherJsonLd = () => ({
   "@type": "Organization",
   name: SITE_NAME,
-  url: SITE_URL,
+  url: SITE_CANONICAL_HOME_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/android-chrome-512x512.png`,
+    url: `${SITE_ORIGIN}/android-chrome-512x512.png`,
     width: 512,
     height: 512,
   },
@@ -177,8 +182,8 @@ export const buildPublisherJsonLd = () => ({
 });
 
 export const buildWebsiteJsonLd = (options) => {
-  const locale = typeof options === "string" ? options : options?.locale;
-  const url = typeof options === "string" ? `${SITE_URL}/${options}` : options?.url ?? SITE_URL;
+  const locale = options?.locale;
+  const url = options?.url ?? SITE_CANONICAL_HOME_URL;
 
   return {
     "@type": "WebSite",
@@ -207,14 +212,14 @@ export const buildWebPageJsonLd = ({
   isPartOf: {
     "@type": "WebSite",
     name: SITE_NAME,
-    url: `${SITE_URL}/${locale}`,
+    url: locale ? getCanonicalUrl(locale) : SITE_CANONICAL_HOME_URL,
     publisher: buildPublisherJsonLd(),
   },
   about,
   mainEntity,
   primaryImageOfPage: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/android-chrome-512x512.png`,
+    url: `${SITE_ORIGIN}/android-chrome-512x512.png`,
     width: 512,
     height: 512,
   },
@@ -283,16 +288,16 @@ export const buildOfferCatalogJsonLd = (services = []) => ({
   },
 });
 
-export const buildServiceJsonLd = ({ name, title, description, path }) => ({
+export const buildServiceJsonLd = ({ name, title, description, url }) => ({
   "@type": "Service",
   name,
   serviceType: title,
   description,
-  url: `${SITE_URL}${path}`,
+  url,
   provider: {
     "@type": "Organization",
     name: SITE_NAME,
-    url: SITE_URL,
+    url: SITE_CANONICAL_HOME_URL,
     email: BUSINESS_EMAIL,
     sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   },
@@ -312,10 +317,10 @@ export const buildBreadcrumbJsonLd = (items) => ({
   })),
 });
 
-export const buildCollectionPageJsonLd = ({ name, path, description, items }) => ({
+export const buildCollectionPageJsonLd = ({ name, url, description, items }) => ({
   "@type": "CollectionPage",
   name,
-  url: `${SITE_URL}${path}`,
+  url,
   description,
   mainEntity: items,
 });

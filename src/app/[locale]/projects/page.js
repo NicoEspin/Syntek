@@ -4,8 +4,8 @@ import ScopedIntlProvider from "@/app/components/ScopedIntlProvider";
 import FloatingWidgets from "@/app/components/FloatingWidgets";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations } from "next-intl/server";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { getCanonicalUrl, getLanguageAlternates, getLocalizedPath } from "@/lib/seo";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
+import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
   buildCollectionPageJsonLd,
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
 
   const title = t("pageTitle");
   const description = t("pageDescription");
-  const baseUrl = SITE_URL;
+  const baseUrl = SITE_ORIGIN;
   const socialImage = `${baseUrl}/android-chrome-512x512.png`;
 
   return {
@@ -65,12 +65,10 @@ export default async function ProjectsPage({ params }) {
   const { locale } = await params;
   const projects = getProjects(locale);
   const t = await getTranslations({ locale, namespace: "Projects" });
-  const path = getLocalizedPath(locale, "/projects");
-
   const structuredData = buildGraphJsonLd([
     buildCollectionPageJsonLd({
       name: t("pageTitle"),
-      path,
+      url: getCanonicalUrl(locale, "/projects"),
       description: t("pageDescription"),
       items: buildItemListJsonLd(
         projects.map((project) => ({
@@ -84,13 +82,13 @@ export default async function ProjectsPage({ params }) {
       { name: t("pageTitle"), item: getCanonicalUrl(locale, "/projects") },
     ]),
     buildOrganizationJsonLd(),
-    buildWebsiteJsonLd(locale),
+    buildWebsiteJsonLd({ locale, url: getCanonicalUrl(locale) }),
     ...projects.map((project) =>
       buildCreativeWorkJsonLd({
         name: project.title,
         description: project.description.short,
         url: getCanonicalUrl(locale, `/projects/${project.id}`),
-        image: `${SITE_URL}${project.coverImage}`,
+        image: `${SITE_ORIGIN}${project.coverImage}`,
         dateModified: project.updatedAt,
         locale,
       }),

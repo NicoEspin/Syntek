@@ -1,4 +1,4 @@
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_CANONICAL_HOME_URL, SITE_NAME } from "@/lib/site";
 
 export default function manifest() {
   return {
@@ -24,6 +24,6 @@ export default function manifest() {
     ],
     categories: ["business", "design", "technology"],
     lang: "es",
-    id: `${SITE_URL}/es`,
+    id: SITE_CANONICAL_HOME_URL,
   };
 }

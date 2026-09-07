@@ -5,12 +5,13 @@ import Script from "next/script";
 import { routing } from "@/i18n/routing";
 import {
   SITE_NAME,
+  SITE_CANONICAL_HOME_URL,
   SITE_OG_IMAGE_ALT,
   SITE_OG_IMAGE_HEIGHT,
   SITE_OG_IMAGE_TYPE,
   SITE_OG_IMAGE_URL,
   SITE_OG_IMAGE_WIDTH,
-  SITE_URL,
+  SITE_ORIGIN,
 } from "@/lib/site";
 
 import { Geist, Geist_Mono } from "next/font/google";
@@ -31,7 +32,7 @@ const geistMono = Geist_Mono({
 const GTM_ID = "GTM-57R9P9LF";
 
 export const metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(SITE_ORIGIN),
 
   manifest: "/manifest.webmanifest",
   applicationName: SITE_NAME,
@@ -73,7 +74,7 @@ export const metadata = {
 
   openGraph: {
     type: "website",
-    url: SITE_URL,
+    url: SITE_CANONICAL_HOME_URL,
     siteName: SITE_NAME,
     locale: "es_AR",
 

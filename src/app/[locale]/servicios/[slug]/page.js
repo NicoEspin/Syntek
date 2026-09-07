@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import {
   buildBreadcrumbJsonLd,
   buildFaqPageJsonLd,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
     return {};
   }
 
-  const socialImage = `${SITE_URL}/android-chrome-512x512.png`;
+  const socialImage = `${SITE_ORIGIN}/android-chrome-512x512.png`;
   const path = `/servicios/${slug}`;
 
   return {
@@ -94,22 +94,23 @@ export default async function ServicePage({ params }) {
 
   const t = await getTranslations({ locale, namespace: "ServicePages" });
   const path = `/servicios/${slug}`;
+  const canonicalUrl = getCanonicalUrl(locale, path);
 
   const structuredData = buildGraphJsonLd([
     buildServiceJsonLd({
       name: service.shortLabel,
       title: service.title,
       description: service.description,
-      path: `/${locale}${path}`,
+      url: canonicalUrl,
     }),
     buildFaqPageJsonLd(service.faqs),
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       {
         name: t("breadcrumbsServices"),
         item: getCanonicalUrl(locale, "/servicios"),
       },
-      { name: service.shortLabel, item: getCanonicalUrl(locale, path) },
+      { name: service.shortLabel, item: canonicalUrl },
     ]),
   ]);
 

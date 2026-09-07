@@ -183,7 +183,10 @@ const Footer = async () => {
                 {serviceLinks.map((service) => (
                   <Link
                     key={service.slug}
-                    href={`/servicios/${service.slug}`}
+                    href={{
+                      pathname: "/servicios/[slug]",
+                      params: { slug: service.slug },
+                    }}
                     className="rounded-full border border-white/8 px-2.5 py-1 text-[9px] uppercase tracking-[0.15em] text-white/30 hover:border-primary1/25 hover:text-primary1 transition-all duration-300"
                   >
                     {service.shortLabel}

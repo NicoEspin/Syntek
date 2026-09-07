@@ -6,7 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import VCPHero from "@/app/sections/vcp/VCPHero";
 import ProcessSection from "@/app/sections/home-v2/ProcessSection";
 import { getTranslations } from "next-intl/server";
-import { SITE_NAME, SITE_OG_IMAGE_ALT, SITE_OG_IMAGE_HEIGHT, SITE_OG_IMAGE_TYPE, SITE_OG_IMAGE_URL, SITE_OG_IMAGE_WIDTH, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_OG_IMAGE_ALT, SITE_OG_IMAGE_HEIGHT, SITE_OG_IMAGE_TYPE, SITE_OG_IMAGE_URL, SITE_OG_IMAGE_WIDTH } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${locale}${path}`,
+      url: getCanonicalUrl(locale, path),
       siteName: SITE_NAME,
       locale: isEs ? "es_AR" : "en_US",
       type: "website",
@@ -73,10 +73,10 @@ export default async function VillaCarlosPazPage({ params }) {
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildVillaCarlosPazJsonLd(locale),
+    buildVillaCarlosPazJsonLd(getCanonicalUrl(locale, "/villa-carlos-paz")),
     buildFaqPageJsonLd(faqs),
     buildBreadcrumbJsonLd([
-      { name: SITE_NAME, item: `${SITE_URL}/${locale}` },
+      { name: SITE_NAME, item: getCanonicalUrl(locale) },
       {
         name: "Villa Carlos Paz",
         item: getCanonicalUrl(locale, "/villa-carlos-paz"),
