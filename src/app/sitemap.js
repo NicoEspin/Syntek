@@ -1,6 +1,6 @@
 import { projects } from "@/data/projects";
 import { blogPosts } from "@/data/blogPosts";
-import { getPrimaryServiceSlugs } from "@/data/services";
+import { getPrimaryServiceSlugs, getServiceBySlug } from "@/data/services";
 import { routing } from "@/i18n/routing";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
 
@@ -8,7 +8,6 @@ const staticRoutes = {
   home: "2026-04-09T20:36:11.080Z",
   projects: "2026-04-09T20:36:11.080Z",
   blogs: "2026-06-24T00:00:00.000Z",
-  services: "2026-05-25T00:00:00.000Z",
   servicesIndex: "2026-05-26T00:00:00.000Z",
   about: "2026-05-25T00:00:00.000Z",
   contact: "2026-05-25T00:00:00.000Z",
@@ -102,10 +101,11 @@ export default function sitemap() {
 
     for (const slug of getPrimaryServiceSlugs()) {
       const path = `/servicios/${slug}`;
+      const service = getServiceBySlug(slug);
 
       routes.push({
         url: getCanonicalUrl(locale, path),
-        lastModified: staticRoutes.services,
+        lastModified: service.updatedAt,
         changeFrequency: "monthly",
         priority: 0.85,
         alternates: {
