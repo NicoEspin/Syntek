@@ -1,9 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const ChatBot = dynamic(() => import("@/app/components/ChatBot"), {
-  ssr: false,
-});
+// ChatBot deshabilitado temporalmente: la API está caída.
+// const ChatBot = dynamic(() => import("@/app/components/ChatBot"), {
+//   ssr: false,
+// });
 
 const WhatsAppButton = dynamic(() => import("@/app/components/WhatsAppButton"), {
   ssr: false,
@@ -12,7 +13,7 @@ const WhatsAppButton = dynamic(() => import("@/app/components/WhatsAppButton"), 
 export default function FloatingWidgets() {
   return (
     <>
-      <ChatBot />
+      {/* <ChatBot /> */}
       <WhatsAppButton />
     </>
   );
