@@ -27,10 +27,10 @@ export async function generateMetadata({ params }) {
   const isEs = locale === "es";
   const path = "/cordoba";
   const title = isEs
-    ? "Agencia Web en Córdoba | Synttek"
+    ? "Desarrollo Web en Córdoba | Synttek"
     : "Web Agency in Córdoba | Synttek";
   const description = isEs
-    ? "Desarrollamos sitios web, landing pages y software a medida para negocios y pymes de Córdoba capital. Presencia digital profesional que convierte visitas en consultas."
+    ? "Diseñamos sitios web, landing pages, ecommerce y automatizaciones para empresas, pymes y profesionales de Córdoba que buscan generar consultas y ordenar procesos."
     : "We build websites, landing pages and custom software for businesses and SMEs in Córdoba. A professional online presence that turns visits into inquiries.";
 
   return {
@@ -69,11 +69,14 @@ export async function generateMetadata({ params }) {
 
 export default async function CordobaPage({ params }) {
   const { locale } = await params;
-  const faqTranslations = await getTranslations({ locale, namespace: "HomeV2.faq" });
+  const faqTranslations = await getTranslations({ locale, namespace: "Cordoba.faq" });
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildCordobaJsonLd(getCanonicalUrl(locale, "/cordoba")),
+    buildCordobaJsonLd({
+      locale,
+      url: getCanonicalUrl(locale, "/cordoba"),
+    }),
     buildFaqPageJsonLd(faqs),
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: getCanonicalUrl(locale) },
@@ -97,9 +100,9 @@ export default async function CordobaPage({ params }) {
           "Cordoba.services",
           "Cordoba.proof",
           "Cordoba.cta",
+          "Cordoba.faq",
           "Homepage.heroCards",
           "Projects",
-          "HomeV2.faq",
           "HomeV2.testimonials",
           "HomeV2.waMessage",
           "ChatBot",
@@ -111,7 +114,7 @@ export default async function CordobaPage({ params }) {
           <CordobaServices />
           <ProcessSection />
           <CordobaProof />
-          <FaqV2 />
+          <FaqV2 namespace="Cordoba.faq" waNamespace="Cordoba" />
           <TestimonialsSection />
           <CordobaCta />
         </main>

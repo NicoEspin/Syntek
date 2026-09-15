@@ -12,9 +12,8 @@ import { getWhatsAppUrl } from "@/lib/business";
 
 const EASE_PREMIUM = [0.16, 1, 0.3, 1];
 
-// H1 partido por palabra — visible en SSR (sólo transform, nunca opacity 0 en
-// el elemento LCP). Stagger más lento en desktop, más rápido en mobile para
-// que el H1 termine de entrar antes en pantallas donde el usuario scrollea rápido.
+// H1 partido por palabra, pero con texto real en el DOM para conservar
+// accesibilidad e indexabilidad sin depender de un aria-label sustitutivo.
 function HeroHeadline({ text, highlightWords = [] }) {
   const prefersReduced = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -25,13 +24,11 @@ function HeroHeadline({ text, highlightWords = [] }) {
   return (
     <h1
       id="vcp-hero-heading"
-      aria-label={text}
       className="text-display-xl leading-display tracking-display font-black text-white"
     >
       {words.map((word, i) => (
         <span
           key={`${word}-${i}`}
-          aria-hidden
           style={{ display: "inline-block", overflow: "hidden", marginRight: "0.28em" }}
         >
           <motion.span
@@ -42,6 +39,7 @@ function HeroHeadline({ text, highlightWords = [] }) {
             transition={{ duration: prefersReduced ? 0.01 : 0.75, delay: i * stagger, ease: EASE_PREMIUM }}
           >
             {word}
+            {i < words.length - 1 ? " " : null}
           </motion.span>
         </span>
       ))}

@@ -45,9 +45,8 @@
     "waMessage": "Hi Synttek, I'd like a diagnosis of my digital presence",
     "hero": {
       "eyebrow": "Development agency · Córdoba, AR",
-      "headlinePre": "Web Development, Software and Automation in",
-      "rotatingLocations": ["Córdoba", "Villa Carlos Paz", "Argentina"],
-      "subtitle": "We build websites, catalogs, ecommerce stores, systems and automations for businesses that already have momentum but need to organize inquiries, build more trust and stop depending on manual processes.",
+      "headline": "Web development, software and automations for companies",
+      "subtitle": "From Villa Carlos Paz, we work with companies in Córdoba and across Argentina to organize their digital presence, processes and inquiries.",
       "ctaPrimary": "Request a diagnosis on WhatsApp",
       "ctaSecondary": "See solutions"
     },
@@ -133,10 +132,16 @@
         { "question": "How much does a website cost in Argentina in 2026?", "answer": "It varies with scope: a simple landing page isn't the same as an ecommerce or a custom system. We put together a proposal with a clear price after the diagnosis — no surprises, no generic packages." },
         { "question": "Can you connect the website to WhatsApp?", "answer": "Yes. It's one of the most requested automations: forms that go straight to your WhatsApp, quick-contact buttons and flows that organize the inquiry before someone even messages you." },
         { "question": "Can I update my website without knowing how to code?", "answer": "Yes, we work with simple panels so you can change text, prices or images without depending on us for every detail." },
-        { "question": "Do you work with businesses in Córdoba and Argentina?", "answer": "Yes, we're an agency based in Córdoba and we work with businesses across Argentina and LATAM, remotely or in person depending on the project." },
+        { "question": "Do you work with businesses in Córdoba and Argentina?", "answer": "Yes. We're based in Villa Carlos Paz and work with businesses and companies in Córdoba and across Argentina, remotely or in person depending on the project." },
         { "question": "Do you also build automations or internal systems?", "answer": "Yes. Besides websites and ecommerce, we build custom software, dashboards, simple CRMs and automations to organize internal processes." },
         { "question": "How long does a professional web project take?", "answer": "A landing page can be ready in a few weeks; an ecommerce or custom system takes longer depending on scope. During the strategy stage we give you a concrete timeline." }
       ]
+    },
+    "localAreas": {
+      "title": "Web development for companies in Córdoba and Villa Carlos Paz",
+      "description": "Learn how we approach web development around the commercial context of each city while keeping one connected digital strategy.",
+      "villaCarlosPazLink": "Websites for businesses in Villa Carlos Paz",
+      "cordobaLink": "Web development for companies in Córdoba"
     },
     "testimonials": {
       "sectionLabel": "Clients",
@@ -469,6 +474,16 @@
       "demoVideo": "Demo",
       "demoVideoAlt": "{title} demo video"
     },
+    "localLanding": {
+      "villaCarlosPaz": {
+        "hotel-california": "See our approach for hotels and accommodation in Villa Carlos Paz",
+        "cari-turismo": "Back to websites for tourism in Villa Carlos Paz",
+        "ranch-vcp": "Explore web solutions for food businesses in Villa Carlos Paz",
+        "juicy-branding": "See web development for retailers in Villa Carlos Paz",
+        "muros-redes": "Learn about digital solutions for companies in Villa Carlos Paz",
+        "alquileres-carlos-paz": "Back to web development for businesses in Villa Carlos Paz"
+      }
+    },
     "pageTitle": "Web development, software and branding portfolio | Synttek",
     "pageDescription": "Explore Synttek projects across web development, software, branding and ecommerce for companies that want to grow with technology.",
     "detailPageTitle": "{title} | Project built by Synttek"
@@ -605,6 +620,12 @@
     "closingEyebrow": "Next step",
     "closingTitle": "If you need to improve your digital presence or your operations, start with the right problem.",
     "closingBody": "Tell us what you need to build, what friction you want to remove and what stage your business is in. From there we can define the smartest path.",
+    "localAreas": {
+      "title": "Web development for each local market",
+      "description": "If your business operates in Villa Carlos Paz or Córdoba, you can explore the specific approach for each city.",
+      "villaCarlosPazLink": "Websites for businesses in Villa Carlos Paz",
+      "cordobaLink": "Web development for companies in Córdoba"
+    },
     "breadcrumbsServices": "Services",
     "breadcrumbHome": "Home"
   },
@@ -747,48 +768,44 @@
     "waMessage": "Hi Synttek, I'm from Villa Carlos Paz and I'm interested in improving my online presence",
     "hero": {
       "eyebrow": "Web agency · Villa Carlos Paz",
-      "headline": "Your Carlos Paz business, with the presence it deserves",
-      "headlineHighlight": ["it", "deserves"],
-      "subtitle": "We design and build websites that organize your brand, capture inquiries and work on their own — so you stop depending on Instagram and WhatsApp all day.",
+      "headline": "Web development in Villa Carlos Paz for companies and businesses",
+      "headlineHighlight": ["Villa", "Carlos", "Paz"],
+      "subtitle": "We design websites for businesses in Villa Carlos Paz and the Punilla Valley: tourism, food, hospitality and retail businesses that need inquiries from Google, bookings and WhatsApp.",
       "ctaPrimary": "Request a free diagnosis",
       "ctaSecondary": "See projects"
     },
     "services": {
       "sectionLabel": "What we do",
-      "title": "Everything your Carlos Paz business needs to look professional",
-      "titleHighlight": ["look", "professional"],
-      "subtitle": "We choose the solution based on your business, not the other way around.",
+      "title": "Websites for businesses in Villa Carlos Paz",
+      "titleHighlight": ["Villa", "Carlos", "Paz"],
+      "subtitle": "Built to present your offer, support high season and make inquiries, bookings or orders easier.",
       "items": [
         {
           "icon": "globe",
-          "title": "Websites that convert",
-          "description": "Your website loads in under 1 second and leads visitors to reach out, not to bounce."
+          "title": "Websites that present your offer",
+          "description": "Clear information, services and calls to action so people arriving from Google understand what you do and how to contact you."
         },
         {
           "icon": "map-pin",
-          "title": "Landing pages for high season",
-          "description": "Capture tourists and locals right when they search on Google, before they decide."
+          "title": "Landing pages for high season and campaigns",
+          "description": "Pages focused on excursions, stays, food or timely offers, with direct WhatsApp contact."
         },
         {
           "icon": "zap",
-          "title": "Custom software",
-          "description": "Stop running everything on spreadsheets. Your processes run on their own."
+          "title": "Bookings, orders and processes",
+          "description": "Custom systems to organize data, inquiries and tasks that currently depend on spreadsheets or scattered messages."
         },
         {
           "icon": "bot",
-          "title": "Automations",
-          "description": "Answer inquiries, confirm bookings and send quotes without being available all day."
+          "title": "Inquiry automations",
+          "description": "Flows to route forms, answer common questions and follow up without losing important conversations."
         }
       ]
     },
     "proof": {
       "eyebrow": "Real case · Villa Carlos Paz",
-      "title": "<hl>Cari Turismo</hl>: from Instagram to a system that runs itself",
-      "description": "A travel agency in Carlos Paz that ran everything through WhatsApp and Instagram. We built their website with local SEO and direct WhatsApp conversion. Today they receive organized inquiries without answering everything by hand.",
-      "metricValue": 3,
-      "metricPrefix": "+",
-      "metricSuffix": "",
-      "metricLabel": "active acquisition channels",
+      "title": "<hl>Cari Turismo</hl>: a website designed for WhatsApp inquiries",
+      "description": "A project for a Villa Carlos Paz travel agency, with editorial direction, local SEO and direct WhatsApp contact.",
       "ctaLabel": "View the project"
     },
     "cta": {
@@ -796,61 +813,91 @@
       "subtitle": "Tell us what you need. We reply in under 2 hours.",
       "ctaPrimary": "Talk on WhatsApp",
       "note": "No commitment. First consultation is free."
+    },
+    "faq": {
+      "sectionLabel": "Frequently asked questions",
+      "title": "Web development questions in Villa Carlos Paz",
+      "askMore": "Have another question?",
+      "askMoreDetail": "Message us on WhatsApp and tell us about your business.",
+      "ctaBtn": "Message on WhatsApp",
+      "questionsCount": "questions",
+      "items": [
+        { "question": "Do you build websites for hotels, cabins and accommodations in Villa Carlos Paz?", "answer": "Yes. We can organize stay information, services and booking options so inquiries arrive through WhatsApp or the channel your business uses." },
+        { "question": "Can a website help receive inquiries from Google?", "answer": "Yes. We work on structure, content and contact information so the site clearly explains your offer to people searching for options in the area." },
+        { "question": "Does this work for food businesses, retail or tourism during high season?", "answer": "Yes. A landing page or website can bring together menus, services, offers, bookings and direct contact when demand shifts by season or campaign." },
+        { "question": "Can you connect forms and WhatsApp?", "answer": "Yes. We can route inquiries from forms and contact buttons so the team can reply with context and without losing messages." },
+        { "question": "What is better: a full website or a landing page?", "answer": "It depends on your offer and goal. A landing page works for one campaign or service; a full site organizes a broader offering." }
+      ]
     }
   },
   "Cordoba": {
     "waMessage": "Hi Synttek, I'm from Córdoba and I'm interested in improving my online presence",
     "hero": {
       "eyebrow": "Web agency · Córdoba",
-      "headline": "The online presence your Córdoba business needs",
-      "headlineHighlight": ["business", "needs"],
-      "subtitle": "We design and build websites for SMEs and businesses in Córdoba that want to attract more clients, look professional and stop depending on Instagram and WhatsApp.",
+      "headline": "Web development in Córdoba for companies and businesses",
+      "headlineHighlight": ["Córdoba"],
+      "subtitle": "We design websites, landing pages, ecommerce and automations for companies, SMEs and professionals in Córdoba looking to generate leads and organize processes.",
       "ctaPrimary": "Request a free diagnosis",
       "ctaSecondary": "See projects"
     },
     "services": {
       "sectionLabel": "What we do",
-      "title": "Everything your Córdoba business needs to look professional",
-      "titleHighlight": ["look", "professional"],
-      "subtitle": "We choose the solution based on your business, not the other way around.",
+      "title": "Digital systems for companies in Córdoba",
+      "titleHighlight": ["companies", "Córdoba"],
+      "subtitle": "We connect campaigns, landing pages, sales and operations so every channel has a clear goal.",
       "items": [
         {
           "icon": "globe",
-          "title": "Websites that convert",
-          "description": "Your website loads in under 1 second and turns visits into real inquiries."
+          "title": "Websites and ecommerce",
+          "description": "Websites to explain services, stores to sell and experiences that turn visits into inquiries or purchases."
         },
         {
           "icon": "map-pin",
-          "title": "Landing pages for campaigns",
-          "description": "Capture leads from Google Ads or social media with pages designed to convert."
+          "title": "Landing pages for ad campaigns",
+          "description": "Specific pages to capture leads from Google Ads, social media or commercial campaigns with a clear offer."
         },
         {
           "icon": "zap",
-          "title": "Custom software",
-          "description": "Automate internal processes and stop running everything on Excel spreadsheets."
+          "title": "CRM and custom systems",
+          "description": "Tools to organize prospects, data and internal processes without depending on isolated spreadsheets."
         },
         {
           "icon": "bot",
-          "title": "Automations",
-          "description": "Answer inquiries, send quotes and confirm orders without being available all day."
+          "title": "Automations and WhatsApp",
+          "description": "Flows to qualify inquiries, route leads, send information and connect WhatsApp with commercial operations."
         }
       ]
     },
     "proof": {
-      "eyebrow": "Real case · Córdoba",
-      "title": "<hl>Cari Turismo</hl>: a digital system that runs itself",
-      "description": "A travel agency based in Córdoba province that ran everything through WhatsApp and Instagram. We built their website with local SEO and direct WhatsApp conversion. Today they receive organized inquiries without answering everything by hand.",
-      "metricValue": 3,
-      "metricPrefix": "+",
-      "metricSuffix": "",
-      "metricLabel": "active acquisition channels",
-      "ctaLabel": "View the project"
+      "eyebrow": "What we can build",
+      "title": "A digital presence that supports <hl>sales and operations</hl>",
+      "description": "We do not present demos or projects from another city as Córdoba case studies. We start from concrete goals: more leads, better campaigns, online sales or more organized processes.",
+      "items": [
+        { "title": "Lead generation", "description": "Landing pages and forms connected to ad campaigns, WhatsApp and commercial follow-up." },
+        { "title": "Online sales", "description": "Ecommerce and digital catalogs to sell, receive orders or show a complete offer." },
+        { "title": "Connected operations", "description": "CRM, automations and custom systems to reduce repetitive work and centralize information." }
+      ]
     },
     "cta": {
       "title": "Do you have a business in <hl>Córdoba</hl>?",
       "subtitle": "Tell us what you need. We reply in under 2 hours.",
       "ctaPrimary": "Talk on WhatsApp",
       "note": "No commitment. First consultation is free."
+    },
+    "faq": {
+      "sectionLabel": "Frequently asked questions",
+      "title": "Web development questions in Córdoba",
+      "askMore": "Have another question?",
+      "askMoreDetail": "Message us on WhatsApp and tell us your company goal.",
+      "ctaBtn": "Message on WhatsApp",
+      "questionsCount": "questions",
+      "items": [
+        { "question": "Can you create a landing page for Google Ads campaigns?", "answer": "Yes. We design landing pages focused on one offer or campaign, with forms and calls to action to capture leads clearly." },
+        { "question": "Do you build ecommerce for companies in Córdoba?", "answer": "Yes. Depending on the sales model, we can create a store, digital catalog or an experience to receive orders and inquiries." },
+        { "question": "Can a website connect with WhatsApp and a CRM?", "answer": "Yes. We can connect forms, WhatsApp and follow-up tools to organize commercial inquiries." },
+        { "question": "Do you also build internal systems?", "answer": "Yes. We create software and automations to centralize processes currently handled through spreadsheets, chats and manual tasks." },
+        { "question": "Do you work remotely with companies in Córdoba?", "answer": "Yes. We work remotely and define scope, channels and next steps around the needs of each project." }
+      ]
     }
   },
   "NotFoundPage": {

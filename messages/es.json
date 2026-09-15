@@ -44,9 +44,8 @@
     "waMessage": "Hola Synttek, quiero un diagnóstico de mi presencia digital",
     "hero": {
       "eyebrow": "Agencia de desarrollo · Córdoba, AR",
-      "headlinePre": "Desarrollo Web, Software y Automatizaciones en",
-      "rotatingLocations": ["Córdoba", "Villa Carlos Paz", "Argentina"],
-      "subtitle": "Somos una agencia de Villa Carlos Paz, Córdoba, y desarrollamos soluciones digitales para empresas de toda Argentina.",
+      "headline": "Desarrollo web, software y automatizaciones para empresas",
+      "subtitle": "Desde Villa Carlos Paz trabajamos con empresas de Córdoba y toda Argentina para ordenar su presencia digital, procesos y consultas.",
       "ctaPrimary": "Solicitar diagnóstico por WhatsApp",
       "ctaSecondary": "Ver soluciones"
     },
@@ -67,17 +66,42 @@
         "label": "Presencia improvisada",
         "status": "Sistema fragmentado",
         "description": "Herramientas activas, pero trabajando por separado.",
-        "moduleLabels": ["WhatsApp", "Planilla", "Sitio web", "Tareas manuales", "Seguimiento", "Métricas"]
+        "moduleLabels": [
+          "WhatsApp",
+          "Planilla",
+          "Sitio web",
+          "Tareas manuales",
+          "Seguimiento",
+          "Métricas"
+        ]
       },
       "systemFlow": ["Atraer", "Explicar", "Calificar", "Convertir", "Medir"],
-      "nodeStatus": ["Activo", "Conectado", "Conectado", "Activo", "Medición activa"],
+      "nodeStatus": [
+        "Activo",
+        "Conectado",
+        "Conectado",
+        "Activo",
+        "Medición activa"
+      ],
       "transformations": [
-        { "before": "Consultas desordenadas", "after": "Flujo claro de consultas" },
-        { "before": "Información dispersa", "after": "Una única fuente de información" },
-        { "before": "Propuesta poco clara", "after": "Un mensaje que se entiende rápido" },
+        {
+          "before": "Consultas desordenadas",
+          "after": "Flujo claro de consultas"
+        },
+        {
+          "before": "Información dispersa",
+          "after": "Una única fuente de información"
+        },
+        {
+          "before": "Propuesta poco clara",
+          "after": "Un mensaje que se entiende rápido"
+        },
         { "before": "Tareas repetitivas", "after": "Automatizaciones simples" },
         { "before": "Sin medición", "after": "Decisiones basadas en datos" },
-        { "before": "Web aislada", "after": "Experiencia preparada para convertir" }
+        {
+          "before": "Web aislada",
+          "after": "Experiencia preparada para convertir"
+        }
       ]
     },
     "solutions": {
@@ -88,11 +112,31 @@
       "available": "soluciones",
       "rowCta": "Hablar de esto",
       "cards": [
-        { "tag": "Consultas", "title": "Quiero generar más consultas", "description": "Landing pages, SEO local, formularios y WhatsApp directo." },
-        { "tag": "Ventas online", "title": "Quiero vender o recibir pedidos online", "description": "Catálogo digital, ecommerce, sistema de pedidos e integraciones." },
-        { "tag": "Automatización", "title": "Quiero dejar de responder siempre lo mismo", "description": "Automatizaciones que siguen flujos y reglas predefinidas: FAQs, WhatsApp y formularios que resuelven las consultas repetidas." },
-        { "tag": "Procesos internos", "title": "Quiero ordenar procesos internos", "description": "Software a medida, dashboards, CRM simple y sistemas de gestión." },
-        { "tag": "Agente de IA", "title": "Quiero sumar un empleado con inteligencia artificial", "description": "Un agente de IA que comprende el contexto, decide qué acción realizar, actualiza tus sistemas y deriva casos a una persona cuando es necesario." }
+        {
+          "tag": "Consultas",
+          "title": "Quiero generar más consultas",
+          "description": "Landing pages, SEO local, formularios y WhatsApp directo."
+        },
+        {
+          "tag": "Ventas online",
+          "title": "Quiero vender o recibir pedidos online",
+          "description": "Catálogo digital, ecommerce, sistema de pedidos e integraciones."
+        },
+        {
+          "tag": "Automatización",
+          "title": "Quiero dejar de responder siempre lo mismo",
+          "description": "Automatizaciones que siguen flujos y reglas predefinidas: FAQs, WhatsApp y formularios que resuelven las consultas repetidas."
+        },
+        {
+          "tag": "Procesos internos",
+          "title": "Quiero ordenar procesos internos",
+          "description": "Software a medida, dashboards, CRM simple y sistemas de gestión."
+        },
+        {
+          "tag": "Agente de IA",
+          "title": "Quiero sumar un empleado con inteligencia artificial",
+          "description": "Un agente de IA que comprende el contexto, decide qué acción realizar, actualiza tus sistemas y deriva casos a una persona cuando es necesario."
+        }
       ]
     },
     "process": {
@@ -102,16 +146,58 @@
       "titleHighlight": "sistema que funciona",
       "stepLabel": "Paso",
       "steps": [
-        { "number": "01", "category": "Diagnóstico", "title": "Encontramos la fricción.", "description": "Detectamos dónde se pierden consultas, tiempo y oportunidades. Analizamos tus canales, procesos y herramientas antes de proponer una solución.", "outcome": "Mapa de oportunidades" },
-        { "number": "02", "category": "Estrategia", "title": "Definimos la jugada correcta.", "description": "Priorizamos lo que realmente necesita el negocio: una landing, un ecommerce, una automatización o un sistema interno.", "outcome": "Ruta de proyecto" },
-        { "number": "03", "category": "Diseño y desarrollo", "title": "Lo volvemos real.", "description": "Diseñamos, desarrollamos e integramos cada pieza con foco en claridad, conversión, rendimiento y escalabilidad.", "outcome": "Sistema listo para operar" },
-        { "number": "04", "category": "Lanzamiento y mejora", "title": "Lo hacemos crecer.", "description": "Publicamos, medimos resultados y mejoramos el sistema con el negocio ya en movimiento.", "outcome": "Evolución continua" }
+        {
+          "number": "01",
+          "category": "Diagnóstico",
+          "title": "Encontramos la fricción.",
+          "description": "Detectamos dónde se pierden consultas, tiempo y oportunidades. Analizamos tus canales, procesos y herramientas antes de proponer una solución.",
+          "outcome": "Mapa de oportunidades"
+        },
+        {
+          "number": "02",
+          "category": "Estrategia",
+          "title": "Definimos la jugada correcta.",
+          "description": "Priorizamos lo que realmente necesita el negocio: una landing, un ecommerce, una automatización o un sistema interno.",
+          "outcome": "Ruta de proyecto"
+        },
+        {
+          "number": "03",
+          "category": "Diseño y desarrollo",
+          "title": "Lo volvemos real.",
+          "description": "Diseñamos, desarrollamos e integramos cada pieza con foco en claridad, conversión, rendimiento y escalabilidad.",
+          "outcome": "Sistema listo para operar"
+        },
+        {
+          "number": "04",
+          "category": "Lanzamiento y mejora",
+          "title": "Lo hacemos crecer.",
+          "description": "Publicamos, medimos resultados y mejoramos el sistema con el negocio ya en movimiento.",
+          "outcome": "Evolución continua"
+        }
       ],
       "visual": {
-        "frictionNodes": ["Consultas", "WhatsApp", "Formularios", "Sitio web", "Tareas manuales", "Planillas"],
+        "frictionNodes": [
+          "Consultas",
+          "WhatsApp",
+          "Formularios",
+          "Sitio web",
+          "Tareas manuales",
+          "Planillas"
+        ],
         "strategyLabel": "Prioridad definida",
-        "buildLayers": ["Estructura", "Diseño", "Contenido", "Desarrollo", "Integraciones"],
-        "growthMetrics": ["Consultas", "Conversión", "Tiempo ahorrado", "Evolución"]
+        "buildLayers": [
+          "Estructura",
+          "Diseño",
+          "Contenido",
+          "Desarrollo",
+          "Integraciones"
+        ],
+        "growthMetrics": [
+          "Consultas",
+          "Conversión",
+          "Tiempo ahorrado",
+          "Evolución"
+        ]
       },
       "closing": {
         "phrase": "Menos fricción. Más claridad. Un sistema preparado para crecer.",
@@ -127,15 +213,45 @@
       "ctaBtn": "Escribir por WhatsApp",
       "questionsCount": "preguntas",
       "items": [
-        { "question": "¿Necesito una web si ya vendo por Instagram?", "answer": "Instagram te ayuda a mostrar, pero no siempre a convertir: mucha gente busca en Google, quiere ver precios claros o compararte con otros antes de escribir. Una web ordena esa parte y hace que Instagram funcione mejor, no que lo reemplace." },
-        { "question": "¿Qué conviene más: web, landing, ecommerce o catálogo digital?", "answer": "Depende de tu objetivo. Si necesitás captar consultas de una campaña puntual, una landing. Si buscás vender online, un ecommerce. Si querés mostrar tu oferta completa sin cobrar en línea, un catálogo digital. En el diagnóstico te decimos cuál tiene sentido para tu negocio." },
-        { "question": "¿Cuánto cuesta una página web en Argentina en 2026?", "answer": "Varía según el alcance: una landing simple no es lo mismo que un ecommerce o un sistema a medida. Te armamos una propuesta con precio claro después del diagnóstico, sin sorpresas ni paquetes genéricos." },
-        { "question": "¿Pueden conectar la web con WhatsApp?", "answer": "Sí. Es una de las automatizaciones más pedidas: formularios que llegan directo a tu WhatsApp, botones de contacto rápido y flujos que ordenan la consulta antes de que te escriban." },
-        { "question": "¿Puedo actualizar mi web sin saber programar?", "answer": "Sí, trabajamos con paneles simples para que puedas cambiar textos, precios o imágenes sin depender de nosotros para cada detalle." },
-        { "question": "¿Trabajan con negocios de Córdoba y Argentina?", "answer": "Sí, somos una agencia con base en Córdoba y trabajamos con negocios de toda Argentina y LATAM, de forma remota o presencial según el proyecto." },
-        { "question": "¿También hacen automatizaciones o sistemas internos?", "answer": "Sí. Además de webs y ecommerce, desarrollamos software a medida, dashboards, CRMs simples y automatizaciones para ordenar procesos internos." },
-        { "question": "¿Cuánto tarda un proyecto web profesional?", "answer": "Una landing puede estar lista en semanas; un ecommerce o sistema a medida lleva más tiempo según el alcance. En la etapa de estrategia te damos un plazo concreto." }
+        {
+          "question": "¿Necesito una web si ya vendo por Instagram?",
+          "answer": "Instagram te ayuda a mostrar, pero no siempre a convertir: mucha gente busca en Google, quiere ver precios claros o compararte con otros antes de escribir. Una web ordena esa parte y hace que Instagram funcione mejor, no que lo reemplace."
+        },
+        {
+          "question": "¿Qué conviene más: web, landing, ecommerce o catálogo digital?",
+          "answer": "Depende de tu objetivo. Si necesitás captar consultas de una campaña puntual, una landing. Si buscás vender online, un ecommerce. Si querés mostrar tu oferta completa sin cobrar en línea, un catálogo digital. En el diagnóstico te decimos cuál tiene sentido para tu negocio."
+        },
+        {
+          "question": "¿Cuánto cuesta una página web en Argentina en 2026?",
+          "answer": "Varía según el alcance: una landing simple no es lo mismo que un ecommerce o un sistema a medida. Te armamos una propuesta con precio claro después del diagnóstico, sin sorpresas ni paquetes genéricos."
+        },
+        {
+          "question": "¿Pueden conectar la web con WhatsApp?",
+          "answer": "Sí. Es una de las automatizaciones más pedidas: formularios que llegan directo a tu WhatsApp, botones de contacto rápido y flujos que ordenan la consulta antes de que te escriban."
+        },
+        {
+          "question": "¿Puedo actualizar mi web sin saber programar?",
+          "answer": "Sí, trabajamos con paneles simples para que puedas cambiar textos, precios o imágenes sin depender de nosotros para cada detalle."
+        },
+        {
+          "question": "¿Trabajan con negocios de Córdoba y Argentina?",
+          "answer": "Sí. Tenemos base en Villa Carlos Paz y trabajamos con negocios y empresas de Córdoba y de toda Argentina, de forma remota o presencial según el proyecto."
+        },
+        {
+          "question": "¿También hacen automatizaciones o sistemas internos?",
+          "answer": "Sí. Además de webs y ecommerce, desarrollamos software a medida, dashboards, CRMs simples y automatizaciones para ordenar procesos internos."
+        },
+        {
+          "question": "¿Cuánto tarda un proyecto web profesional?",
+          "answer": "Una landing puede estar lista en semanas; un ecommerce o sistema a medida lleva más tiempo según el alcance. En la etapa de estrategia te damos un plazo concreto."
+        }
       ]
+    },
+    "localAreas": {
+      "title": "Desarrollo web para empresas en Córdoba y Villa Carlos Paz",
+      "description": "Conocé cómo enfocamos el desarrollo web según el contexto comercial de cada ciudad, sin perder una estrategia digital conectada.",
+      "villaCarlosPazLink": "Páginas web para negocios de Villa Carlos Paz",
+      "cordobaLink": "Desarrollo web para empresas de Córdoba"
     },
     "testimonials": {
       "sectionLabel": "Clientes",
@@ -144,8 +260,14 @@
       "googleBadge": "Google",
       "footerText": "Reseñas verificadas en Google Business Profile",
       "items": [
-        { "quote": "Mi experiencia con ellos fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel técnico espectacular. Estoy muy contento con los resultados: mi marca y mi sitio web quedaron excelentes.", "author": "Fernando Catalano" },
-        { "quote": "Nos ayudaron con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron. La página, un lujo.", "author": "Vale Sosa" },
+        {
+          "quote": "Mi experiencia con ellos fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel técnico espectacular. Estoy muy contento con los resultados: mi marca y mi sitio web quedaron excelentes.",
+          "author": "Fernando Catalano"
+        },
+        {
+          "quote": "Nos ayudaron con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron. La página, un lujo.",
+          "author": "Vale Sosa"
+        },
         { "quote": "Excelente servicio.", "author": "Enrique Callejon" }
       ]
     },
@@ -154,7 +276,14 @@
       "subtitle": "Te ayudamos a detectar qué parte de tu flujo digital está frenando consultas, ventas o productividad, y te proponemos una solución clara: web, landing, ecommerce, automatización o software a medida.",
       "ctaPrimary": "Pedir diagnóstico por WhatsApp",
       "ctaSecondary": "Enviar consulta",
-      "marquee": ["Webs", "Ecommerce", "Automatizaciones", "Software a medida", "Landing pages", "SEO local"]
+      "marquee": [
+        "Webs",
+        "Ecommerce",
+        "Automatizaciones",
+        "Software a medida",
+        "Landing pages",
+        "SEO local"
+      ]
     }
   },
   "Navbar": {
@@ -293,12 +422,30 @@
         "footnote": "Te contestamos al celular que dejaste, por llamada o WhatsApp."
       },
       "goals": [
-        { "title": "Quiero verme profesional online", "desc": "Necesito una web que hable bien de mi negocio y sume consultas." },
-        { "title": "Quiero vender por mi cuenta", "desc": "Catálogo o tienda propia, sin pagar comisión por cada venta." },
-        { "title": "Quiero dejar de responder siempre lo mismo", "desc": "Automatizar turnos, pedidos o consultas repetitivas." },
-        { "title": "Quiero ordenar un proceso interno", "desc": "Un sistema a medida para dejar de usar planillas sueltas." },
-        { "title": "Quiero renovar cómo se ve mi marca", "desc": "Logo, colores y piezas que representen lo que ofrecés." },
-        { "title": "Todavía no tengo claro qué necesito", "desc": "Contame tu situación y te decimos qué solución tiene sentido." }
+        {
+          "title": "Quiero verme profesional online",
+          "desc": "Necesito una web que hable bien de mi negocio y sume consultas."
+        },
+        {
+          "title": "Quiero vender por mi cuenta",
+          "desc": "Catálogo o tienda propia, sin pagar comisión por cada venta."
+        },
+        {
+          "title": "Quiero dejar de responder siempre lo mismo",
+          "desc": "Automatizar turnos, pedidos o consultas repetitivas."
+        },
+        {
+          "title": "Quiero ordenar un proceso interno",
+          "desc": "Un sistema a medida para dejar de usar planillas sueltas."
+        },
+        {
+          "title": "Quiero renovar cómo se ve mi marca",
+          "desc": "Logo, colores y piezas que representen lo que ofrecés."
+        },
+        {
+          "title": "Todavía no tengo claro qué necesito",
+          "desc": "Contame tu situación y te decimos qué solución tiene sentido."
+        }
       ],
       "back": "Volver",
       "continue": "Continuar",
@@ -409,7 +556,7 @@
     "sectionLabel": "Proyectos",
     "sectionTitle": "Trabajo\nselecto.",
     "headline-line1": "Trabajo",
-     "headline-line2": "selecto.",
+    "headline-line2": "selecto.",
     "sectionSubtitle": "Una selección de proyectos donde estrategia, diseño y tecnología convergen.",
     "viewAll": "Ver todos los proyectos",
     "viewProject": "Ver proyecto",
@@ -426,9 +573,9 @@
     "categories": {
       "Branding": "Branding",
       "Ecommerce": "Ecommerce",
-        "Diseño UX/UI": "Diseño UX/UI",
+      "Diseño UX/UI": "Diseño UX/UI",
       "Desarrollo Web": "Desarrollo Web",
-        "Diseño Grafico": "Diseño Gráfico",
+      "Diseño Grafico": "Diseño Gráfico",
       "webdesign": "Web Design",
       "Animaciones Web": "Animaciones Web",
       "SaaS": "SaaS",
@@ -442,7 +589,7 @@
       "Migración de Stack": "Migración de Stack",
       "Hardening": "Hardening",
       "Documentación Técnica": "Documentación Técnica",
-      "Software":"Software"
+      "Software": "Software"
     },
     "detail": {
       "client": "Cliente",
@@ -465,6 +612,16 @@
       "nextImage": "Imagen siguiente",
       "demoVideo": "Demo",
       "demoVideoAlt": "Video demo de {title}"
+    },
+    "localLanding": {
+      "villaCarlosPaz": {
+        "hotel-california": "Conocé nuestro enfoque para hoteles y alojamientos en Villa Carlos Paz",
+        "cari-turismo": "Volver a páginas web para turismo en Villa Carlos Paz",
+        "ranch-vcp": "Explorá soluciones web para gastronomía en Villa Carlos Paz",
+        "juicy-branding": "Ver desarrollo web para comercios de Villa Carlos Paz",
+        "muros-redes": "Conocé soluciones digitales para empresas de Villa Carlos Paz",
+        "alquileres-carlos-paz": "Volver a desarrollo web para negocios de Villa Carlos Paz"
+      }
     },
     "pageTitle": "Portfolio de desarrollo web, software y branding | Synttek",
     "pageDescription": "Explorá proyectos de desarrollo web, software, branding y ecommerce creados por Synttek para marcas y negocios que buscan crecer con tecnología.",
@@ -602,6 +759,12 @@
     "closingEyebrow": "Siguiente paso",
     "closingTitle": "Si querés ordenar tu presencia digital o tu operación, empecemos por el problema correcto.",
     "closingBody": "Contanos qué necesitás construir, qué fricción querés resolver y en qué etapa está tu negocio. A partir de ahí definimos el mejor camino.",
+    "localAreas": {
+      "title": "Desarrollo web según el mercado local",
+      "description": "Si tu negocio opera en Villa Carlos Paz o Córdoba, podés conocer el enfoque específico para cada ciudad.",
+      "villaCarlosPazLink": "Páginas web para negocios de Villa Carlos Paz",
+      "cordobaLink": "Desarrollo web para empresas de Córdoba"
+    },
     "breadcrumbsServices": "Servicios",
     "breadcrumbHome": "Inicio"
   },
@@ -744,48 +907,44 @@
     "waMessage": "Hola Synttek, soy de Villa Carlos Paz y me interesa mejorar mi presencia digital",
     "hero": {
       "eyebrow": "Agencia web · Villa Carlos Paz",
-      "headline": "Tu negocio de Carlos Paz, con la presencia que se merece",
-      "headlineHighlight": ["se", "merece"],
-      "subtitle": "Diseñamos y desarrollamos sitios web que ordenan tu marca, capturan consultas y funcionan solos — para que no dependas de Instagram ni del WhatsApp todo el día.",
+      "headline": "Desarrollo web en Villa Carlos Paz para empresas y negocios",
+      "headlineHighlight": ["Villa", "Carlos", "Paz"],
+      "subtitle": "Diseñamos páginas web para negocios de Villa Carlos Paz y el Valle de Punilla: turismo, gastronomía, hotelería y comercios que buscan generar consultas desde Google, reservas y WhatsApp.",
       "ctaPrimary": "Solicitar diagnóstico gratuito",
       "ctaSecondary": "Ver proyectos"
     },
     "services": {
       "sectionLabel": "Qué hacemos",
-      "title": "Todo lo que tu negocio de Carlos Paz necesita para verse profesional",
-      "titleHighlight": ["verse", "profesional"],
-      "subtitle": "Elegimos la solución según tu negocio, no al revés.",
+      "title": "Páginas web para negocios de Villa Carlos Paz",
+      "titleHighlight": ["Villa", "Carlos", "Paz"],
+      "subtitle": "Pensadas para mostrar la propuesta, acompañar la temporada y facilitar consultas, reservas o pedidos.",
       "items": [
         {
           "icon": "globe",
-          "title": "Sitios web que convierten",
-          "description": "Tu web carga en menos de 1 segundo y lleva al visitante a consultarte, no a perderse."
+          "title": "Sitios web para mostrar tu propuesta",
+          "description": "Información clara, servicios y llamados a la acción para que quien llega desde Google entienda qué hacés y cómo consultarte."
         },
         {
           "icon": "map-pin",
-          "title": "Landing pages para temporada alta",
-          "description": "Captá turistas y locales cuando buscan en Google, justo antes de decidir."
+          "title": "Landing pages para temporada y campañas",
+          "description": "Páginas enfocadas en excursiones, estadías, gastronomía u ofertas puntuales, con contacto directo por WhatsApp."
         },
         {
           "icon": "zap",
-          "title": "Software a medida",
-          "description": "Dejás de resolver todo con planillas. Tus procesos funcionan solos."
+          "title": "Reservas, pedidos y procesos",
+          "description": "Sistemas a medida para ordenar datos, consultas y tareas que hoy dependen de planillas o mensajes dispersos."
         },
         {
           "icon": "bot",
-          "title": "Automatizaciones",
-          "description": "Respondés consultas, confirmás reservas y mandás presupuestos sin estar disponible todo el día."
+          "title": "Automatizaciones de consultas",
+          "description": "Flujos para derivar formularios, responder preguntas frecuentes y dar seguimiento sin perder conversaciones importantes."
         }
       ]
     },
     "proof": {
       "eyebrow": "Caso real · Villa Carlos Paz",
-      "title": "<hl>Cari Turismo</hl>: de Instagram a un sistema que trabaja solo",
-      "description": "Agencia de turismo de Carlos Paz que operaba todo por WhatsApp e Instagram. Desarrollamos su sitio web con SEO local y conversión directa por WhatsApp. Hoy reciben consultas organizadas sin depender de responder todo a mano.",
-      "metricValue": 3,
-      "metricPrefix": "+",
-      "metricSuffix": "",
-      "metricLabel": "canales de captación activos",
+      "title": "<hl>Cari Turismo</hl>: una web pensada para consultas por WhatsApp",
+      "description": "Proyecto para una agencia de turismo de Villa Carlos Paz, con una propuesta editorial, SEO local y contacto directo por WhatsApp.",
       "ctaLabel": "Ver el proyecto"
     },
     "cta": {
@@ -793,61 +952,91 @@
       "subtitle": "Contanos qué necesitás. Respondemos en menos de 2 horas.",
       "ctaPrimary": "Hablar por WhatsApp",
       "note": "Sin compromiso. Primera consulta gratuita."
+    },
+    "faq": {
+      "sectionLabel": "Preguntas frecuentes",
+      "title": "Consultas sobre desarrollo web en Villa Carlos Paz",
+      "askMore": "¿Tenés otra consulta?",
+      "askMoreDetail": "Escribinos por WhatsApp y contanos de tu negocio.",
+      "ctaBtn": "Escribir por WhatsApp",
+      "questionsCount": "preguntas",
+      "items": [
+        { "question": "¿Hacen páginas web para hoteles, cabañas y alojamientos de Villa Carlos Paz?", "answer": "Sí. Podemos organizar la información de estadías, servicios y formas de reserva para que las consultas lleguen por WhatsApp o el canal que use tu negocio." },
+        { "question": "¿Una web puede ayudar a recibir consultas desde Google?", "answer": "Sí. Trabajamos la estructura, el contenido y la información de contacto para que el sitio explique la propuesta con claridad a quienes buscan opciones en la zona." },
+        { "question": "¿Sirve para gastronomía, comercios o turismo en temporada?", "answer": "Sí. Una landing o sitio puede concentrar carta, servicios, ofertas, reservas y contacto directo cuando la demanda cambia por temporada o campaña." },
+        { "question": "¿Pueden conectar formularios y WhatsApp?", "answer": "Sí. Podemos derivar consultas desde formularios y botones de contacto para que el equipo responda con contexto y sin perder mensajes." },
+        { "question": "¿Qué conviene: una web completa o una landing page?", "answer": "Depende de la oferta y el objetivo. Una landing sirve para una campaña o servicio puntual; un sitio completo ordena una propuesta más amplia." }
+      ]
     }
   },
   "Cordoba": {
     "waMessage": "Hola Synttek, soy de Córdoba y me interesa mejorar mi presencia digital",
     "hero": {
       "eyebrow": "Agencia web · Córdoba",
-      "headline": "La presencia digital que tu negocio cordobés necesita",
-      "headlineHighlight": ["cordobés", "necesita"],
-      "subtitle": "Diseñamos y desarrollamos sitios web para pymes y negocios de Córdoba que quieren captar más clientes, verse profesionales y dejar de depender de Instagram y WhatsApp.",
+      "headline": "Desarrollo web en Córdoba para empresas y negocios",
+      "headlineHighlight": ["Córdoba"],
+      "subtitle": "Diseñamos sitios web, landing pages, ecommerce y automatizaciones para empresas, pymes y profesionales de Córdoba que buscan generar leads y ordenar sus procesos.",
       "ctaPrimary": "Solicitar diagnóstico gratuito",
       "ctaSecondary": "Ver proyectos"
     },
     "services": {
       "sectionLabel": "Qué hacemos",
-      "title": "Todo lo que tu negocio de Córdoba necesita para verse profesional",
-      "titleHighlight": ["verse", "profesional"],
-      "subtitle": "Elegimos la solución según tu negocio, no al revés.",
+      "title": "Sistemas digitales para empresas de Córdoba",
+      "titleHighlight": ["empresas", "Córdoba"],
+      "subtitle": "Conectamos campañas, landing pages, ventas y operación para que cada canal tenga un objetivo claro.",
       "items": [
         {
           "icon": "globe",
-          "title": "Sitios web que convierten",
-          "description": "Tu web carga en menos de 1 segundo y convierte visitas en consultas reales."
+          "title": "Sitios web y ecommerce",
+          "description": "Webs para explicar servicios, tiendas para vender y experiencias que convierten visitas en consultas o compras."
         },
         {
           "icon": "map-pin",
-          "title": "Landing pages para campañas",
-          "description": "Capturá leads de Google Ads o redes sociales con páginas diseñadas para convertir."
+          "title": "Landing pages para campañas Ads",
+          "description": "Páginas específicas para captar leads desde Google Ads, redes o campañas comerciales con una propuesta clara."
         },
         {
           "icon": "zap",
-          "title": "Software a medida",
-          "description": "Automatizá procesos internos y dejá de resolver todo con planillas de Excel."
+          "title": "CRM y sistemas a medida",
+          "description": "Herramientas para ordenar prospectos, datos y procesos internos sin seguir dependiendo de planillas aisladas."
         },
         {
           "icon": "bot",
-          "title": "Automatizaciones",
-          "description": "Respondé consultas, enviá presupuestos y confirmá pedidos sin estar disponible todo el día."
+          "title": "Automatizaciones y WhatsApp",
+          "description": "Flujos para calificar consultas, derivar leads, enviar información y conectar WhatsApp con la operación comercial."
         }
       ]
     },
     "proof": {
-      "eyebrow": "Caso real · Córdoba",
-      "title": "<hl>Cari Turismo</hl>: un sistema digital que trabaja solo",
-      "description": "Agencia de turismo de la provincia de Córdoba que operaba todo por WhatsApp e Instagram. Desarrollamos su sitio web con SEO local y conversión directa por WhatsApp. Hoy reciben consultas organizadas sin depender de responder todo a mano.",
-      "metricValue": 3,
-      "metricPrefix": "+",
-      "metricSuffix": "",
-      "metricLabel": "canales de captación activos",
-      "ctaLabel": "Ver el proyecto"
+      "eyebrow": "Qué podemos construir",
+      "title": "Una presencia digital que acompaña <hl>ventas y operación</hl>",
+      "description": "No presentamos demos ni proyectos de otra ciudad como casos de Córdoba. Partimos de objetivos concretos: más leads, mejores campañas, ventas online o procesos más ordenados.",
+      "items": [
+        { "title": "Captación de leads", "description": "Landing pages y formularios conectados a campañas Ads, WhatsApp y el seguimiento comercial." },
+        { "title": "Ventas online", "description": "Ecommerce y catálogos digitales para vender, recibir pedidos o mostrar una propuesta completa." },
+        { "title": "Operación conectada", "description": "CRM, automatizaciones y sistemas a medida para reducir tareas repetitivas y centralizar información." }
+      ]
     },
     "cta": {
       "title": "¿Tenés un negocio en <hl>Córdoba</hl>?",
       "subtitle": "Contanos qué necesitás. Respondemos en menos de 2 horas.",
       "ctaPrimary": "Hablar por WhatsApp",
       "note": "Sin compromiso. Primera consulta gratuita."
+    },
+    "faq": {
+      "sectionLabel": "Preguntas frecuentes",
+      "title": "Consultas sobre desarrollo web en Córdoba",
+      "askMore": "¿Tenés otra consulta?",
+      "askMoreDetail": "Escribinos por WhatsApp y contanos el objetivo de tu empresa.",
+      "ctaBtn": "Escribir por WhatsApp",
+      "questionsCount": "preguntas",
+      "items": [
+        { "question": "¿Pueden hacer una landing para campañas de Google Ads?", "answer": "Sí. Diseñamos landing pages enfocadas en una oferta o campaña, con formularios y llamados a la acción para captar leads de forma clara." },
+        { "question": "¿Desarrollan ecommerce para empresas de Córdoba?", "answer": "Sí. Según el modelo de venta, podemos crear una tienda, un catálogo digital o una experiencia para recibir pedidos y consultas." },
+        { "question": "¿Se puede conectar la web con WhatsApp y un CRM?", "answer": "Sí. Podemos conectar formularios, WhatsApp y herramientas de seguimiento para ordenar las consultas comerciales." },
+        { "question": "¿También desarrollan sistemas internos?", "answer": "Sí. Creamos software y automatizaciones para centralizar procesos que hoy se resuelven con planillas, chats y tareas manuales." },
+        { "question": "¿Trabajan de forma remota con empresas de Córdoba?", "answer": "Sí. Trabajamos de forma remota y definimos el alcance, los canales y los próximos pasos según las necesidades de cada proyecto." }
+      ]
     }
   },
   "NotFoundPage": {

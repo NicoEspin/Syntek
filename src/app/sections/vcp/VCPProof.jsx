@@ -6,13 +6,10 @@ import { useLocale, useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import ProjectCard from "@/app/components/ProjectCard";
 import ProjectCursor from "@/app/components/ProjectCursor";
-import AnimatedCounter from "@/app/components/AnimatedCounter";
 import { getProjectById } from "@/data/projects";
 
 const ease = [0.16, 1, 0.3, 1];
 
-// TODO: reemplazar la métrica destacada (proof.metricValue en messages/es.json
-// y messages/en.json) con un dato real de Cari Turismo cuando esté disponible.
 const VCPProof = () => {
   const locale = useLocale();
   const t = useTranslations("VCP.proof");
@@ -56,26 +53,14 @@ const VCPProof = () => {
               </motion.h2>
             </div>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3, ease }}
-              className="flex max-w-xs flex-col gap-4 md:items-end md:text-right"
+              className="max-w-xs text-sm font-light leading-relaxed text-white/40 md:text-right"
             >
-              <p className="text-sm font-light leading-relaxed text-white/40">{t("description")}</p>
-              <div className="flex items-end gap-2">
-                <span className="text-3xl font-black tracking-tight text-[#A1E233]">
-                  <AnimatedCounter
-                    target={t.raw("metricValue")}
-                    prefix={t("metricPrefix")}
-                    suffix={t("metricSuffix")}
-                  />
-                </span>
-                <span className="mb-1 text-[10px] uppercase tracking-[0.18em] text-white/35">
-                  {t("metricLabel")}
-                </span>
-              </div>
-            </motion.div>
+              {t("description")}
+            </motion.p>
           </div>
 
           <motion.div

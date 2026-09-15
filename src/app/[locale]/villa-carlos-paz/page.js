@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   const isEs = locale === "es";
   const path = "/villa-carlos-paz";
   const title = isEs
-    ? "Agencia Web en Villa Carlos Paz | Synttek"
+    ? "Desarrollo Web en Villa Carlos Paz | Synttek"
     : "Web Agency in Villa Carlos Paz | Synttek";
   const description = isEs
     ? "Desarrollamos sitios web, landing pages y software a medida para negocios de Villa Carlos Paz y la región. Presencia digital profesional que convierte visitas en consultas."
@@ -69,11 +69,14 @@ export async function generateMetadata({ params }) {
 
 export default async function VillaCarlosPazPage({ params }) {
   const { locale } = await params;
-  const faqTranslations = await getTranslations({ locale, namespace: "HomeV2.faq" });
+  const faqTranslations = await getTranslations({ locale, namespace: "VCP.faq" });
   const faqs = faqTranslations.raw("items");
 
   const structuredData = buildGraphJsonLd([
-    buildVillaCarlosPazJsonLd(getCanonicalUrl(locale, "/villa-carlos-paz")),
+    buildVillaCarlosPazJsonLd({
+      locale,
+      url: getCanonicalUrl(locale, "/villa-carlos-paz"),
+    }),
     buildFaqPageJsonLd(faqs),
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: getCanonicalUrl(locale) },
@@ -97,9 +100,9 @@ export default async function VillaCarlosPazPage({ params }) {
           "VCP.services",
           "VCP.proof",
           "VCP.cta",
+          "VCP.faq",
           "Homepage.heroCards",
           "Projects",
-          "HomeV2.faq",
           "HomeV2.testimonials",
           "HomeV2.waMessage",
           "ChatBot",
@@ -111,7 +114,7 @@ export default async function VillaCarlosPazPage({ params }) {
           <VCPServices />
           <ProcessSection />
           <VCPProof />
-          <FaqV2 />
+          <FaqV2 namespace="VCP.faq" waNamespace="VCP" />
           <TestimonialsSection />
           <VCPCta />
         </main>

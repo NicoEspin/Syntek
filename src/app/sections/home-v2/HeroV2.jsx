@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import MagneticButton from "@/app/components/MagneticButton";
 import HeroFloatingCards from "@/app/components/HeroFloatingCards";
-import RotatingWord from "@/app/components/RotatingWord";
 import useMediaQuery from "@/app/components/useMediaQuery";
 import useHeroGlow from "@/app/components/useHeroGlow";
 import { getWhatsAppUrl } from "@/lib/business";
@@ -30,7 +29,6 @@ const HeroV2 = () => {
   const t = useTranslations("HomeV2");
   const tc = useTranslations("Homepage");
   const waHref = getWhatsAppUrl(t("waMessage"));
-  const rotatingLocations = t.raw("hero.rotatingLocations");
   const prefersReduced = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [mounted, setMounted] = useState(false);
@@ -119,17 +117,7 @@ const HeroV2 = () => {
               transition={{ duration: 0.9, delay: 0.2, ease }}
               className="block"
             >
-              {t("hero.headlinePre")}
-            </motion.span>
-          </span>{" "}
-          <span className="block overflow-hidden text-[#A1E233]">
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease }}
-              className="block"
-            >
-              <RotatingWord words={rotatingLocations} />
+              {t("hero.headline")}
             </motion.span>
           </span>
         </h1>

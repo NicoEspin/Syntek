@@ -15,6 +15,7 @@ import {
 import { getCanonicalUrl } from "@/lib/seo";
 
 export const buildOrganizationJsonLd = () => ({
+  "@id": `${SITE_ORIGIN}/#organization`,
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_CANONICAL_HOME_URL,
@@ -73,6 +74,7 @@ export const buildProfessionalServiceJsonLd = () => ({
 });
 
 export const buildLocalBusinessJsonLd = () => ({
+  "@id": `${SITE_ORIGIN}/#local-business`,
   "@type": "LocalBusiness",
   name: SITE_NAME,
   url: SITE_CANONICAL_HOME_URL,
@@ -97,78 +99,62 @@ export const buildLocalBusinessJsonLd = () => ({
   ],
 });
 
-export const buildVillaCarlosPazJsonLd = (url) => ({
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  name: SITE_NAME,
-  description:
-    "Agencia de desarrollo web y software a medida en Villa Carlos Paz, Córdoba.",
+const buildLocationServiceJsonLd = ({ city, description, locale, name, serviceType, url }) => ({
+  "@type": "Service",
+  name,
+  serviceType,
+  description,
   url,
-  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
-  email: BUSINESS_EMAIL,
-  telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
-  priceRange: "$$",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: BUSINESS_LOCATION.city,
-    addressRegion: BUSINESS_LOCATION.region,
-    addressCountry: BUSINESS_LOCATION.countryCode,
+  inLanguage: locale,
+  provider: {
+    "@id": `${SITE_ORIGIN}/#organization`,
   },
-  areaServed: [
-    {
-      "@type": "City",
-      name: "Villa Carlos Paz",
-      containedInPlace: { "@type": "State", name: "Córdoba" },
-    },
-    { "@type": "State", name: "Córdoba" },
-    { "@type": "Country", name: "Argentina" },
-  ],
   serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: { "@type": "GeoCoordinates", latitude: -31.4235, longitude: -64.5003 },
-    geoRadius: "80000",
+    "@type": "City",
+    name: city,
+    containedInPlace: { "@type": "State", name: "Córdoba" },
+  },
+  areaServed: {
+    "@type": "City",
+    name: city,
+    containedInPlace: { "@type": "State", name: "Córdoba" },
   },
 });
 
-export const buildCordobaJsonLd = (url) => ({
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  name: SITE_NAME,
-  description:
-    "Agencia de desarrollo web y software a medida para negocios y pymes de Córdoba, Argentina.",
-  url,
-  image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
-  email: BUSINESS_EMAIL,
-  telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
-  priceRange: "$$",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: BUSINESS_LOCATION.city,
-    addressRegion: BUSINESS_LOCATION.region,
-    addressCountry: BUSINESS_LOCATION.countryCode,
-  },
-  areaServed: [
-    {
-      "@type": "City",
-      name: "Córdoba",
-      containedInPlace: { "@type": "State", name: "Córdoba" },
-    },
-    {
-      "@type": "City",
-      name: "Villa Carlos Paz",
-      containedInPlace: { "@type": "State", name: "Córdoba" },
-    },
-    { "@type": "State", name: "Córdoba" },
-    { "@type": "Country", name: "Argentina" },
-  ],
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: { "@type": "GeoCoordinates", latitude: -31.4201, longitude: -64.1888 },
-    geoRadius: "100000",
-  },
-});
+export const buildVillaCarlosPazJsonLd = ({ locale, url }) => {
+  const isEs = locale === "es";
+
+  return buildLocationServiceJsonLd({
+    city: "Villa Carlos Paz",
+    description: isEs
+      ? "Desarrollo web para empresas y negocios de Villa Carlos Paz."
+      : "Web development for companies and businesses in Villa Carlos Paz.",
+    locale,
+    name: isEs
+      ? "Desarrollo web en Villa Carlos Paz"
+      : "Web development in Villa Carlos Paz",
+    serviceType: isEs ? "Desarrollo web" : "Web development",
+    url,
+  });
+};
+
+export const buildCordobaJsonLd = ({ locale, url }) => {
+  const isEs = locale === "es";
+
+  return buildLocationServiceJsonLd({
+    city: "Córdoba",
+    description: isEs
+      ? "Desarrollo web para empresas, pymes y profesionales de Córdoba."
+      : "Web development for companies, SMEs and professionals in Córdoba.",
+    locale,
+    name: isEs ? "Desarrollo web en Córdoba" : "Web development in Córdoba",
+    serviceType: isEs ? "Desarrollo web" : "Web development",
+    url,
+  });
+};
 
 export const buildPublisherJsonLd = () => ({
+  "@id": `${SITE_ORIGIN}/#organization`,
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_CANONICAL_HOME_URL,

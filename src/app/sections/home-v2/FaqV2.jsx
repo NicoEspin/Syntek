@@ -81,9 +81,9 @@ function FaqItem({ question, answer, index, isOpen, onToggle }) {
   );
 }
 
-const FaqV2 = () => {
-  const t = useTranslations("HomeV2.faq");
-  const waHref = getWhatsAppUrl(useTranslations("HomeV2")("waMessage"));
+const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
+  const t = useTranslations(namespace);
+  const waHref = getWhatsAppUrl(useTranslations(waNamespace)("waMessage"));
   const items = t.raw("items");
   const [openIndex, setOpenIndex] = useState(null);
 

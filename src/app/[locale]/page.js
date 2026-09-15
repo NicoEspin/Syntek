@@ -6,6 +6,7 @@ import JsonLd from "@/components/JsonLd";
 import HeroV2 from "@/app/sections/home-v2/HeroV2";
 import Projects from "@/app/sections/Projects";
 import ProcessSection from "@/app/sections/home-v2/ProcessSection";
+import LocalAreas from "@/app/sections/home-v2/LocalAreas";
 import { getTranslations } from "next-intl/server";
 import {
   SITE_NAME,
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === "es";
   const title = isEs
-    ? "Synttek - Desarrollo web, software y automatizaciones en Córdoba"
+    ? "Synttek | Desarrollo Web, Software y Automatizaciones"
     : "Web development, software and automation agency in Cordoba";
   const description = isEs
     ? "Creamos sitios web, software a medida, ecommerce y automatizaciones para marcas, pymes y negocios que quieren crecer con tecnología."
@@ -116,6 +117,7 @@ export default async function Home({ params }) {
           "HomeV2.solutions",
           "HomeV2.process",
           "HomeV2.faq",
+          "HomeV2.localAreas",
           "HomeV2.testimonials",
           "HomeV2.ctaFinal",
           "HomeV2.waMessage",
@@ -135,6 +137,7 @@ export default async function Home({ params }) {
           <SolutionsSection />
           <Services />
           <Projects locale={locale} />
+          <LocalAreas />
           <ProcessSection />
           <FaqV2 />
           <TestimonialsSection />

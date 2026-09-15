@@ -2,36 +2,21 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
-import ProjectCard from "@/app/components/ProjectCard";
-import ProjectCursor from "@/app/components/ProjectCursor";
-import AnimatedCounter from "@/app/components/AnimatedCounter";
-import { getProjectById } from "@/data/projects";
 
 const ease = [0.16, 1, 0.3, 1];
 
-// TODO: agregar caso cordobés cuando esté disponible — hoy no tenemos un
-// cliente de Córdoba capital, así que reutilizamos Cari Turismo (Villa Carlos
-// Paz, provincia de Córdoba). Reemplazar `project` y `proof.metricValue` en
-// messages/es.json y messages/en.json cuando exista un caso real de la capital.
 const CordobaProof = () => {
-  const locale = useLocale();
   const t = useTranslations("Cordoba.proof");
-  const tProjects = useTranslations("Projects");
-  const project = getProjectById("cari-turismo", locale);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-5%" });
-
-  if (!project) return null;
 
   return (
     <section
       aria-labelledby="cordoba-proof-heading"
       className="relative overflow-hidden px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
-      <ProjectCursor label={tProjects("viewProject")} />
-
       <div className="pointer-events-none absolute inset-0">
         <div
           style={{
@@ -58,26 +43,14 @@ const CordobaProof = () => {
               </motion.h2>
             </div>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3, ease }}
-              className="flex max-w-xs flex-col gap-4 md:items-end md:text-right"
+              className="max-w-xs text-sm font-light leading-relaxed text-white/40 md:text-right"
             >
-              <p className="text-sm font-light leading-relaxed text-white/40">{t("description")}</p>
-              <div className="flex items-end gap-2">
-                <span className="text-3xl font-black tracking-tight text-[#A1E233]">
-                  <AnimatedCounter
-                    target={t.raw("metricValue")}
-                    prefix={t("metricPrefix")}
-                    suffix={t("metricSuffix")}
-                  />
-                </span>
-                <span className="mb-1 text-[10px] uppercase tracking-[0.18em] text-white/35">
-                  {t("metricLabel")}
-                </span>
-              </div>
-            </motion.div>
+              {t("description")}
+            </motion.p>
           </div>
 
           <motion.div
@@ -89,13 +62,19 @@ const CordobaProof = () => {
           />
         </div>
 
-        <ProjectCard
-          project={project}
-          variant="featured"
-          index={0}
-          locale={locale}
-          titleClassName="text-[#A1E233]"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2, ease }}
+          className="grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-3"
+        >
+          {t.raw("items").map((item) => (
+            <article key={item.title} className="bg-neutral-900 p-7">
+              <h3 className="text-lg font-semibold tracking-tight text-white">{item.title}</h3>
+              <p className="mt-3 text-sm font-light leading-relaxed text-white/50">{item.description}</p>
+            </article>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

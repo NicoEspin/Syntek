@@ -128,6 +128,7 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
   const problemsInView = useInView(problemsRef, { once: true, margin: "-10%" });
   const processInView = useInView(processRef, { once: true, margin: "-10%" });
   const projectsInView = useInView(projectsRef, { once: true, margin: "-10%" });
+  const isWebDevelopment = service.slug === "desarrollo-web";
 
   return (
     <main className="overflow-hidden bg-[#0a0a0a] text-white">
@@ -331,6 +332,27 @@ export default function ServiceDetail({ locale, service, relatedProjects, relate
           </div>
         </div>
       </section>
+
+      {isWebDevelopment ? (
+        <section className="px-4 py-16 md:px-5 lg:px-10 xl:px-24">
+          <div className="mx-auto max-w-screen-2xl border-y border-white/8 py-10">
+            <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+              {t("localAreas.title")}
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/50 md:text-base">
+              {t("localAreas.description")}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
+              <Link className="text-primary1 underline decoration-primary1/35 underline-offset-4" href="/villa-carlos-paz">
+                {t("localAreas.villaCarlosPazLink")}
+              </Link>
+              <Link className="text-primary1 underline decoration-primary1/35 underline-offset-4" href="/cordoba">
+                {t("localAreas.cordobaLink")}
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="px-4 py-24 md:px-5 lg:px-10 xl:px-24">
         <div className="mx-auto max-w-screen-2xl">

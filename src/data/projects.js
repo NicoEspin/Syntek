@@ -38,6 +38,7 @@ const projectEntries = [
     featured: false,
     link: "https://demo-hotel-eight.vercel.app/",
     relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-04-09T20:36:11.080Z",
   },
   {
@@ -163,6 +164,7 @@ const projectEntries = [
     featured: true,
     link: "https://www.cariturismo.com.ar/",
     relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-03-18T09:30:00.000Z",
   },
 
@@ -208,6 +210,7 @@ const projectEntries = [
     featured: true,
     link: "https://ranchvcp.vercel.app/",
     relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-08-03T12:00:00.000Z",
   },
   {
@@ -255,6 +258,7 @@ const projectEntries = [
     featured: false,
     link: null,
     relatedServiceSlugs: ["branding"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-08-07T13:00:00.000Z",
   },
   {
@@ -374,6 +378,7 @@ const projectEntries = [
     featured: false,
     link: null,
     relatedServiceSlugs: ["branding"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-08-07T19:00:00.000Z",
   },
   {
@@ -411,6 +416,7 @@ const projectEntries = [
     featured: false,
     link: "https://www.acarlospaz.com/",
     relatedServiceSlugs: ["desarrollo-web"],
+    localLanding: "villa-carlos-paz",
     updatedAt: "2026-05-13T00:00:00.000Z",
   },
   {
