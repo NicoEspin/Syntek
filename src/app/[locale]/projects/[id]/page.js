@@ -8,9 +8,11 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { SITE_NAME, SITE_ORIGIN } from "@/lib/site";
 import { getCanonicalUrl, getLanguageAlternates } from "@/lib/seo";
-import { buildCreativeWorkJsonLd } from "@/lib/jsonLd";
+import { buildCreativeWorkJsonLd, buildGraphJsonLd } from "@/lib/jsonLd";
 
+import { getBlogPostBySlug } from "@/data/blogPosts";
 import { getProjectById, getProjects, projects } from "@/data/projects";
+import { getServiceBySlug } from "@/data/services";
 
 import ProjectDetail from "./ProjectDetail";
 
@@ -31,8 +33,11 @@ export async function generateMetadata({ params }) {
   const t = await getTranslations({ locale, namespace: "Projects" });
   const baseUrl = SITE_ORIGIN;
 
-  const title = t("detailPageTitle", { title: project.title });
+  const title = project.caseStudy?.hero.title
+    ? `${project.caseStudy.hero.title} | ${SITE_NAME}`
+    : t("detailPageTitle", { title: project.title });
   const description =
+    project.caseStudy?.hero.description ||
     project?.description?.short ||
     (locale === "es"
       ? "Proyecto desarrollado por Synttek."
@@ -57,7 +62,7 @@ export async function generateMetadata({ params }) {
           url: `${baseUrl}${project.coverImage}`,
           width: 1600,
           height: 1000,
-          alt: title,
+          alt: project.caseStudy?.hero.imageAlt || title,
         },
       ],
     },
@@ -82,20 +87,28 @@ export default async function ProjectPage({ params }) {
 
   const currentIndex = localizedProjects.findIndex((entry) => entry.id === project.id);
   const nextProject = localizedProjects[(currentIndex + 1) % localizedProjects.length];
+  const relatedServices = (project.caseStudy?.relatedServiceSlugs || project.relatedServiceSlugs || [])
+    .map((slug) => getServiceBySlug(slug, locale))
+    .filter(Boolean);
+  const relatedArticles = (project.caseStudy?.relatedArticleSlugs || project.relatedArticleSlugs || [])
+    .map((slug) => getBlogPostBySlug(slug, locale))
+    .filter(Boolean);
   const projectUrl = getCanonicalUrl(locale, `/projects/${project.id}`);
 
-  const projectSchema = buildCreativeWorkJsonLd({
-    name: project.title,
-    description:
-      project?.description?.short ||
-      (locale === "es"
-        ? "Proyecto desarrollado por Synttek."
-        : "Project built by Synttek."),
-    url: projectUrl,
-    image: `${SITE_ORIGIN}${project.coverImage}`,
-    dateModified: project.updatedAt,
-    locale,
-  });
+  const projectSchema = buildGraphJsonLd([
+    buildCreativeWorkJsonLd({
+      name: project.title,
+      description:
+        project?.description?.short ||
+        (locale === "es"
+          ? "Proyecto desarrollado por Synttek."
+          : "Project built by Synttek."),
+      url: projectUrl,
+      image: `${SITE_ORIGIN}${project.coverImage}`,
+      dateModified: project.updatedAt,
+      locale,
+    }),
+  ]);
 
   return (
     <>
@@ -106,6 +119,8 @@ export default async function ProjectPage({ params }) {
           locale={locale}
           nextProject={nextProject}
           project={project}
+          relatedArticles={relatedArticles}
+          relatedServices={relatedServices}
         />
         <FloatingWidgets />
       </ScopedIntlProvider>

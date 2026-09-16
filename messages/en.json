@@ -45,7 +45,7 @@
     "waMessage": "Hi Synttek, I'd like a diagnosis of my digital presence",
     "hero": {
       "eyebrow": "Development agency · Córdoba, AR",
-      "headline": "Web development, software and automations for companies",
+      "headline": "Web development, software and automations <accent>for companies</accent>",
       "subtitle": "From Villa Carlos Paz, we work with companies in Córdoba and across Argentina to organize their digital presence, processes and inquiries.",
       "ctaPrimary": "Request a diagnosis on WhatsApp",
       "ctaSecondary": "See solutions"

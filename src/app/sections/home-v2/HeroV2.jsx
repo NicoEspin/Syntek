@@ -5,6 +5,8 @@ import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import MagneticButton from "@/app/components/MagneticButton";
 import HeroFloatingCards from "@/app/components/HeroFloatingCards";
+import RevealBlock from "@/app/components/RevealBlock";
+import SplitHeadline from "@/app/components/SplitHeadline";
 import useMediaQuery from "@/app/components/useMediaQuery";
 import useHeroGlow from "@/app/components/useHeroGlow";
 import { getWhatsAppUrl } from "@/lib/business";
@@ -24,10 +26,20 @@ const heroVariants = {
   }),
 };
 
+const getHeadlineParts = (headline) => {
+  const accent = headline.match(/<accent>(.*?)<\/accent>/)?.[1] ?? "";
+
+  return {
+    text: headline.replace(/<\/?accent>/g, ""),
+    highlightWords: accent.split(" "),
+  };
+};
+
 // ─── Componente principal ─────────────────────────────────────────────────────
 const HeroV2 = () => {
   const t = useTranslations("HomeV2");
   const tc = useTranslations("Homepage");
+  const headline = getHeadlineParts(t.raw("hero.headline"));
   const waHref = getWhatsAppUrl(t("waMessage"));
   const prefersReduced = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
@@ -106,30 +118,18 @@ const HeroV2 = () => {
           </span>
         </motion.div>
 
-        <h1
+        <SplitHeadline
+          as="h1"
           id="hero-v2-heading"
+          text={headline.text}
+          highlightWords={headline.highlightWords}
+          highlightClassName="text-primary1"
           className="mb-8 text-[clamp(2rem,4.6vw,3.7rem)] font-black leading-[1.02] tracking-tight text-white"
-        >
-          <span className="block overflow-hidden">
-            <motion.span
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.9, delay: 0.2, ease }}
-              className="block"
-            >
-              {t("hero.headline")}
-            </motion.span>
-          </span>
-        </h1>
+        />
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.55, ease }}
-          className="mb-10 max-w-xl text-base font-light leading-relaxed text-white/42 md:text-lg"
-        >
-          {t("hero.subtitle")}
-        </motion.p>
+        <RevealBlock delay={0.2} className="mb-10 max-w-xl text-base font-light leading-relaxed text-white/42 md:text-lg">
+          <p>{t("hero.subtitle")}</p>
+        </RevealBlock>
 
         <motion.div
           variants={heroVariants}

@@ -1,4 +1,5 @@
 import BrandingProjectDetail from "./templates/BrandingProjectDetail";
+import CaseStudyDetail from "./CaseStudyDetail";
 import DefaultProjectDetail from "./templates/DefaultProjectDetail";
 import SocialDesignProjectDetail from "./templates/SocialDesignProjectDetail";
 import ProjectLocalLandingLink from "@/app/components/ProjectLocalLandingLink";
@@ -9,7 +10,9 @@ const TEMPLATES_BY_CATEGORY = {
 };
 
 export default function ProjectDetail(props) {
-  const Template = TEMPLATES_BY_CATEGORY[props.project.category] ?? DefaultProjectDetail;
+  const Template = props.project.caseStudy
+    ? CaseStudyDetail
+    : TEMPLATES_BY_CATEGORY[props.project.category] ?? DefaultProjectDetail;
 
   return (
     <>

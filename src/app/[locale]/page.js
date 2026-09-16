@@ -137,7 +137,7 @@ export default async function Home({ params }) {
           <SolutionsSection />
           <Services />
           <Projects locale={locale} />
-          <LocalAreas />
+          {/* <LocalAreas /> */}
           <ProcessSection />
           <FaqV2 />
           <TestimonialsSection />

@@ -13,7 +13,6 @@ import { useTranslations } from "next-intl";
 import { useMemo, useRef } from "react";
 
 import ProjectCursor from "@/app/components/ProjectCursor";
-import { getServiceBySlug } from "@/data/services";
 import { getContrastTextColor } from "@/lib/utils";
 
 import NextProjectTeaser from "./NextProjectTeaser";
@@ -48,7 +47,7 @@ function sabanaSliceVariants(index, prefersReduced) {
   };
 }
 
-export default function BrandingProjectDetail({ project, nextProject, locale }) {
+export default function BrandingProjectDetail({ project, nextProject, relatedServices }) {
   const t = useTranslations("Projects");
   const prefersReduced = useReducedMotion();
   const heroRef = useRef(null);
@@ -77,14 +76,6 @@ export default function BrandingProjectDetail({ project, nextProject, locale }) 
         }
       }),
     [project.services, t]
-  );
-
-  const relatedServiceCards = useMemo(
-    () =>
-      (project.relatedServiceSlugs || [])
-        .map((slug) => getServiceBySlug(slug, locale))
-        .filter(Boolean),
-    [locale, project.relatedServiceSlugs],
   );
 
   const sidebarItems = [
@@ -304,13 +295,13 @@ export default function BrandingProjectDetail({ project, nextProject, locale }) 
                     </div>
                   </div>
 
-                  {relatedServiceCards.length > 0 ? (
+                  {relatedServices.length > 0 ? (
                     <div>
                       <span className="mb-2 block text-[10px] uppercase tracking-[0.28em] text-white/25">
                         {t("detail.relatedServices")}
                       </span>
                       <div className="flex flex-col gap-2">
-                        {relatedServiceCards.map((service) => (
+                        {relatedServices.map((service) => (
                           <Link
                             key={service.slug}
                             href={{

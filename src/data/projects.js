@@ -144,12 +144,12 @@ const projectEntries = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "WhatsApp", "SEO"],
     description: {
       short: localizedText(
-        "Landing premium para agencia de turismo en Villa Carlos Paz, diseñada para convertir consultas por WhatsApp con una identidad joven, local y editorial.",
-        "Premium landing page for a travel agency in Villa Carlos Paz, designed to turn WhatsApp inquiries into conversions with a young, local and editorial identity.",
+        "Sitio editorial para una agencia de turismo en Villa Carlos Paz, pensado para explorar excursiones y abrir consultas contextuales por WhatsApp.",
+        "Editorial website for a travel agency in Villa Carlos Paz, designed to explore excursions and start contextual WhatsApp inquiries.",
       ),
       long: localizedText(
-        "Cari Turismo nace como una landing page de alto impacto para una marca turística local de Villa Carlos Paz, enfocada en excursiones, city tours y traslados especiales. El proyecto fue pensado con una arquitectura de conversión centrada en WhatsApp, combinando una dirección visual editorial, tipografía con personalidad, narrativa territorial y una selección curada de experiencias para evitar el típico catálogo plano de agencia. A nivel técnico, la implementación se desarrolló con Next.js, TypeScript, Tailwind CSS y GSAP, priorizando performance, semántica SEO y una experiencia mobile-first. El resultado es una pieza digital joven, confiable y escalable, preparada para posicionar la marca en búsquedas como 'excursiones en Carlos Paz' y transformar tráfico en conversaciones reales con potencial de venta.",
-        "Cari Turismo started as a high-impact landing page for a local tourism brand in Villa Carlos Paz, focused on excursions, city tours and special transfers. The project was built around a WhatsApp-centered conversion architecture, combining editorial art direction, personality-driven typography, territory-based storytelling and a curated selection of experiences to avoid the usual flat agency catalog. Technically, it was implemented with Next.js, TypeScript, Tailwind CSS and GSAP, prioritizing performance, SEO semantics and a mobile-first experience. The result is a young, trustworthy and scalable digital piece, prepared to rank for searches such as 'excursions in Carlos Paz' and turn traffic into real conversations with sales potential.",
+        "Cari Turismo organiza excursiones, city tours y traslados desde una experiencia editorial orientada a la decisión. Las rutas de experiencias estáticas, los accesos a WhatsApp según cada propuesta y una estructura mobile-first ayudan a que la información importante aparezca en contexto. La implementación incorpora metadata, datos estructurados y sitemap para sostener una base técnica clara.",
+        "Cari Turismo organizes excursions, city tours and transfers through an editorial experience built around decision-making. Static experience routes, WhatsApp access tailored to each offer and a mobile-first structure bring key information into context. The implementation includes metadata, structured data and a sitemap for a clear technical foundation.",
       ),
     },
     coverImage: "/projects/cari-turismo/cover.webp",
@@ -163,7 +163,88 @@ const projectEntries = [
     accentColor: "#048b72",
     featured: true,
     link: "https://www.cariturismo.com.ar/",
-    relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+    caseStudy: {
+      hero: {
+        eyebrow: localizedText("Caso de estudio", "Case study"),
+        backLabel: localizedText("Ver proyectos", "View projects"),
+        title: localizedText(
+          "Una forma más clara de elegir una experiencia",
+          "A clearer way to choose an experience",
+        ),
+        description: localizedText(
+          "Un sitio editorial para descubrir excursiones, evaluar opciones y abrir una consulta por WhatsApp con el contexto de cada propuesta.",
+          "An editorial website to discover excursions, compare options and start a WhatsApp inquiry with each offer's context.",
+        ),
+        imageAlt: localizedText(
+          "Vista del sitio de Cari Turismo con propuestas de excursiones.",
+          "Cari Turismo website view featuring excursion options.",
+        ),
+      },
+      snapshot: {
+        title: localizedText("El encargo", "The brief"),
+        items: [
+          { label: localizedText("Marca", "Brand"), value: "Cari Turismo" },
+          { label: localizedText("Enfoque", "Focus"), value: localizedText("Turismo local", "Local tourism") },
+          { label: localizedText("Canal", "Channel"), value: "WhatsApp" },
+        ],
+      },
+      context: {
+        title: localizedText("El contexto", "The context"),
+        body: localizedText(
+          "Una agencia de turismo necesita explicar experiencias distintas sin convertir la navegación en un listado plano. Cada persona llega con preguntas concretas: qué hacer, cuánto tiempo lleva y cómo consultar.",
+          "A travel agency needs to explain different experiences without turning navigation into a flat list. Each visitor arrives with specific questions: what to do, how long it takes and how to ask.",
+        ),
+      },
+      challenge: {
+        title: localizedText("El desafío", "The challenge"),
+        body: localizedText(
+          "Ordenar la exploración para que la información ayude a decidir antes de iniciar una conversación. No se trataba de sumar pantallas, sino de dar contexto a cada excursión y a cada contacto.",
+          "Organize exploration so information helps people decide before starting a conversation. The work was not about adding screens, but giving each excursion and contact point the right context.",
+        ),
+      },
+      strategy: {
+        title: localizedText("La estrategia", "The strategy"),
+        body: localizedText(
+          "La arquitectura prioriza rutas estáticas de excursiones y una jerarquía que acompaña el recorrido: descubrir, explorar, confiar y decidir. WhatsApp aparece como una continuación de la propuesta que la persona ya está evaluando.",
+          "The architecture prioritizes static excursion routes and a hierarchy that follows the journey: discover, explore, trust and decide. WhatsApp appears as a continuation of the offer the visitor is already considering.",
+        ),
+      },
+      solution: {
+        title: localizedText("La solución", "The solution"),
+        body: localizedText(
+          "Diseñamos una interfaz mobile-first con una dirección editorial local y módulos de contenido que hacen legibles las experiencias. Metadata, datos estructurados y sitemap acompañan las rutas para que el sitio tenga una base técnica consistente.",
+          "We designed a mobile-first interface with local editorial direction and content modules that make experiences easy to understand. Metadata, structured data and a sitemap support the routes with a consistent technical foundation.",
+        ),
+        images: [
+          "/projects/cari-turismo/gallery-1.webp",
+          "/projects/cari-turismo/gallery-2.webp",
+        ],
+      },
+      decisions: {
+        title: localizedText("Decisiones que ordenan el recorrido", "Decisions that organize the journey"),
+        items: [
+          localizedText("Rutas estáticas para presentar cada experiencia con su propio contexto.", "Static routes to present each experience with its own context."),
+          localizedText("Accesos a WhatsApp vinculados a la propuesta que se está consultando.", "WhatsApp entry points linked to the offer being considered."),
+          localizedText("Contenido y jerarquía diseñados primero para pantallas móviles.", "Content and hierarchy designed for mobile screens first."),
+        ],
+      },
+      results: {
+        title: localizedText("El resultado", "The result"),
+        body: localizedText(
+          "Una presencia digital que convierte el catálogo en un recorrido de descubrimiento y deja el canal de consulta dentro del momento de decisión.",
+          "A digital presence that turns a catalog into a discovery journey and keeps the inquiry channel inside the decision moment.",
+        ),
+      },
+      cta: {
+        title: localizedText("¿Tu servicio también necesita contexto antes del contacto?", "Does your service also need context before contact?"),
+        label: localizedText("Contanos tu proyecto", "Tell us about your project"),
+        relatedServicesTitle: localizedText("Servicios relacionados", "Related services"),
+        relatedArticlesTitle: localizedText("Lecturas relacionadas", "Related reading"),
+        nextProjectLabel: localizedText("Siguiente proyecto", "Next project"),
+      },
+      relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
+      relatedArticleSlugs: [],
+    },
     localLanding: "villa-carlos-paz",
     updatedAt: "2026-03-18T09:30:00.000Z",
   },
@@ -386,27 +467,26 @@ const projectEntries = [
     index: "10",
     title: "A Carlos Paz",
     subtitle: localizedText(
-      "Auditoría de Seguridad + Migración PHP 8.4",
-      "Security Audit + PHP 8.4 Migration",
+      "Evolución técnica + Continuidad operativa",
+      "Technical evolution + Operational continuity",
     ),
     category: "Integracion Backend",
     year: "2026",
     client: "A Carlos Paz",
     services: [
-      "Auditoría de Seguridad",
-      "Migración de Stack",
-      "Hardening",
-      "Documentación Técnica",
+      "Desarrollo Web",
+      "Evolución de plataforma",
+      "Continuidad operativa",
     ],
-    tags: ["PHP 8.4", "MySQLi", "MariaDB", "Docker", "Apache", ".htaccess"],
+    tags: ["PHP", "MariaDB", "Docker", "Apache"],
     description: {
       short: localizedText(
-        "Portal turístico de Villa Carlos Paz rescatado de un hackeo activo y migrado de PHP legacy a PHP 8.4 con hardening de seguridad completo.",
-        "Tourism portal from Villa Carlos Paz rescued from an active hack and migrated from legacy PHP to PHP 8.4 with full security hardening.",
+        "Evolución técnica de un portal turístico de Villa Carlos Paz, con foco en modernización progresiva y continuidad operativa.",
+        "Technical evolution of a tourism portal in Villa Carlos Paz, focused on progressive modernization and operational continuity.",
       ),
       long: localizedText(
-        "A Carlos Paz es uno de los portales de alquileres turísticos más conocidos de Villa Carlos Paz. El proyecto llegó con dos problemas superpuestos: el código corría sobre PHP 5.6 con 394 llamadas a APIs removidas del lenguaje, y tres archivos maliciosos estaban activos en producción, recolectando IPs de visitantes y redirigiendo tráfico hacia dominios externos sin que el cliente lo supiera. La intervención empezó por el hallazgo más crítico: identificar, aislar y eliminar los archivos comprometidos. Después vino la migración completa del codebase a PHP 8.4 + mysqli en 44 fases documentadas, con doble entorno Docker (PHP 5.6 + PHP 8.4) para validar compatibilidad durante toda la transición. El cierre incluyó hardening real: passwords admin migrados a bcrypt, protección CSRF en formularios críticos, deletes sensibles bloqueados para GET, validación de uploads, cookies de sesión seguras y bloqueo HTTP de residuos legacy. El sitio fue aprobado para producción el 13 de mayo de 2026 corriendo PHP 8.4.21 sin warnings ni fatales en ninguna ruta.",
-        "A Carlos Paz is one of the most well-known rental portals in Villa Carlos Paz. The project arrived with two overlapping problems: the codebase ran on PHP 5.6 with 394 calls to APIs removed from the language, and three malicious files were active in production, collecting visitor IPs and silently redirecting traffic to external domains without the client's knowledge. The intervention started with the most critical finding: identifying, isolating and removing the compromised files. Then came the full codebase migration to PHP 8.4 + mysqli across 44 documented phases, using a dual Docker environment (PHP 5.6 + PHP 8.4) to validate compatibility throughout the transition. The closure included real hardening: admin passwords migrated to bcrypt, CSRF protection on critical forms, sensitive deletes blocked on GET, upload validation, secure session cookies and HTTP blocking of legacy artifacts. The site was approved for production on May 13, 2026, running PHP 8.4.21 with no warnings or fatals on any route.",
+        "A Carlos Paz es un portal turístico de Villa Carlos Paz con una operación que no puede detenerse. El trabajo se enfocó en acompañar una evolución técnica progresiva, ordenar el código existente y sostener la continuidad de las funciones que el equipo necesita para operar el sitio.",
+        "A Carlos Paz is a tourism portal in Villa Carlos Paz with an operation that cannot stop. The work focused on supporting progressive technical evolution, organizing the existing code and maintaining continuity for the functions the team needs to run the site.",
       ),
     },
     coverImage: "/projects/alquileres-carlos-paz/cover.webp",
@@ -415,7 +495,32 @@ const projectEntries = [
     accentColor: "#0284c7",
     featured: false,
     link: "https://www.acarlospaz.com/",
-    relatedServiceSlugs: ["desarrollo-web"],
+    caseStudy: {
+      hero: {
+        eyebrow: localizedText("Caso de estudio", "Case study"),
+        backLabel: localizedText("Ver proyectos", "View projects"),
+        title: localizedText("Modernizar sin interrumpir la operación", "Modernizing without interrupting operations"),
+        description: localizedText("Una evolución técnica progresiva para un portal turístico que necesita seguir acompañando el trabajo cotidiano.", "A progressive technical evolution for a tourism portal that needs to keep supporting daily work."),
+        imageAlt: localizedText("Vista del portal turístico A Carlos Paz.", "A Carlos Paz tourism portal view."),
+      },
+      snapshot: {
+        title: localizedText("El encargo", "The brief"),
+        items: [
+          { label: localizedText("Proyecto", "Project"), value: "A Carlos Paz" },
+          { label: localizedText("Foco", "Focus"), value: localizedText("Evolución técnica", "Technical evolution") },
+          { label: localizedText("Prioridad", "Priority"), value: localizedText("Continuidad", "Continuity") },
+        ],
+      },
+      context: { title: localizedText("El contexto", "The context"), body: localizedText("El portal reúne información turística y alquileres en una operación que depende de que el sitio siga disponible. Cualquier cambio debía considerar el sistema existente y el uso cotidiano de sus herramientas.", "The portal brings together tourism and rental information in an operation that depends on the site remaining available. Any change had to consider the existing system and the day-to-day use of its tools.") },
+      challenge: { title: localizedText("El desafío", "The challenge"), body: localizedText("Actualizar una plataforma con historia sin convertir el proceso en una interrupción. La modernización necesitaba avanzar con criterio, documentación y validaciones sobre los recorridos operativos relevantes.", "Update a platform with history without turning the process into an interruption. Modernization needed to progress with judgment, documentation and validation across relevant operational journeys.") },
+      strategy: { title: localizedText("La estrategia", "The strategy"), body: localizedText("Trabajamos por etapas: relevar el estado del sistema, priorizar cambios que sostuvieran la operación y mantener una base documentada para que las decisiones posteriores tengan contexto.", "We worked in stages: assess the system's state, prioritize changes that sustain operations and keep a documented foundation so future decisions have context.") },
+      solution: { title: localizedText("La solución", "The solution"), body: localizedText("La intervención ordenó la evolución de la plataforma alrededor de compatibilidad, mantenibilidad y continuidad operativa. El trabajo deja una base más clara para seguir modernizando sin perder de vista las funciones que el portal necesita hoy.", "The intervention organized the platform's evolution around compatibility, maintainability and operational continuity. The work leaves a clearer foundation for continued modernization without losing sight of the functions the portal needs today."), images: ["/projects/alquileres-carlos-paz/cover.webp"] },
+      architecture: { title: localizedText("Una base para seguir evolucionando", "A foundation for continued evolution"), items: [localizedText("Relevamiento del sistema antes de intervenir componentes existentes.", "System assessment before intervening in existing components."), localizedText("Cambios priorizados por impacto sobre la operación cotidiana.", "Changes prioritized by their impact on daily operations."), localizedText("Documentación para sostener futuras etapas de trabajo.", "Documentation to support future work stages.")] },
+      results: { title: localizedText("El resultado", "The result"), body: localizedText("Una modernización orientada a preservar continuidad mientras la plataforma construye una base más ordenada para sus próximos pasos.", "A modernization focused on preserving continuity while the platform builds a more organized foundation for its next steps.") },
+      cta: { title: localizedText("¿Tu plataforma necesita evolucionar sin frenar el trabajo?", "Does your platform need to evolve without stopping the work?"), label: localizedText("Hablemos de tu plataforma", "Talk about your platform"), relatedServicesTitle: localizedText("Servicios relacionados", "Related services"), relatedArticlesTitle: localizedText("Lecturas relacionadas", "Related reading"), nextProjectLabel: localizedText("Siguiente proyecto", "Next project") },
+      relatedServiceSlugs: ["desarrollo-web"],
+      relatedArticleSlugs: [],
+    },
     localLanding: "villa-carlos-paz",
     updatedAt: "2026-05-13T00:00:00.000Z",
   },
@@ -442,17 +547,15 @@ const projectEntries = [
       "TypeScript",
       "PostgreSQL",
       "Prisma",
-      "Redis",
-      "Cloudflare R2",
     ],
     description: {
       short: localizedText(
-        "Backoffice SaaS multi-tenant para constructoras: obras, presupuestos, gastos e inventario con aislamiento real por organización y trazabilidad total.",
-        "Multi-tenant SaaS backoffice for construction companies: projects, budgets, expenses and inventory with real per-organization isolation and full traceability.",
+        "Backoffice multi-tenant para constructoras: obras, presupuestos, gastos e inventario por organización.",
+        "Multi-tenant backoffice for construction companies: projects, budgets, expenses and inventory by organization.",
       ),
       long: localizedText(
-        "Las constructoras suelen repartir obras, presupuestos y materiales entre planillas y chats que no se comunican entre sí, perdiendo de vista el costo real de cada proyecto. Constructora SaaS nace para resolver ese problema con un backoffice multi-tenant que aísla de verdad los datos de cada organización, sin compartir una sola fila entre clientes. La plataforma centraliza la gestión de obras, presupuestos, gastos e inventario, con movimientos de stock reversibles, reporting y un sistema de roles y permisos validado en la propia API, no solo en la interfaz. Construido con Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Redis y Cloudflare R2, el proyecto se probó con tests de aislamiento entre tenants y trazabilidad de cada movimiento, priorizando arquitectura de producto por sobre la lógica de un CRUD con login encima. El resultado es un sistema completo en producción, pensado para escalar como software a medida real.",
-        "Construction companies often spread projects, budgets and materials across spreadsheets and chats that don't talk to each other, losing sight of the real cost of each job. Constructora SaaS was built to solve that with a multi-tenant backoffice that truly isolates each organization's data, without sharing a single row between clients. The platform centralizes project, budget, expense and inventory management, with reversible stock movements, reporting and a role and permission system validated at the API level, not just in the interface. Built with Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Redis and Cloudflare R2, the project was tested for tenant isolation and full traceability of every stock movement, prioritizing product architecture over CRUD-with-a-login logic. The result is a complete system in production, built to scale as real custom software.",
+        "Constructora SaaS centraliza la operación de una constructora por organización: obras, presupuestos, gastos, inventario y registros de actividad. El producto ordena movimientos de materiales, compras, transferencias y consumos alrededor de los proyectos, con roles definidos y reportes existentes para consultar la operación.",
+        "Constructora SaaS centralizes a construction company's operation by organization: projects, budgets, expenses, inventory and activity records. The product organizes material movements, purchases, transfers and consumption around projects, with defined roles and existing reports to review operations.",
       ),
     },
     coverImage: "/projects/constructora-software/cover.webp",
@@ -466,7 +569,20 @@ const projectEntries = [
     accentColor: "#2563EB",
     featured: false,
     link: "https://constructora.site/",
-    relatedServiceSlugs: ["software-a-medida", "desarrollo-web"],
+    caseStudy: {
+      hero: { eyebrow: localizedText("Caso de estudio", "Case study"), backLabel: localizedText("Ver proyectos", "View projects"), title: localizedText("Una operación de obra, ordenada por organización", "A construction operation organized by organization"), description: localizedText("Un backoffice multi-tenant para conectar obras, presupuestos, gastos e inventario en una misma operación.", "A multi-tenant backoffice connecting projects, budgets, expenses and inventory in one operation."), imageAlt: localizedText("Vista del backoffice de Constructora SaaS.", "Constructora SaaS backoffice view.") },
+      snapshot: { title: localizedText("El encargo", "The brief"), items: [{ label: localizedText("Producto", "Product"), value: localizedText("Backoffice multi-tenant", "Multi-tenant backoffice") }, { label: localizedText("Usuarios", "Users"), value: "OWNER / ADMIN / MEMBER" }, { label: localizedText("Dominio", "Domain"), value: localizedText("Gestión de obras", "Construction management") }] },
+      context: { title: localizedText("El contexto", "The context"), body: localizedText("La información de obra suele vivir repartida entre presupuestos, gastos, stock y conversaciones. El producto necesitaba reunir esos recorridos sin mezclar la operación de una organización con otra.", "Construction information often lives across budgets, expenses, stock and conversations. The product needed to bring those journeys together without mixing one organization's operation with another.") },
+      challenge: { title: localizedText("El desafío", "The challenge"), body: localizedText("Modelar una operación que conecta proyectos, etapas, tareas, presupuestos, materiales y movimientos de stock. La complejidad no está en mostrar pantallas: está en sostener relaciones, permisos y registro de lo que cambia.", "Model an operation that connects projects, stages, tasks, budgets, materials and stock movements. The complexity is not showing screens: it is sustaining relationships, permissions and a record of what changes.") },
+      strategy: { title: localizedText("La estrategia", "The strategy"), body: localizedText("La base es multi-tenant: cada organización trabaja con sus propios datos y roles OWNER, ADMIN y MEMBER. Sobre esa estructura se organizan autenticación con refresh tokens, recursos de obra y flujos de inventario.", "The foundation is multi-tenant: each organization works with its own data and OWNER, ADMIN and MEMBER roles. Authentication with refresh tokens, construction resources and inventory flows are organized on top of that structure.") },
+      solution: { title: localizedText("La solución", "The solution"), body: localizedText("La plataforma reúne proyectos, etapas, tareas y plantillas; presupuestos que pueden vincularse a proyectos; gastos; clientes, proveedores y materiales. El inventario general y por proyecto registra compras, transferencias, consumos, reversos y movimientos, con adjuntos, audit log y reportes existentes.", "The platform brings together projects, stages, tasks and templates; budgets that can be linked to projects; expenses; clients, suppliers and materials. General and project stock records purchases, transfers, consumption, reversals and movements, with attachments, an audit log and existing reports."), images: ["/projects/constructora-software/gallery-1.webp", "/projects/constructora-software/gallery-2.webp"] },
+      decisions: { title: localizedText("Decisiones de producto", "Product decisions"), items: [localizedText("Separar organizaciones y roles desde la base del producto.", "Separate organizations and roles from the product's foundation."), localizedText("Vincular presupuestos a obras para conservar el contexto operativo.", "Link budgets to projects to preserve operational context."), localizedText("Registrar movimientos y reversos de stock como parte del flujo, no como una nota manual.", "Record stock movements and reversals as part of the flow, not as a manual note.")] },
+      architecture: { title: localizedText("Capas que sostienen la operación", "Layers that sustain operations"), items: [localizedText("Autenticación y refresh tokens para sesiones de usuarios.", "Authentication and refresh tokens for user sessions."), localizedText("Roles OWNER, ADMIN y MEMBER para operar según responsabilidad.", "OWNER, ADMIN and MEMBER roles to operate according to responsibility."), localizedText("Adjuntos, audit log y reportes existentes para acompañar el seguimiento.", "Attachments, audit log and existing reports to support follow-up.")] },
+      results: { title: localizedText("El resultado", "The result"), body: localizedText("Un producto que convierte procesos operativos dispersos en una estructura compartida por organización, con los recursos de obra y los movimientos de inventario dentro del mismo sistema.", "A product that turns dispersed operational processes into a shared structure by organization, keeping construction resources and inventory movements in the same system.") },
+      cta: { title: localizedText("¿Tu operación ya superó las planillas y los chats?", "Has your operation outgrown spreadsheets and chats?"), label: localizedText("Hablemos de tu software", "Talk about your software"), relatedServicesTitle: localizedText("Servicios relacionados", "Related services"), relatedArticlesTitle: localizedText("Lecturas relacionadas", "Related reading"), nextProjectLabel: localizedText("Siguiente proyecto", "Next project") },
+      relatedServiceSlugs: ["software-a-medida", "desarrollo-web"],
+      relatedArticleSlugs: [],
+    },
     updatedAt: "2026-08-23T12:00:00.000Z",
   },
   {
@@ -579,14 +695,27 @@ const getLocalizedField = (value, locale = DEFAULT_LOCALE) => {
   return value;
 };
 
-const localizeProject = (project, locale = DEFAULT_LOCALE) => ({
-  ...project,
-  subtitle: getLocalizedField(project.subtitle, locale),
-  description: {
-    short: getLocalizedField(project.description.short, locale),
-    long: getLocalizedField(project.description.long, locale),
-  },
-});
+const localizeProject = (project, locale = DEFAULT_LOCALE) => {
+  const localizeValue = (value) => {
+    if (Array.isArray(value)) {
+      return value.map(localizeValue);
+    }
+
+    if (value && typeof value === "object") {
+      if ("es" in value || "en" in value) {
+        return getLocalizedField(value, locale);
+      }
+
+      return Object.fromEntries(
+        Object.entries(value).map(([key, entry]) => [key, localizeValue(entry)]),
+      );
+    }
+
+    return value;
+  };
+
+  return localizeValue(project);
+};
 
 export const projects = projectEntries;
 
