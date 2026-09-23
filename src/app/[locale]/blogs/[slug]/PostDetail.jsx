@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useScroll } from "motion/react";
 import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import Navbar from "@/app/components/(common)/Navbar";
 import BlogPostCard from "@/app/components/BlogPostCard";
 import { CodeBlock, ColorSwatches } from "@/app/components/blog/BlogContentBlocks";
@@ -56,6 +57,17 @@ function ArticleCallout({ eyebrow, title, text }) {
   );
 }
 
+function ArticleServiceLink({ slug, label }) {
+  return (
+    <Link
+      href={{ pathname: "/servicios/[slug]", params: { slug } }}
+      className="mb-5 inline-flex min-h-11 items-center border-b border-primary1/45 text-sm font-medium text-primary1 transition-colors duration-200 hover:border-primary1 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary1"
+    >
+      {label}
+    </Link>
+  );
+}
+
 function renderBody(body, postTitle) {
   let headingIndex = -1;
 
@@ -80,6 +92,8 @@ function renderBody(body, postTitle) {
         return (
           <ArticleCallout key={index} eyebrow={block.eyebrow} title={block.title} text={block.text} />
         );
+      case "serviceLink":
+        return <ArticleServiceLink key={index} slug={block.slug} label={block.label} />;
       case "colorSwatches":
         return <ColorSwatches key={index} items={block.items} className="mb-7" />;
       case "image":

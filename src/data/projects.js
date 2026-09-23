@@ -7,6 +7,10 @@ const projectEntries = [
     id: "hotel-california",
     index: "01",
     title: "Hotel California",
+    metaTitle: localizedText(
+      "Hotel California: landing page y reservas | Synttek",
+      "Hotel California: landing page and booking experience | Synttek",
+    ),
     subtitle: localizedText(
       "Landing Page + Experiencia de reservas",
       "Landing Page + Booking Experience",
@@ -45,6 +49,10 @@ const projectEntries = [
     id: "viajes-cordoba",
     index: "01",
     title: "Viajes Córdoba",
+    metaTitle: localizedText(
+      "Viajes Córdoba: demo de landing para turismo | Synttek",
+      "Viajes Córdoba: travel landing page demo | Synttek",
+    ),
     subtitle: localizedText(
       "Landing Page + Conversion para turismo",
       "Landing Page + Travel Conversion",
@@ -81,6 +89,10 @@ const projectEntries = [
     id: "thumblify",
     index: "03",
     title: "Thumblify",
+    metaTitle: localizedText(
+      "Thumblify: plataforma SaaS de thumbnails con IA | Synttek",
+      "Thumblify: AI thumbnail SaaS platform | Synttek",
+    ),
     subtitle: localizedText(
       "SaaS con IA + Landing Page",
       "AI SaaS + Landing Page",
@@ -133,6 +145,10 @@ const projectEntries = [
     id: "cari-turismo",
     index: "02",
     title: "Cari Turismo",
+    metaTitle: localizedText(
+      "Cari Turismo: sitio web para excursiones | Synttek",
+      "Cari Turismo: excursion website | Synttek",
+    ),
     subtitle: localizedText(
       "Landing Page + Conversion por WhatsApp",
       "Landing Page + WhatsApp Conversion",
@@ -243,7 +259,7 @@ const projectEntries = [
         nextProjectLabel: localizedText("Siguiente proyecto", "Next project"),
       },
       relatedServiceSlugs: ["landing-pages", "desarrollo-web"],
-      relatedArticleSlugs: [],
+      relatedArticleSlugs: ["cuanto-sale-una-pagina-web-en-argentina-2026"],
     },
     localLanding: "villa-carlos-paz",
     updatedAt: "2026-03-18T09:30:00.000Z",
@@ -253,6 +269,10 @@ const projectEntries = [
     id: "ranch-vcp",
     index: "03",
     title: "Ranch VCP",
+    metaTitle: localizedText(
+      "Ranch VCP: sitio gastronómico, carta y reservas | Synttek",
+      "Ranch VCP: restaurant website, menu and reservations | Synttek",
+    ),
     subtitle: localizedText(
       "Sitio web + Carta digital + Reservas",
       "Website + Digital Menu + Reservations",
@@ -298,6 +318,10 @@ const projectEntries = [
     id: "juicy-branding",
     index: "07",
     title: "Juicy",
+    metaTitle: localizedText(
+      "Juicy: identidad de marca para gastronomía | Synttek",
+      "Juicy: food business brand identity | Synttek",
+    ),
     subtitle: localizedText("Identidad de marca", "Brand Identity"),
     category: "Branding",
     year: "2025",
@@ -346,6 +370,10 @@ const projectEntries = [
     id: "gretta-redes",
     index: "08",
     title: "Gretta Gelato",
+    metaTitle: localizedText(
+      "Gretta Gelato: diseño de contenido para Instagram | Synttek",
+      "Gretta Gelato: Instagram content design | Synttek",
+    ),
     subtitle: localizedText(
       "Diseño de contenido para Instagram",
       "Instagram content design",
@@ -405,6 +433,10 @@ const projectEntries = [
     id: "muros-redes",
     index: "09",
     title: "Muros",
+    metaTitle: localizedText(
+      "Muros: contenido para constructora en Instagram | Synttek",
+      "Muros: construction company Instagram content | Synttek",
+    ),
     subtitle: localizedText(
       "Diseño de contenido para Instagram",
       "Instagram content design",
@@ -466,6 +498,10 @@ const projectEntries = [
     id: "alquileres-carlos-paz",
     index: "10",
     title: "A Carlos Paz",
+    metaTitle: localizedText(
+      "A Carlos Paz: evolución técnica de portal turístico | Synttek",
+      "A Carlos Paz: tourism portal technical evolution | Synttek",
+    ),
     subtitle: localizedText(
       "Evolución técnica + Continuidad operativa",
       "Technical evolution + Operational continuity",
@@ -519,7 +555,7 @@ const projectEntries = [
       results: { title: localizedText("El resultado", "The result"), body: localizedText("Una modernización orientada a preservar continuidad mientras la plataforma construye una base más ordenada para sus próximos pasos.", "A modernization focused on preserving continuity while the platform builds a more organized foundation for its next steps.") },
       cta: { title: localizedText("¿Tu plataforma necesita evolucionar sin frenar el trabajo?", "Does your platform need to evolve without stopping the work?"), label: localizedText("Hablemos de tu plataforma", "Talk about your platform"), relatedServicesTitle: localizedText("Servicios relacionados", "Related services"), relatedArticlesTitle: localizedText("Lecturas relacionadas", "Related reading"), nextProjectLabel: localizedText("Siguiente proyecto", "Next project") },
       relatedServiceSlugs: ["desarrollo-web"],
-      relatedArticleSlugs: [],
+      relatedArticleSlugs: ["cuanto-sale-una-pagina-web-en-argentina-2026"],
     },
     localLanding: "villa-carlos-paz",
     updatedAt: "2026-05-13T00:00:00.000Z",
@@ -528,6 +564,10 @@ const projectEntries = [
     id: "constructora-software",
     index: "11",
     title: "Constructora SaaS",
+    metaTitle: localizedText(
+      "Constructora SaaS: backoffice para gestión de obras | Synttek",
+      "Constructora SaaS: construction management backoffice | Synttek",
+    ),
     subtitle: localizedText(
       "Backoffice Multi-tenant + Gestión de Obras",
       "Multi-tenant Backoffice + Project Management",
@@ -589,6 +629,10 @@ const projectEntries = [
     id: "synttek-leads-engine",
     index: "12",
     title: "Synttek Leads Engine",
+    metaTitle: localizedText(
+      "Synttek Leads Engine: CRM y automatización comercial | Synttek",
+      "Synttek Leads Engine: CRM and sales automation | Synttek",
+    ),
     subtitle: localizedText(
       "CRM + Automatización de Prospección",
       "CRM + Lead Generation Automation",
@@ -639,6 +683,10 @@ const projectEntries = [
     id: "portfolio-nicolas-espin",
     index: "13",
     title: "Portfolio Nicolás Espin",
+    metaTitle: localizedText(
+      "Nicolás Espin | Casos de estudio de productos digitales | Synttek",
+      "Nicolás Espin | Digital product case studies | Synttek",
+    ),
     subtitle: localizedText(
       "Portfolio Personal + Case Studies",
       "Personal Portfolio + Case Studies",

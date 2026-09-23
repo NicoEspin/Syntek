@@ -33,9 +33,7 @@ export async function generateMetadata({ params }) {
   const t = await getTranslations({ locale, namespace: "Projects" });
   const baseUrl = SITE_ORIGIN;
 
-  const title = project.caseStudy?.hero.title
-    ? `${project.caseStudy.hero.title} | ${SITE_NAME}`
-    : t("detailPageTitle", { title: project.title });
+  const title = project.metaTitle || t("detailPageTitle", { title: project.title });
   const description =
     project.caseStudy?.hero.description ||
     project?.description?.short ||

@@ -50,6 +50,11 @@ const paragraph = (es, en) => ({
 });
 const quote = (es, en) => ({ type: "quote", text: localizedText(es, en) });
 const code = (es, en) => ({ type: "code", code: localizedText(es, en) });
+const serviceLink = (slug, es, en) => ({
+  type: "serviceLink",
+  slug,
+  label: localizedText(es, en),
+});
 const callout = (eyebrowEs, eyebrowEn, titleEs, titleEn, textEs, textEn) => ({
   type: "callout",
   eyebrow: localizedText(eyebrowEs, eyebrowEn),
@@ -111,10 +116,10 @@ const postEntries = [
       callout(
         "Respuesta rápida",
         "Quick answer",
-        "En 2026, una web profesional puede partir desde $250.000 ARS",
-        "In 2026, a professional website can start from ARS $250,000",
-        "En Synttek, los proyectos web simples parten desde $250.000 ARS. Los catálogos autogestionables comienzan desde $300.000 ARS, los sitios institucionales suelen ubicarse entre $400.000 y $500.000 ARS, los ecommerce desde $500.000 ARS y las experiencias web más avanzadas desde $800.000 ARS.",
-        "At Synttek, simple website projects start from ARS $250,000. Self-managed catalogs start from ARS $300,000, institutional websites usually range between ARS $400,000 and ARS $500,000, ecommerce projects start from ARS $500,000, and more advanced web experiences start from ARS $800,000.",
+        "En Synttek, una landing page parte desde ARS 300.000",
+        "At Synttek, a landing page starts from ARS 300,000",
+        "En Synttek, las landing pages parten desde ARS 300.000 y los sitios web corporativos desde ARS 500.000. El presupuesto final se define según el alcance acordado para cada proyecto.",
+        "At Synttek, landing pages start from ARS 300,000 and corporate websites start from ARS 500,000. The final quote is defined by the scope agreed for each project.",
       ),
       paragraph(
         "Estos valores son orientativos y pueden variar según el alcance, la cantidad de secciones, el nivel de diseño, las funcionalidades, la carga de contenido, las integraciones y el grado de personalización que necesite cada negocio.",
@@ -130,49 +135,43 @@ const postEntries = [
         "To better understand how much a website can cost, it helps to separate projects by type of solution. Each format responds to a different need: professional presence, catalog, online sales, institutional positioning, or visual differentiation.",
       ),
       callout(
-        "Web simple",
-        "Simple website",
-        "Desde $250.000 ARS",
-        "From ARS $250,000",
-        "Ideal para profesionales, emprendimientos o negocios que necesitan una presencia online clara, moderna y confiable. Sirve para explicar qué hacés, mostrar servicios, sumar información de contacto y recibir consultas.",
-        "Ideal for professionals, startups, or businesses that need a clear, modern, and trustworthy online presence. It helps explain what you do, show services, add contact information, and receive inquiries.",
+        "Landing page",
+        "Landing page",
+        "Desde ARS 300.000",
+        "From ARS 300,000",
+        "Pensada para presentar una oferta o un servicio con un objetivo principal de consulta o conversión. El alcance se define según la necesidad concreta del negocio.",
+        "Built to present an offer or service with one primary inquiry or conversion goal. Scope is defined around the business's specific needs.",
       ),
       callout(
-        "Catálogo virtual",
-        "Virtual catalog",
-        "Desde $300.000 ARS",
-        "From ARS $300,000",
-        "Pensado para negocios que necesitan mostrar productos, servicios o promociones sin vender directamente desde la web. Es una gran opción para comercios que trabajan por WhatsApp y quieren actualizar su catálogo de forma autogestionable.",
-        "Designed for businesses that need to show products, services, or promotions without selling directly through the website. It is a great option for stores that work through WhatsApp and want to update their catalog by themselves.",
+        "Sitio web corporativo",
+        "Corporate website",
+        "Desde ARS 500.000",
+        "From ARS 500,000",
+        "Para empresas que necesitan una presencia digital más amplia que una sola página. El alcance se acuerda según la estructura, los contenidos y las funcionalidades que requiera el proyecto.",
+        "For companies that need a broader digital presence than a single page. Scope is agreed according to the project’s required structure, content and functionality.",
       ),
       callout(
-        "Sitio institucional",
-        "Institutional website",
-        "Entre $400.000 y $500.000 ARS",
-        "Between ARS $400,000 and ARS $500,000",
-        "Recomendado para empresas que necesitan una presencia digital más sólida. Puede incluir secciones de servicios, sobre la empresa, casos, preguntas frecuentes, contacto, integración con WhatsApp y una estructura pensada para transmitir confianza.",
-        "Recommended for companies that need a stronger digital presence. It can include service sections, about the company, case studies, frequently asked questions, contact, WhatsApp integration, and a structure designed to build trust.",
+        "Catálogos, ecommerce y experiencias a medida",
+        "Catalogs, ecommerce and custom experiences",
+        "Cotización según alcance",
+        "Quoted according to scope",
+        "Cuando el proyecto requiere catálogos, venta online, integraciones o una experiencia más personalizada, el presupuesto se define después de entender qué necesita resolver la web.",
+        "When a project requires catalogs, online sales, integrations or a more customized experience, the quote is defined after understanding what the website needs to solve.",
       ),
-      callout(
-        "Ecommerce",
-        "Ecommerce",
-        "Desde $500.000 ARS",
-        "From ARS $500,000",
-        "Una tienda online requiere más funcionalidades: productos, categorías, carrito, checkout, medios de pago, gestión de pedidos y una experiencia clara para que el usuario pueda comprar sin fricción.",
-        "An online store requires more features: products, categories, cart, checkout, payment methods, order management, and a clear experience so users can buy without friction.",
+      serviceLink(
+        "landing-pages",
+        "Ver cómo trabajamos las landing pages",
+        "See how we approach landing pages",
       ),
-      callout(
-        "Web avanzada",
-        "Advanced website",
-        "Desde $800.000 ARS",
-        "From ARS $800,000",
-        "Para marcas que quieren una experiencia digital diferencial, con dirección visual más profunda, animaciones, interacciones avanzadas, elementos 3D o desarrollo más personalizado. Este tipo de proyecto no busca solo informar, sino generar impacto y recordación.",
-        "For brands that want a distinctive digital experience, with deeper visual direction, animations, advanced interactions, 3D elements, or more custom development. This type of project is not just about informing, but about creating impact and memorability.",
+      serviceLink(
+        "desarrollo-web",
+        "Conocer nuestro servicio de desarrollo web",
+        "Explore our web development service",
       ),
 
       heading(
-        "Por qué una web puede costar $250.000 o más de $800.000",
-        "Why a website can cost ARS $250,000 or more than ARS $800,000",
+        "Por qué el alcance cambia la inversión",
+        "Why scope changes the investment",
       ),
       paragraph(
         "El precio de una página web no depende solamente de cuántas pantallas tenga. También influyen el nivel de diseño, la estrategia de contenido, la calidad del desarrollo, la posibilidad de autogestionar información, las integraciones y el objetivo comercial del proyecto.",
@@ -288,8 +287,8 @@ const postEntries = [
         "At Synttek, we design websites based on the business goal",
       ),
       paragraph(
-        "En Synttek desarrollamos sitios web, catálogos virtuales, ecommerce y experiencias digitales a medida para negocios que quieren verse más profesionales, ordenar su presencia online y convertir mejor.",
-        "At Synttek, we build websites, virtual catalogs, ecommerce stores, and custom digital experiences for businesses that want to look more professional, organize their online presence, and convert better.",
+        "En Synttek desarrollamos landing pages desde ARS 300.000 y sitios web corporativos desde ARS 500.000 para negocios que quieren ordenar su presencia online y convertir mejor. Para otros alcances, la propuesta se define después de entender el proyecto.",
+        "At Synttek, we build landing pages from ARS 300,000 and corporate websites from ARS 500,000 for businesses that want to organize their online presence and convert better. For other scopes, the proposal is defined after understanding the project.",
       ),
       paragraph(
         "Podemos ayudarte a definir si te conviene empezar con una web simple, un catálogo autogestionable, un sitio institucional, una tienda online o una experiencia más avanzada con animaciones y desarrollo personalizado.",
@@ -1591,6 +1590,11 @@ const localizeBlock = (block, locale) => {
           ...item,
           label: getLocalizedField(item.label, locale),
         })),
+      };
+    case "serviceLink":
+      return {
+        ...block,
+        label: getLocalizedField(block.label, locale),
       };
     case "image":
       return {
