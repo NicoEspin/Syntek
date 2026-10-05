@@ -13,6 +13,7 @@ import {
 import {
   BUSINESS_EMAIL,
   BUSINESS_LOCATION,
+  FACEBOOK_URL,
   GOOGLE_MAPS_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
@@ -105,7 +106,7 @@ export default async function AboutPage({ params }) {
         { "@type": "Person", name: "Nicolás Espín", jobTitle: "Fundador, Desarrollo y Estrategia" },
         { "@type": "Person", name: "Antto Cattalano", jobTitle: "Diseño y Contenido" },
       ],
-      sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+      sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
     },
     buildBreadcrumbJsonLd([
       { name: SITE_NAME, item: getCanonicalUrl(locale) },

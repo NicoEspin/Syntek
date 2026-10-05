@@ -2,6 +2,7 @@ import {
   BUSINESS_EMAIL,
   BUSINESS_LOCATION,
   BUSINESS_PHONE_DISPLAY,
+  FACEBOOK_URL,
   GOOGLE_MAPS_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
@@ -22,7 +23,7 @@ export const buildOrganizationJsonLd = () => ({
   logo: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -46,7 +47,7 @@ export const buildProfessionalServiceJsonLd = () => ({
   image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   address: {
     "@type": "PostalAddress",
     addressLocality: BUSINESS_LOCATION.city,
@@ -81,7 +82,7 @@ export const buildLocalBusinessJsonLd = () => ({
   image: `${SITE_ORIGIN}/android-chrome-512x512.png`,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE_DISPLAY,
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   address: {
     "@type": "PostalAddress",
     addressLocality: BUSINESS_LOCATION.city,
@@ -164,7 +165,7 @@ export const buildPublisherJsonLd = () => ({
     width: 512,
     height: 512,
   },
-  sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
 });
 
 export const buildWebsiteJsonLd = (options) => {
@@ -285,7 +286,7 @@ export const buildServiceJsonLd = ({ name, title, description, url }) => ({
     name: SITE_NAME,
     url: SITE_CANONICAL_HOME_URL,
     email: BUSINESS_EMAIL,
-    sameAs: [INSTAGRAM_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
+    sameAs: [INSTAGRAM_URL, FACEBOOK_URL, LINKEDIN_URL, GOOGLE_MAPS_URL, SORTLIST_URL],
   },
   areaServed: [
     { "@type": "Country", name: "Argentina" },

@@ -1,0 +1,716 @@
+.root {
+  --nh-bg: #050605;
+  --nh-surface: rgba(8, 12, 8, 0.88);
+  --nh-surface-strong: #0a0d09;
+  --nh-text: #f4f6ef;
+  --nh-muted: #92988c;
+  --nh-subtle: #666c62;
+  --nh-accent: #b7ff3c;
+  --nh-accent-strong: #cbff70;
+  --nh-teal: #6fcfc3;
+  --nh-border: rgba(226, 239, 210, 0.13);
+  --nh-border-subtle: rgba(226, 239, 210, 0.075);
+  --nh-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nh-panel-gutter: clamp(2rem, 2.1vw, 3rem);
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+  isolation: isolate;
+  color: var(--nh-text);
+  background: var(--nh-bg);
+  font-family: var(--font-geist-sans), sans-serif;
+  color-scheme: dark;
+}
+
+.editorialEmphasis { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; }
+.editorialLine { display: block; }
+
+.root :global(.nueva-home-skip-link) {
+  position: fixed; z-index: 120; top: 1rem; left: 1rem; padding: .65rem 1rem;
+  border-radius: 999px; color: #071006; background: var(--nh-accent);
+  font-size: .875rem; font-weight: 700; transform: translateY(-180%);
+}
+.root :global(.nueva-home-skip-link:focus) { transform: translateY(0); outline: 2px solid var(--nh-text); outline-offset: 3px; }
+.root :global(.nueva-home-focus:focus-visible) { outline: 2px solid var(--nh-accent); outline-offset: 4px; }
+
+/* Intro — the central acid veil from frame 004. */
+.root :global(.nueva-home-intro) {
+  position: fixed; inset: 0; z-index: 100; display: grid; place-items: center;
+  overflow: hidden; pointer-events: none; background: rgba(3, 4, 3, .86);
+}
+.root :global(.nueva-home-intro-square) {
+  display: grid; width: min(31.8vw, 612px); aspect-ratio: 1; place-items: center;
+  color: #081006; background: #b7ff3c; transform-origin: center;
+  box-shadow: 0 0 110px rgba(183, 255, 60, .12);
+}
+.root :global(.nueva-home-intro-glyph) {
+  display: grid; width: 102px; aspect-ratio: 1; place-items: center;
+  border-radius: 29px; color: var(--nh-accent); background: #0a0d09;
+  font-family: Georgia, serif; font-size: 56px; font-style: italic; font-weight: 700;
+  letter-spacing: -.08em; box-shadow: inset 0 1px rgba(255,255,255,.08);
+}
+
+/* One document-space current. The SVG uses the measured page dimensions, so
+   its geometry remains continuous without a fixed viewport or scroll pinning. */
+.root :global(.nueva-home-flow-background) {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; user-select: none;
+  background: #050605;
+}
+.root :global(.nueva-home-flow-background__ambient) {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 46% 13% at 92% 8%, rgba(130, 210, 62, .1), transparent 74%),
+    radial-gradient(ellipse 41% 10% at 15% 45%, rgba(169, 232, 65, .065), transparent 76%),
+    radial-gradient(ellipse 43% 11% at 80% 66%, rgba(78, 148, 126, .055), transparent 78%),
+    radial-gradient(ellipse 39% 10% at 20% 85%, rgba(163, 230, 62, .055), transparent 78%);
+}
+.root :global(.nueva-home-hero-dot-grid) {
+  position: absolute; z-index: 1; inset: 0 0 auto; height: 100dvh; overflow: hidden;
+  pointer-events: none; user-select: none;
+}
+.root :global(.nueva-home-hero-dot-grid__corner) {
+  position: absolute; width: clamp(19rem, 34vw, 36rem); height: clamp(16rem, 42vh, 32rem);
+  background-image: radial-gradient(circle, rgba(161, 226, 51, .075) 0 1.1px, transparent 1.25px);
+  background-size: 24px 24px;
+  background-repeat: repeat;
+}
+.root :global(.nueva-home-hero-dot-grid__corner--top-left) {
+  top: 0; left: 0;
+  mask-image: radial-gradient(ellipse at top left, #000 0%, rgba(0, 0, 0, .82) 32%, transparent 75%);
+}
+.root :global(.nueva-home-hero-dot-grid__corner--top-right) {
+  top: 0; right: 0;
+  mask-image: radial-gradient(ellipse at top right, #000 0%, rgba(0, 0, 0, .82) 32%, transparent 75%);
+}
+.root :global(.nueva-home-hero-dot-grid__corner--bottom-left) {
+  bottom: 0; left: 0;
+  mask-image: radial-gradient(ellipse at bottom left, #000 0%, rgba(0, 0, 0, .82) 32%, transparent 75%);
+}
+.root :global(.nueva-home-hero-dot-grid__corner--bottom-right) {
+  right: 0; bottom: 0;
+  mask-image: radial-gradient(ellipse at bottom right, #000 0%, rgba(0, 0, 0, .82) 32%, transparent 75%);
+}
+.root :global(.nueva-home-flow-background__svg) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.root :global(.nueva-home-flow-background__svg--glow) { z-index: 1; }
+.root :global(.nueva-home-flow-background__canvas) { position: fixed; z-index: 2; left: 0; display: block; pointer-events: none; }
+.root :global(.nueva-home-flow-background__svg--fibers) { z-index: 3; }
+.root :global(.nueva-home-flow-background__master-path) { fill: none; stroke: transparent; stroke-width: 1; }
+.root :global(.nueva-home-flow-background__glow-path) { fill: none; stroke-linecap: round; }
+.root :global(.nueva-home-flow-background__glow-path--mid) {
+  stroke: url(#nh-flow-haze); stroke-width: 112; opacity: .62; filter: url(#nh-flow-blur-18);
+}
+.root :global(.nueva-home-flow-background__glow-path--near) {
+  stroke: url(#nh-flow-bloom); stroke-width: 24; opacity: .64;
+}
+.root :global(.nueva-home-flow-background__fiber) {
+  fill: none; stroke: url(#nh-flow-line); stroke-linecap: round;
+}
+.root :global(.nueva-home-flow-background__glow-path--mid),
+.root :global(.nueva-home-flow-background__fiber-layer--secondary),
+.root :global(.nueva-home-flow-background__fiber-layer--accent) { transition: opacity .55s var(--nh-ease); }
+.root :global(.nueva-home-flow-background:not(.is-flow-quality-ready) .nueva-home-flow-background__glow-path--mid),
+.root :global(.nueva-home-flow-background:not(.is-flow-quality-ready) .nueva-home-flow-background__fiber-layer--secondary),
+.root :global(.nueva-home-flow-background:not(.is-flow-quality-ready) .nueva-home-flow-background__fiber-layer--accent) { opacity: 0; }
+.root :global(.nueva-home-flow-background__fiber-layer--secondary) { mix-blend-mode: screen; }
+.root :global(.nueva-home-flow-background__fiber--accent) { stroke: url(#nh-flow-cool); }
+
+/* Persistent, lightweight navigation. */
+.root :global(.nueva-home-header) { position: fixed; z-index: 40; top: 0; right: 0; left: 0; padding: 25px 24px 0; }
+.root :global(.nueva-home-nav) {
+  display: grid; width: min(calc(100% - 162px), 1710px); min-height: 64px; margin: 0 auto;
+  grid-template-columns: 1fr auto 1fr; align-items: center; gap: 32px;
+  border-bottom: 1px solid rgba(224,239,208,.055); animation: nh-fade-up .85s var(--nh-ease) 1.4s both;
+}
+.root :global(.nueva-home-logo) { display: block; width: max-content; border-radius: 6px; }
+.root :global(.nueva-home-logo-image) { display: block; width: 101px; height: 48px; object-fit: contain; object-position: left center; }
+.root :global(.nueva-home-nav-links) { display: flex; align-items: center; justify-content: center; gap: 54px; }
+.root :global(.nueva-home-nav-link) {
+  color: #878d82; font-size: 14px; font-weight: 400; text-decoration: none;
+  transition: color .3s var(--nh-ease);
+}
+.root :global(.nueva-home-nav-link:hover) { color: var(--nh-text); }
+.root :global(.nueva-home-nav-actions) { display: flex; align-items: center; justify-content: flex-end; gap: 15px; }
+.root :global(.nueva-home-nav-status) {
+  display: inline-flex; min-height: 50px; align-items: center; gap: 11px; padding: 0 21px;
+  border: 1px solid rgba(228,240,214,.13); border-radius: 999px; color: #c0c5ba;
+  background: rgba(4,6,4,.35); font-family: var(--font-geist-mono), monospace;
+  font-size: 12px; letter-spacing: .08em;
+}
+.root :global(.nueva-home-status-dot), .root :global(.nueva-home-dot) {
+  display: inline-block; width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%;
+  background: var(--nh-accent); box-shadow: 0 0 12px rgba(183,255,60,.65);
+}
+.root :global(.nueva-home-button) {
+  display: inline-flex; min-height: 50px; align-items: center; justify-content: center;
+  border: 1px solid transparent; border-radius: 999px; padding: 0 24px; color: #071006;
+  background: var(--nh-accent); font-size: 14px; font-weight: 650; text-decoration: none;
+  transition: background-color .3s var(--nh-ease), transform .3s var(--nh-ease);
+}
+.root :global(.nueva-home-button:hover) { background: var(--nh-accent-strong); }
+.root :global(.nueva-home-button:active), .root :global(.nueva-home-button-secondary:active) { transform: scale(.98); }
+.root :global(.nueva-home-mobile-menu) { display: none; }
+
+/* Natural-flow hero. The navbar is the only persistent element. */
+.root :global(.nueva-home-main) { position: relative; z-index: 10; scroll-margin-top: 90px; }
+.root :global(.nueva-home-hero-scene) { position: relative; min-height: 100dvh; }
+.root :global(.nueva-home-hero) {
+  position: relative; min-height: 100dvh; overflow: hidden;
+}
+.root :global(.nueva-home-hero-grid) { position: relative; width: min(calc(100% - 210px), 1710px); min-height: 100dvh; margin: 0 auto; }
+.root :global(.nueva-home-hero-copy) {
+  position: absolute; z-index: 4; top: 220px; left: 0; width: min(42%, 715px);
+  animation: nh-fade-up .9s var(--nh-ease) 1.28s both;
+}
+.root :global(.nueva-home-eyebrow), .root :global(.nueva-home-microcopy),
+.root :global(.nueva-home-panel-meta), .root :global(.nueva-home-runs),
+.root :global(.nueva-home-stage-number), .root :global(.nueva-home-service-index) {
+  font-family: var(--font-geist-mono), monospace;
+}
+.root :global(.nueva-home-eyebrow) {
+  display: inline-flex; min-height: 48px; align-items: center; gap: 13px; margin: 0 0 60px;
+  padding: 0 17px; border: 1px solid rgba(183,255,60,.29); border-radius: 5px;
+  color: #c3c8bc; background: rgba(7,10,7,.46); font-size: 12px; letter-spacing: .075em;
+  text-transform: lowercase;
+}
+.root :global(.nueva-home-eyebrow-square) { width: 8px; height: 8px; background: var(--nh-accent); box-shadow: 0 0 12px rgba(183,255,60,.6); }
+.root :global(.nueva-home-heading) {
+  max-width: 720px; margin: 0; color: #f2f4ed; font-size: clamp(62px, 4.05vw, 78px);
+  font-weight: 530; line-height: .94; letter-spacing: -.058em; text-wrap: balance;
+}
+.root :global(.nueva-home-heading span), .root :global(.nueva-home-heading em) { display: block; }
+.root :global(.nueva-home-heading em) {
+  padding-bottom: .13em; font-family: Georgia, "Times New Roman", serif; font-size: 1.02em;
+  font-style: italic; font-weight: 400; line-height: 1.08; letter-spacing: -.065em;
+}
+.root :global(.nueva-home-body) {
+  max-width: 690px; margin: 57px 0 0; color: #969c91; font-size: clamp(18px, 1.15vw, 22px);
+  font-weight: 400; line-height: 1.52; text-wrap: pretty;
+}
+.root :global(.nueva-home-hero-actions) { display: flex; align-items: center; gap: 15px; margin-top: 54px; }
+.root :global(.nueva-home-button-primary) { min-height: 64px; gap: 20px; padding: 6px 7px 6px 27px; font-size: 17px; }
+.root :global(.nueva-home-button-icon) {
+  display: grid; width: 49px; height: 49px; place-items: center; border-radius: 50%;
+  background: rgba(5,12,3,.12); transition: transform .3s var(--nh-ease);
+}
+.root :global(.nueva-home-button-primary:hover .nueva-home-button-icon) { transform: translate(2px,-2px); }
+.root :global(.nueva-home-button-secondary) {
+  display: inline-flex; min-height: 64px; align-items: center; justify-content: center; gap: 13px;
+  border: 1px solid rgba(226,239,210,.18); border-radius: 999px; padding: 0 28px;
+  color: #d6dad1; background: rgba(20,24,19,.44); font-size: 17px; text-decoration: none;
+  transition: color .3s var(--nh-ease), border-color .3s var(--nh-ease), background-color .3s var(--nh-ease), transform .3s var(--nh-ease);
+}
+.root :global(.nueva-home-button-secondary:hover) { border-color: rgba(226,239,210,.34); color: #fff; background: rgba(29,34,27,.62); }
+.root :global(.nueva-home-play) { color: #eef1e9; font-size: 10px; }
+.root :global(.nueva-home-microcopy) { margin: 34px 0 0; color: #6f756c; font-size: 11px; letter-spacing: .08em; text-transform: lowercase; }
+
+.root :global(.nueva-home-panel-wrap) {
+  position: absolute; z-index: 3; top: 320px; right: calc((100vw - 100%) / -2 + var(--nh-panel-gutter)); width: 910px; height: 830px;
+  overflow: visible; animation: nh-fade-up .95s var(--nh-ease) 1.4s both;
+}
+.root :global(.nueva-home-panel-tilt-hitbox), .root :global(.nueva-home-panel-tilt) {
+  width: 100%; height: 100%; overflow: visible;
+}
+.root :global(.nueva-home-panel-tilt) { transform-origin: center; transform-style: preserve-3d; }
+.root :global(.nueva-home-panel) {
+  position: relative; height: 100%; overflow: hidden; border: 1px solid rgba(207,235,174,.14);
+  border-radius: 27px;
+  background:
+    linear-gradient(112deg, rgba(16,25,13,.73) 0%, rgba(7,12,7,.91) 38%, rgba(3,6,3,.96) 100%);
+  box-shadow: inset 0 1px rgba(229,255,201,.04), inset 0 -1px rgba(0,0,0,.28), 0 42px 110px rgba(0,0,0,.22);
+}
+.root :global(.nueva-home-panel::before) {
+  position: absolute; inset: 0; pointer-events: none; content: "";
+  background:
+    radial-gradient(ellipse 46% 42% at 4% 47%, rgba(172,242,78,.13), transparent 72%),
+    radial-gradient(ellipse 38% 28% at 50% 74%, rgba(151,224,66,.085), transparent 74%);
+}
+.root :global(.nueva-home-panel::after) {
+  position: absolute; inset: 0; pointer-events: none; content: "";
+  background: linear-gradient(180deg, rgba(225,255,195,.018), transparent 24%, rgba(0,0,0,.12));
+}
+.root :global(.nueva-home-panel-meta) {
+  position: relative; z-index: 2; display: grid; min-height: 116px; grid-template-columns: 1fr 1fr 1fr;
+  align-items: center; padding: 0 54px; border-bottom: 1px solid var(--nh-border-subtle);
+  color: #969c91; font-size: 13px; letter-spacing: .02em;
+}
+.root :global(.nueva-home-panel-steps) { color: #c4c9bf; }
+.root :global(.nueva-home-panel-active) { display: flex; align-items: center; justify-self: end; gap: 10px; color: var(--nh-accent); }
+.root :global(.nueva-home-panel-canvas) { position: relative; height: 480px; border-bottom: 1px solid rgba(226,239,210,.052); }
+.root :global(.nueva-home-panel-canvas::before) {
+  position: absolute; inset: 0; content: "";
+  background:
+    radial-gradient(ellipse 36% 47% at 8% 51%, rgba(184,255,75,.11), transparent 74%),
+    radial-gradient(ellipse 32% 24% at 48% 92%, rgba(130,205,61,.075), transparent 78%);
+}
+.root :global(.nueva-home-panel-canvas::after) {
+  position: absolute; inset: 0; opacity: .14; content: "";
+  background-image: radial-gradient(rgba(220,235,205,.45) .7px, transparent .8px); background-size: 31px 31px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+}
+.root :global(.nueva-home-workflow-overlay) { position: absolute; inset: 0; z-index: 3; overflow: visible; pointer-events: none; }
+.root :global(.nueva-home-workflow-lines) { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; overflow: visible; }
+.root :global(.nueva-home-workflow-path) { fill: none; stroke-width: 1.2; }
+.root :global(.nueva-home-workflow-path--active) { stroke: rgba(195,255,94,.66); }
+.root :global(.nueva-home-workflow-path--muted) { stroke: rgba(142,181,111,.32); }
+.root :global(.nueva-home-workflow-lines circle) { fill: #dfffa1; stroke: #071006; stroke-width: 1.5; }
+.root :global(.nueva-home-workflow-lines .nueva-home-workflow-dot--muted) { fill: #8da877; }
+.root :global(.nueva-home-flow-node) {
+  position: absolute; z-index: 3; width: 250px; min-height: 88px; padding: 19px 22px;
+  border: 1px solid rgba(225,238,211,.09); border-radius: 8px; background: rgba(7,10,7,.91);
+  box-shadow: 0 18px 40px rgba(0,0,0,.17), inset 0 1px rgba(255,255,255,.018);
+}
+.root :global(.nueva-home-flow-node--capture) { top: 338px; left: -150px; width: 260px; }
+.root :global(.nueva-home-flow-node--qualify) { top: 228px; left: 235px; width: 260px; }
+.root :global(.nueva-home-flow-node--route) { top: 428px; left: 235px; width: 250px; }
+.root :global(.nueva-home-flow-node--deliver) { top: 338px; left: 620px; width: 255px; }
+.root :global(.nueva-home-node-port) { position: absolute; top: 50%; left: -4px; width: 7px; height: 7px; border: 2px solid #081006; border-radius: 50%; background: #dfffb0; transform: translateY(-50%); }
+.root :global(.nueva-home-flow-title) { margin: 0; color: #eef1e9; font-size: 15px; font-weight: 500; line-height: 1.3; }
+.root :global(.nueva-home-flow-detail) { margin: 9px 0 0; color: #646a61; font-family: var(--font-geist-mono), monospace; font-size: 11px; letter-spacing: .02em; }
+.root :global(.nueva-home-flow-branch-label) { position: absolute; z-index: 4; padding: 3px 7px; border-radius: 3px; color: #858b81; background: #0a0d09; font-family: var(--font-geist-mono), monospace; font-size: 10px; }
+.root :global(.nueva-home-flow-branch-label--yes) { top: 305px; left: 173px; }
+.root :global(.nueva-home-flow-branch-label--other) { top: 440px; left: 174px; }
+.root :global(.nueva-home-panel-toolbar) { position: absolute; z-index: 4; top: 37px; left: 49px; display: grid; gap: 7px; }
+.root :global(.nueva-home-panel-toolbar > span) {
+  display: grid; width: 47px; height: 47px; place-items: center; border: 1px solid rgba(225,238,211,.07);
+  border-radius: 7px; color: #6e756a; background: rgba(12,17,11,.56); box-shadow: inset 0 1px rgba(255,255,255,.022);
+}
+.root :global(.nueva-home-panel-toolbar > span:first-child) { color: #a4aa9f; background: rgba(27,34,25,.72); }
+.root :global(.nueva-home-panel-zoom) { position: absolute; z-index: 4; top: 37px; right: 48px; padding: 9px 12px; border: 1px solid var(--nh-border-subtle); border-radius: 5px; color: #747a71; background: rgba(9,13,8,.38); font-family: var(--font-geist-mono), monospace; font-size: 11px; }
+.root :global(.nueva-home-runs) { position: relative; z-index: 2; min-height: 234px; padding: 30px 54px 34px; color: #636960; font-size: 11px; }
+.root :global(.nueva-home-runs > p) { margin: 0 0 17px; text-transform: lowercase; }
+.root :global(.nueva-home-runs-list) { display: grid; gap: 2px; }
+.root :global(.nueva-home-run) { display: grid; grid-template-columns: 10px 32px minmax(0,1fr); align-items: center; gap: 12px; min-height: 34px; color: #70766d; font-variant-numeric: tabular-nums; }
+.root :global(.nueva-home-run-dot) { width: 5px; height: 5px; border-radius: 50%; background: #686e65; }
+.root :global(.nueva-home-run-dot--active) { background: var(--nh-accent); box-shadow: 0 0 8px rgba(183,255,60,.65); }
+/* Existing following sections stay scoped to the preview route. */
+.root :global(.nueva-home-section) { position: relative; z-index: 10; overflow: hidden; padding: 8rem max(1rem, calc((100vw - 1710px) / 2)); background: rgba(5,6,5,.7); }
+.root :global(.nueva-home-section-grid), .root :global(.nueva-home-services-inner) { position: relative; width: 100%; max-width: 1710px; margin: 0 auto; }
+.root :global(.nueva-home-section-grid) { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); align-items: end; gap: 2rem; }
+.root :global(.nueva-home-manifesto-copy) { grid-column: span 8; }
+.root :global(.nueva-home-section-heading) { max-width: 12ch; margin: 0; font-size: clamp(2.7rem,6.2vw,6.25rem); font-weight: 550; line-height: .96; letter-spacing: -.065em; text-wrap: balance; }
+.root :global(.nueva-home-section-body) { grid-column: span 4; max-width: 28rem; padding-bottom: .5rem; color: var(--nh-muted); font-size: 1.125rem; line-height: 1.65; }
+.root :global(.nueva-home-manifesto-panel) { position: relative; grid-column: 2/span 10; margin-top: 4rem; padding: 1.5rem; border: 1px solid var(--nh-border); border-radius: 1.5rem; background: var(--nh-surface); }
+.root :global(.nueva-home-panel-heading) { display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--nh-border-subtle); color: var(--nh-muted); font-family: var(--font-geist-mono),monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.root :global(.nueva-home-panel-state) { display: flex; align-items: center; gap: .5rem; color: var(--nh-accent); }
+.root :global(.nueva-home-stages) { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+.root :global(.nueva-home-stage) { position: relative; display: flex; min-height: 7rem; flex-direction: column; justify-content: space-between; padding: .75rem 1.5rem; border-right: 1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-stage:last-child) { border-right: 0; }
+.root :global(.nueva-home-stage-number) { color: var(--nh-muted); font-size: 10px; }
+.root :global(.nueva-home-stage-label) { max-width: 18ch; font-size: .875rem; }
+.root :global(.nueva-home-stage-connector) { position: absolute; top: 50%; right: -.25rem; width: .5rem; height: .5rem; border: 1px solid var(--nh-accent); border-radius: 50%; background: var(--nh-surface-strong); }
+.root :global(.nueva-home-services-heading) { max-width: 42rem; }
+.root :global(.nueva-home-services-eyebrow) { margin: 0; color: var(--nh-accent); font-family: var(--font-geist-mono),monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.root :global(.nueva-home-services-title) { margin: 1.25rem 0 0; font-size: clamp(2.7rem,5vw,5.25rem); font-weight: 550; line-height: .98; letter-spacing: -.06em; }
+.root :global(.nueva-home-service-grid) { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 1rem; margin-top: 4.5rem; }
+.root :global(.nueva-home-service-card--1), .root :global(.nueva-home-service-card--4) { grid-column:span 7; }
+.root :global(.nueva-home-service-card--2), .root :global(.nueva-home-service-card--3) { grid-column:span 5; }
+.root :global(.nueva-home-service-card) { display: grid; min-height: 300px; grid-template-rows: 1fr auto; padding: 1.5rem; border: 1px solid var(--nh-border); border-radius: 1.5rem; background: var(--nh-surface); }
+.root :global(.nueva-home-service-visual) { position: relative; min-height: 164px; overflow: hidden; border: 1px solid var(--nh-border-subtle); border-radius: 1rem; background: rgba(0,0,0,.2); }
+.root :global(.nueva-home-service-content) { padding-top: 1.75rem; }
+.root :global(.nueva-home-service-title-row) { display: flex; justify-content: space-between; gap: 1.25rem; }
+.root :global(.nueva-home-service-title) { margin: 0; font-size: 1.875rem; font-weight: 500; letter-spacing: -.04em; }
+.root :global(.nueva-home-service-description) { max-width: 32rem; margin: .75rem 0 0; color: var(--nh-muted); line-height: 1.6; }
+.root :global(.nueva-home-service-index) { color: var(--nh-muted); font-size: 10px; }
+.root :global(.nueva-home-secondary-services) { display:grid; grid-template-columns:minmax(12rem,.72fr) 2fr; align-items:start; gap:2rem; margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--nh-border); }
+.root :global(.nueva-home-secondary-services-label), .root :global(.nueva-home-secondary-service-index) { font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
+.root :global(.nueva-home-secondary-services-label) { margin:0; color:var(--nh-muted); }
+.root :global(.nueva-home-secondary-services-list) { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:0; padding:0; list-style:none; }
+.root :global(.nueva-home-secondary-services-list li) { display:grid; min-height:5.5rem; align-content:space-between; gap:1rem; padding:0 1.25rem; border-left:1px solid var(--nh-border-subtle); color:#d7dbd3; font-size:1rem; }
+.root :global(.nueva-home-secondary-service-index) { color:var(--nh-subtle); }
+
+.root :global(.nueva-home-flow-section) { position:relative; z-index:10; overflow:hidden; padding:9rem max(1rem,calc((100vw - 1710px) / 2)); background:rgba(5,6,5,.62); }
+.root :global(.nueva-home-flow-section-inner) { width:100%; max-width:1710px; margin:0 auto; }
+.root :global(.nueva-home-flow-section-inner > :first-child) { margin-right:0; margin-left:0; }
+.root :global(.nueva-home-flow-section-header) { display:grid; grid-template-columns:1.2fr .8fr; align-items:end; gap:3rem; margin-top:3rem; }
+.root :global(.nueva-home-flow-section-header h2) { max-width:14ch; margin:0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-flow-section-header p) { max-width:32rem; margin:0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; }
+.root :global(.nueva-home-business-flow) { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:5rem 0 0; padding:0; list-style:none; }
+.root :global(.nueva-home-business-flow li) { position:relative; min-height:18rem; padding:1.5rem; border-top:1px solid var(--nh-border); border-right:1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-business-flow li:last-child) { border-right:0; }
+.root :global(.nueva-home-business-flow span), .root :global(.nueva-home-flow-responsibility > div > p) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.root :global(.nueva-home-business-flow h3) { margin:4rem 0 0; font-size:1.5rem; font-weight:500; letter-spacing:-.035em; }
+.root :global(.nueva-home-business-flow p) { margin:1rem 0 0; color:var(--nh-muted); line-height:1.55; }
+.root :global(.nueva-home-business-flow i) { position:absolute; top:50%; right:-.3rem; z-index:2; width:.6rem; height:.6rem; border:1px solid var(--nh-accent); border-radius:50%; background:#070907; }
+.root :global(.nueva-home-flow-responsibility) { display:grid; grid-template-columns:.8fr 1.2fr; gap:3rem; margin-top:1rem; padding:3rem; border:1px solid var(--nh-border); border-radius:1.5rem; background:rgba(8,12,8,.88); }
+.root :global(.nueva-home-flow-responsibility h3) { max-width:13ch; margin:1rem 0 0; font-size:clamp(1.75rem,3vw,3rem); font-weight:500; letter-spacing:-.045em; }
+.root :global(.nueva-home-flow-responsibility ul) { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0; margin:0; padding:0; list-style:none; }
+.root :global(.nueva-home-flow-responsibility li) { padding:1.25rem; border-top:1px solid var(--nh-border-subtle); color:#d7dbd3; }
+
+/* Frame 030: one focused lime statement bridges capabilities into reliability. */
+.root :global(.nueva-home-interstitial) { position:relative; z-index:10; overflow:hidden; padding:8rem max(1rem,calc((100vw - 1710px) / 2)); }
+.root :global(.nueva-home-interstitial-panel) { display:flex; width:100%; min-height:clamp(34rem,55vw,48rem); flex-direction:column; align-items:center; justify-content:center; padding:clamp(3rem,7vw,7rem); border-radius:clamp(2.25rem,4vw,5rem); color:#071006; background-color:var(--nh-accent); background-image:radial-gradient(rgba(7,16,6,.09) .8px,transparent .9px); background-size:24px 24px; transform-origin:center; }
+.root :global(.nueva-home-interstitial-label) { margin:0 0 clamp(2.5rem,5vw,5rem); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.14em; text-transform:lowercase; }
+.root :global(.nueva-home-interstitial-heading) { display:grid; max-width:16ch; gap:.08em; margin:0; text-align:center; font-size:clamp(3rem,6vw,6.5rem); font-weight:600; line-height:.94; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-interstitial-heading span), .root :global(.nueva-home-interstitial-heading em) { display:block; }
+.root :global(.nueva-home-interstitial-heading em) { color:rgba(7,16,6,.46); line-height:1.08; }
+.root :global(.nueva-home-interstitial-body) { max-width:38rem; margin:2.25rem 0 0; text-align:center; font-size:clamp(1rem,1.25vw,1.25rem); line-height:1.55; }
+.root :global(.nueva-home-interstitial-mark) { display:grid; width:5.5rem; aspect-ratio:1; place-items:center; margin-top:clamp(2.75rem,5vw,5rem); border-radius:1.65rem; color:var(--nh-accent); background:#0a0d09; font-family:Georgia,serif; font-size:3rem; font-style:italic; font-weight:700; letter-spacing:-.08em; box-shadow:inset 0 1px rgba(255,255,255,.08); }
+
+.root :global(.nueva-home-selected-work), .root :global(.nueva-home-testimonials) { position:relative; z-index:10; overflow:hidden; padding:9rem max(1rem,calc((100vw - 1710px) / 2)); background:rgba(5,6,5,.72); }
+.root :global(.nueva-home-selected-work-inner), .root :global(.nueva-home-testimonials-inner) { width:100%; max-width:1710px; margin:0 auto; }
+.root :global(.nueva-home-selected-work-header) { display:grid; max-width:62rem; }
+.root :global(.nueva-home-selected-work-header > :first-child), .root :global(.nueva-home-testimonials-header > :first-child) { margin-right:0; margin-left:0; }
+.root :global(.nueva-home-selected-work-header h2), .root :global(.nueva-home-testimonials-header h2) { margin:3rem 0 0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-selected-work-header p) { max-width:42rem; margin:1.75rem 0 0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; }
+.root :global(.nueva-home-selected-work-list) { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:5rem 1rem; margin-top:6rem; }
+.root :global(.nueva-home-work-item) { display:grid; min-width:0; gap:1.75rem; }
+.root :global(.nueva-home-work-item--1) { grid-column:1/-1; grid-template-columns:minmax(0,1.45fr) minmax(20rem,.55fr); align-items:end; }
+.root :global(.nueva-home-work-item--2) { grid-column:1/span 5; }
+.root :global(.nueva-home-work-item--3) { grid-column:6/-1; }
+.root :global(.nueva-home-work-media) { position:relative; display:block; min-width:0; aspect-ratio:16/10; overflow:hidden; border-radius:1.5rem; background:var(--nh-surface-strong); }
+.root :global(.nueva-home-work-item--2 .nueva-home-work-media), .root :global(.nueva-home-work-item--3 .nueva-home-work-media) { aspect-ratio:4/3; }
+.root :global(.nueva-home-work-image) { object-fit:cover; transition:transform .7s var(--nh-ease), filter .7s var(--nh-ease); }
+.root :global(.nueva-home-work-media:hover .nueva-home-work-image) { transform:scale(1.025); filter:brightness(1.06); }
+.root :global(.nueva-home-work-copy) { min-width:0; padding-top:1.5rem; border-top:1px solid var(--nh-border); }
+.root :global(.nueva-home-work-item--1 .nueva-home-work-copy) { padding:2rem 0 0; }
+.root :global(.nueva-home-work-meta), .root :global(.nueva-home-work-footer) { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.root :global(.nueva-home-work-meta) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.root :global(.nueva-home-work-meta span:first-child) { color:var(--nh-accent); }
+.root :global(.nueva-home-work-copy h3) { margin:2.5rem 0 0; font-size:clamp(2rem,3.4vw,4rem); font-weight:520; line-height:1; letter-spacing:-.055em; }
+.root :global(.nueva-home-work-item:not(.nueva-home-work-item--1) .nueva-home-work-copy h3) { font-size:clamp(2rem,2.8vw,3rem); }
+.root :global(.nueva-home-work-copy > p) { max-width:39rem; margin:1.25rem 0 0; color:var(--nh-muted); line-height:1.65; }
+.root :global(.nueva-home-work-footer) { align-items:flex-end; margin-top:2rem; }
+.root :global(.nueva-home-work-footer ul) { display:flex; min-width:0; flex-wrap:wrap; gap:.45rem; margin:0; padding:0; list-style:none; }
+.root :global(.nueva-home-work-footer li) { padding:.4rem .55rem; border:1px solid var(--nh-border-subtle); border-radius:.4rem; color:#a9afa4; font-family:var(--font-geist-mono),monospace; font-size:9px; }
+.root :global(.nueva-home-work-link), .root :global(.nueva-home-testimonials-source) { display:inline-flex; flex:0 0 auto; align-items:center; gap:.65rem; color:#dfe3da; text-decoration:none; transition:color .3s var(--nh-ease); }
+.root :global(.nueva-home-work-link:hover), .root :global(.nueva-home-testimonials-source:hover) { color:var(--nh-accent); }
+
+.root :global(.nueva-home-testimonials) { background:rgba(5,6,5,.6); }
+.root :global(.nueva-home-testimonials-header) { max-width:58rem; }
+.root :global(.nueva-home-testimonials-grid) { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); align-items:stretch; gap:1rem; margin-top:5rem; }
+.root :global(.nueva-home-testimonial) { display:flex; min-width:0; flex-direction:column; justify-content:space-between; margin:0; border:1px solid var(--nh-border); background:rgba(8,12,8,.88); }
+.root :global(.nueva-home-testimonial--primary) { grid-column:1/span 8; min-height:34rem; padding:clamp(2rem,4vw,4.5rem); border-radius:2rem; }
+.root :global(.nueva-home-testimonial--secondary) { grid-column:9/-1; min-height:25rem; margin-top:9rem; padding:2rem; border-radius:1.5rem; }
+.root :global(.nueva-home-testimonial blockquote) { margin:0; color:#e8ebe3; font-size:clamp(1.65rem,3vw,3.5rem); font-weight:450; line-height:1.12; letter-spacing:-.045em; text-wrap:pretty; }
+.root :global(.nueva-home-testimonial--secondary blockquote) { font-size:clamp(1.35rem,1.8vw,2rem); line-height:1.25; }
+.root :global(.nueva-home-testimonial figcaption) { display:flex; align-items:center; gap:1rem; margin-top:3rem; }
+.root :global(.nueva-home-testimonial-photo), .root :global(.nueva-home-testimonial-initial) { position:relative; display:grid; width:4rem; height:4rem; flex:0 0 auto; place-items:center; overflow:hidden; border-radius:1rem; background:rgba(183,255,60,.08); }
+.root :global(.nueva-home-testimonial-photo img) { object-fit:cover; }
+.root :global(.nueva-home-testimonial-initial) { color:var(--nh-accent); font-size:1.25rem; font-weight:600; }
+.root :global(.nueva-home-testimonial figcaption > span:last-child) { display:grid; gap:.4rem; }
+.root :global(.nueva-home-testimonial strong) { font-size:.95rem; font-weight:600; }
+.root :global(.nueva-home-testimonial small) { color:var(--nh-subtle); font-size:.72rem; line-height:1.4; }
+.root :global(.nueva-home-testimonials-source) { width:max-content; max-width:100%; margin-top:2.5rem; color:var(--nh-muted); font-size:.875rem; }
+.root :global(.nueva-home-production-proof) { position:relative; z-index:10; background:rgba(5,6,5,.68); }
+
+/* Frame 035: sparse reliability chapter with two unequal technical scenes. */
+.root :global(.nueva-home-systems) { position:relative; z-index:10; overflow:hidden; padding:9rem max(1rem,calc((100vw - 1710px) / 2)); background:rgba(5,6,5,.58); }
+.root :global(.nueva-home-systems-inner) { width:100%; max-width:1710px; margin:0 auto; }
+.root :global(.nueva-home-systems-header) { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(18rem,.55fr); align-items:end; gap:2rem; }
+.root :global(.nueva-home-systems-label) { grid-column:1/-1; margin:0 0 1rem; color:var(--nh-accent); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.14em; text-transform:lowercase; }
+.root :global(.nueva-home-systems-heading) { max-width:13ch; margin:0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-systems-heading em) { font-family:Georgia,"Times New Roman",serif; font-style:italic; font-weight:400; }
+.root :global(.nueva-home-systems-body) { max-width:31rem; margin:0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; text-wrap:pretty; }
+.root :global(.nueva-home-systems-grid) { display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:1rem; margin-top:5rem; }
+.root :global(.nueva-home-system-card) { display:grid; min-width:0; min-height:42rem; grid-template-rows:auto 1fr; gap:3rem; padding:clamp(1.5rem,2.5vw,2.75rem); overflow:hidden; border:1px solid var(--nh-border); border-radius:1.5rem; background:rgba(8,12,8,.88); }
+.root :global(.nueva-home-system-card--integrations) { margin-top:3.5rem; min-height:38.5rem; }
+.root :global(.nueva-home-system-card-copy) { position:relative; z-index:2; max-width:37rem; }
+.root :global(.nueva-home-system-card-index) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.root :global(.nueva-home-system-card-copy h3) { margin:1.5rem 0 0; font-size:clamp(1.75rem,2.4vw,2.5rem); font-weight:500; line-height:1.05; letter-spacing:-.045em; }
+.root :global(.nueva-home-system-card-copy p) { max-width:35rem; margin:1rem 0 0; color:var(--nh-muted); line-height:1.6; }
+.root :global(.nueva-home-architecture-topology) { position:relative; min-height:22rem; align-self:end; overflow:hidden; border-top:1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-architecture-axis) { position:absolute; z-index:0; background:rgba(183,255,60,.22); }
+.root :global(.nueva-home-architecture-axis--horizontal) { top:55%; right:9%; left:9%; height:1px; }
+.root :global(.nueva-home-architecture-axis--vertical) { top:14%; bottom:12%; left:50%; width:1px; }
+.root :global(.nueva-home-architecture-node) { position:absolute; z-index:1; display:grid; min-width:7rem; min-height:3.25rem; place-items:center; padding:.75rem 1rem; border:1px solid var(--nh-border); border-radius:.65rem; color:#d7dbd3; background:#0a0d09; font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.04em; text-align:center; }
+.root :global(.nueva-home-architecture-node--website) { top:42%; left:3%; }
+.root :global(.nueva-home-architecture-node--api) { top:42%; left:50%; color:var(--nh-accent); border-color:rgba(183,255,60,.34); transform:translateX(-50%); }
+.root :global(.nueva-home-architecture-node--database) { top:42%; right:3%; }
+.root :global(.nueva-home-architecture-node--automations) { bottom:5%; left:50%; transform:translateX(-50%); }
+.root :global(.nueva-home-architecture-node--cms) { top:8%; left:50%; transform:translateX(-50%); }
+.root :global(.nueva-home-integration-flow) { position:relative; display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:clamp(1rem,2vw,2rem); min-height:22rem; align-self:end; padding-top:2rem; border-top:1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-integration-column) { display:grid; gap:.75rem; margin:0; padding:0; list-style:none; }
+.root :global(.nueva-home-integration-column li) { min-width:0; padding:.9rem 1rem; border:1px solid var(--nh-border-subtle); border-radius:.5rem; color:var(--nh-muted); background:rgba(255,255,255,.018); font-family:var(--font-geist-mono),monospace; font-size:10px; text-align:center; overflow-wrap:anywhere; }
+.root :global(.nueva-home-integration-hub) { position:relative; display:grid; width:7rem; aspect-ratio:1; place-items:center; border:1px solid rgba(183,255,60,.32); border-radius:1.4rem; color:var(--nh-accent); background:rgba(183,255,60,.055); font-family:var(--font-geist-mono),monospace; font-size:10px; text-align:center; }
+.root :global(.nueva-home-integration-port) { position:absolute; top:50%; width:clamp(1rem,2vw,2rem); height:1px; background:rgba(183,255,60,.28); }
+.root :global(.nueva-home-integration-port--left) { right:100%; }
+.root :global(.nueva-home-integration-port--right) { left:100%; }
+
+/* Frames 040–041: one illustrative operations surface, not claimed outcomes. */
+.root :global(.nueva-home-operations) { position:relative; z-index:10; overflow:hidden; padding:9rem max(1rem,calc((100vw - 1710px) / 2)); background:rgba(5,6,5,.66); }
+.root :global(.nueva-home-operations-inner) { width:100%; max-width:1710px; margin:0 auto; }
+.root :global(.nueva-home-operations-header) { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(20rem,.8fr); align-items:end; gap:3rem; }
+.root :global(.nueva-home-operations-label) { margin:0 0 1.25rem; color:var(--nh-accent); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.14em; text-transform:lowercase; }
+.root :global(.nueva-home-operations-header h2) { max-width:13ch; margin:0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-operations-intro) { display:grid; gap:1.5rem; max-width:34rem; justify-self:end; }
+.root :global(.nueva-home-operations-intro p) { margin:0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; }
+.root :global(.nueva-home-operations-intro span) { width:max-content; max-width:100%; padding:.65rem .85rem; border:1px solid rgba(183,255,60,.22); border-radius:.45rem; color:var(--nh-accent); background:rgba(183,255,60,.045); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.08em; }
+.root :global(.nueva-home-operations-grid) { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(17rem,.55fr); gap:1rem; margin-top:5rem; }
+.root :global(.nueva-home-operations-card) { min-width:0; margin:0; padding:clamp(1.25rem,2.2vw,2.25rem); overflow:hidden; border:1px solid var(--nh-border); border-radius:1.5rem; background:rgba(8,12,8,.88); }
+.root :global(.nueva-home-operations-activity) { min-height:27rem; }
+.root :global(.nueva-home-operations-status) { grid-row:span 2; }
+.root :global(.nueva-home-operations-workflows) { min-height:24rem; }
+.root :global(.nueva-home-operations-card-heading) { display:flex; align-items:start; justify-content:space-between; gap:1rem; }
+.root :global(.nueva-home-operations-card-heading p) { margin:0 0 .8rem; color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; text-transform:lowercase; }
+.root :global(.nueva-home-operations-card-heading h3) { margin:0; font-size:clamp(1.35rem,2vw,2rem); font-weight:500; letter-spacing:-.04em; }
+.root :global(.nueva-home-operations-card-heading > span) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; text-align:right; }
+.root :global(.nueva-home-heatmap) { display:grid; grid-template-columns:minmax(5.5rem,.55fr) repeat(7,minmax(0,1fr)); gap:.55rem; margin-top:3rem; }
+.root :global(.nueva-home-heatmap-day), .root :global(.nueva-home-heatmap-row-label) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:9px; }
+.root :global(.nueva-home-heatmap-day) { text-align:center; }
+.root :global(.nueva-home-heatmap-row) { display:grid; grid-column:1/-1; grid-template-columns:subgrid; gap:.55rem; align-items:center; }
+.root :global(.nueva-home-heatmap-cell) { min-width:0; height:2rem; border-radius:.3rem; background:rgba(237,241,232,.045); }
+.root :global(.nueva-home-heatmap-cell--1) { background:rgba(183,255,60,.1); }
+.root :global(.nueva-home-heatmap-cell--2) { background:rgba(183,255,60,.2); }
+.root :global(.nueva-home-heatmap-cell--3) { background:rgba(183,255,60,.38); }
+.root :global(.nueva-home-heatmap-cell--4) { background:var(--nh-accent); }
+.root :global(.nueva-home-operations-card-footer) { display:flex; align-items:end; justify-content:space-between; gap:2rem; margin-top:2.5rem; color:var(--nh-muted); font-size:.75rem; line-height:1.55; }
+.root :global(.nueva-home-operations-card-footer > span:first-child) { max-width:36rem; }
+.root :global(.nueva-home-heatmap-legend) { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.75rem; font-family:var(--font-geist-mono),monospace; font-size:9px; }
+.root :global(.nueva-home-heatmap-legend > span) { display:inline-flex; align-items:center; gap:.35rem; }
+.root :global(.nueva-home-legend-dot) { width:.45rem; height:.45rem; border-radius:50%; background:rgba(183,255,60,.12); }
+.root :global(.nueva-home-legend-dot--2) { background:rgba(183,255,60,.28); }
+.root :global(.nueva-home-legend-dot--3) { background:var(--nh-accent); }
+.root :global(.nueva-home-status-list), .root :global(.nueva-home-workflow-activity-list) { margin:2.5rem 0 0; padding:0; list-style:none; }
+.root :global(.nueva-home-status-list) { display:grid; gap:2rem; }
+.root :global(.nueva-home-status-list li) { display:grid; gap:.75rem; }
+.root :global(.nueva-home-status-list li > div) { display:flex; justify-content:space-between; gap:1rem; color:var(--nh-muted); font-size:.8rem; }
+.root :global(.nueva-home-status-list strong) { color:#d7dbd3; font-weight:500; text-align:right; }
+.root :global(.nueva-home-status-track) { display:block; height:.35rem; overflow:hidden; border-radius:999px; background:rgba(237,241,232,.065); }
+.root :global(.nueva-home-status-track > span) { display:block; width:var(--nh-status-progress); height:100%; border-radius:inherit; background:var(--nh-accent); }
+.root :global(.nueva-home-workflow-activity-list) { display:grid; }
+.root :global(.nueva-home-workflow-activity-list li) { display:grid; grid-template-columns:2rem minmax(0,1fr) auto; align-items:center; gap:1rem; padding:1.1rem 0; border-top:1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-workflow-activity-index) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:9px; }
+.root :global(.nueva-home-workflow-activity-list h4) { margin:0; font-size:.95rem; font-weight:500; }
+.root :global(.nueva-home-workflow-activity-list p) { margin:.4rem 0 0; color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:9px; }
+.root :global(.nueva-home-workflow-state) { padding:.45rem .6rem; border:1px solid var(--nh-border-subtle); border-radius:999px; color:var(--nh-muted); font-family:var(--font-geist-mono),monospace; font-size:9px; text-align:center; }
+.root :global(.nueva-home-workflow-state--active), .root :global(.nueva-home-workflow-state--connected) { color:var(--nh-accent); border-color:rgba(183,255,60,.22); }
+.root :global(.nueva-home-workflow-state--waiting) { color:#c9cdbf; border-style:dashed; }
+.root :global(.nueva-home-operations-summary) { margin:2rem 0 0; color:var(--nh-subtle); font-size:.75rem; line-height:1.55; }
+
+.root :global(.nueva-home-proof), .root :global(.nueva-home-process), .root :global(.nueva-home-offers), .root :global(.nueva-home-final-cta) { position:relative; z-index:10; overflow:hidden; padding:9rem max(1rem,calc((100vw - 1710px) / 2)); }
+.root :global(.nueva-home-proof-inner), .root :global(.nueva-home-process-inner), .root :global(.nueva-home-offers-inner), .root :global(.nueva-home-final-cta-inner), .root :global(.nueva-home-footer-inner) { width:100%; max-width:1710px; margin:0 auto; }
+.root :global(.nueva-home-proof-header) { display:grid; grid-template-columns:1.25fr .75fr; align-items:end; gap:3rem; }
+.root :global(.nueva-home-proof-header h2), .root :global(.nueva-home-offers header h2), .root :global(.nueva-home-final-cta h2) { margin:0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-proof-header p) { max-width:32rem; margin:0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; }
+.root :global(.nueva-home-proof-list) { display:grid; grid-template-columns:1.15fr .9fr .95fr; gap:1rem; margin-top:5rem; }
+.root :global(.nueva-home-proof-list article) { position:relative; min-height:23rem; padding:2rem 0; border-top:1px solid var(--nh-border); }
+.root :global(.nueva-home-proof-list span), .root :global(.nueva-home-offers-list article > div > span) { color:var(--nh-subtle); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.root :global(.nueva-home-proof-list h3) { max-width:12ch; margin:4rem 0 0; font-size:clamp(1.75rem,2.8vw,3rem); font-weight:500; line-height:1.05; letter-spacing:-.045em; }
+.root :global(.nueva-home-proof-list p) { max-width:29rem; margin:1.25rem 0 0; color:var(--nh-muted); line-height:1.6; }
+.root :global(.nueva-home-proof-list i) { position:absolute; right:0; bottom:1rem; left:0; height:.35rem; border-radius:999px; background:linear-gradient(90deg,var(--nh-accent),rgba(183,255,60,.08)); }
+.root :global(.nueva-home-process) { background:rgba(5,6,5,.68); }
+.root :global(.nueva-home-process-header) { display:grid; max-width:64rem; }
+.root :global(.nueva-home-process-header > :first-child), .root :global(.nueva-home-offers header > :first-child), .root :global(.nueva-home-final-cta-inner > :first-child) { margin-right:0; margin-left:0; }
+.root :global(.nueva-home-process-header h2) { margin:3rem 0 0; font-size:clamp(3rem,5.6vw,6rem); font-weight:560; line-height:.96; letter-spacing:-.065em; text-wrap:balance; }
+.root :global(.nueva-home-process-header > p) { max-width:43rem; margin:1.75rem 0 0; color:var(--nh-muted); font-size:1.125rem; line-height:1.65; }
+.root :global(.nueva-home-process-list) { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1rem; margin:6rem 0 0; padding:0; list-style:none; }
+.root :global(.nueva-home-process-list li) { grid-column:span 3; min-width:0; }
+.root :global(.nueva-home-process-list li:nth-child(even)) { margin-top:7rem; }
+.root :global(.nueva-home-process-list article) { min-height:25rem; padding:1.5rem 0 0; border-top:1px solid var(--nh-border); }
+.root :global(.nueva-home-process-list span) { color:var(--nh-accent); font-family:var(--font-geist-mono),monospace; font-size:10px; letter-spacing:.12em; }
+.root :global(.nueva-home-process-list h3) { max-width:11ch; margin:5rem 0 0; font-size:clamp(1.75rem,2.4vw,2.8rem); font-weight:520; line-height:1.02; letter-spacing:-.045em; }
+.root :global(.nueva-home-process-list p) { max-width:28rem; margin:1.4rem 0 0; color:var(--nh-muted); line-height:1.65; }
+.root :global(.nueva-home-offers) { background:rgba(5,6,5,.58); }
+.root :global(.nueva-home-offers header) { display:grid; max-width:55rem; gap:1.25rem; }
+.root :global(.nueva-home-offers header > :first-child) { margin-bottom:1.75rem; }
+.root :global(.nueva-home-offers header > span) { color:var(--nh-muted); }
+.root :global(.nueva-home-offers-list) { display:grid; grid-template-columns:.9fr 1.15fr .95fr; align-items:end; gap:1rem; margin-top:5rem; }
+.root :global(.nueva-home-offers-list article) { display:grid; min-height:31rem; align-content:space-between; gap:2rem; padding:2rem; border:1px solid var(--nh-border); border-radius:1.5rem; background:rgba(8,12,8,.9); }
+.root :global(.nueva-home-offers-list article.is-featured) { min-height:35rem; border-color:rgba(183,255,60,.28); }
+.root :global(.nueva-home-offers-list .nueva-home-offer-situation) { min-height:5.2rem; margin:1.5rem 0 0; color:#c7ccbf; font-size:.95rem; line-height:1.55; }
+.root :global(.nueva-home-offers-list h3) { margin:1.5rem 0 0; font-size:2rem; font-weight:500; letter-spacing:-.04em; }
+.root :global(.nueva-home-offers-list p), .root :global(.nueva-home-offers-list li) { color:var(--nh-muted); line-height:1.55; }
+.root :global(.nueva-home-offers-list ul) { display:grid; gap:.9rem; margin:0; padding:0; list-style:none; }
+.root :global(.nueva-home-offers-list li::before) { margin-right:.65rem; color:var(--nh-accent); content:"+"; }
+.root :global(.nueva-home-offers-list strong) { padding-top:1.25rem; border-top:1px solid var(--nh-border-subtle); color:var(--nh-accent); font-size:.8rem; font-weight:500; }
+.root :global(.nueva-home-faq-bridge) { position:relative; z-index:10; background:rgba(5,6,5,.68); }
+.root :global(.nueva-home-final-cta-inner) { display:grid; min-height:36rem; place-items:center; align-content:center; gap:2rem; border-radius:3rem; color:#071006; background:var(--nh-accent); text-align:center; padding:clamp(3rem,7vw,7rem); }
+.root :global(.nueva-home-final-cta-inner > :first-child) { border-color:rgba(7,16,6,.22); }
+.root :global(.nueva-home-final-cta-inner > :first-child span), .root :global(.nueva-home-final-cta-inner > :first-child p) { color:#071006; }
+.root :global(.nueva-home-final-cta h2) { max-width:13ch; }
+.root :global(.nueva-home-final-cta-inner > span) { max-width:42rem; font-size:1.125rem; line-height:1.6; }
+.root :global(.nueva-home-final-cta-actions) { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.root :global(.nueva-home-final-cta-link) { display:inline-flex; min-height:3.5rem; align-items:center; padding:0 1.6rem; border-radius:999px; color:var(--nh-accent); background:#0a0d09; text-decoration:none; }
+.root :global(.nueva-home-final-cta-link--secondary) { border:1px solid rgba(7,16,6,.35); color:#071006; background:transparent; }
+.root :global(.nueva-home-footer) { position:relative; z-index:10; padding:5rem max(1rem,calc((100vw - 1710px) / 2)) 1.5rem; border-top:1px solid var(--nh-border); background:#050605; }
+.root :global(.nueva-home-footer-inner) { display:grid; grid-template-columns:1.2fr .9fr .6fr; gap:3rem; }
+.root :global(.nueva-home-footer-brand strong) { font-size:1.35rem; }
+.root :global(.nueva-home-footer-brand p) { max-width:28rem; color:var(--nh-muted); line-height:1.6; }
+.root :global(.nueva-home-footer nav), .root :global(.nueva-home-footer-channels) { display:grid; align-content:start; gap:.8rem; }
+.root :global(.nueva-home-footer a) { width:max-content; max-width:100%; color:var(--nh-muted); text-decoration:none; }
+.root :global(.nueva-home-footer a:hover) { color:var(--nh-accent); }
+.root :global(.nueva-home-footer-legal) { display:flex; max-width:1710px; justify-content:space-between; gap:1rem; margin:4rem auto 0; padding-top:1.25rem; border-top:1px solid var(--nh-border-subtle); color:var(--nh-subtle); font-size:.7rem; }
+
+/* Compact visual fallback styles for existing capability illustrations. */
+.root :global(.nueva-home-visual-web) { display: grid; grid-template-columns: .42fr .58fr; gap: .5rem; padding: .75rem; }
+.root :global(.nueva-home-visual-web-sidebar) { display: flex; flex-direction: column; justify-content: space-between; padding-right: .75rem; border-right: 1px solid var(--nh-border-subtle); }
+.root :global(.nueva-home-visual-bar) { display:block; height:.375rem; border-radius:999px; background:rgba(241,243,235,.1); }
+.root :global(.nueva-home-visual-bar--accent) { width:2.5rem; background:var(--nh-accent); }
+.root :global(.nueva-home-visual-bar--wide) { width:100%; background:rgba(241,243,235,.2); }
+.root :global(.nueva-home-visual-bar--short) { width:80%; }
+.root :global(.nueva-home-visual-web-main) { display:grid; grid-template-rows:1fr auto; gap:.5rem; }
+.root :global(.nueva-home-visual-web-display) { border:1px solid var(--nh-border); border-radius:.75rem; background:rgba(241,243,235,.035); }
+.root :global(.nueva-home-visual-web-cards) { display:grid; grid-template-columns:repeat(3,1fr); gap:.375rem; }
+.root :global(.nueva-home-visual-web-card) { height:1.75rem; border-radius:.375rem; background:rgba(241,243,235,.09); }
+.root :global(.nueva-home-visual-web-card--accent) { background:var(--nh-accent); }
+.root :global(.nueva-home-visual-software-line) { position:absolute; top:50%; right:17%; left:17%; height:1px; background:rgba(183,255,60,.45); }
+.root :global(.nueva-home-visual-software-line--vertical) { top:18%; bottom:18%; left:50%; width:1px; height:auto; }
+.root :global(.nueva-home-visual-node) { position:absolute; width:1.25rem; height:1.25rem; border:1px solid rgba(241,243,235,.2); border-radius:50%; background:var(--nh-surface-strong); }
+.root :global(.nueva-home-visual-node--left) { top:50%; left:12%; transform:translateY(-50%); }
+.root :global(.nueva-home-visual-node--right) { top:50%; right:12%; transform:translateY(-50%); }
+.root :global(.nueva-home-visual-node--top) { top:14%; left:50%; transform:translateX(-50%); }
+.root :global(.nueva-home-visual-node--bottom) { bottom:14%; left:50%; transform:translateX(-50%); }
+.root :global(.nueva-home-visual-system) { position:absolute; top:50%; left:50%; display:grid; width:3rem; height:3rem; place-items:center; border:1px solid rgba(183,255,60,.25); border-radius:1rem; color:var(--nh-accent); transform:translate(-50%,-50%); }
+.root :global(.nueva-home-visual-automation), .root :global(.nueva-home-visual-ai) { display:flex; align-items:center; padding:1rem; }
+.root :global(.nueva-home-visual-automation-grid) { display:grid; width:100%; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:.5rem; }
+.root :global(.nueva-home-visual-tag) { padding:.75rem; border:1px solid var(--nh-border); border-radius:.5rem; text-align:center; }
+.root :global(.nueva-home-visual-tag--accent) { color:var(--nh-accent); border-color:rgba(183,255,60,.3); }
+.root :global(.nueva-home-visual-link) { width:2rem; height:1px; background:rgba(183,255,60,.4); }
+.root :global(.nueva-home-visual-ai) { flex-direction:column; align-items:stretch; justify-content:center; gap:1rem; }
+.root :global(.nueva-home-visual-ai-label) { color:var(--nh-accent); font-family:var(--font-geist-mono),monospace; font-size:10px; }
+.root :global(.nueva-home-visual-ai-messages) { display:grid; gap:.5rem; }
+.root :global(.nueva-home-visual-message) { width:70%; height:1.75rem; border-radius:.5rem; background:rgba(241,243,235,.08); }
+.root :global(.nueva-home-visual-message--reply) { width:54%; justify-self:end; }
+.root :global(.nueva-home-visual-message--accent) { width:82%; background:rgba(183,255,60,.2); }
+
+@keyframes nh-fade-up { from { opacity:0; transform:translate3d(0,34px,0); } to { opacity:1; transform:translate3d(0,0,0); } }
+
+@media (max-width: 1500px) {
+  .root :global(.nueva-home-nav), .root :global(.nueva-home-hero-grid) { width: calc(100% - 96px); }
+  .root :global(.nueva-home-hero-copy) { width: 44%; }
+  .root :global(.nueva-home-panel-wrap) { width: min(910px, 60vw); }
+  .root :global(.nueva-home-heading) { font-size: clamp(58px,4.7vw,70px); }
+}
+
+@media (max-height: 1100px) and (min-width: 1101px) {
+  .root :global(.nueva-home-panel-wrap) { top: 150px; height: 770px; }
+  .root :global(.nueva-home-panel-canvas) { height: 500px; }
+  .root :global(.nueva-home-panel-meta) { min-height: 104px; }
+  .root :global(.nueva-home-runs) { min-height: 166px; padding-top: 20px; padding-bottom: 20px; }
+  .root :global(.nueva-home-workflow-overlay) { transform: translateY(-16px); }
+}
+
+@media (max-width: 1100px) {
+  .root :global(.nueva-home-nav) { width: calc(100% - 48px); }
+  .root :global(.nueva-home-nav-links) { gap: 25px; }
+  .root :global(.nueva-home-hero-grid) { width: calc(100% - 56px); }
+  .root :global(.nueva-home-hero-copy) { top: 180px; width: 51%; }
+  .root :global(.nueva-home-panel-wrap) { top: 190px; right: 0; width: 70vw; height: 700px; }
+  .root :global(.nueva-home-panel-meta) { padding-right: 32px; padding-left: 32px; }
+  .root :global(.nueva-home-panel-canvas) { height: 430px; }
+  .root :global(.nueva-home-workflow-overlay) { width: 910px; transform: translateY(-35px) scale(.74); transform-origin: top left; }
+  .root :global(.nueva-home-eyebrow) { margin-bottom: 38px; }
+  .root :global(.nueva-home-body) { margin-top: 34px; }
+  .root :global(.nueva-home-hero-actions) { margin-top: 36px; }
+}
+
+@media (max-width: 767px) {
+  .root :global(.nueva-home-header) { padding: 12px 16px 0; }
+  .root :global(.nueva-home-nav) { display:flex; width:100%; min-height:58px; justify-content:space-between; gap:10px; }
+  .root :global(.nueva-home-logo-image) { width:84px; height:42px; }
+  .root :global(.nueva-home-nav-links), .root :global(.nueva-home-nav-status) { display:none; }
+  .root :global(.nueva-home-mobile-menu) { position:relative; display:block; margin-left:auto; }
+  .root :global(.nueva-home-mobile-menu-trigger) { display:flex; width:44px; height:44px; align-items:center; justify-content:center; flex-direction:column; gap:5px; border:1px solid var(--nh-border); border-radius:50%; cursor:pointer; list-style:none; }
+  .root :global(.nueva-home-mobile-menu-trigger::-webkit-details-marker) { display:none; }
+  .root :global(.nueva-home-mobile-menu-icon) { width:14px; height:1px; background:currentColor; }
+  .root :global(.nueva-home-mobile-menu-panel) { position:absolute; top:52px; right:0; display:grid; width:min(280px,calc(100vw - 32px)); gap:4px; padding:8px; border:1px solid var(--nh-border); border-radius:14px; background:#0a0d09; }
+  .root :global(.nueva-home-mobile-menu-link) { padding:13px; border-radius:8px; color:var(--nh-text); text-decoration:none; }
+  .root :global(.nueva-home-nav-actions .nueva-home-button) { min-height:42px; padding:0 16px; font-size:12px; }
+  .root :global(.nueva-home-hero-scene) { height:auto; min-height:100dvh; }
+  .root :global(.nueva-home-hero) { position:relative; height:auto; min-height:100dvh; overflow:visible; padding:118px 16px 88px; }
+  .root :global(.nueva-home-hero-grid) { display:flex; width:100%; height:auto; flex-direction:column; gap:56px; }
+  .root :global(.nueva-home-hero-copy) { position:relative; top:auto; left:auto; width:100%; animation-delay:1.15s; }
+  .root :global(.nueva-home-eyebrow) { min-height:40px; margin-bottom:31px; padding:0 12px; font-size:10px; }
+  .root :global(.nueva-home-heading) { font-size:clamp(46px,14.2vw,62px); line-height:.96; }
+  .root :global(.nueva-home-body) { margin-top:30px; font-size:17px; line-height:1.55; }
+  .root :global(.nueva-home-hero-actions) { align-items:stretch; flex-direction:column; margin-top:32px; }
+  .root :global(.nueva-home-button-primary), .root :global(.nueva-home-button-secondary) { width:100%; min-height:56px; font-size:15px; }
+  .root :global(.nueva-home-button-primary) { justify-content:space-between; }
+  .root :global(.nueva-home-microcopy) { margin-top:24px; font-size:9px; }
+  .root :global(.nueva-home-panel-wrap) { display:none; }
+  .root :global(.nueva-home-panel) { border-radius:20px; }
+  .root :global(.nueva-home-panel-meta) { min-height:78px; grid-template-columns:1fr auto; padding:0 20px; font-size:10px; }
+  .root :global(.nueva-home-panel-steps) { display:none; }
+  .root :global(.nueva-home-panel-canvas) { height:350px; }
+  .root :global(.nueva-home-panel-toolbar), .root :global(.nueva-home-panel-zoom) { display:none; }
+  .root :global(.nueva-home-workflow-overlay) { width:910px; transform:translate(58px,12px) scale(.34); transform-origin:top left; }
+  .root :global(.nueva-home-runs) { padding:20px; }
+  .root :global(.nueva-home-run) { grid-template-columns:8px 55px 1fr; gap:8px; }
+  .root :global(.nueva-home-flow-background__glow-path--mid) { opacity:.55; }
+  .root :global(.nueva-home-hero-dot-grid__corner) {
+    width:min(58vw,230px); height:min(31vh,250px);
+    background-image:radial-gradient(circle, rgba(161,226,51,.055) 0 1px, transparent 1.15px);
+    background-size:26px 26px;
+  }
+  .root :global(.nueva-home-intro-square) { width:72vw; }
+  .root :global(.nueva-home-intro-glyph) { width:76px; border-radius:22px; font-size:42px; }
+  .root :global(.nueva-home-section) { padding:6rem 1rem; }
+  .root :global(.nueva-home-section-grid), .root :global(.nueva-home-service-grid), .root :global(.nueva-home-stages) { display:grid; grid-template-columns:1fr; gap:1rem; }
+  .root :global(.nueva-home-service-card--1), .root :global(.nueva-home-service-card--2), .root :global(.nueva-home-service-card--3), .root :global(.nueva-home-service-card--4) { grid-column:auto; }
+  .root :global(.nueva-home-manifesto-copy), .root :global(.nueva-home-section-body), .root :global(.nueva-home-manifesto-panel) { grid-column:auto; }
+  .root :global(.nueva-home-stage) { border-right:0; border-bottom:1px solid var(--nh-border-subtle); }
+  .root :global(.nueva-home-flow-section) { padding:6rem 1rem; }
+  .root :global(.nueva-home-flow-section-header), .root :global(.nueva-home-business-flow), .root :global(.nueva-home-flow-responsibility) { grid-template-columns:1fr; }
+  .root :global(.nueva-home-flow-section-header p) { margin-top:1.5rem; }
+  .root :global(.nueva-home-business-flow) { margin-top:3.5rem; }
+  .root :global(.nueva-home-business-flow li) { min-height:auto; padding:1.5rem 0; border-right:0; }
+  .root :global(.nueva-home-business-flow h3) { margin-top:1.5rem; }
+  .root :global(.nueva-home-business-flow i) { display:none; }
+  .root :global(.nueva-home-flow-responsibility) { gap:2rem; padding:1.25rem; }
+  .root :global(.nueva-home-secondary-services) { grid-template-columns:1fr; gap:1.5rem; }
+  .root :global(.nueva-home-secondary-services-list) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .root :global(.nueva-home-secondary-services-list li) { min-height:4.75rem; padding:1rem; border-top:1px solid var(--nh-border-subtle); border-left:0; }
+  .root :global(.nueva-home-interstitial) { padding:5rem 1rem; }
+  .root :global(.nueva-home-interstitial-panel) { min-height:30rem; padding:3rem 1.25rem; border-radius:2rem; }
+  .root :global(.nueva-home-interstitial-heading) { font-size:clamp(2.35rem,11vw,3.6rem); }
+  .root :global(.nueva-home-interstitial-body) { font-size:1rem; }
+  .root :global(.nueva-home-interstitial-mark) { width:4.5rem; border-radius:1.3rem; font-size:2.35rem; }
+  .root :global(.nueva-home-selected-work), .root :global(.nueva-home-testimonials) { padding:6rem 1rem; }
+  .root :global(.nueva-home-selected-work-header h2), .root :global(.nueva-home-testimonials-header h2) { margin-top:2rem; font-size:clamp(2.7rem,12vw,4rem); }
+  .root :global(.nueva-home-selected-work-list), .root :global(.nueva-home-testimonials-grid) { grid-template-columns:1fr; gap:3.5rem; margin-top:4rem; }
+  .root :global(.nueva-home-work-item--1), .root :global(.nueva-home-work-item--2), .root :global(.nueva-home-work-item--3) { grid-column:auto; grid-template-columns:1fr; }
+  .root :global(.nueva-home-work-media), .root :global(.nueva-home-work-item--2 .nueva-home-work-media), .root :global(.nueva-home-work-item--3 .nueva-home-work-media) { width:100%; aspect-ratio:4/3; }
+  .root :global(.nueva-home-work-item--1 .nueva-home-work-copy) { padding-top:1.5rem; }
+  .root :global(.nueva-home-work-footer) { align-items:flex-start; flex-direction:column; }
+  .root :global(.nueva-home-testimonial--primary), .root :global(.nueva-home-testimonial--secondary) { grid-column:auto; min-height:auto; margin-top:0; padding:2rem; border-radius:1.5rem; }
+  .root :global(.nueva-home-testimonial blockquote), .root :global(.nueva-home-testimonial--secondary blockquote) { font-size:clamp(1.45rem,6.4vw,2rem); }
+  .root :global(.nueva-home-systems) { padding:6rem 1rem; }
+  .root :global(.nueva-home-systems-header), .root :global(.nueva-home-systems-grid) { grid-template-columns:1fr; }
+  .root :global(.nueva-home-systems-body) { margin-top:1.5rem; }
+  .root :global(.nueva-home-systems-grid) { gap:1rem; margin-top:3.5rem; }
+  .root :global(.nueva-home-system-card), .root :global(.nueva-home-system-card--integrations) { min-height:auto; margin-top:0; gap:2rem; padding:1.25rem; }
+  .root :global(.nueva-home-architecture-topology) { min-height:25rem; }
+  .root :global(.nueva-home-architecture-axis--horizontal) { top:50%; }
+  .root :global(.nueva-home-architecture-node) { min-width:6.5rem; max-width:8rem; }
+  .root :global(.nueva-home-architecture-node--website) { top:43%; left:0; }
+  .root :global(.nueva-home-architecture-node--database) { top:43%; right:0; }
+  .root :global(.nueva-home-integration-flow) { min-height:auto; grid-template-columns:1fr; gap:1rem; }
+  .root :global(.nueva-home-integration-hub) { width:100%; min-height:5rem; aspect-ratio:auto; }
+  .root :global(.nueva-home-integration-port) { display:none; }
+  .root :global(.nueva-home-operations) { padding:6rem 1rem; }
+  .root :global(.nueva-home-operations-header), .root :global(.nueva-home-operations-grid) { grid-template-columns:1fr; }
+  .root :global(.nueva-home-operations-intro) { margin-top:1.5rem; justify-self:start; }
+  .root :global(.nueva-home-operations-grid) { margin-top:3.5rem; }
+  .root :global(.nueva-home-operations-status) { grid-row:auto; }
+  .root :global(.nueva-home-operations-card) { padding:1.25rem; }
+  .root :global(.nueva-home-heatmap) { grid-template-columns:minmax(4.25rem,.7fr) repeat(7,minmax(0,1fr)); gap:.3rem; }
+  .root :global(.nueva-home-heatmap-cell) { height:1.5rem; }
+  .root :global(.nueva-home-heatmap-day), .root :global(.nueva-home-heatmap-row-label) { font-size:8px; }
+  .root :global(.nueva-home-operations-card-footer) { align-items:start; flex-direction:column; gap:1rem; }
+  .root :global(.nueva-home-heatmap-legend) { justify-content:flex-start; }
+  .root :global(.nueva-home-workflow-activity-list li) { grid-template-columns:1.5rem minmax(0,1fr); }
+  .root :global(.nueva-home-workflow-state) { grid-column:2; width:max-content; max-width:100%; }
+  .root :global(.nueva-home-proof), .root :global(.nueva-home-process), .root :global(.nueva-home-offers), .root :global(.nueva-home-final-cta) { padding:6rem 1rem; }
+  .root :global(.nueva-home-proof-header), .root :global(.nueva-home-proof-list), .root :global(.nueva-home-process-list), .root :global(.nueva-home-offers-list) { grid-template-columns:1fr; }
+  .root :global(.nueva-home-proof-header p) { margin-top:1.5rem; }
+  .root :global(.nueva-home-proof-list article) { min-height:18rem; }
+  .root :global(.nueva-home-process-header h2) { margin-top:2rem; font-size:clamp(2.7rem,12vw,4rem); }
+  .root :global(.nueva-home-process-list) { gap:3rem; margin-top:4rem; }
+  .root :global(.nueva-home-process-list li), .root :global(.nueva-home-process-list li:nth-child(even)) { grid-column:auto; margin-top:0; }
+  .root :global(.nueva-home-process-list article) { min-height:auto; }
+  .root :global(.nueva-home-process-list h3) { margin-top:2.5rem; }
+  .root :global(.nueva-home-offers-list article), .root :global(.nueva-home-offers-list article.is-featured) { min-height:auto; }
+  .root :global(.nueva-home-offers-list .nueva-home-offer-situation) { min-height:auto; }
+  .root :global(.nueva-home-final-cta-inner) { min-height:30rem; padding:3rem 1.25rem; border-radius:2rem; }
+  .root :global(.nueva-home-final-cta-actions) { align-items:stretch; flex-direction:column; }
+  .root :global(.nueva-home-final-cta-link) { justify-content:center; }
+  .root :global(.nueva-home-footer) { padding:4rem 1rem 1.5rem; }
+  .root :global(.nueva-home-footer-inner) { grid-template-columns:1fr 1fr; }
+  .root :global(.nueva-home-footer-brand) { grid-column:1/-1; }
+  .root :global(.nueva-home-footer-legal) { align-items:flex-start; flex-direction:column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root :global(.nueva-home-nav), .root :global(.nueva-home-panel-wrap), .root :global(.nueva-home-hero-copy) { animation:none !important; }
+  .root :global(*), .root :global(*::before), .root :global(*::after) { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+}

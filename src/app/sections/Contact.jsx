@@ -16,11 +16,16 @@ import {
 import { useTranslations } from "next-intl";
 import "react-toastify/dist/ReactToastify.css";
 import TitleSection from "@/app/components/(common)/TitleSection";
-import { InstagramIcon, LinkedinIcon } from "@/app/components/icons/SocialIcons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+} from "@/app/components/icons/SocialIcons";
 import { cn } from "@/lib/utils";
 import {
   BUSINESS_EMAIL,
   BUSINESS_PHONE_DISPLAY,
+  FACEBOOK_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   getWhatsAppUrl,
@@ -374,6 +379,7 @@ const Contact = () => {
 
   const socials = [
     { key: "instagram", icon: InstagramIcon, href: INSTAGRAM_URL },
+    { key: "facebook", icon: FacebookIcon, href: FACEBOOK_URL },
     { key: "linkedin", icon: LinkedinIcon, href: LINKEDIN_URL },
   ];
 

@@ -1,4 +1,251 @@
 {
+  "NewHome": {
+    "metadata": {
+      "title": "New experience",
+      "description": "Preview of Synttek's new digital experience."
+    },
+    "skipLink": "Skip to main content",
+    "navbar": {
+      "ariaLabel": "Primary navigation",
+      "services": "Services",
+      "projects": "Projects",
+      "process": "Process",
+      "openMenu": "Open navigation menu",
+      "statusAriaLabel": "Synttek is available for new projects",
+      "status": "projects open",
+      "cta": "Let's talk"
+    },
+    "hero": {
+      "eyebrow": "digital studio / software / AI",
+      "headingLine1": "We create",
+      "headingLine2": "systems",
+      "headingLine3": "that move",
+      "headingAccent": "business forward.",
+      "body": "Websites, custom software and automations that connect your operation so work moves forward with clarity.",
+      "primaryCta": "Tell us your project",
+      "secondaryCta": "View projects",
+      "microcopy": "web / software / automation / AI",
+      "panelTitle": "Project system",
+      "steps": "project journey",
+      "running": "process view",
+      "branchYes": "defined",
+      "branchOther": "adjust",
+      "recentRuns": "work stages",
+      "nodes": [
+        { "title": "Inquiry received", "detail": "form / contact" },
+        { "title": "Need defined", "detail": "goal / scope" },
+        { "title": "Strategy aligned", "detail": "team / priority" },
+        { "title": "Project in motion", "detail": "design / development" }
+      ],
+      "runs": [
+        { "label": "understand the problem" },
+        { "label": "define the journey" },
+        { "label": "build the next step" }
+      ]
+    },
+    "manifesto": {
+      "headingBefore": "Your business already has",
+      "headingEmphasis": "momentum.",
+      "headingAfter": "Disorder grows with it.",
+      "headingClosing": "That is where our work begins.",
+      "body": "WhatsApp, Instagram, spreadsheets, manual tasks and disconnected tools work until growth makes follow-up difficult without relying on memory.",
+      "panelTitle": "When everything grows separately",
+      "panelState": "operational friction",
+      "stages": [
+        "Inquiries across channels",
+        "Information spread out",
+        "Follow-up dependent on people"
+      ]
+    },
+    "systemsOperations": {
+      "label": "Operational flow",
+      "heading": "Every inquiry needs information, follow-up and a next step.",
+      "body": "We organize the journey so the team can see what arrived, who owns it and what needs to happen next.",
+      "steps": [
+        { "title": "Input", "body": "WhatsApp, forms and other channels capture the inquiry with context." },
+        { "title": "Information", "body": "Data stays in one clear place instead of being scattered across messages and spreadsheets." },
+        { "title": "Follow-up", "body": "Every opportunity has an owner and a visible state." },
+        { "title": "Next step", "body": "The team knows what to answer, route, prepare or review." }
+      ],
+      "responsibility": { "label": "visible responsibility", "title": "Less memory. More continuity.", "items": ["Shared context", "Defined owner", "Understandable state", "Clear next action"] }
+    },
+    "services": {
+      "eyebrow": "Capabilities",
+      "title": "Four outcomes to organize and move your business forward.",
+      "visualLabels": {
+        "system": "ORDERS",
+        "form": "FORM",
+        "rule": "RULE",
+        "team": "TEAM",
+        "contextAvailable": "AI APPLIED TO THE PROCESS"
+      },
+      "items": [
+        {
+          "title": "Generate enquiries",
+          "description": "A clear presence that helps more people understand the offer and know how to get in touch."
+        },
+        {
+          "title": "Sell or receive orders",
+          "description": "Catalogues, ecommerce and journeys that make choosing, ordering or buying easier."
+        },
+        {
+          "title": "Organize operations",
+          "description": "Dedicated panels and tools that centralize information, states and responsibilities."
+        },
+        {
+          "title": "Reduce manual work",
+          "description": "Automations and applied AI that classify, summarize and trigger repeatable tasks with context."
+        }
+      ],
+      "secondaryLabel": "Supporting capabilities",
+      "secondaryItems": ["Ecommerce", "SEO & SEM", "Branding", "Content"]
+    },
+    "interstitial": {
+      "label": "what we actually build",
+      "headingLine1": "The best technology",
+      "headingLine2": "becomes part of the work.",
+      "body": "It should be understandable, useful and easy to adopt within the way the team actually works."
+    },
+    "selectedWork": {
+      "label": "Selected work",
+      "heading": "Products and experiences built around concrete problems.",
+      "body": "Three different projects, presented through what actually exists: their purpose, scope and technical foundation.",
+      "technologiesLabel": "Technologies used",
+      "viewProject": "View project",
+      "projects": {
+        "cari-turismo": { "classification": "Real case · Client", "imageAlt": "Cari Turismo website view featuring excursion options." },
+        "constructora-software": { "classification": "Software product", "imageAlt": "Constructora SaaS backoffice view." },
+        "thumblify": { "classification": "SaaS product", "imageAlt": "Thumblify platform view for creating YouTube thumbnails." }
+      }
+    },
+    "testimonials": {
+      "label": "Shared experiences",
+      "heading": "Two perspectives on the work and its result.",
+      "sourceNote": "English translation of the original Spanish review",
+      "profileLink": "View profile on Google",
+      "fernando": {
+        "quote": "My experience with them was extremely satisfying. They responded on time and as agreed, with an outstanding technical standard. I am very happy with the results: my brand and website turned out excellent.",
+        "author": "Fernando Catalano",
+        "imageAlt": "Portrait of Fernando Catalano"
+      },
+      "vale": {
+        "quote": "They helped us with the complete visual identity of the real estate agency and even offered to create the logo. The website is excellent.",
+        "author": "Vale Sosa"
+      }
+    },
+    "process": {
+      "label": "How we work",
+      "heading": "First we understand. Then we build.",
+      "body": "A practical path for defining the problem, agreeing on priorities and shaping a scope that makes sense for the business.",
+      "steps": [
+        { "title": "Understand", "body": "We review the context, channels, tools and constraints before suggesting a solution." },
+        { "title": "Prioritize", "body": "We organize the needs and agree on what should be addressed first within a clear scope." },
+        { "title": "Design and build", "body": "We turn that scope into journeys, content and interfaces, then develop the agreed pieces." },
+        { "title": "Launch and evaluate", "body": "We prepare publication or handoff and review what can be learned from initial use before deciding on next steps." }
+      ]
+    },
+    "systems": {
+      "label": "reliability",
+      "headingBefore": "Solid where it",
+      "headingEmphasis": "matters.",
+      "body": "Clear architecture, maintainable code and thoughtful integrations designed to grow with the business.",
+      "architecture": {
+        "index": "01 / architecture",
+        "title": "A consistent technical foundation",
+        "description": "Every layer has a clear responsibility and can evolve without turning the system into a collection of patches.",
+        "nodes": ["Website", "API", "Database", "Automations", "CMS"]
+      },
+      "integrations": {
+        "index": "02 / integrations",
+        "title": "Automation where your data lives",
+        "description": "We connect incoming channels with the tools your team uses to operate and follow up.",
+        "inputs": ["Forms", "WhatsApp", "CRM"],
+        "hub": "Integrations",
+        "outputs": ["Internal panels", "Team", "Follow-up"]
+      }
+    },
+    "operations": {
+      "label": "visible operations",
+      "heading": "Visible processes. Clearer decisions.",
+      "body": "An organized view of inquiries, follow-up and systems so teams can understand what is moving and what needs attention.",
+      "qualifier": "Demonstration view · illustrative data",
+      "activity": {
+        "label": "activity",
+        "title": "Weekly flow",
+        "period": "Monday to Sunday",
+        "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        "rows": ["Leads", "Follow-up", "Delivery"],
+        "summary": "Visual example: activity concentrates on lead capture and follow-up during weekdays.",
+        "legend": ["Low", "Steady", "High"]
+      },
+      "status": {
+        "label": "system status",
+        "title": "Connected operations",
+        "items": [
+          { "label": "Active systems", "value": "Connected" },
+          { "label": "Responses", "value": "In follow-up" },
+          { "label": "Manual steps", "value": "Exceptions only" }
+        ],
+        "summary": "Illustrative states showing how a connected operation can be organized."
+      },
+      "workflows": {
+        "label": "workflows",
+        "title": "Process activity",
+        "stateLabel": "current state",
+        "items": [
+          { "title": "New inquiry", "detail": "Form → CRM", "state": "Qualified", "tone": "active" },
+          { "title": "Sales follow-up", "detail": "CRM → WhatsApp", "state": "Awaiting reply", "tone": "waiting" },
+          { "title": "Status update", "detail": "CRM → internal panel", "state": "Synchronized", "tone": "connected" }
+        ],
+        "summary": "The flow shows where each inquiry stands and what comes next without presenting real client results."
+      }
+    },
+    "proof": {
+      "heading": "Evidence you can review.",
+      "body": "We do not publish unsupported figures. We show decisions, process and a technical foundation people can understand.",
+      "items": [
+        { "title": "Clear scope", "body": "Every project starts with defined goals, priorities and deliverables." },
+        { "title": "Visible process", "body": "Design, development and integrations move through concrete milestones." },
+        { "title": "A foundation built to evolve", "body": "The solution can add content, functionality and integrations without rebuilding everything." }
+      ]
+    },
+    "offers": {
+      "label": "solution formats",
+      "heading": "You do not need to know which solution you need.",
+      "pricingNote": "The format and scope are defined after understanding the context.",
+      "scopeLabel": "Tailored scope",
+      "items": [
+        { "index": "01", "situation": "When you need to present one focused offer and create a clear path to inquiry.", "title": "Landing", "description": "A focused experience for a specific campaign, service or launch.", "includes": ["Message and structure", "Inquiry journey", "SEO and performance foundation"] },
+        { "index": "02", "situation": "When your business needs to explain its work more clearly and bring its digital presence together.", "title": "Corporate website", "description": "A multi-page presence for organizing services, content and contact points.", "includes": ["Content architecture", "Pages and journeys", "Agreed integrations"] },
+        { "index": "03", "situation": "When an operation no longer fits comfortably in spreadsheets or generic tools.", "title": "System", "description": "A solution shaped around specific processes, roles and information.", "includes": ["Flows and permissions", "Panels and data", "Automations and integrations"] }
+      ]
+    },
+    "faq": {
+      "sectionLabel": "Frequently asked questions",
+      "title": "Decide with more clarity",
+      "askMore": "Is your situation different?",
+      "askMoreDetail": "Share the context and we can explore where to begin.",
+      "ctaBtn": "Message on WhatsApp",
+      "questionsCount": "questions",
+      "items": [
+        { "question": "We already sell through Instagram and WhatsApp. Why do we need a website?", "answer": "A website does not have to replace those channels. It can organize information, provide an owned space to explain the offer and give people context before they start a conversation." },
+        { "question": "I am not sure what I need. Can you guide me?", "answer": "Yes. We first review the goal, the business context and the tools already in use. From there, we can outline alternatives and explain which scope may be worth evaluating." },
+        { "question": "How is the price defined?", "answer": "It is based on the agreed scope: content, pages, functionality, integrations and responsibilities. Once those variables are understood, we prepare a concrete proposal rather than assuming a generic package." },
+        { "question": "How long might a project take?", "answer": "It depends on scope, content readiness, integrations and review cycles. The schedule is discussed once those variables are clear; we do not apply one universal timeline to different projects." },
+        { "question": "Can you integrate the tools we already use?", "answer": "We can review integrations with forms, WhatsApp, management systems and other existing tools. Feasibility and scope depend on the access and capabilities each service provides." },
+        { "question": "Will I be able to update the content?", "answer": "When the project calls for it, the scope can include a way to manage text, images or other data. What can be edited and how it works are defined as part of the project." }
+      ]
+    },
+    "waMessage": "Hi Synttek, I would like to share my situation and explore which solution may make sense",
+    "finalCta": { "label": "next step", "heading": "Let us start by understanding where you are.", "body": "Share the context through the contact form or start a conversation on WhatsApp.", "primaryCta": "Go to contact", "secondaryCta": "Message on WhatsApp" },
+    "routeFooter": {
+      "statement": "Websites, software and automations for businesses that want to organize their digital presence and operations.",
+      "navigationLabel": "Footer navigation",
+      "links": { "services": "Services", "projects": "Projects", "about": "About us", "blog": "Blog", "contact": "Contact" },
+      "channels": { "instagram": "Instagram", "linkedin": "LinkedIn" },
+      "copyright": "©2026 Synttek. All rights reserved", "location": "Villa Carlos Paz, Córdoba, Argentina"
+    }
+  },
   "Homepage": {
     "headline-line1": "We build",
     "eyebrow": "Development agency · Córdoba, AR",
@@ -272,6 +519,11 @@
         "note": "Follow us for process, launches and visual pieces from the studio.",
         "ariaLabel": "Open Instagram"
       },
+      "facebook": {
+        "label": "Facebook",
+        "value": "Synttek",
+        "ariaLabel": "Open Facebook"
+      },
       "linkedin": {
         "label": "LinkedIn",
         "value": "/company/synttek",
@@ -372,6 +624,11 @@
         "label": "Instagram",
         "value": "@synttek",
         "ariaLabel": "Open Instagram"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "value": "Synttek",
+        "ariaLabel": "Open Facebook"
       },
       "linkedin": {
         "label": "LinkedIn",

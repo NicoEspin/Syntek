@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useInView } from "motion/react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import TitleSection from "@/app/components/(common)/TitleSection";
 import RevealBlock from "@/app/components/RevealBlock";
@@ -10,7 +10,7 @@ import { getWhatsAppUrl } from "@/lib/business";
 const ease = [0.16, 1, 0.3, 1];
 
 // ─── Item de FAQ ──────────────────────────────────────────────────────────────
-function FaqItem({ question, answer, index, isOpen, onToggle }) {
+function FaqItem({ question, answer, index, isOpen, onToggle, reducedMotion }) {
   const accent = "#A1E233";
   const panelId = `faq-v2-panel-${index}`;
   const triggerId = `faq-v2-trigger-${index}`;
@@ -22,7 +22,7 @@ function FaqItem({ question, answer, index, isOpen, onToggle }) {
     >
       <motion.div
         animate={{ scaleX: isOpen ? 1 : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.4, ease }}
+        transition={{ duration: reducedMotion ? 0.01 : 0.4, ease }}
         style={{ originX: 0, backgroundColor: accent }}
         className="absolute left-0 right-0 top-0 h-px"
       />
@@ -48,7 +48,7 @@ function FaqItem({ question, answer, index, isOpen, onToggle }) {
 
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.3, ease }}
+          transition={{ duration: reducedMotion ? 0.01 : 0.3, ease }}
           style={{ color: isOpen ? accent : undefined }}
           className="mt-0.5 flex size-5 shrink-0 items-center justify-center text-white/25 transition-colors duration-300 group-hover/btn:text-white/50"
         >
@@ -65,10 +65,10 @@ function FaqItem({ question, answer, index, isOpen, onToggle }) {
             id={panelId}
             role="region"
             aria-labelledby={triggerId}
-            initial={{ height: 0, opacity: 0 }}
+            initial={reducedMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.42, ease }}
+            transition={{ duration: reducedMotion ? 0.01 : 0.42, ease }}
             className="overflow-hidden"
           >
             <div className="pb-7 pl-11 pr-4 md:pr-8">
@@ -86,6 +86,7 @@ const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
   const waHref = getWhatsAppUrl(useTranslations(waNamespace)("waMessage"));
   const items = t.raw("items");
   const [openIndex, setOpenIndex] = useState(null);
+  const reducedMotion = useReducedMotion();
 
   const words = t("title").split(" ");
   const lastWord = words.pop();
@@ -114,18 +115,18 @@ const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
             <div className="overflow-hidden">
               <motion.h2
                 id="faq-v2-heading"
-                initial={{ y: "105%" }}
+                initial={reducedMotion ? false : { y: "105%" }}
                 animate={isHeaderInView ? { y: 0 } : {}}
-                transition={{ duration: 1, delay: 0.05, ease }}
+                transition={{ duration: reducedMotion ? 0.01 : 1, delay: reducedMotion ? 0 : 0.05, ease }}
                 className="text-[clamp(2rem,5vw,4.5rem)] font-black leading-[0.95] tracking-tight text-white"
               >
                 {words.join(" ")} <span className="text-[#A1E233]">{lastWord}</span>
               </motion.h2>
             </div>
             <motion.p
-              initial={{ opacity: 0 }}
+              initial={reducedMotion ? false : { opacity: 0 }}
               animate={isHeaderInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: reducedMotion ? 0.01 : 0.6, delay: reducedMotion ? 0 : 0.4 }}
               className="shrink-0 text-[10px] uppercase tracking-[0.2em] text-white/18"
             >
               {items.length.toString().padStart(2, "0")} {t("questionsCount")}
@@ -133,9 +134,9 @@ const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
           </div>
 
           <motion.div
-            initial={{ scaleX: 0 }}
+            initial={reducedMotion ? false : { scaleX: 0 }}
             animate={isHeaderInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.1, delay: 0.3, ease }}
+            transition={{ duration: reducedMotion ? 0.01 : 1.1, delay: reducedMotion ? 0 : 0.3, ease }}
             style={{ transformOrigin: "left" }}
             className="mt-8 h-px w-full bg-white/[0.06]"
           />
@@ -151,6 +152,7 @@ const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
               answer={item.answer}
               isOpen={openIndex === i}
               onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              reducedMotion={reducedMotion}
             />
           ))}
         </div>
@@ -164,9 +166,9 @@ const FaqV2 = ({ namespace = "HomeV2.faq", waNamespace = "HomeV2" }) => {
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.2, ease }}
+            whileHover={reducedMotion ? undefined : { scale: 1.03, y: -1 }}
+            whileTap={reducedMotion ? undefined : { scale: 0.97 }}
+            transition={{ duration: reducedMotion ? 0.01 : 0.2, ease }}
             className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#A1E233] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.15em] text-black transition-colors duration-300 hover:bg-[#b6f53d]"
           >
             {t("ctaBtn")}

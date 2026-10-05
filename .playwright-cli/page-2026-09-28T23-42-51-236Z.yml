@@ -1,0 +1,138 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Ir al contenido principal" [ref=e3] [cursor=pointer]:
+      - /url: "#nueva-home-content"
+    - banner [ref=e4]:
+      - navigation "Navegación principal" [ref=e5]:
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /es/nueva-home
+          - img "Synttek" [ref=e7]
+        - generic [ref=e8]:
+          - link "Servicios" [ref=e9] [cursor=pointer]:
+            - /url: /es/servicios
+          - link "Proyectos" [ref=e10] [cursor=pointer]:
+            - /url: /es/projects
+          - link "Proceso" [ref=e11] [cursor=pointer]:
+            - /url: /es/sobre-nosotros
+        - generic [ref=e12]:
+          - generic "Synttek está disponible para nuevos proyectos" [ref=e13]: proyectos abiertos
+          - link "Hablemos" [ref=e15] [cursor=pointer]:
+            - /url: /es/contacto
+    - main [ref=e16]:
+      - generic: S
+      - region [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]:
+              - paragraph [ref=e21]: estudio digital / software / IA
+              - heading "Creamos sistemas que avanzan negocios." [level=1] [ref=e23]:
+                - generic [ref=e24]: Creamos
+                - generic [ref=e25]: sistemas
+                - generic [ref=e26]: que avanzan
+                - emphasis [ref=e27]: negocios.
+              - paragraph [ref=e28]: Sitios web, software a medida y automatizaciones que conectan tu operación para que el trabajo avance con claridad.
+              - generic [ref=e29]:
+                - link [ref=e30] [cursor=pointer]:
+                  - /url: /es/contacto
+                - link "Ver proyectos" [ref=e34] [cursor=pointer]:
+                  - /url: /es/projects
+                  - generic [ref=e35]: ▶
+                  - text: Ver proyectos
+              - paragraph [ref=e36]: web / software / automatización / IA
+            - generic [ref=e37]:
+              - generic [ref=e38]:
+                - generic [ref=e39]:
+                  - generic [ref=e40]: Sistema de proyecto
+                  - generic [ref=e41]: 04 pasos / 2 ramas
+                  - generic [ref=e42]: en curso
+                - generic [ref=e44]: 100%
+                - generic [ref=e56]:
+                  - paragraph [ref=e57]: últimos avances
+                  - generic [ref=e58]:
+                    - generic [ref=e59]:
+                      - time [ref=e61]: 09:41:02
+                      - generic [ref=e62]: alcance aprobado
+                      - generic [ref=e63]: 128 ms
+                    - generic [ref=e64]:
+                      - time [ref=e66]: 09:38:57
+                      - generic [ref=e67]: equipo alineado
+                      - generic [ref=e68]: 2.1 s
+                    - generic [ref=e69]:
+                      - time [ref=e71]: 09:31:14
+                      - generic [ref=e72]: próximo paso
+                      - generic [ref=e73]: 410 ms
+              - generic:
+                - generic:
+                  - paragraph: Consulta recibida
+                  - paragraph: formulario / contacto
+                - generic:
+                  - paragraph: Necesidad definida
+                  - paragraph: objetivo / alcance
+                - generic:
+                  - paragraph: Estrategia alineada
+                  - paragraph: equipo / prioridad
+                - generic:
+                  - paragraph: Proyecto en marcha
+                  - paragraph: diseño / desarrollo
+                - generic: definido
+                - generic: ajustar
+          - generic [ref=e74]: ⌄
+      - region [ref=e75]:
+        - generic [ref=e76]:
+          - heading "La tecnología no debería complicar tu negocio. Debería hacerlo avanzar." [level=2] [ref=e78]:
+            - text: La tecnología no debería
+            - emphasis [ref=e79]: complicar
+            - text: tu negocio.
+            - generic [ref=e80]: Debería hacerlo avanzar.
+          - paragraph [ref=e82]: Diseñamos sitios, software y automatizaciones que ordenan procesos, conectan herramientas y convierten trabajo manual en sistemas claros y escalables.
+          - article [ref=e83]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: Una operación, conectada
+              - generic [ref=e86]: En curso
+            - list [ref=e88]:
+              - listitem [ref=e89]:
+                - generic [ref=e90]: "01"
+                - generic [ref=e91]: Capturar una consulta
+              - listitem [ref=e93]:
+                - generic [ref=e94]: "02"
+                - generic [ref=e95]: Ordenar la información
+              - listitem [ref=e97]:
+                - generic [ref=e98]: "03"
+                - generic [ref=e99]: Activar el siguiente paso
+      - region [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - paragraph [ref=e103]: Capacidades
+            - heading "La parte digital de tu negocio, bien resuelta." [level=2] [ref=e104]
+          - generic [ref=e105]:
+            - article [ref=e106]:
+              - generic [ref=e118]:
+                - generic [ref=e119]:
+                  - heading "Desarrollo web" [level=3] [ref=e120]
+                  - generic [ref=e121]: "01"
+                - paragraph [ref=e122]: Sitios que explican bien, cargan rápido y guían una decisión concreta.
+            - article [ref=e123]:
+              - generic [ref=e124]: SYS
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - heading "Software a medida" [level=3] [ref=e134]
+                  - generic [ref=e135]: "02"
+                - paragraph [ref=e136]: Herramientas internas que hacen visible la operación sin forzar procesos ajenos.
+            - article [ref=e137]:
+              - generic [ref=e139]:
+                - generic [ref=e140]: FORM
+                - generic [ref=e142]: RULE
+                - generic [ref=e144]: TEAM
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - heading "Automatizaciones" [level=3] [ref=e147]
+                  - generic [ref=e148]: "03"
+                - paragraph [ref=e149]: Flujos que conectan formularios, equipos y datos sin perseguir tareas repetidas.
+            - article [ref=e150]:
+              - generic [ref=e151]: CONTEXTO DISPONIBLE
+              - generic [ref=e158]:
+                - generic [ref=e159]:
+                  - heading "IA aplicada" [level=3] [ref=e160]
+                  - generic [ref=e161]: "04"
+                - paragraph [ref=e162]: "Asistencia útil dentro del proceso: clasificar, resumir y responder con contexto."
+  - button "Open Next.js Dev Tools" [ref=e168] [cursor=pointer]

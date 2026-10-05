@@ -1,4 +1,251 @@
 {
+  "NewHome": {
+    "metadata": {
+      "title": "Nueva experiencia",
+      "description": "Vista previa de la nueva experiencia digital de Synttek."
+    },
+    "skipLink": "Ir al contenido principal",
+    "navbar": {
+      "ariaLabel": "Navegación principal",
+      "services": "Servicios",
+      "projects": "Proyectos",
+      "process": "Proceso",
+      "openMenu": "Abrir menú de navegación",
+      "statusAriaLabel": "Synttek está disponible para nuevos proyectos",
+      "status": "proyectos abiertos",
+      "cta": "Hablemos"
+    },
+    "hero": {
+      "eyebrow": "estudio digital / software / IA",
+      "headingLine1": "Creamos",
+      "headingLine2": "sistemas",
+      "headingLine3": "que avanzan",
+      "headingAccent": "negocios.",
+      "body": "Sitios web, software a medida y automatizaciones que conectan tu operación para que el trabajo avance con claridad.",
+      "primaryCta": "Contanos tu proyecto",
+      "secondaryCta": "Ver proyectos",
+      "microcopy": "web / software / automatización / IA",
+      "panelTitle": "Sistema de proyecto",
+      "steps": "recorrido de proyecto",
+      "running": "vista de proceso",
+      "branchYes": "definido",
+      "branchOther": "ajustar",
+      "recentRuns": "etapas del trabajo",
+      "nodes": [
+        { "title": "Consulta recibida", "detail": "formulario / contacto" },
+        { "title": "Necesidad definida", "detail": "objetivo / alcance" },
+        { "title": "Estrategia alineada", "detail": "equipo / prioridad" },
+        { "title": "Proyecto en marcha", "detail": "diseño / desarrollo" }
+      ],
+      "runs": [
+        { "label": "entender el problema" },
+        { "label": "definir el recorrido" },
+        { "label": "construir el próximo paso" }
+      ]
+    },
+    "manifesto": {
+      "headingBefore": "Tu negocio ya tiene",
+      "headingEmphasis": "movimiento.",
+      "headingAfter": "El desorden también crece.",
+      "headingClosing": "Ahí empieza nuestro trabajo.",
+      "body": "WhatsApp, Instagram, planillas, tareas manuales y herramientas desconectadas funcionan hasta que el crecimiento vuelve difícil dar seguimiento sin depender de la memoria.",
+      "panelTitle": "Cuando todo crece por separado",
+      "panelState": "fricción operativa",
+      "stages": [
+        "Consultas en varios canales",
+        "Información repartida",
+        "Seguimiento dependiente de personas"
+      ]
+    },
+    "systemsOperations": {
+      "label": "Flujo operativo",
+      "heading": "Cada consulta necesita información, seguimiento y un próximo paso.",
+      "body": "Ordenamos el recorrido para que el equipo pueda ver qué llegó, quién se ocupa y qué tiene que pasar después.",
+      "steps": [
+        { "title": "Entrada", "body": "WhatsApp, formularios y otros canales reúnen la consulta con contexto." },
+        { "title": "Información", "body": "Los datos quedan en un lugar claro en vez de repartidos entre mensajes y planillas." },
+        { "title": "Seguimiento", "body": "Cada oportunidad tiene una persona responsable y un estado visible." },
+        { "title": "Próximo paso", "body": "El equipo sabe qué responder, derivar, preparar o revisar." }
+      ],
+      "responsibility": { "label": "responsabilidad visible", "title": "Menos memoria. Más continuidad.", "items": ["Contexto compartido", "Responsable definido", "Estado entendible", "Siguiente acción clara"] }
+    },
+    "services": {
+      "eyebrow": "Capacidades",
+      "title": "Cuatro resultados para ordenar y hacer avanzar tu negocio.",
+      "visualLabels": {
+        "system": "PEDIDOS",
+        "form": "FORMULARIO",
+        "rule": "REGLA",
+        "team": "EQUIPO",
+        "contextAvailable": "IA APLICADA AL PROCESO"
+      },
+      "items": [
+        {
+          "title": "Generar consultas",
+          "description": "Una presencia clara para que más personas entiendan la propuesta y sepan cómo contactarte."
+        },
+        {
+          "title": "Vender o recibir pedidos",
+          "description": "Catálogos, ecommerce y recorridos que facilitan elegir, pedir o comprar."
+        },
+        {
+          "title": "Ordenar la operación",
+          "description": "Paneles y herramientas propias para centralizar información, estados y responsabilidades."
+        },
+        {
+          "title": "Reducir trabajo manual",
+          "description": "Automatizaciones e IA aplicada para clasificar, resumir y activar tareas repetibles con contexto."
+        }
+      ],
+      "secondaryLabel": "Capacidades complementarias",
+      "secondaryItems": ["E-commerce", "SEO y SEM", "Branding", "Contenidos"]
+    },
+    "interstitial": {
+      "label": "lo que realmente construimos",
+      "headingLine1": "La mejor tecnología es la que",
+      "headingLine2": "se vuelve parte del trabajo.",
+      "body": "Tiene que ser entendible, útil y fácil de incorporar a la forma real en que trabaja el equipo."
+    },
+    "selectedWork": {
+      "label": "Trabajo seleccionado",
+      "heading": "Productos y experiencias construidos con problemas concretos en mente.",
+      "body": "Tres proyectos distintos, presentados desde lo que realmente existe: su propósito, su alcance y su base técnica.",
+      "technologiesLabel": "Tecnologías utilizadas",
+      "viewProject": "Ver proyecto",
+      "projects": {
+        "cari-turismo": { "classification": "Caso real · Cliente", "imageAlt": "Vista del sitio de Cari Turismo con propuestas de excursiones." },
+        "constructora-software": { "classification": "Producto de software", "imageAlt": "Vista del backoffice de Constructora SaaS." },
+        "thumblify": { "classification": "Producto SaaS", "imageAlt": "Vista de la plataforma Thumblify para crear thumbnails de YouTube." }
+      }
+    },
+    "testimonials": {
+      "label": "Experiencias compartidas",
+      "heading": "Dos opiniones sobre el trabajo y el resultado.",
+      "sourceNote": "Texto original en español",
+      "profileLink": "Ver perfil en Google",
+      "fernando": {
+        "quote": "Mi experiencia con ellos fue de lo más satisfactoria. Respondieron en tiempo y forma, con un nivel técnico espectacular. Estoy muy contento con los resultados: mi marca y mi sitio web quedaron excelentes.",
+        "author": "Fernando Catalano",
+        "imageAlt": "Retrato de Fernando Catalano"
+      },
+      "vale": {
+        "quote": "Nos ayudaron con la estética completa de la inmobiliaria, hasta el logo nos ofrecieron. La página, un lujo.",
+        "author": "Vale Sosa"
+      }
+    },
+    "process": {
+      "label": "Cómo trabajamos",
+      "heading": "Primero entendemos. Después construimos.",
+      "body": "Un recorrido para definir el problema, acordar prioridades y construir un alcance que tenga sentido para el negocio.",
+      "steps": [
+        { "title": "Entender", "body": "Revisamos el contexto, los canales, las herramientas y las restricciones antes de plantear una solución." },
+        { "title": "Priorizar", "body": "Ordenamos necesidades y acordamos qué conviene resolver primero dentro de un alcance claro." },
+        { "title": "Diseñar y construir", "body": "Convertimos ese alcance en recorridos, contenido e interfaces, y desarrollamos las piezas acordadas." },
+        { "title": "Lanzar y evaluar", "body": "Preparamos la publicación o entrega y revisamos qué se puede aprender del uso inicial para decidir próximos pasos." }
+      ]
+    },
+    "systems": {
+      "label": "confiabilidad",
+      "headingBefore": "Sólidos en las cosas que",
+      "headingEmphasis": "importan.",
+      "body": "Arquitectura clara, código mantenible e integraciones bien pensadas para crecer con el negocio.",
+      "architecture": {
+        "index": "01 / arquitectura",
+        "title": "Una base técnica consistente",
+        "description": "Cada capa tiene una responsabilidad clara y puede evolucionar sin convertir el sistema en un conjunto de parches.",
+        "nodes": ["Sitio web", "API", "Base de datos", "Automatizaciones", "CMS"]
+      },
+      "integrations": {
+        "index": "02 / integraciones",
+        "title": "Automatización donde viven tus datos",
+        "description": "Conectamos los canales de entrada con las herramientas que el equipo usa para operar y dar seguimiento.",
+        "inputs": ["Formularios", "WhatsApp", "CRM"],
+        "hub": "Integraciones",
+        "outputs": ["Paneles internos", "Equipo", "Seguimiento"]
+      }
+    },
+    "operations": {
+      "label": "operaciones visibles",
+      "heading": "Procesos visibles. Decisiones más claras.",
+      "body": "Una vista ordenada de consultas, seguimientos y sistemas para entender qué está avanzando y qué necesita atención.",
+      "qualifier": "Vista demostrativa · datos ilustrativos",
+      "activity": {
+        "label": "actividad",
+        "title": "Flujo semanal",
+        "period": "lunes a domingo",
+        "days": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+        "rows": ["Leads", "Seguimiento", "Entregas"],
+        "summary": "Ejemplo visual: la actividad se concentra en captación y seguimiento durante los días hábiles.",
+        "legend": ["Baja", "Estable", "Alta"]
+      },
+      "status": {
+        "label": "estado del sistema",
+        "title": "Operación conectada",
+        "items": [
+          { "label": "Sistemas activos", "value": "Conectados" },
+          { "label": "Respuestas", "value": "En seguimiento" },
+          { "label": "Pasos manuales", "value": "Solo excepciones" }
+        ],
+        "summary": "Estados ilustrativos para explicar cómo se organiza una operación conectada."
+      },
+      "workflows": {
+        "label": "workflows",
+        "title": "Actividad de procesos",
+        "stateLabel": "estado actual",
+        "items": [
+          { "title": "Consulta nueva", "detail": "Formulario → CRM", "state": "Calificada", "tone": "active" },
+          { "title": "Seguimiento comercial", "detail": "CRM → WhatsApp", "state": "Respuesta pendiente", "tone": "waiting" },
+          { "title": "Actualización de estado", "detail": "CRM → panel interno", "state": "Sincronizada", "tone": "connected" }
+        ],
+        "summary": "El flujo muestra dónde está cada consulta y qué paso sigue, sin presentar resultados reales de clientes."
+      }
+    },
+    "proof": {
+      "heading": "Evidencia que se puede revisar.",
+      "body": "No publicamos cifras sin respaldo. Mostramos decisiones, proceso y una base técnica que se puede entender.",
+      "items": [
+        { "title": "Alcance claro", "body": "Cada proyecto parte de objetivos, prioridades y entregables definidos." },
+        { "title": "Proceso visible", "body": "Diseño, desarrollo e integraciones avanzan con hitos concretos." },
+        { "title": "Base preparada para evolucionar", "body": "La solución se construye para sumar contenido, funciones e integraciones sin rehacer todo." }
+      ]
+    },
+    "offers": {
+      "label": "modalidades de solución",
+      "heading": "No tenés que saber qué solución necesitás.",
+      "pricingNote": "La modalidad y el alcance se definen después de entender el contexto.",
+      "scopeLabel": "Alcance a medida",
+      "items": [
+        { "index": "01", "situation": "Cuando necesitás presentar una propuesta puntual y abrir un camino claro de consulta.", "title": "Landing", "description": "Una experiencia enfocada en una campaña, servicio o lanzamiento específico.", "includes": ["Mensaje y estructura", "Recorrido de consulta", "Base de SEO y rendimiento"] },
+        { "index": "02", "situation": "Cuando tu negocio necesita explicar mejor lo que hace y reunir su presencia digital.", "title": "Web corporativa", "description": "Una presencia de varias páginas para organizar servicios, contenido y puntos de contacto.", "includes": ["Arquitectura de contenidos", "Páginas y recorridos", "Integraciones acordadas"] },
+        { "index": "03", "situation": "Cuando una operación ya no encaja bien en planillas o herramientas genéricas.", "title": "Sistema", "description": "Una solución definida alrededor de procesos, roles e información concretos.", "includes": ["Flujos y permisos", "Paneles y datos", "Automatizaciones e integraciones"] }
+      ]
+    },
+    "faq": {
+      "sectionLabel": "Preguntas frecuentes",
+      "title": "Decidir con más claridad",
+      "askMore": "¿Tu situación es distinta?",
+      "askMoreDetail": "Contanos el contexto y vemos por dónde empezar.",
+      "ctaBtn": "Escribir por WhatsApp",
+      "questionsCount": "preguntas",
+      "items": [
+        { "question": "Ya vendemos por Instagram y WhatsApp. ¿Para qué necesitamos una web?", "answer": "Una web no tiene que reemplazar esos canales. Puede ordenar la información, ofrecer un espacio propio para explicar la propuesta y dar contexto antes de que una persona llegue a la conversación." },
+        { "question": "No tengo claro qué necesito. ¿Me pueden orientar?", "answer": "Sí. Primero revisamos el objetivo, el momento del negocio y las herramientas actuales. Con ese contexto podemos plantear alternativas y explicar qué alcance tendría sentido evaluar." },
+        { "question": "¿Cómo se define el precio?", "answer": "Se define a partir del alcance acordado: contenido, páginas, funciones, integraciones y responsabilidades. Después de entender esas variables preparamos una propuesta concreta, sin asumir un paquete genérico." },
+        { "question": "¿Cuánto puede tardar un proyecto?", "answer": "Depende del alcance, la disponibilidad de contenido, las integraciones y las instancias de revisión. El calendario se conversa cuando esas variables están claras; no usamos un plazo universal para proyectos distintos." },
+        { "question": "¿Pueden integrar las herramientas que ya usamos?", "answer": "Podemos revisar integraciones con formularios, WhatsApp, sistemas de gestión u otras herramientas existentes. La viabilidad y el alcance dependen de los accesos y capacidades de cada servicio." },
+        { "question": "¿Voy a poder actualizar el contenido?", "answer": "Cuando el proyecto lo requiere, podemos contemplar una forma de administrar textos, imágenes u otros datos. Qué se puede editar y cómo se define como parte del alcance." }
+      ]
+    },
+    "waMessage": "Hola Synttek, quiero contarles mi situación y evaluar qué solución puede tener sentido",
+    "finalCta": { "label": "siguiente paso", "heading": "Empecemos por entender dónde estás.", "body": "Podés contarnos el contexto por el formulario de contacto o iniciar una conversación por WhatsApp.", "primaryCta": "Ir a contacto", "secondaryCta": "Escribir por WhatsApp" },
+    "routeFooter": {
+      "statement": "Web, software y automatizaciones para negocios que quieren ordenar su presencia y operación digital.",
+      "navigationLabel": "Navegación del pie de página",
+      "links": { "services": "Servicios", "projects": "Proyectos", "about": "Sobre nosotros", "blog": "Blog", "contact": "Contacto" },
+      "channels": { "instagram": "Instagram", "linkedin": "LinkedIn" },
+      "copyright": "©2026 Synttek. Todos los derechos reservados", "location": "Villa Carlos Paz, Córdoba, Argentina"
+    }
+  },
   "Homepage": {
     "title": "Desarrollo de Aplicaciones Web",
     "subtitle": "Desperta el poder de tu marca con",
@@ -394,6 +641,11 @@
         "note": "Seguinos para ver procesos, lanzamientos y piezas visuales del estudio.",
         "ariaLabel": "Abrir Instagram"
       },
+      "facebook": {
+        "label": "Facebook",
+        "value": "Synttek",
+        "ariaLabel": "Abrir Facebook"
+      },
       "linkedin": {
         "label": "LinkedIn",
         "value": "/company/synttek",
@@ -511,6 +763,11 @@
         "label": "Instagram",
         "value": "@synttek",
         "ariaLabel": "Abrir Instagram"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "value": "Synttek",
+        "ariaLabel": "Abrir Facebook"
       },
       "linkedin": {
         "label": "LinkedIn",

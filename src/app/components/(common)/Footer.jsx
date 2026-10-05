@@ -3,10 +3,15 @@ import { Mail } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import syntekIcon from "@/app/assets/logos/syntek.svg";
-import { InstagramIcon, LinkedinIcon } from "@/app/components/icons/SocialIcons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+} from "@/app/components/icons/SocialIcons";
 import { getPrimaryServices } from "@/data/services";
 import {
   BUSINESS_EMAIL,
+  FACEBOOK_URL,
   INSTAGRAM_URL,
   LINKEDIN_URL,
 } from "@/lib/business";
@@ -42,6 +47,15 @@ const Footer = async () => {
       label: t("channels.instagram.label"),
       value: t("channels.instagram.value"),
       ariaLabel: t("channels.instagram.ariaLabel"),
+      external: true,
+    },
+    {
+      key: "facebook",
+      icon: FacebookIcon,
+      href: FACEBOOK_URL,
+      label: t("channels.facebook.label"),
+      value: t("channels.facebook.value"),
+      ariaLabel: t("channels.facebook.ariaLabel"),
       external: true,
     },
     {
