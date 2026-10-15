@@ -291,7 +291,7 @@
     "waMessage": "Hola Synttek, quiero un diagnóstico de mi presencia digital",
     "hero": {
       "eyebrow": "Agencia de desarrollo · Córdoba, AR",
-      "headline": "Desarrollo web, software y automatizaciones <accent>para empresas y negocios</accent>",
+      "headline": "Desarrollo web, software y automatizaciones para <accent>empresas y negocios</accent>",
       "subtitle": "Desde Villa Carlos Paz trabajamos con empresas de Córdoba y toda Argentina para ordenar su presencia digital, procesos y consultas.",
       "ctaPrimary": "Solicitar diagnóstico por WhatsApp",
       "ctaSecondary": "Ver soluciones"
@@ -300,54 +300,62 @@
       "sectionLabel": "Sistema digital",
       "title": "Tu negocio no necesita más herramientas. Necesita que todo funcione junto.",
       "titleHighlight": "junto.",
-      "description": "Conectamos presencia, consultas, automatización y medición para que cada parte empuje hacia el mismo objetivo: vender mejor.",
-      "phaseFragmented": "Mayormente presencia improvisada",
-      "phaseTransitioning": "Sistema en transición",
-      "phaseActive": "Mayormente sistema activo",
+      "description": "Cuando las consultas, la información y el seguimiento viven en lugares distintos, responder depende de la memoria y crecer suma más trabajo manual.",
+      "phaseFragmented": "Operación fragmentada",
+      "phaseTransitioning": "Conectando el recorrido",
+      "phaseActive": "Recorrido conectado",
       "left": {
         "label": "Con Synttek",
-        "status": "Sistema activo",
-        "description": "Cada punto conectado a un mismo objetivo."
+        "status": "Recorrido conectado",
+        "description": "Cada consulta conserva su contexto, su responsable y un próximo paso visible."
       },
       "right": {
         "label": "Presencia improvisada",
-        "status": "Sistema fragmentado",
-        "description": "Herramientas activas, pero trabajando por separado.",
+        "status": "Operación fragmentada",
+        "description": "Los canales existen, pero la continuidad depende de recordar qué pasó en cada uno.",
         "moduleLabels": [
+          "Instagram",
           "WhatsApp",
-          "Planilla",
           "Sitio web",
-          "Tareas manuales",
+          "Planilla",
           "Seguimiento",
-          "Métricas"
+          "Tareas manuales"
+        ],
+        "painStates": [
+          "Presencia inconsistente",
+          "Información repetida",
+          "Contexto separado",
+          "Depende de una persona",
+          "Seguimiento pendiente",
+          "Consulta sin responder"
         ]
       },
-      "systemFlow": ["Atraer", "Explicar", "Calificar", "Convertir", "Medir"],
+      "systemFlow": ["Consulta", "Contexto", "Responsable", "Seguimiento", "Próximo paso"],
       "nodeStatus": [
-        "Activo",
-        "Conectado",
-        "Conectado",
-        "Activo",
-        "Medición activa"
+        "Entra desde el canal correcto",
+        "La información queda disponible",
+        "Alguien sabe que debe actuar",
+        "El estado se mantiene visible",
+        "La siguiente acción queda clara"
       ],
       "transformations": [
         {
-          "before": "Consultas desordenadas",
-          "after": "Flujo claro de consultas"
+          "before": "Consultas dispersas",
+          "after": "Recorrido claro"
         },
         {
-          "before": "Información dispersa",
-          "after": "Una única fuente de información"
+          "before": "Respuestas repetidas",
+          "after": "Información disponible"
         },
         {
-          "before": "Propuesta poco clara",
-          "after": "Un mensaje que se entiende rápido"
+          "before": "Seguimiento manual",
+          "after": "Próximo paso visible"
         },
-        { "before": "Tareas repetitivas", "after": "Automatizaciones simples" },
-        { "before": "Sin medición", "after": "Decisiones basadas en datos" },
+        { "before": "Canales desconectados", "after": "Contexto compartido" },
+        { "before": "Presencia improvisada", "after": "Imagen coherente" },
         {
-          "before": "Web aislada",
-          "after": "Experiencia preparada para convertir"
+          "before": "Crecimiento frágil",
+          "after": "Proceso preparado para evolucionar"
         }
       ]
     },

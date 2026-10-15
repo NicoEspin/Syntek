@@ -12,16 +12,13 @@ function flowPath() {
   return pts.reduce((acc, [x, y], i) => (i === 0 ? `M${x},${y}` : `${acc} L${x},${y}`), "");
 }
 
-// capa "sistema activo" — en desktop/tablet es el flujo comercial completo
-// (ATRAER → MEDIR) sobre un canvas panorámico; en mobile es la misma
-// secuencia presentada como lista vertical conectada.
 export default function ActiveSystem({ copy, systemFlow, nodeStatus, compact = false, nodeLimit = 5 }) {
   const gridId = useId();
   const nodes = FLOW_NODES.slice(0, nodeLimit);
 
   if (compact) {
     return (
-      <div className="flex flex-col gap-5 p-6 pb-16">
+      <div className="flex flex-col gap-5 p-6 md:p-7">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="relative flex size-1.5">
@@ -44,8 +41,8 @@ export default function ActiveSystem({ copy, systemFlow, nodeStatus, compact = f
                   {Icon && <Icon size={14} strokeWidth={2} aria-hidden />}
                 </span>
                 <div className="pt-1">
-                  <span className="block text-sm font-semibold uppercase tracking-wide text-white">{step}</span>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#A1E233]/70">
+                  <span className="block text-sm font-semibold text-white">{step}</span>
+                  <span className="mt-0.5 block text-xs leading-snug text-white/45">
                     {nodeStatus[i]}
                   </span>
                 </div>
@@ -92,16 +89,16 @@ export default function ActiveSystem({ copy, systemFlow, nodeStatus, compact = f
           return (
             <div
               key={i}
-              className="absolute flex -translate-x-1/2 flex-col items-center gap-1.5"
+              className="absolute flex w-[132px] -translate-x-1/2 flex-col items-center gap-1.5 text-center"
               style={{ left: pct(n.left, 100), top: pct(n.top, 100), transform: "translate(-50%, calc(-100% - 14px))" }}
             >
               <span className="flex size-6 items-center justify-center rounded-full bg-[#A1E233] text-black">
                 <Icon size={12} strokeWidth={2} aria-hidden />
               </span>
-              <span className="whitespace-nowrap font-mono text-[9px] font-semibold uppercase tracking-wider text-white">
+              <span className="font-mono text-[9px] font-semibold uppercase tracking-wider text-white">
                 {systemFlow[i]}
               </span>
-              <span className="whitespace-nowrap font-mono text-[7.5px] uppercase tracking-wider text-[#A1E233]/70">
+              <span className="max-w-[120px] text-[8px] leading-tight text-white/45">
                 {nodeStatus[i]}
               </span>
             </div>

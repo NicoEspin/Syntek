@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { cn } from "@/lib/utils";
 import ActiveSystem from "./ActiveSystem";
 import FragmentedSystem from "./FragmentedSystem";
-import ComparatorHandle from "./ComparatorHandle";
 import TransformationLedger from "./TransformationLedger";
-import { FEATHER, PHASE_BREAKPOINTS, PULSE_THRESHOLD } from "./constants";
+import { FEATHER, PHASE_BREAKPOINTS } from "./constants";
 
 // ── canvas de tablet/desktop (>= 768px) ─────────────────────────────────────
 // Un único progress (0-100, MotionValue) maneja TODO: posición del indicador y
@@ -19,26 +17,13 @@ import { FEATHER, PHASE_BREAKPOINTS, PULSE_THRESHOLD } from "./constants";
 // transformación se vea completa antes de que la página siga bajando.
 export default function SystemComparator({ copy }) {
   const storyRef = useRef(null);
-  const lastValueRef = useRef(0);
-  const frameRef = useRef(null);
-
+  const phaseRef = useRef("fragmented");
   const prefersReduced = useReducedMotion();
   const progress = useMotionValue(0);
   const { scrollYProgress } = useScroll({ target: storyRef, offset: ["start start", "end end"] });
 
   const [phase, setPhase] = useState("fragmented");
-  const [pulseKey, setPulseKey] = useState(0);
-  const [spotlightOpacity, setSpotlightOpacity] = useState(0);
 
-  const handleFramePointerMove = (e) => {
-    const node = frameRef.current;
-    if (!node) return;
-    const rect = node.getBoundingClientRect();
-    node.style.setProperty("--spotlight-x", `${e.clientX - rect.left}px`);
-    node.style.setProperty("--spotlight-y", `${e.clientY - rect.top}px`);
-  };
-
-  const left = useTransform(progress, (v) => `${v}%`);
   const maskActive = useTransform(
     progress,
     (v) => `linear-gradient(to right, black 0%, black ${Math.max(v - FEATHER, 0)}%, transparent ${v}%)`,
@@ -51,11 +36,10 @@ export default function SystemComparator({ copy }) {
 
   useMotionValueEvent(progress, "change", (v) => {
     const next = v < PHASE_BREAKPOINTS.fragmented ? "fragmented" : v > PHASE_BREAKPOINTS.transitioning ? "active" : "transitioning";
-    setPhase((prev) => (prev === next ? prev : next));
-    if (v >= PULSE_THRESHOLD && lastValueRef.current < PULSE_THRESHOLD && !prefersReduced) {
-      setPulseKey((k) => k + 1);
+    if (next !== phaseRef.current) {
+      phaseRef.current = next;
+      setPhase(next);
     }
-    lastValueRef.current = v;
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -63,24 +47,14 @@ export default function SystemComparator({ copy }) {
     progress.set(v * 100);
   });
 
-  useEffect(() => {
-    if (!prefersReduced) return;
-    progress.set(100);
-  }, [prefersReduced, progress]);
-
   const phaseText = phase === "fragmented" ? copy.phaseFragmented : phase === "active" ? copy.phaseActive : copy.phaseTransitioning;
 
   return (
     <div>
-      <div ref={storyRef} className={cn("relative", prefersReduced ? "h-auto" : "h-[200vh]")}>
-        <div className={cn(prefersReduced ? "" : "sticky top-32 flex flex-col justify-center")}>
+      <div ref={storyRef} className="relative h-[155vh] motion-reduce:h-auto">
+        <div className="sticky top-28 flex flex-col justify-center motion-reduce:hidden">
           <div
-            ref={frameRef}
-            onMouseMove={handleFramePointerMove}
-            onMouseEnter={() => setSpotlightOpacity(1)}
-            onMouseLeave={() => setSpotlightOpacity(0)}
-            className="relative aspect-[16/10] w-full overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0a0a0a] md:aspect-[16/9] lg:aspect-[16/6]"
-            style={{ "--spotlight-x": "50%", "--spotlight-y": "50%" }}
+            className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white/[0.08] bg-neutral-950 lg:aspect-[16/7]"
           >
             {/* grilla técnica casi imperceptible */}
             <div
@@ -97,16 +71,6 @@ export default function SystemComparator({ copy }) {
               className="pointer-events-none absolute inset-0"
               style={{ background: "radial-gradient(ellipse 80% 70% at 30% 50%, rgba(161,226,51,1) 0%, transparent 70%)", opacity: glowOpacity }}
             />
-            {/* spotlight sutil que sigue el cursor — toque táctil premium, solo desktop (pointer fino) */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 z-30 hidden transition-opacity duration-500 ease-out lg:block"
-              style={{
-                opacity: spotlightOpacity * 0.5,
-                background: "radial-gradient(circle at var(--spotlight-x) var(--spotlight-y), rgba(161,226,51,0.16), transparent 60%)",
-              }}
-            />
-
             <motion.div className="absolute inset-0" style={{ WebkitMaskImage: maskActive, maskImage: maskActive }}>
               <ActiveSystem copy={copy.left} systemFlow={copy.systemFlow} nodeStatus={copy.nodeStatus} />
             </motion.div>
@@ -114,18 +78,21 @@ export default function SystemComparator({ copy }) {
               <FragmentedSystem copy={copy.right} moduleLimit={6} />
             </motion.div>
 
-            {pulseKey > 0 && (
-              <div
-                key={pulseKey}
-                aria-hidden
-                className="syn-transform-pulse pointer-events-none absolute inset-0"
-              />
-            )}
-
-            <ComparatorHandle left={left} />
           </div>
 
           <TransformationLedger transformations={copy.transformations} progress={progress} />
+        </div>
+
+        <div className="hidden grid-cols-2 gap-4 motion-reduce:grid">
+          <article className="relative min-h-[480px] overflow-hidden rounded-3xl border border-white/8 bg-neutral-950">
+            <FragmentedSystem copy={copy.right} />
+          </article>
+          <article className="relative min-h-[480px] overflow-hidden rounded-3xl border border-[#A1E233]/20 bg-neutral-950">
+            <ActiveSystem copy={copy.left} systemFlow={copy.systemFlow} nodeStatus={copy.nodeStatus} compact />
+          </article>
+          <div className="col-span-2">
+            <TransformationLedger transformations={copy.transformations} />
+          </div>
         </div>
       </div>
 

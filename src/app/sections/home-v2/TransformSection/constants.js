@@ -1,13 +1,21 @@
-import { ChartBar, Clock, Globe, MessageCircle, Table, Workflow } from "lucide-react";
-import { CircleCheck, ListFilter, Megaphone, MessageSquare, TrendingUp } from "lucide-react";
+import {
+  BellRing,
+  Camera,
+  ClipboardList,
+  Files,
+  Globe,
+  ListChecks,
+  MessageCircle,
+  Sheet,
+  UserCheck,
+} from "lucide-react";
 
 export const EASE_PREMIUM = [0.16, 1, 0.3, 1];
 export const EASE_SUBTLE = [0.4, 0, 0.2, 1];
 
-export const PULSE_THRESHOLD = 80;
 export const FEATHER = 7; // ancho de la zona de degradado entre capas, en % del canvas
 
-// umbrales de "fase" semántica usados para aria-valuetext, aria-live y el pulso del sistema
+// Umbrales semánticos para anunciar el avance sin actualizar estado en cada frame.
 export const PHASE_BREAKPOINTS = { fragmented: 30, transitioning: 70 };
 
 // módulos dispersos — capa "presencia improvisada". Posiciones en % dentro del
@@ -15,20 +23,20 @@ export const PHASE_BREAKPOINTS = { fragmented: 30, transitioning: 70 };
 // alterna el tamaño de cada tarjeta para que la pila se sienta como notas
 // físicas sueltas, no como iconos idénticos flotando en el vacío.
 export const FRAGMENTED_MODULES = [
-  { Icon: MessageCircle, top: 20, left: 62, rotate: -3, size: "md" },
-  { Icon: Table, top: 60, left: 55, rotate: 2, size: "sm" },
-  { Icon: Globe, top: 16, left: 84, rotate: 3, size: "sm" },
-  { Icon: Clock, top: 72, left: 78, rotate: -2, size: "md" },
-  { Icon: Workflow, top: 42, left: 91, rotate: 4, size: "sm" },
-  { Icon: ChartBar, top: 82, left: 62, rotate: -4, size: "md" },
+  { Icon: Camera, top: 26, left: 56, rotate: -2, size: "md" },
+  { Icon: MessageCircle, top: 24, left: 82, rotate: 2, size: "md" },
+  { Icon: Globe, top: 54, left: 68, rotate: -1, size: "md" },
+  { Icon: Sheet, top: 76, left: 52, rotate: 2, size: "md" },
+  { Icon: BellRing, top: 75, left: 78, rotate: -2, size: "md" },
+  { Icon: ClipboardList, top: 52, left: 91, rotate: 2, size: "md" },
 ];
 
 // nodos del flujo comercial — capa "sistema activo". x/y en % dentro del
 // canvas, con una leve curva panorámica (no una línea recta plana).
 export const FLOW_NODES = [
-  { Icon: Megaphone, left: 10, top: 58 },
-  { Icon: MessageSquare, left: 26, top: 38 },
-  { Icon: ListFilter, left: 42, top: 30 },
-  { Icon: CircleCheck, left: 58, top: 38 },
-  { Icon: TrendingUp, left: 74, top: 58 },
+  { Icon: MessageCircle, left: 12, top: 64 },
+  { Icon: Files, left: 31, top: 44 },
+  { Icon: UserCheck, left: 50, top: 36 },
+  { Icon: BellRing, left: 69, top: 44 },
+  { Icon: ListChecks, left: 88, top: 64 },
 ];

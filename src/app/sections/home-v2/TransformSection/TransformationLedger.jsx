@@ -2,10 +2,6 @@
 
 import { motion, useTransform } from "motion/react";
 
-// umbrales repartidos a lo largo del recorrido (0-100) — cada transformación
-// "ocurre" en su propio tramo, así el usuario ve el cambio ítem por ítem en
-// vez de un crossfade global de toda la lista a la vez.
-const THRESHOLDS = [14, 28, 43, 57, 71, 86];
 const SPAN = 16;
 
 function useItemMotion(progress, threshold) {
@@ -16,8 +12,10 @@ function useItemMotion(progress, threshold) {
   return { afterOpacity, beforeOpacity, markScale, checkScale };
 }
 
-function LedgerItem({ item, motionValues }) {
-  const { afterOpacity, beforeOpacity, markScale, checkScale } = motionValues;
+function AnimatedLedgerItem({ item, progress, index, total }) {
+  const threshold = ((index + 1) / (total + 1)) * 100;
+  const { afterOpacity, beforeOpacity, markScale, checkScale } = useItemMotion(progress, threshold);
+
   return (
     <div className="relative flex items-start gap-3 overflow-hidden border-t border-white/8 pt-4 max-sm:gap-2 max-sm:rounded-xl max-sm:border-t-0 max-sm:bg-white/[0.025] max-sm:px-2.5 max-sm:py-2">
       <motion.span
@@ -53,19 +51,37 @@ function LedgerItem({ item, motionValues }) {
   );
 }
 
+function StaticLedgerItem({ item }) {
+  return (
+    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 border-t border-white/8 py-3 text-xs leading-snug">
+      <span className="text-white/38 line-through decoration-white/20">{item.before}</span>
+      <span aria-hidden className="text-[#A1E233]">→</span>
+      <span className="font-medium text-white/80">{item.after}</span>
+    </div>
+  );
+}
+
 export default function TransformationLedger({ transformations, progress }) {
-  const m0 = useItemMotion(progress, THRESHOLDS[0]);
-  const m1 = useItemMotion(progress, THRESHOLDS[1]);
-  const m2 = useItemMotion(progress, THRESHOLDS[2]);
-  const m3 = useItemMotion(progress, THRESHOLDS[3]);
-  const m4 = useItemMotion(progress, THRESHOLDS[4]);
-  const m5 = useItemMotion(progress, THRESHOLDS[5]);
-  const motions = [m0, m1, m2, m3, m4, m5];
+  if (!progress) {
+    return (
+      <div className="mt-6 grid gap-x-8 sm:grid-cols-2">
+        {transformations.map((item) => (
+          <StaticLedgerItem key={item.before} item={item} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-1 max-sm:mt-5 max-sm:gap-x-2.5 max-sm:gap-y-2 lg:mt-10 lg:grid-cols-3">
       {transformations.map((item, i) => (
-        <LedgerItem key={item.before} item={item} motionValues={motions[i]} />
+        <AnimatedLedgerItem
+          key={item.before}
+          item={item}
+          progress={progress}
+          index={i}
+          total={transformations.length}
+        />
       ))}
     </div>
   );

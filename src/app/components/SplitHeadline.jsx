@@ -13,6 +13,7 @@ export default function SplitHeadline({
   delay = 0,
   ariaHidden = false,
   highlightWords = [],
+  highlightWordIndices,
   highlightClassName = "",
 }) {
   const ref = useRef(null);
@@ -21,6 +22,7 @@ export default function SplitHeadline({
   const words = text.split(" ");
   const stagger = prefersReduced ? 0 : 0.055;
   const highlightedWords = new Set(highlightWords.filter(Boolean));
+  const highlightedIndices = highlightWordIndices ? new Set(highlightWordIndices) : null;
 
   return (
     <Tag
@@ -36,7 +38,7 @@ export default function SplitHeadline({
           style={{ display: "inline-block", overflow: "hidden", marginRight: "0.25em" }}
         >
             <motion.span
-              className={highlightedWords.has(word) ? highlightClassName : undefined}
+              className={(highlightedIndices ? highlightedIndices.has(i) : highlightedWords.has(word)) ? highlightClassName : undefined}
               style={{ display: "inline-block" }}
               initial={{ y: prefersReduced ? 0 : "105%" }}
               animate={isInView ? { y: 0 } : {}}

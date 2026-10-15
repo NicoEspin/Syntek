@@ -292,7 +292,7 @@
     "waMessage": "Hi Synttek, I'd like a diagnosis of my digital presence",
     "hero": {
       "eyebrow": "Development agency · Córdoba, AR",
-      "headline": "Web development, software and automations <accent>for companies</accent>",
+      "headline": "Web development, software and automations for <accent>companies and businesses</accent>",
       "subtitle": "From Villa Carlos Paz, we work with companies in Córdoba and across Argentina to organize their digital presence, processes and inquiries.",
       "ctaPrimary": "Request a diagnosis on WhatsApp",
       "ctaSecondary": "See solutions"
@@ -301,30 +301,44 @@
       "sectionLabel": "Digital system",
       "title": "Your business doesn't need more tools. It needs everything working together.",
       "titleHighlight": "together.",
-      "description": "We connect presence, inquiries, automation and measurement so every part pushes toward the same goal: selling better.",
-      "phaseFragmented": "Mostly improvised presence",
-      "phaseTransitioning": "System in transition",
-      "phaseActive": "Mostly active system",
+      "description": "When inquiries, information and follow-up live in different places, responding depends on memory and growth creates more manual work.",
+      "phaseFragmented": "Fragmented operation",
+      "phaseTransitioning": "Connecting the journey",
+      "phaseActive": "Connected journey",
       "left": {
         "label": "With Synttek",
-        "status": "System active",
-        "description": "Every point connected to the same goal."
+        "status": "Connected journey",
+        "description": "Every inquiry keeps its context, its owner and a visible next step."
       },
       "right": {
         "label": "Improvised presence",
-        "status": "System fragmented",
-        "description": "Tools that are active, but working separately.",
-        "moduleLabels": ["WhatsApp", "Spreadsheet", "Website", "Manual tasks", "Follow-up", "Metrics"]
+        "status": "Fragmented operation",
+        "description": "The channels exist, but continuity depends on remembering what happened in each one.",
+        "moduleLabels": ["Instagram", "WhatsApp", "Website", "Spreadsheet", "Follow-up", "Manual tasks"],
+        "painStates": [
+          "Inconsistent presence",
+          "Repeated information",
+          "Context kept separate",
+          "Depends on one person",
+          "Follow-up pending",
+          "Inquiry unanswered"
+        ]
       },
-      "systemFlow": ["Attract", "Explain", "Qualify", "Convert", "Measure"],
-      "nodeStatus": ["Active", "Connected", "Connected", "Active", "Measuring active"],
+      "systemFlow": ["Inquiry", "Context", "Owner", "Follow-up", "Next step"],
+      "nodeStatus": [
+        "Arrives through the right channel",
+        "Information stays available",
+        "Someone knows they need to act",
+        "The status remains visible",
+        "The next action is clear"
+      ],
       "transformations": [
-        { "before": "Disorganized inquiries", "after": "A clear flow of inquiries" },
-        { "before": "Scattered information", "after": "One single source of information" },
-        { "before": "An unclear pitch", "after": "A message people get instantly" },
-        { "before": "Repetitive tasks", "after": "Simple automations" },
-        { "before": "No measurement", "after": "Decisions based on data" },
-        { "before": "An isolated website", "after": "An experience built to convert" }
+        { "before": "Scattered inquiries", "after": "A clear journey" },
+        { "before": "Repeated answers", "after": "Information available" },
+        { "before": "Manual follow-up", "after": "A visible next step" },
+        { "before": "Disconnected channels", "after": "Shared context" },
+        { "before": "Improvised presence", "after": "A coherent image" },
+        { "before": "Fragile growth", "after": "A process ready to evolve" }
       ]
     },
     "solutions": {

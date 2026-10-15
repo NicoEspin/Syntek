@@ -24,14 +24,14 @@ const TransformSection = async () => {
     <section
       id="transform"
       aria-labelledby="transform-heading"
-      className="relative px-4 py-24 md:px-5 lg:px-10 xl:px-24"
+      className="relative overflow-x-clip px-4 py-24 md:px-5 lg:px-10 xl:px-24"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 15% 20%, rgba(161,226,51,0.035) 0%, transparent 60%), radial-gradient(ellipse 50% 45% at 90% 90%, rgba(134,79,254,0.03) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 45% at 12% 22%, rgba(161,226,51,0.045) 0%, transparent 64%)",
         }}
       />
 

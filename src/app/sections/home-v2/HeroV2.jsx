@@ -27,11 +27,16 @@ const heroVariants = {
 };
 
 const getHeadlineParts = (headline) => {
-  const accent = headline.match(/<accent>(.*?)<\/accent>/)?.[1] ?? "";
+  const accent = headline.match(/<accent>(.*?)<\/accent>/);
+  const firstAccentWord = accent
+    ? headline.slice(0, accent.index).trim().split(" ").filter(Boolean).length
+    : 0;
 
   return {
     text: headline.replace(/<\/?accent>/g, ""),
-    highlightWords: accent.split(" "),
+    highlightWordIndices: accent
+      ? accent[1].split(" ").map((_, index) => firstAccentWord + index)
+      : [],
   };
 };
 
@@ -122,7 +127,7 @@ const HeroV2 = () => {
           as="h1"
           id="hero-v2-heading"
           text={headline.text}
-          highlightWords={headline.highlightWords}
+          highlightWordIndices={headline.highlightWordIndices}
           highlightClassName="text-primary1"
           className="mb-8 text-[clamp(2rem,4.6vw,3.7rem)] font-black leading-[1.02] tracking-tight text-white"
         />
